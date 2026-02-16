@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate TTS - Rupesh Bhai Special</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: linear-gradient(to bottom right, #1e3a8a, #312e81); color: white; }
+        .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); }
+    </style>
+</head>
+<body class="min-h-screen p-6 font-sans">
+
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-5xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        🎤 Ultimate TTS
+    </h1>
+
+    <div class="glass rounded-2xl p-8 shadow-2xl">
+
+        <div class="mb-6">
+            <label class="block text-xl mb-2">📝 Text Likho</label>
+            <textarea id="text" rows="6" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-lg focus:border-blue-500 focus:outline-none" placeholder="Yahan Hindi, English ya koi bhi language..."></textarea>
+            <div class="text-right mt-1 text-sm" id="char-count">0 / 5000</div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+                <label class="block text-xl mb-2">🌍 Bhasha</label>
+                <select id="lang" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4">
+                    <option value="hi" selected>Hindi</option>
+                    <option value="en">English (US)</option>
+                    <option value="en-uk">English (UK)</option>
+                    <option value="pa">Punjabi</option>
+                    <option value="bn">Bengali</option>
+                    <option value="ur">Urdu</option>
+                
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xl mb-2">🎙️ Awaaz Type</label>
+                <select id="voice" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4">
+                    <option value="female1" selected>👩 Professional Female</option>
+                    <option value="female2">👧 Young Female</option>
+                    <option value="male1">👨 Professional Male</option>
+                    <option value="male2">🧔 Deep Male</option>
+                    <option value="emotional">😊 Emotional</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div>
+                <label class="block mb-2">Speed: <span id="rate-val" class="text-blue-400">0%</span></label>
+                <input type="range" id="rate" min="-50" max="50" value="0" step="5" class="w-full accent-blue-500">
+            </div>
+            <div>
+                <label class="block mb-2">Pitch: <span id="pitch-val" class="text-purple-400">0Hz</span></label>
+                <input type="range" id="pitch" min="-20" max="20" value="0" step="2" class="w-full accent-purple-500">
+            </div>
+        </div>
+
+        <button id="generate" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xl font-bold py-5 rounded-xl transition transform hover:scale-105">
+            🔊 Generate Audio
+        </button>
+
+        <div id="result" class="mt-8 hidden">
+            <audio id="player" controls class="w-full mb-4"></audio>
+            <a id="download" class="block text-center bg-green-600 hover:bg-green-700 py-4 rounded-xl font-bold">⬇ Download MP3</a>
+        </div>
+    </div>
+</div>
+
+<div id="loading" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50">
+    <div class="text-3xl animate-pulse">Generating... ⏳</div>
+</div>
+
+<script>
+    const text = document.getElementById('text');
+    const charCount = document.getElementById('char-count');
+    const lang = document.getElementById('lang');
+    const voice = document.getElementById('voice');
+    const rate = document.getElementById('rate');
+    const rateVal = document.getElementById('rate-val');
+    const pitch = document.getElementById('pitch');
+    const pitchVal = document.getElementById('pitch-val');
+    const generate = document.getElementById('generate');
+    const loading = document.getElementById('loading');
+    const result = document.getElementById('result');
+    const player = document.getElementById('player');
+    const download = document.getElementById('download');
+
+    text.addEventListener('input', () => {
+        let len = text.value.length;
+        charCount.textContent = len + ' / 5000';
+        if (len > 5000) text.value = text.value.slice(0,5000);
+    });
+
+    rate.addEventListener('input', () => rateVal.textContent = rate.value + '%');
+    pitch.addEventListener('input', () => pitchVal.textContent = pitch.value + 'Hz');
+
+    generate.addEventListener('click', async () => {
+        const txt = text.value.trim();
+        if (!txt) return alert("Text likho bhai!");
+
+        loading.classList.remove('hidden');
+        generate.disabled = true;
+
+        const form = new FormData();
+        form.append('text', txt);
+        form.append('language', lang.value);
+        form.append('voice_type', voice.value);
+        form.append('rate', rate.value);
+        form.append('pitch', pitch.value);
+
+        try {
+            const res = await fetch('/convert', { method: 'POST', body: form });
+            const data = await res.json();
+
+            if (!data.success) throw new Error(data.error || 'Error aaya');
+
+            player.src = data.audio_data;
+            download.href = data.audio_data;
+            download.download = data.filename;
+
+            result.classList.remove('hidden');
+            player.play().catch(() => console.log("Autoplay blocked"));
+
+        } catch(e) {
+            alert("Error: " + e.message);
+        } finally {
+            loading.classList.add('hidden');
+            generate.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>  
+
+
+
+
