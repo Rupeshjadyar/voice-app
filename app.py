@@ -178,3 +178,7 @@ if __name__ == '__main__':
     print("Ultimate TTS running...")
     print(f"Edge-TTS: {EDGE_AVAILABLE} | gTTS: {GTTS_AVAILABLE}")
     app.run(debug=True, port=5000)
+
+
+
+    
