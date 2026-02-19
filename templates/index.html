@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,35 +13,52 @@
 <body class="min-h-screen p-6 font-sans">
 
 <div class="max-w-4xl mx-auto">
-    <h1 class="text-5xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-        🎤 Ultimate TTS
-    </h1>
+    <!-- Header Section -->
+    <div class="text-center mb-8">
+        <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">
+               Professional Text-to-Voice Converter
+        </h1>
+        <p class="text-gray-300 text-lg">🎤 Ultimate TTS</p>
+    </div>
 
+    <!-- Stats Dashboard (New Feature) -->
+    <!-- <div class="glass rounded-2xl p-6 mb-8 shadow-lg flex flex-col md:flex-row justify-around items-center ">
+        <div class="text-center">
+            <span class="block text-gray-400 text-sm uppercase tracking-wider mb-1">Total Translations</span>
+            <span id="total-count" class="text-4xl font-bold text-white">0</span>
+        </div>
+        <div class="h-10 w-px bg-gray-600 hidden md:block"></div>
+        <div class="text-center">
+            <span class="block text-blue-300 text-sm uppercase tracking-wider mb-1">Total Today's Usage</span>
+            <span id="today-count" class="text-4xl font-bold text-blue-400">0</span>
+        </div>
+    </div> -->
+
+    <!-- Main App Container -->
     <div class="glass rounded-2xl p-8 shadow-2xl">
 
         <div class="mb-6">
-            <label class="block text-xl mb-2">📝 Text Likho</label>
-            <textarea id="text" rows="6" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-lg focus:border-blue-500 focus:outline-none" placeholder="Yahan Hindi, English ya koi bhi language..."></textarea>
-            <div class="text-right mt-1 text-sm" id="char-count">0 / 5000</div>
+            <label class="block text-xl mb-2 font-semibold">📝 Enter Text</label>
+            <textarea id="text" rows="6" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-lg focus:border-blue-500 focus:outline-none placeholder-gray-500" placeholder="Type here in Hindi, English, or any language..."></textarea>
+            <div class="text-right mt-1 text-sm text-gray-400" id="char-count">0 / 5000</div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-                <label class="block text-xl mb-2">🌍 Bhasha</label>
-                <select id="lang" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4">
+                <label class="block text-xl mb-2 font-semibold">🌍 Language</label>
+                <select id="lang" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-white">
                     <option value="hi" selected>Hindi</option>
                     <option value="en">English (US)</option>
                     <option value="en-uk">English (UK)</option>
                     <option value="pa">Punjabi</option>
                     <option value="bn">Bengali</option>
                     <option value="ur">Urdu</option>
-                
                 </select>
             </div>
 
             <div>
-                <label class="block text-xl mb-2">🎙️ Awaaz Type</label>
-                <select id="voice" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4">
+                <label class="block text-xl mb-2 font-semibold">🎙️ Voice Type</label>
+                <select id="voice" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-white">
                     <option value="female1" selected>👩 Professional Female</option>
                     <option value="female2">👧 Young Female</option>
                     <option value="male1">👨 Professional Male</option>
@@ -53,28 +70,49 @@
 
         <div class="grid md:grid-cols-2 gap-6 mb-8">
             <div>
-                <label class="block mb-2">Speed: <span id="rate-val" class="text-blue-400">0%</span></label>
+                <label class="block mb-2 font-semibold">Speed: <span id="rate-val" class="text-blue-400">0%</span></label>
                 <input type="range" id="rate" min="-50" max="50" value="0" step="5" class="w-full accent-blue-500">
             </div>
             <div>
-                <label class="block mb-2">Pitch: <span id="pitch-val" class="text-purple-400">0Hz</span></label>
+                <label class="block mb-2 font-semibold">Pitch: <span id="pitch-val" class="text-purple-400">0Hz</span></label>
                 <input type="range" id="pitch" min="-20" max="20" value="0" step="2" class="w-full accent-purple-500">
             </div>
         </div>
 
-        <button id="generate" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xl font-bold py-5 rounded-xl transition transform hover:scale-105">
+        <button id="generate" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xl font-bold py-5 rounded-xl transition transform hover:scale-105 shadow-lg">
             🔊 Generate Audio
         </button>
 
         <div id="result" class="mt-8 hidden">
-            <audio id="player" controls class="w-full mb-4"></audio>
-            <a id="download" class="block text-center bg-green-600 hover:bg-green-700 py-4 rounded-xl font-bold">⬇ Download MP3</a>
+            <div class="bg-gray-900/50 p-4 rounded-xl border border-gray-700 mb-4">
+                <audio id="player" controls class="w-full"></audio>
+            </div>
+            <a id="download" class="block text-center bg-green-600 hover:bg-green-700 py-4 rounded-xl font-bold transition shadow-lg">⬇ Download MP3</a>
         </div>
+    </div>
+
+    
+        <!-- Stats Dashboard (New Feature) -->
+    <div class="glass rounded-2xl p-6 mb-8 shadow-lg flex flex-col md:flex-row justify-around items-center ">
+        <div class="text-center">
+            <span class="block text-gray-400 text-sm uppercase tracking-wider mb-1">Total Translations</span>
+            <span id="total-count" class="text-4xl font-bold text-white">0</span>
+        </div>
+        <div class="h-10 w-px bg-gray-600 hidden md:block"></div>
+        <div class="text-center">
+            <span class="block text-blue-300 text-sm uppercase tracking-wider mb-1">Total Today's Usage</span>
+            <span id="today-count" class="text-4xl font-bold text-blue-400">0</span>
+        </div>
+    </div>
+    
+    <div class="text-center mt-8 text-gray-500 text-sm">
+        &copy; 2026 Ultimate TTS. Created for Public Use.
     </div>
 </div>
 
-<div id="loading" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50">
-    <div class="text-3xl animate-pulse">Generating... ⏳</div>
+<div id="loading" class="fixed inset-0 bg-black/80 hidden flex flex-col items-center justify-center z-50 backdrop-blur-sm">
+    <div class="text-3xl animate-pulse font-bold text-blue-400">Generating Audio... ⏳</div>
+    <p class="text-gray-400 mt-2">Please wait</p>
 </div>
 
 <script>
@@ -91,7 +129,25 @@
     const result = document.getElementById('result');
     const player = document.getElementById('player');
     const download = document.getElementById('download');
+    const totalCountEl = document.getElementById('total-count');
+    const todayCountEl = document.getElementById('today-count');
 
+    // --- Fetch Stats Function ---
+    async function fetchStats() {
+        try {
+            const res = await fetch('/stats');
+            const data = await res.json();
+            totalCountEl.textContent = data.total;
+            todayCountEl.textContent = data.today;
+        } catch (e) {
+            console.error("Could not load stats");
+        }
+    }
+
+    // Load stats immediately when page opens
+    fetchStats();
+
+    // --- Input Handlers ---
     text.addEventListener('input', () => {
         let len = text.value.length;
         charCount.textContent = len + ' / 5000';
@@ -101,9 +157,10 @@
     rate.addEventListener('input', () => rateVal.textContent = rate.value + '%');
     pitch.addEventListener('input', () => pitchVal.textContent = pitch.value + 'Hz');
 
+    // --- Generate Function ---
     generate.addEventListener('click', async () => {
         const txt = text.value.trim();
-        if (!txt) return alert("Text likho bhai!");
+        if (!txt) return alert("Please enter some text first!");
 
         loading.classList.remove('hidden');
         generate.disabled = true;
@@ -119,7 +176,7 @@
             const res = await fetch('/convert', { method: 'POST', body: form });
             const data = await res.json();
 
-            if (!data.success) throw new Error(data.error || 'Error aaya');
+            if (!data.success) throw new Error(data.error || 'Something went wrong');
 
             player.src = data.audio_data;
             download.href = data.audio_data;
@@ -127,6 +184,9 @@
 
             result.classList.remove('hidden');
             player.play().catch(() => console.log("Autoplay blocked"));
+            
+            // Refresh stats after successful generation
+            fetchStats();
 
         } catch(e) {
             alert("Error: " + e.message);
@@ -137,8 +197,4 @@
     });
 </script>
 </body>
-</html>  
-
-
-
-
+</html>
