@@ -44,7 +44,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 try:
-    redis = Redis(url="",token="AW_6AAIncDE2MGU3OWM3MTBlMWQ0YTk4YmM5Yjk1MjIxYzNkZDdiNXAxMjg2NjY")
+    redis = Redis(url="https://diverse-badger-28666.upstash.io",token="AW_6AAIncDE2MGU3OWM3MTBlMWQ0YTk4YmM5Yjk1MjIxYzNkZDdiNXAxMjg2NjY")
     redis.ping()
     print("✅ Connected to Upstash Redis.")
 except Exception as e:
