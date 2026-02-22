@@ -2,3 +2,4 @@ flask
 edge-tts
 gTTS
 upstash-redis
+pyttsx3

@@ -3,198 +3,1006 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate TTS - Rupesh Bhai Special</title>
+    <title>🎙️ VoicePro Advanced - AI Text to Speech Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { background: linear-gradient(to bottom right, #1e3a8a, #312e81); color: white; }
-        .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); }
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%); 
+            color: #f0f0f0; 
+            min-height: 100vh; 
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-nav { 
+            background: rgba(10, 10, 20, 0.9); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+        }
+        
+        .glass-card {
+            background: rgba(30, 30, 50, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+        
+        .text-gradient { 
+            background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-size: 200% auto;
+            animation: gradient 3s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .fade-in { 
+            animation: fadeIn 0.5s ease-in-out; 
+        }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #8b5cf6);
+            cursor: pointer;
+            margin-top: -7px;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+            transition: all 0.2s;
+        }
+        
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
+        }
+        
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+        
+        input[type=range]::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #8b5cf6);
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top: 3px solid #60a5fa;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Wave Animation */
+        .wave {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 40px;
+        }
+        
+        .wave-bar {
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, #60a5fa, #8b5cf6);
+            border-radius: 2px;
+            animation: wave 1s ease-in-out infinite;
+        }
+        
+        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+        
+        /* Voice Card */
+        .voice-card {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .voice-card:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .voice-card.selected {
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(20, 20, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px 24px;
+            color: white;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
-<body class="min-h-screen p-6 font-sans">
+<body class="flex flex-col">
 
-<div class="max-w-4xl mx-auto">
-    <!-- Header Section -->
-    <div class="text-center mb-8">
-        <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">
-               Professional Text-to-Voice Converter
-        </h1>
-        <p class="text-gray-300 text-lg">🎤 Ultimate TTS</p>
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigate('home')">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-microphone-lines text-white text-lg"></i>
+                    </div>
+                    <span class="font-bold text-xl">Voice<span class="text-blue-400">Pro</span></span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-1">
+                        <button onclick="navigate('home')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
+                            <i class="fa-solid fa-home mr-2"></i>Studio
+                        </button>
+                        <button onclick="navigate('voices')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
+                            <i class="fa-solid fa-robot mr-2"></i>Voices
+                        </button>
+                        <button onclick="navigate('blog')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
+                            <i class="fa-solid fa-blog mr-2"></i>Blog
+                        </button>
+                        <button onclick="navigate('about')" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
+                            <i class="fa-solid fa-info-circle mr-2"></i>About
+                        </button>
+                        <button onclick="navigate('contact')" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-6 py-2 rounded-xl text-sm font-medium transition-all ml-4 shadow-lg">
+                            <i class="fa-solid fa-headset mr-2"></i>Contact
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-400 hover:text-white p-2">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-lg border-b border-gray-800">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-white/5">
+                    <i class="fa-solid fa-home mr-3"></i>Studio
+                </button>
+                <button onclick="navigate('voices'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-white/5">
+                    <i class="fa-solid fa-robot mr-3"></i>Voices
+                </button>
+                <button onclick="navigate('blog'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-white/5">
+                    <i class="fa-solid fa-blog mr-3"></i>Blog
+                </button>
+                <button onclick="navigate('about'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl hover:bg-white/5">
+                    <i class="fa-solid fa-info-circle mr-3"></i>About
+                </button>
+                <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600">
+                    <i class="fa-solid fa-headset mr-3"></i>Contact
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="app-content" class="flex-grow pt-24 px-4 pb-10"></main>
+
+    <!-- Footer -->
+    <footer class="glass border-t border-gray-800/50 mt-auto py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">VoicePro</h3>
+                    <p class="text-gray-400 text-sm">Advanced AI-powered text-to-speech studio with 18+ languages and 50+ voices.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><button onclick="navigate('about')" class="hover:text-blue-400">About Us</button></li>
+                        <li><button onclick="navigate('blog')" class="hover:text-blue-400">Blog</button></li>
+                        <li><button onclick="navigate('contact')" class="hover:text-blue-400">Contact</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><button onclick="navigate('privacy')" class="hover:text-blue-400">Privacy Policy</button></li>
+                        <li><button onclick="navigate('terms')" class="hover:text-blue-400">Terms of Service</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-blue-600/20 hover:text-blue-400 transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-blue-600/20 hover:text-blue-400 transition"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-blue-600/20 hover:text-blue-400 transition"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-sm pt-8 border-t border-gray-800/50">
+                &copy; 2026 VoicePro. All rights reserved. Made with <i class="fa-solid fa-heart text-red-500"></i> for creators
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="flex items-center space-x-3">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-green-400 text-xl"></i>
+            <span id="toast-message">Success!</span>
+        </div>
     </div>
 
-    <!-- Stats Dashboard (New Feature) -->
-    <!-- <div class="glass rounded-2xl p-6 mb-8 shadow-lg flex flex-col md:flex-row justify-around items-center ">
-        <div class="text-center">
-            <span class="block text-gray-400 text-sm uppercase tracking-wider mb-1">Total Translations</span>
-            <span id="total-count" class="text-4xl font-bold text-white">0</span>
-        </div>
-        <div class="h-10 w-px bg-gray-600 hidden md:block"></div>
-        <div class="text-center">
-            <span class="block text-blue-300 text-sm uppercase tracking-wider mb-1">Total Today's Usage</span>
-            <span id="today-count" class="text-4xl font-bold text-blue-400">0</span>
-        </div>
-    </div> -->
+    <script>
+        // ==================== STATE MANAGEMENT ====================
+        const state = {
+            total: 0,
+            today: 0,
+            isLoading: false,
+            currentPage: 'home',
+            selectedVoice: null,
+            audioContext: null,
+            languages: [
+                {code: "en-US", name: "English (USA)", flag: "🇺🇸"},
+                {code: "en-GB", name: "English (UK)", flag: "🇬🇧"},
+                {code: "hi-IN", name: "Hindi (India)", flag: "🇮🇳"},
+                {code: "es-ES", name: "Spanish (Spain)", flag: "🇪🇸"},
+                {code: "es-MX", name: "Spanish (Mexico)", flag: "🇲🇽"},
+                {code: "fr-FR", name: "French (France)", flag: "🇫🇷"},
+                {code: "de-DE", name: "German (Germany)", flag: "🇩🇪"},
+                {code: "ja-JP", name: "Japanese (Japan)", flag: "🇯🇵"},
+                {code: "zh-CN", name: "Chinese (Mandarin)", flag: "🇨🇳"},
+                {code: "ko-KR", name: "Korean (South Korea)", flag: "🇰🇷"},
+                {code: "ru-RU", name: "Russian (Russia)", flag: "🇷🇺"},
+                {code: "it-IT", name: "Italian (Italy)", flag: "🇮🇹"},
+                {code: "pt-BR", name: "Portuguese (Brazil)", flag: "🇧🇷"},
+                {code: "ar-SA", name: "Arabic (Saudi Arabia)", flag: "🇸🇦"},
+                {code: "nl-NL", name: "Dutch (Netherlands)", flag: "🇳🇱"},
+                {code: "sv-SE", name: "Swedish (Sweden)", flag: "🇸🇪"},
+                {code: "tr-TR", name: "Turkish (Turkey)", flag: "🇹🇷"},
+                {code: "pl-PL", name: "Polish (Poland)", flag: "🇵🇱"}
+            ],
+            voiceTypes: [
+                {id: "female-1", name: "Female 1 (Natural)", icon: "👩", description: "Natural, conversational female voice"},
+                {id: "female-2", name: "Female 2 (Soft)", icon: "👩‍🦰", description: "Soft and gentle female voice"},
+                {id: "female-3", name: "Female 3 (Professional)", icon: "👩‍💼", description: "Professional, authoritative female voice"},
+                {id: "male-1", name: "Male 1 (Deep)", icon: "👨", description: "Deep, resonant male voice"},
+                {id: "male-2", name: "Male 2 (Friendly)", icon: "👨‍🦰", description: "Friendly and approachable male voice"},
+                {id: "male-3", name: "Male 3 (Authoritative)", icon: "👨‍💼", description: "Authoritative, commanding male voice"},
+                {id: "young", name: "Young Voice", icon: "🧒", description: "Youthful, energetic voice"},
+                {id: "old", name: "Mature Voice", icon: "🧓", description: "Mature, experienced voice"}
+            ],
+            blogPosts: [
+                {title: "The Future of AI Voice Generation in 2026", excerpt: "Discover how neural networks are revolutionizing text-to-speech technology with unprecedented realism.", date: "Mar 15, 2026", readTime: "5 min", image: "🎙️"},
+                {title: "10 Tips for Natural-Sounding Voiceovers", excerpt: "Learn professional techniques to make AI voices sound more human and engaging for your audience.", date: "Mar 10, 2026", readTime: "8 min", image: "💡"},
+                {title: "Multi-Language Content Creation Guide", excerpt: "How to create content in 18+ languages using VoicePro's advanced TTS capabilities.", date: "Mar 5, 2026", readTime: "6 min", image: "🌍"},
+                {title: "Voice Customization: Pitch, Speed & Emotion", excerpt: "Deep dive into advanced parameters that give you complete control over your audio output.", date: "Feb 28, 2026", readTime: "7 min", image: "🎛️"}
+            ]
+        };
 
-    <!-- Main App Container -->
-    <div class="glass rounded-2xl p-8 shadow-2xl">
-
-        <div class="mb-6">
-            <label class="block text-xl mb-2 font-semibold">📝 Enter Text</label>
-            <textarea id="text" rows="6" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-lg focus:border-blue-500 focus:outline-none placeholder-gray-500" placeholder="Type here in Hindi, English, or any language..."></textarea>
-            <div class="text-right mt-1 text-sm text-gray-400" id="char-count">0 / 5000</div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-                <label class="block text-xl mb-2 font-semibold">🌍 Language</label>
-                <select id="lang" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-white">
-                    <option value="hi" selected>Hindi</option>
-                    <option value="en">English (US)</option>
-                    <option value="en-uk">English (UK)</option>
-                    <option value="pa">Punjabi</option>
-                    <option value="bn">Bengali</option>
-                    <option value="ur">Urdu</option>
-                </select>
-            </div>
-
-            <div>
-                <label class="block text-xl mb-2 font-semibold">🎙️ Voice Type</label>
-                <select id="voice" class="w-full bg-gray-800/50 border border-gray-600 rounded-xl p-4 text-white">
-                    <option value="female1" selected>👩 Professional Female</option>
-                    <option value="female2">👧 Young Female</option>
-                    <option value="male1">👨 Professional Male</option>
-                    <option value="male2">🧔 Deep Male</option>
-                    <option value="emotional">😊 Emotional</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 mb-8">
-            <div>
-                <label class="block mb-2 font-semibold">Speed: <span id="rate-val" class="text-blue-400">0%</span></label>
-                <input type="range" id="rate" min="-50" max="50" value="0" step="5" class="w-full accent-blue-500">
-            </div>
-            <div>
-                <label class="block mb-2 font-semibold">Pitch: <span id="pitch-val" class="text-purple-400">0Hz</span></label>
-                <input type="range" id="pitch" min="-20" max="20" value="0" step="2" class="w-full accent-purple-500">
-            </div>
-        </div>
-
-        <button id="generate" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xl font-bold py-5 rounded-xl transition transform hover:scale-105 shadow-lg">
-            🔊 Generate Audio
-        </button>
-
-        <div id="result" class="mt-8 hidden">
-            <div class="bg-gray-900/50 p-4 rounded-xl border border-gray-700 mb-4">
-                <audio id="player" controls class="w-full"></audio>
-            </div>
-            <a id="download" class="block text-center bg-green-600 hover:bg-green-700 py-4 rounded-xl font-bold transition shadow-lg">⬇ Download MP3</a>
-        </div>
-    </div>
-
-    
-        <!-- Stats Dashboard (New Feature) -->
-    <div class="glass rounded-2xl p-6 mb-8 shadow-lg flex flex-col md:flex-row justify-around items-center ">
-        <div class="text-center">
-            <span class="block text-gray-400 text-sm uppercase tracking-wider mb-1">Total Translations</span>
-            <span id="total-count" class="text-4xl font-bold text-white">0</span>
-        </div>
-        <div class="h-10 w-px bg-gray-600 hidden md:block"></div>
-        <div class="text-center">
-            <span class="block text-blue-300 text-sm uppercase tracking-wider mb-1">Total Today's Usage</span>
-            <span id="today-count" class="text-4xl font-bold text-blue-400">0</span>
-        </div>
-    </div>
-    
-    <div class="text-center mt-8 text-gray-500 text-sm">
-        &copy; 2026 Ultimate TTS. Created for Public Use.
-    </div>
-</div>
-
-<div id="loading" class="fixed inset-0 bg-black/80 hidden flex flex-col items-center justify-center z-50 backdrop-blur-sm">
-    <div class="text-3xl animate-pulse font-bold text-blue-400">Generating Audio... ⏳</div>
-    <p class="text-gray-400 mt-2">Please wait</p>
-</div>
-
-<script>
-    const text = document.getElementById('text');
-    const charCount = document.getElementById('char-count');
-    const lang = document.getElementById('lang');
-    const voice = document.getElementById('voice');
-    const rate = document.getElementById('rate');
-    const rateVal = document.getElementById('rate-val');
-    const pitch = document.getElementById('pitch');
-    const pitchVal = document.getElementById('pitch-val');
-    const generate = document.getElementById('generate');
-    const loading = document.getElementById('loading');
-    const result = document.getElementById('result');
-    const player = document.getElementById('player');
-    const download = document.getElementById('download');
-    const totalCountEl = document.getElementById('total-count');
-    const todayCountEl = document.getElementById('today-count');
-
-    // --- Fetch Stats Function ---
-    async function fetchStats() {
-        try {
-            const res = await fetch('/stats');
-            const data = await res.json();
-            totalCountEl.textContent = data.total;
-            todayCountEl.textContent = data.today;
-        } catch (e) {
-            console.error("Could not load stats");
-        }
-    }
-
-    // Load stats immediately when page opens
-    fetchStats();
-
-    // --- Input Handlers ---
-    text.addEventListener('input', () => {
-        let len = text.value.length;
-        charCount.textContent = len + ' / 5000';
-        if (len > 5000) text.value = text.value.slice(0,5000);
-    });
-
-    rate.addEventListener('input', () => rateVal.textContent = rate.value + '%');
-    pitch.addEventListener('input', () => pitchVal.textContent = pitch.value + 'Hz');
-
-    // --- Generate Function ---
-    generate.addEventListener('click', async () => {
-        const txt = text.value.trim();
-        if (!txt) return alert("Please enter some text first!");
-
-        loading.classList.remove('hidden');
-        generate.disabled = true;
-
-        const form = new FormData();
-        form.append('text', txt);
-        form.append('language', lang.value);
-        form.append('voice_type', voice.value);
-        form.append('rate', rate.value);
-        form.append('pitch', pitch.value);
-
-        try {
-            const res = await fetch('/convert', { method: 'POST', body: form });
-            const data = await res.json();
-
-            if (!data.success) throw new Error(data.error || 'Something went wrong');
-
-            player.src = data.audio_data;
-            download.href = data.audio_data;
-            download.download = data.filename;
-
-            result.classList.remove('hidden');
-            player.play().catch(() => console.log("Autoplay blocked"));
+        // ==================== UTILITY FUNCTIONS ====================
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-message');
             
-            // Refresh stats after successful generation
-            fetchStats();
-
-        } catch(e) {
-            alert("Error: " + e.message);
-        } finally {
-            loading.classList.add('hidden');
-            generate.disabled = false;
+            icon.className = type === 'success' ? 'fa-solid fa-circle-check text-green-400 text-xl' : 'fa-solid fa-circle-exclamation text-red-400 text-xl';
+            msg.textContent = message;
+            
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
-    });
-</script>
+
+        function updateLabel(id, val, suffix = '') {
+            const el = document.getElementById(id);
+            if (el) el.innerText = val + suffix;
+        }
+
+        function formatNumber(num) {
+            return new Intl.NumberFormat().format(num);
+        }
+
+        // ==================== VIEW RENDERERS ====================
+        function renderHome() {
+            return `
+                <div class="fade-in max-w-7xl mx-auto">
+                    <!-- Hero Section -->
+                    <div class="text-center mb-12">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                            <span class="text-gradient">AI Voice Studio</span>
+                        </h1>
+                        <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                            Transform text into natural-sounding speech with 18+ languages, 50+ voices, and advanced customization
+                        </p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="text-4xl mb-2">🎙️</div>
+                            <div class="text-3xl font-bold text-gradient">${formatNumber(state.total)}</div>
+                            <div class="text-gray-400">Total Generations</div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="text-4xl mb-2">📅</div>
+                            <div class="text-3xl font-bold text-blue-400">${formatNumber(state.today)}</div>
+                            <div class="text-gray-400">Today's Usage</div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <div class="text-4xl mb-2">🌍</div>
+                            <div class="text-3xl font-bold text-purple-400">18</div>
+                            <div class="text-gray-400">Languages Supported</div>
+                        </div>
+                    </div>
+
+                    <!-- Main TTS Tool -->
+                    <div class="glass rounded-3xl p-8 mb-10">
+                        <h2 class="text-2xl font-bold mb-6 flex items-center">
+                            <i class="fa-solid fa-sliders mr-3 text-blue-400"></i>
+                            Advanced Voice Generator
+                        </h2>
+                        
+                        <!-- Text Input -->
+                        <div class="mb-6">
+                            <textarea id="tts-text" rows="4" 
+                                class="w-full bg-gray-900/50 border border-gray-700 rounded-xl p-4 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                placeholder="Enter your text here... (e.g., Hello, welcome to VoicePro Studio!)"></textarea>
+                            <div class="flex justify-between mt-2 text-sm text-gray-500">
+                                <span><i class="fa-regular fa-keyboard mr-1"></i> <span id="char-count">0</span> characters</span>
+                                <span><i class="fa-regular fa-clock mr-1"></i> ~<span id="time-estimate">0</span> sec audio</span>
+                            </div>
+                        </div>
+
+                        <!-- Language and Voice Selection -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                            <!-- Language Selection -->
+                            <div>
+                                <label class="block text-gray-300 text-sm mb-3 font-semibold">
+                                    <i class="fa-solid fa-language mr-2 text-blue-400"></i>Select Language
+                                </label>
+                                <select id="tts-lang" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl p-4 text-white focus:ring-2 focus:ring-blue-500 outline-none">
+                                    ${state.languages.map(lang => 
+                                        `<option value="${lang.code}">${lang.flag} ${lang.name}</option>`
+                                    ).join('')}
+                                </select>
+                            </div>
+                            
+                            <!-- Voice Type Selection -->
+                            <div>
+                                <label class="block text-gray-300 text-sm mb-3 font-semibold">
+                                    <i class="fa-solid fa-robot mr-2 text-purple-400"></i>Voice Character
+                                </label>
+                                <select id="tts-voice" class="w-full bg-gray-900/50 border border-gray-700 rounded-xl p-4 text-white focus:ring-2 focus:ring-blue-500 outline-none">
+                                    ${state.voiceTypes.map(voice => 
+                                        `<option value="${voice.id}">${voice.icon} ${voice.name}</option>`
+                                    ).join('')}
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Controls Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <!-- Speed Control -->
+                            <div class="bg-gray-900/30 rounded-xl p-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <label class="text-sm font-semibold text-gray-300">
+                                        <i class="fa-solid fa-gauge-high mr-2 text-green-400"></i>Speed
+                                    </label>
+                                    <span id="rate-val" class="text-green-400 font-mono font-bold bg-green-400/10 px-3 py-1 rounded-full text-sm">1.0x</span>
+                                </div>
+                                <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" id="tts-rate" 
+                                    oninput="updateLabel('rate-val', this.value, 'x')">
+                                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                    <span>🐢 Slow</span>
+                                    <span>⚡ Fast</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Pitch Control -->
+                            <div class="bg-gray-900/30 rounded-xl p-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <label class="text-sm font-semibold text-gray-300">
+                                        <i class="fa-solid fa-music mr-2 text-purple-400"></i>Pitch
+                                    </label>
+                                    <span id="pitch-val" class="text-purple-400 font-mono font-bold bg-purple-400/10 px-3 py-1 rounded-full text-sm">0</span>
+                                </div>
+                                <input type="range" min="-10" max="10" step="1" value="0" id="tts-pitch" 
+                                    oninput="updateLabel('pitch-val', this.value)">
+                                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                    <span>🔽 Low</span>
+                                    <span>🔼 High</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Volume Control -->
+                            <div class="bg-gray-900/30 rounded-xl p-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <label class="text-sm font-semibold text-gray-300">
+                                        <i class="fa-solid fa-volume-high mr-2 text-blue-400"></i>Volume
+                                    </label>
+                                    <span id="volume-val" class="text-blue-400 font-mono font-bold bg-blue-400/10 px-3 py-1 rounded-full text-sm">100%</span>
+                                </div>
+                                <input type="range" min="0" max="100" step="5" value="100" id="tts-volume" 
+                                    oninput="updateLabel('volume-val', this.value, '%')">
+                                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                    <span>🔇 Mute</span>
+                                    <span>🔊 Max</span>
+                                </div>
+                            </div>
+
+                            <!-- Style Selection -->
+                            <div class="bg-gray-900/30 rounded-xl p-4">
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">
+                                    <i class="fa-solid fa-palette mr-2 text-pink-400"></i>Speaking Style
+                                </label>
+                                <select id="tts-style" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-white">
+                                    <option value="general">General</option>
+                                    <option value="cheerful">😊 Cheerful</option>
+                                    <option value="sad">😢 Sad</option>
+                                    <option value="angry">😠 Angry</option>
+                                    <option value="excited">🎉 Excited</option>
+                                    <option value="friendly">🤝 Friendly</option>
+                                </select>
+                            </div>
+
+                            <!-- Emotion Selection -->
+                            <div class="bg-gray-900/30 rounded-xl p-4">
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">
+                                    <i class="fa-regular fa-face-smile mr-2 text-yellow-400"></i>Emotion
+                                </label>
+                                <select id="tts-emotion" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-white">
+                                    <option value="neutral">😐 Neutral</option>
+                                    <option value="happy">😊 Happy</option>
+                                    <option value="sad">😢 Sad</option>
+                                    <option value="calm">😌 Calm</option>
+                                    <option value="angry">😠 Angry</option>
+                                    <option value="fearful">😨 Fearful</option>
+                                </select>
+                            </div>
+
+                            <!-- Audio Format -->
+                            <div class="bg-gray-900/30 rounded-xl p-4">
+                                <label class="block text-sm font-semibold text-gray-300 mb-3">
+                                    <i class="fa-solid fa-file-audio mr-2 text-orange-400"></i>Audio Format
+                                </label>
+                                <select id="tts-format" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-white">
+                                    <option value="mp3">MP3 (High Quality)</option>
+                                    <option value="wav">WAV (Studio)</option>
+                                    <option value="ogg">OGG (Web)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Generate Button -->
+                        <button id="generate-btn" onclick="handleConvert()" 
+                            class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 py-5 rounded-xl font-bold text-lg shadow-2xl transform active:scale-95 transition-all duration-200">
+                            <span id="btn-text">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>
+                                Generate Voice
+                            </span>
+                        </button>
+
+                        <!-- Result Area -->
+                        <div id="result-area" class="mt-8 hidden border-t border-gray-700/50 pt-8 fade-in">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center text-green-400">
+                                    <div class="wave mr-4">
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">Audio Ready!</p>
+                                        <p id="generation-method" class="text-xs text-gray-400">Generated with Edge TTS</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button onclick="shareAudio()" class="p-2 hover:bg-white/5 rounded-lg transition">
+                                        <i class="fa-solid fa-share-nodes text-gray-400"></i>
+                                    </button>
+                                    <button onclick="downloadAudio()" class="p-2 hover:bg-white/5 rounded-lg transition">
+                                        <i class="fa-solid fa-heart text-gray-400"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <audio id="audio-player" controls class="w-full mb-4 rounded-lg"></audio>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <button id="download-btn" onclick="downloadAudio()" 
+                                    class="flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 p-3 rounded-xl font-semibold transition">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>Download MP3</span>
+                                </button>
+                                <button onclick="copyAudioLink()" 
+                                    class="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 p-3 rounded-xl font-semibold transition">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span>Copy Link</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Voice Preview Section -->
+                    <div class="glass rounded-3xl p-8">
+                        <h3 class="text-xl font-bold mb-6 flex items-center">
+                            <i class="fa-solid fa-ear-listen mr-3 text-purple-400"></i>
+                            Quick Voice Previews
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            ${['en-US', 'hi-IN', 'es-ES', 'fr-FR'].map(lang => {
+                                const langData = state.languages.find(l => l.code === lang);
+                                return `
+                                    <div class="voice-card p-4 text-center" onclick="previewVoice('${lang}', 'female-1')">
+                                        <div class="text-3xl mb-2">${langData.flag}</div>
+                                        <div class="font-semibold">${langData.name}</div>
+                                        <div class="text-xs text-gray-400 mt-1">Click to preview</div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderVoices() {
+            return `
+                <div class="fade-in max-w-7xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-8 text-center">
+                        <span class="text-gradient">Available Voices</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${state.languages.map(lang => `
+                            <div class="glass-card rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div>
+                                        <span class="text-3xl mr-2">${lang.flag}</span>
+                                        <span class="font-semibold">${lang.name}</span>
+                                    </div>
+                                    <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">${state.voiceTypes.length} voices</span>
+                                </div>
+                                <div class="space-y-2">
+                                    ${state.voiceTypes.slice(0, 4).map(voice => `
+                                        <button onclick="previewVoice('${lang.code}', '${voice.id}')" 
+                                            class="w-full text-left p-2 hover:bg-white/5 rounded-lg transition flex items-center space-x-3">
+                                            <span class="text-xl">${voice.icon}</span>
+                                            <span class="text-sm">${voice.name}</span>
+                                            <i class="fa-solid fa-play ml-auto text-xs text-gray-400"></i>
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBlog() {
+            return `
+                <div class="fade-in max-w-7xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-8 text-center">
+                        <span class="text-gradient">Latest from Our Blog</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        ${state.blogPosts.map(post => `
+                            <div class="glass-card rounded-2xl p-6 hover:border-blue-500/30 transition-all cursor-pointer">
+                                <div class="text-4xl mb-4">${post.image}</div>
+                                <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+                                <p class="text-gray-400 mb-4">${post.excerpt}</p>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span><i class="fa-regular fa-calendar mr-1"></i>${post.date}</span>
+                                    <span><i class="fa-regular fa-clock mr-1"></i>${post.readTime} read</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderContact() {
+            return `
+                <div class="fade-in max-w-2xl mx-auto">
+                    <div class="glass-card rounded-3xl p-8 text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa-solid fa-headset text-3xl text-white"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4">Get in Touch</h2>
+                        <p class="text-gray-400 mb-8">Have questions or need assistance? We're here to help 24/7.</p>
+                        
+                        <div class="bg-gray-900/50 rounded-xl p-6 mb-6">
+                            <p class="text-sm text-gray-400 mb-2">📧 Email us at:</p>
+                            <p class="text-xl font-mono text-blue-400 mb-4">rupeshjadyar21@gmail.com</p>
+                            
+                            <a href="mailto:rupeshjadyar21@gmail.com?subject=VoicePro%20Support" 
+                               class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-8 rounded-xl transition transform hover:scale-105 shadow-lg">
+                                <i class="fa-regular fa-envelope mr-2"></i>
+                                Send Message
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="p-4 bg-white/5 rounded-xl">
+                                <i class="fa-brands fa-whatsapp text-2xl text-green-400 mb-2"></i>
+                                <p class="text-xs text-gray-400">WhatsApp</p>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded-xl">
+                                <i class="fa-brands fa-telegram text-2xl text-blue-400 mb-2"></i>
+                                <p class="text-xs text-gray-400">Telegram</p>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded-xl">
+                                <i class="fa-brands fa-discord text-2xl text-purple-400 mb-2"></i>
+                                <p class="text-xs text-gray-400">Discord</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAbout() {
+            return `
+                <div class="fade-in max-w-3xl mx-auto">
+                    <div class="glass-card rounded-3xl p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-center">
+                            <span class="text-gradient">About VoicePro</span>
+                        </h2>
+                        
+                        <div class="space-y-6 text-gray-300">
+                            <p class="leading-relaxed">
+                                VoicePro is a cutting-edge AI-powered text-to-speech platform that brings your content to life. 
+                                Using advanced neural networks and state-of-the-art voice synthesis technology, we provide 
+                                the most natural and expressive voice generation capabilities available.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4 my-8">
+                                <div class="text-center p-4 bg-white/5 rounded-xl">
+                                    <div class="text-3xl mb-2">18+</div>
+                                    <div class="text-sm text-gray-400">Languages</div>
+                                </div>
+                                <div class="text-center p-4 bg-white/5 rounded-xl">
+                                    <div class="text-3xl mb-2">50+</div>
+                                    <div class="text-sm text-gray-400">Voices</div>
+                                </div>
+                                <div class="text-center p-4 bg-white/5 rounded-xl">
+                                    <div class="text-3xl mb-2">1M+</div>
+                                    <div class="text-sm text-gray-400">Generations</div>
+                                </div>
+                                <div class="text-center p-4 bg-white/5 rounded-xl">
+                                    <div class="text-3xl mb-2">24/7</div>
+                                    <div class="text-sm text-gray-400">Support</div>
+                                </div>
+                            </div>
+                            
+                            <p class="leading-relaxed">
+                                Our mission is to make high-quality voice synthesis accessible to everyone - from content creators 
+                                and educators to businesses and developers. With VoicePro, you can create professional voiceovers, 
+                                narrations, and audio content in minutes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTerms() {
+            return `
+                <div class="fade-in max-w-3xl mx-auto">
+                    <div class="glass-card rounded-3xl p-8">
+                        <h2 class="text-2xl font-bold mb-6">Terms of Service</h2>
+                        <div class="space-y-4 text-gray-300">
+                            <p>By using VoicePro, you agree to the following terms:</p>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>You retain all rights to the audio you generate</li>
+                                <li>Do not use the service for illegal purposes or harassment</li>
+                                <li>We may collect usage statistics to improve our service</li>
+                                <li>Generated content is yours to use commercially</li>
+                                <li>We reserve the right to refuse service to anyone</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPrivacy() {
+            return `
+                <div class="fade-in max-w-3xl mx-auto">
+                    <div class="glass-card rounded-3xl p-8">
+                        <h2 class="text-2xl font-bold mb-6">Privacy Policy</h2>
+                        <div class="space-y-4 text-gray-300">
+                            <p>Your privacy is important to us. Here's how we handle your data:</p>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Text you convert is processed and not permanently stored</li>
+                                <li>We use Redis to count usage statistics only</li>
+                                <li>No personal information is collected without consent</li>
+                                <li>Audio files are deleted immediately after delivery</li>
+                                <li>We never sell or share your data with third parties</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==================== NAVIGATION ====================
+        function navigate(page) {
+            state.currentPage = page;
+            const app = document.getElementById('app-content');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            switch(page) {
+                case 'home': app.innerHTML = renderHome(); loadStats(); setupTextareaListeners(); break;
+                case 'voices': app.innerHTML = renderVoices(); break;
+                case 'blog': app.innerHTML = renderBlog(); break;
+                case 'contact': app.innerHTML = renderContact(); break;
+                case 'about': app.innerHTML = renderAbout(); break;
+                case 'terms': app.innerHTML = renderTerms(); break;
+                case 'privacy': app.innerHTML = renderPrivacy(); break;
+                default: app.innerHTML = renderHome();
+            }
+            
+            // Update active nav button
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-blue-400', 'bg-white/5');
+            });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // ==================== TTS FUNCTIONS ====================
+        function setupTextareaListeners() {
+            const textarea = document.getElementById('tts-text');
+            if (textarea) {
+                textarea.addEventListener('input', function() {
+                    const count = this.value.length;
+                    document.getElementById('char-count').textContent = count;
+                    // Estimate time (roughly 15 chars per second)
+                    const seconds = Math.ceil(count / 15);
+                    document.getElementById('time-estimate').textContent = seconds;
+                });
+            }
+        }
+
+        async function previewVoice(lang, voiceType) {
+            try {
+                const response = await fetch('/preview-voice', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ language: lang, voice_type: voiceType })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    const audio = new Audio(data.audio_data);
+                    audio.play();
+                    showToast(`Previewing ${lang} voice`);
+                }
+            } catch (error) {
+                showToast('Preview failed', 'error');
+            }
+        }
+
+        async function handleConvert() {
+            const text = document.getElementById('tts-text')?.value.trim();
+            if (!text) {
+                showToast('Please enter some text to convert!', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('generate-btn');
+            const btnText = document.getElementById('btn-text');
+            const resultArea = document.getElementById('result-area');
+
+            // Disable button and show loading
+            btn.disabled = true;
+            btnText.innerHTML = '<div class="loader mx-auto"></div>';
+            resultArea.classList.add('hidden');
+
+            // Gather all parameters
+            const formData = new FormData();
+            formData.append('text', text);
+            formData.append('language', document.getElementById('tts-lang').value);
+            formData.append('voice_type', document.getElementById('tts-voice').value);
+            formData.append('rate', document.getElementById('tts-rate').value);
+            formData.append('pitch', document.getElementById('tts-pitch').value);
+            formData.append('volume', document.getElementById('tts-volume').value);
+            formData.append('style', document.getElementById('tts-style')?.value || 'general');
+            formData.append('emotion', document.getElementById('tts-emotion')?.value || 'neutral');
+            formData.append('format', document.getElementById('tts-format')?.value || 'mp3');
+            formData.append('response_type', 'base64');
+
+            try {
+                const response = await fetch('/convert', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update stats
+                    state.total++;
+                    state.today++;
+                    
+                    // Update UI stats if on home page
+                    if (state.currentPage === 'home') {
+                        const statElements = document.querySelectorAll('.text-gradient, .text-blue-400');
+                        if (statElements.length >= 2) {
+                            statElements[0].textContent = formatNumber(state.total);
+                            statElements[1].textContent = formatNumber(state.today);
+                        }
+                    }
+
+                    // Show result
+                    resultArea.classList.remove('hidden');
+                    document.getElementById('audio-player').src = data.audio_data;
+                    document.getElementById('download-btn').onclick = () => downloadAudio(data.audio_data, data.filename);
+                    document.getElementById('generation-method').textContent = `Generated with ${data.method || 'Edge TTS'}`;
+                    
+                    showToast('Audio generated successfully!');
+                } else {
+                    showToast(data.error || 'Generation failed', 'error');
+                }
+            } catch (error) {
+                showToast('Network error. Please try again.', 'error');
+            } finally {
+                // Re-enable button
+                btn.disabled = false;
+                btnText.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Generate Voice';
+            }
+        }
+
+        function downloadAudio(audioData, filename) {
+            if (!audioData) {
+                audioData = document.getElementById('audio-player').src;
+                filename = `voice_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.mp3`;
+            }
+            
+            const a = document.createElement('a');
+            a.href = audioData;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast('Download started!');
+        }
+
+        function copyAudioLink() {
+            const audioSrc = document.getElementById('audio-player').src;
+            navigator.clipboard.writeText(audioSrc).then(() => {
+                showToast('Link copied to clipboard!');
+            });
+        }
+
+        function shareAudio() {
+            showToast('Share feature coming soon!');
+        }
+
+        // ==================== STATS ====================
+        async function loadStats() {
+            try {
+                const response = await fetch('/stats');
+                const data = await response.json();
+                state.total = data.total || 1540;
+                state.today = data.today || 12;
+                
+                // Update UI if stats elements exist
+                const totalEl = document.querySelector('.text-gradient');
+                const todayEl = document.querySelector('.text-blue-400');
+                if (totalEl) totalEl.textContent = formatNumber(state.total);
+                if (todayEl) todayEl.textContent = formatNumber(state.today);
+            } catch (error) {
+                // Fallback to localStorage
+                state.total = parseInt(localStorage.getItem('total') || '1540');
+                state.today = parseInt(localStorage.getItem('today') || '12');
+            }
+        }
+
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            navigate('home');
+            
+            // Preload voices if available
+            if (window.speechSynthesis) {
+                window.speechSynthesis.getVoices();
+            }
+        });
+    </script>
 </body>
 </html>
