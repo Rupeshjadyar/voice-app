@@ -8,6 +8,11 @@ import json
 from upstash_redis import Redis
 import tempfile
 import logging
+from dotenv import load_dotenv
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # ------------------ TTS Libraries ------------------
 try:
@@ -43,18 +48,31 @@ logging.basicConfig(level=logging.INFO)
 # os.makedirs(TEMP_FOLDER, exist_ok=True)
 
 
+# try:
+#     redis = Redis(url="https://diverse-badger-28666.upstash.io",token="AW_6AAIncDE2MGU3OWM3MTBlMWQ0YTk4YmM5Yjk1MjIxYzNkZDdiNXAxMjg2NjY")
+#     redis.ping()
+#     print("✅ Connected to Upstash Redis.")
+# except Exception as e:
+#     print(f"⚠️ Redis Error: {e}")
+#     redis = None
+
+# TEMP_FOLDER = tempfile.gettempdir()
+# os.makedirs(TEMP_FOLDER, exist_ok=True)
+
+
 try:
-    redis = Redis(url="https://diverse-badger-28666.upstash.io",token="AW_6AAIncDE2MGU3OWM3MTBlMWQ0YTk4YmM5Yjk1MjIxYzNkZDdiNXAxMjg2NjY")
+    redis = Redis(
+        url=os.getenv("KV_REST_API_URL"),
+        token=os.getenv("KV_REST_API_TOKEN")
+    )
     redis.ping()
-    print("✅ Connected to Upstash Redis.")
+    print("✅ Connected to Upstash Redis securely.")
 except Exception as e:
     print(f"⚠️ Redis Error: {e}")
     redis = None
 
 TEMP_FOLDER = tempfile.gettempdir()
 os.makedirs(TEMP_FOLDER, exist_ok=True)
-
-
 
 
 # ------------------ 15+ Languages with Multiple Voice Types ------------------
@@ -137,6 +155,7 @@ VOICE_MAPPING = {
     ('ar-SA', 'female-1'): 'ar-SA-ZariyahNeural',
     ('ar-SA', 'male-1'): 'ar-SA-HamedNeural',
     
+
     # Dutch
     ('nl-NL', 'female-1'): 'nl-NL-ColetteNeural',
     ('nl-NL', 'male-1'): 'nl-NL-MaartenNeural',

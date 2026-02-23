@@ -3,3 +3,4 @@ edge-tts
 gTTS
 upstash-redis
 pyttsx3
+python-dotenv
