@@ -9,12 +9,11 @@ from upstash_redis import Redis
 import tempfile
 import logging
 from dotenv import load_dotenv
-from dotenv import load_dotenv
-import os
 
+# Load environment variables
 load_dotenv()
 
-# ------------------ TTS Libraries ------------------
+# ------------------ TTS Libraries Availability Flags ------------------
 try:
     import edge_tts
     EDGE_AVAILABLE = True
@@ -33,47 +32,24 @@ try:
 except ImportError:
     PYTTSX3_AVAILABLE = False
 
+# ------------------ Flask App Setup ------------------
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 # ------------------ Redis (Upstash) Configuration ------------------
-# try:
-#     redis = Redis.from_env()
-#     print("✅ Connected to Upstash Redis.")
-# except Exception as e:
-#     print(f"⚠️ Redis Error: {e}")
-#     redis = None
-
-# TEMP_FOLDER = tempfile.gettempdir()
-# os.makedirs(TEMP_FOLDER, exist_ok=True)
-
-
-# try:
-#     redis = Redis(url="https://diverse-badger-28666.upstash.io",token="AW_6AAIncDE2MGU3OWM3MTBlMWQ0YTk4YmM5Yjk1MjIxYzNkZDdiNXAxMjg2NjY")
-#     redis.ping()
-#     print("✅ Connected to Upstash Redis.")
-# except Exception as e:
-#     print(f"⚠️ Redis Error: {e}")
-#     redis = None
-
-# TEMP_FOLDER = tempfile.gettempdir()
-# os.makedirs(TEMP_FOLDER, exist_ok=True)
-
-
 try:
     redis = Redis(
         url=os.getenv("KV_REST_API_URL"),
         token=os.getenv("KV_REST_API_TOKEN")
     )
     redis.ping()
-    print("✅ Connected to Upstash Redis securely.")
+    print("✅ Connected to Upstash Redis")
 except Exception as e:
-    print(f"⚠️ Redis Error: {e}")
+    print(f"❌ Redis Connection Error: {e}")
     redis = None
 
 TEMP_FOLDER = tempfile.gettempdir()
 os.makedirs(TEMP_FOLDER, exist_ok=True)
-
 
 # ------------------ 15+ Languages with Multiple Voice Types ------------------
 VOICE_MAPPING = {
@@ -155,7 +131,6 @@ VOICE_MAPPING = {
     ('ar-SA', 'female-1'): 'ar-SA-ZariyahNeural',
     ('ar-SA', 'male-1'): 'ar-SA-HamedNeural',
     
-
     # Dutch
     ('nl-NL', 'female-1'): 'nl-NL-ColetteNeural',
     ('nl-NL', 'male-1'): 'nl-NL-MaartenNeural',
@@ -210,6 +185,7 @@ VOICE_TYPES = [
     {"id": "old", "name": "Mature Voice", "icon": "🧓"},
 ]
 
+# ------------------ Routes ------------------
 @app.route('/')
 def home():
     return render_template('index.html', languages=LANGUAGES, voice_types=VOICE_TYPES)
@@ -226,6 +202,8 @@ def get_voice_types():
 def stats():
     total = 0
     today = 0
+    popular_langs = []
+    
     if redis:
         try:
             total = int(redis.get("total_translations") or 0)
@@ -234,11 +212,9 @@ def stats():
             
             # Get popular languages
             popular_langs = redis.zrevrange("popular_languages", 0, 4, withscores=True)
+            print(f"📊 Stats - Total: {total}, Today: {today}")
         except Exception as e:
             logging.error(f"Redis stats error: {e}")
-            popular_langs = []
-    else:
-        popular_langs = []
     
     return jsonify({
         "total": total, 
@@ -284,7 +260,7 @@ def convert():
             voice = VOICE_MAPPING.get((lang, 'female-1'))
             
         if not voice:
-            voice = DEFAULT_VOICE = "en-US-AriaNeural"
+            voice = "en-US-AriaNeural"
         
         filename = f"tts_{uuid.uuid4().hex}.{format_type}"
         filepath = os.path.join(TEMP_FOLDER, filename)
@@ -353,14 +329,16 @@ def convert():
         if not success or not os.path.exists(filepath):
             return jsonify({'error': 'Audio generation failed with all available methods'}), 500
 
-        # Redis Update
+        # Redis Update - FIXED: Removed pipeline, using direct commands
         if redis:
             try:
-                pipe = redis.pipeline()
-                pipe.incr("total_translations")
-                pipe.incr(f"count_{datetime.now().strftime('%Y-%m-%d')}")
-                pipe.zincrby("popular_languages", 1, lang)
-                pipe.execute()
+                redis.incr("total_translations")
+                redis.incr(f"count_{datetime.now().strftime('%Y-%m-%d')}")
+                redis.zincrby("popular_languages", 1, lang)
+                
+                # Debug print
+                total_now = redis.get("total_translations")
+                print(f"📈 Total Now: {total_now}")
             except Exception as e:
                 logging.error(f"Redis update error: {e}")
 
@@ -386,7 +364,8 @@ def convert():
                 "filename": f"voice_{datetime.now().strftime('%Y%m%d_%H%M%S')}.{format_type}",
                 "method": method_used,
                 "voice_used": voice,
-                "format": format_type
+                "format": format_type,
+                "total_translations": total_now if redis else None
             })
 
     except Exception as e:
@@ -439,9 +418,23 @@ def preview_voice():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
 
+# Test route to check Redis connection
+@app.route('/test-redis')
+def test_redis():
+    if not redis:
+        return jsonify({"status": "error", "message": "Redis not connected"})
+    
+    try:
+        # Test increment
+        redis.incr("test_counter")
+        value = redis.get("test_counter")
+        return jsonify({
+            "status": "success", 
+            "message": "Redis is working!",
+            "test_counter": value
+        })
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
-
-
-
