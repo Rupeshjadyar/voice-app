@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_file,send_from_directory
 import os
 import uuid
 import asyncio
@@ -440,7 +440,12 @@ def test_redis():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory('.', 'sitemap.xml')
+    # root_path ka use karne se Vercel ko sahi rasta mil jata hai
+    return send_from_directory(app.root_path, 'sitemap.xml')
+
+# @app.route('/sitemap.xml')
+# def sitemap():
+#     return send_from_directory('.', 'sitemap.xml')
 
 
 
