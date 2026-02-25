@@ -436,5 +436,13 @@ def test_redis():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
+
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('.', 'sitemap.xml')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000) 
