@@ -565,6 +565,35 @@ def test_redis():
 def sitemap():
     return send_from_directory(app.root_path, 'sitemap.xml')
 
+@app.route('/about.html')
+def about():
+    return render_template('about.html')
+
+
+# @app.route('/about.html')
+# def about():
+#     return render_template('about.html')
+
+@app.route('/blog.html')
+def blog():
+    return render_template('blog.html')
+
+
+@app.route('/contact.html')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/privacy.html')
+def privacy():
+    return render_template('privacy.html')
+
+@app.route('/terms.html')
+def terms():
+    return render_template('terms.html')
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -303,18 +303,37 @@
                         class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
                         <i class="fa-solid fa-robot mr-2"></i>Voices
                     </button>
-                    <button onclick="navigate('blog')" id="nav-blog"
+                    <!-- <button onclick="navigate('blog')" id="nav-blog"
                         class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
                         <i class="fa-solid fa-blog mr-2"></i>Blog
-                    </button>
-                    <button onclick="navigate('about')" id="nav-about"
+                    </button> -->
+                    <a href="blog.html" id="nav-blog"
+                        class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
+                        <i class="fa-solid fa-blog mr-2"></i>Blog
+                    </a>
+                    <!-- <button onclick="navigate('about')" id="nav-about"
                         class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
                         <i class="fa-solid fa-info-circle mr-2"></i>About
-                    </button>
-                    <button onclick="navigate('contact')"
+                    </button> -->
+
+
+                    <a href="about.html"
+                        class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all hover:bg-white/5 hover:text-blue-400">
+                        <i class="fa-solid fa-info-circle mr-2"></i>About
+                    </a>
+
+                    <!-- <button onclick="navigate('contact')"
                         class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-5 py-2 rounded-xl text-sm font-medium transition-all ml-2 shadow-lg">
                         <i class="fa-solid fa-headset mr-2"></i>Contact
-                    </button>
+                    </button> -->
+
+                    <a href="contact.html"
+                        class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-5 py-2 rounded-xl text-sm font-medium transition-all ml-2 shadow-lg">
+                        <i class="fa-solid fa-headset mr-2"></i>Contact
+                    </a>
+
+
+
                 </div>
 
                 <button class="md:hidden text-gray-400 hover:text-white p-2" onclick="toggleMobileMenu()">
@@ -338,14 +357,25 @@
                     class="block w-full text-left px-4 py-3 rounded-xl hover:bg-white/5">
                     <i class="fa-solid fa-blog mr-3"></i>Blog
                 </button>
-                <button onclick="navigate('about'); toggleMobileMenu()"
+                <!-- <button onclick="navigate('about'); toggleMobileMenu()"
                     class="block w-full text-left px-4 py-3 rounded-xl hover:bg-white/5">
                     <i class="fa-solid fa-info-circle mr-3"></i>About
-                </button>
-                <button onclick="navigate('contact'); toggleMobileMenu()"
+                </button> -->
+
+                <a href="about.html" class="block px-4 py-3 rounded-xl hover:bg-white/5">
+                    <i class="fa-solid fa-info-circle mr-3"></i>About
+                </a>
+
+
+                <!-- <button onclick="navigate('contact'); toggleMobileMenu()"
                     class="block w-full text-left px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600">
                     <i class="fa-solid fa-headset mr-3"></i>Contact
-                </button>
+                </button> -->
+
+                <a href="contact.html"
+                    class="block w-full text-left px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600">
+                    <i class="fa-solid fa-headset mr-3"></i>Contact
+                </a>
             </div>
         </div>
     </nav>
@@ -365,20 +395,31 @@
                 <div>
                     <h4 class="font-semibold mb-3">Quick Links</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><button onclick="navigate('about')" class="hover:text-blue-400 transition">About Us</button>
+                        <!-- <li><button onclick="navigate('about')" class="hover:text-blue-400 transition">About Us</button>
+                        </li> -->
+                        <li>
+                            <button onclick="navigate('about')" class="hover:text-blue-400 transition">
+                                About Us
+                            </button>
                         </li>
-                        <li><button onclick="navigate('blog')" class="hover:text-blue-400 transition">Blog</button></li>
+                        <!-- <li><button onclick="navigate('blog')" class="hover:text-blue-400 transition">Blog</button></li> -->
+                        <a href="blog.html" class="block px-4 py-3 rounded-xl hover:bg-white/5"></a>
                         <li><button onclick="navigate('contact')"
                                 class="hover:text-blue-400 transition">Contact</button></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-3">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <!-- <ul class="space-y-2 text-sm text-gray-400">
                         <li><button onclick="navigate('privacy')" class="hover:text-blue-400 transition">Privacy
                                 Policy</button></li>
                         <li><button onclick="navigate('terms')" class="hover:text-blue-400 transition">Terms of
                                 Service</button></li>
+                    </ul> -->
+
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="privacy.html" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-blue-400 transition">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div>
@@ -452,12 +493,12 @@
                 { id: "old", name: "Mature Voice", icon: "🧓", description: "Mature, experienced voice" }
             ],
 
-            blogPosts: [
-                { title: "The Future of AI Voice Generation in 2026", excerpt: "Discover how neural networks are revolutionizing text-to-speech technology with unprecedented realism.", date: "Mar 15, 2026", readTime: "5 min", image: "🎙️" },
-                { title: "10 Tips for Natural-Sounding Voiceovers", excerpt: "Learn professional techniques to make AI voices sound more human and engaging for your audience.", date: "Mar 10, 2026", readTime: "8 min", image: "💡" },
-                { title: "Multi-Language Content Creation Guide", excerpt: "How to create content in 18+ languages using VoicePro's advanced TTS capabilities.", date: "Mar 5, 2026", readTime: "6 min", image: "🌍" },
-                { title: "Voice Customization: Pitch, Speed & Emotion", excerpt: "Deep dive into advanced parameters that give you complete control over your audio output.", date: "Feb 28, 2026", readTime: "7 min", image: "🎛️" }
-            ]
+            // blogPosts: [
+            //     { title: "The Future of AI Voice Generation in 2026", excerpt: "Discover how neural networks are revolutionizing text-to-speech technology with unprecedented realism.", date: "Mar 15, 2026", readTime: "5 min", image: "🎙️" },
+            //     { title: "10 Tips for Natural-Sounding Voiceovers", excerpt: "Learn professional techniques to make AI voices sound more human and engaging for your audience.", date: "Mar 10, 2026", readTime: "8 min", image: "💡" },
+            //     { title: "Multi-Language Content Creation Guide", excerpt: "How to create content in 18+ languages using VoicePro's advanced TTS capabilities.", date: "Mar 5, 2026", readTime: "6 min", image: "🌍" },
+            //     { title: "Voice Customization: Pitch, Speed & Emotion", excerpt: "Deep dive into advanced parameters that give you complete control over your audio output.", date: "Feb 28, 2026", readTime: "7 min", image: "🎛️" }
+            // ]
         };
 
         // ==================== UTILITIES ====================
@@ -737,24 +778,24 @@
     </div>`;
         }
 
-        function renderBlog() {
-            return `
-    <div class="fade-in max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-gradient">Latest from Our Blog</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            ${state.blogPosts.map(post => `
-            <div class="glass-card rounded-2xl p-6 cursor-pointer hover:border-blue-500/30">
-                <div class="text-4xl mb-4">${post.image}</div>
-                <h3 class="text-xl font-bold mb-2">${post.title}</h3>
-                <p class="text-gray-400 text-sm mb-4">${post.excerpt}</p>
-                <div class="flex justify-between text-xs text-gray-500">
-                    <span><i class="fa-regular fa-calendar mr-1"></i>${post.date}</span>
-                    <span><i class="fa-regular fa-clock mr-1"></i>${post.readTime} read</span>
-                </div>
-            </div>`).join('')}
-        </div>
-    </div>`;
-        }
+        //     function renderBlog() {
+        //         return `
+        // <div class="fade-in max-w-5xl mx-auto">
+        //     <h2 class="text-3xl font-bold mb-8 text-center"><span class="text-gradient">Latest from Our Blog</span></h2>
+        //     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        //         ${state.blogPosts.map(post => `
+        //         <div class="glass-card rounded-2xl p-6 cursor-pointer hover:border-blue-500/30">
+        //             <div class="text-4xl mb-4">${post.image}</div>
+        //             <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+        //             <p class="text-gray-400 text-sm mb-4">${post.excerpt}</p>
+        //             <div class="flex justify-between text-xs text-gray-500">
+        //                 <span><i class="fa-regular fa-calendar mr-1"></i>${post.date}</span>
+        //                 <span><i class="fa-regular fa-clock mr-1"></i>${post.readTime} read</span>
+        //             </div>
+        //         </div>`).join('')}
+        //     </div>
+        // </div>`;
+        //     }
 
         function renderContact() {
             return `
@@ -791,65 +832,65 @@
     </div>`;
         }
 
-        function renderAbout() {
-            return `
-    <div class="fade-in max-w-3xl mx-auto">
-        <div class="glass-card rounded-3xl p-8">
-            <h2 class="text-3xl font-bold mb-6 text-center"><span class="text-gradient">About VoicePro</span></h2>
-            <div class="space-y-5 text-gray-300">
-                <p class="leading-relaxed">VoicePro is a cutting-edge AI-powered text-to-speech platform that brings your content to life. Using advanced neural networks and state-of-the-art voice synthesis, we provide the most natural voice generation capabilities — completely free.</p>
-                <div class="grid grid-cols-2 gap-4 my-6">
-                    ${[['18+', 'Languages'], ['50+', 'Voices'], ['1M+', 'Generations'], ['24/7', 'Support']].map(([n, l]) => `
-                    <div class="text-center p-4 bg-white/5 rounded-xl">
-                        <div class="text-3xl font-bold mb-1">${n}</div>
-                        <div class="text-sm text-gray-400">${l}</div>
-                    </div>`).join('')}
-                </div>
-                <p class="leading-relaxed">Our mission is to make high-quality voice synthesis accessible to everyone — from content creators and educators to businesses and developers. Create professional voiceovers in minutes, for free.</p>
-            </div>
-        </div>
-    </div>`;
-        }
+        //     function renderAbout() {
+        //         return `
+        // <div class="fade-in max-w-3xl mx-auto">
+        //     <div class="glass-card rounded-3xl p-8">
+        //         <h2 class="text-3xl font-bold mb-6 text-center"><span class="text-gradient">About VoicePro</span></h2>
+        //         <div class="space-y-5 text-gray-300">
+        //             <p class="leading-relaxed">VoicePro is a cutting-edge AI-powered text-to-speech platform that brings your content to life. Using advanced neural networks and state-of-the-art voice synthesis, we provide the most natural voice generation capabilities — completely free.</p>
+        //             <div class="grid grid-cols-2 gap-4 my-6">
+        //                 ${[['18+', 'Languages'], ['50+', 'Voices'], ['1M+', 'Generations'], ['24/7', 'Support']].map(([n, l]) => `
+        //                 <div class="text-center p-4 bg-white/5 rounded-xl">
+        //                     <div class="text-3xl font-bold mb-1">${n}</div>
+        //                     <div class="text-sm text-gray-400">${l}</div>
+        //                 </div>`).join('')}
+        //             </div>
+        //             <p class="leading-relaxed">Our mission is to make high-quality voice synthesis accessible to everyone — from content creators and educators to businesses and developers. Create professional voiceovers in minutes, for free.</p>
+        //         </div>
+        //     </div>
+        // </div>`;
+        //     }
 
-        function renderTerms() {
-            return `
-    <div class="fade-in max-w-3xl mx-auto">
-        <div class="glass-card rounded-3xl p-8">
-            <h2 class="text-2xl font-bold mb-5">Terms of Service</h2>
-            <div class="space-y-3 text-gray-300 text-sm leading-relaxed">
-                <p>By using VoicePro, you agree to the following terms:</p>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>You retain all rights to the audio you generate.</li>
-                    <li>Do not use the service for illegal purposes, harassment, or spreading misinformation.</li>
-                    <li>We may collect anonymous usage statistics to improve our service.</li>
-                    <li>Generated content may be used commercially by you.</li>
-                    <li>We reserve the right to refuse service for abuse.</li>
-                    <li>Service is provided "as is" without warranties.</li>
-                </ul>
-            </div>
-        </div>
-    </div>`;
-        }
+    //     function renderTerms() {
+    //         return `
+    // <div class="fade-in max-w-3xl mx-auto">
+    //     <div class="glass-card rounded-3xl p-8">
+    //         <h2 class="text-2xl font-bold mb-5">Terms of Service</h2>
+    //         <div class="space-y-3 text-gray-300 text-sm leading-relaxed">
+    //             <p>By using VoicePro, you agree to the following terms:</p>
+    //             <ul class="list-disc pl-5 space-y-2">
+    //                 <li>You retain all rights to the audio you generate.</li>
+    //                 <li>Do not use the service for illegal purposes, harassment, or spreading misinformation.</li>
+    //                 <li>We may collect anonymous usage statistics to improve our service.</li>
+    //                 <li>Generated content may be used commercially by you.</li>
+    //                 <li>We reserve the right to refuse service for abuse.</li>
+    //                 <li>Service is provided "as is" without warranties.</li>
+    //             </ul>
+    //         </div>
+    //     </div>
+    // </div>`;
+    //     }
 
-        function renderPrivacy() {
-            return `
-    <div class="fade-in max-w-3xl mx-auto">
-        <div class="glass-card rounded-3xl p-8">
-            <h2 class="text-2xl font-bold mb-5">Privacy Policy</h2>
-            <div class="space-y-3 text-gray-300 text-sm leading-relaxed">
-                <p>Your privacy is important to us.</p>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>Text you convert is processed and never permanently stored on our servers.</li>
-                    <li>We use Redis to count anonymous usage statistics only.</li>
-                    <li>No personal information is collected without your consent.</li>
-                    <li>Audio files are deleted immediately after delivery.</li>
-                    <li>We never sell or share your data with third parties.</li>
-                    <li>We use no third-party advertising or tracking.</li>
-                </ul>
-            </div>
-        </div>
-    </div>`;
-        }
+    //     function renderPrivacy() {
+    //         return `
+    // <div class="fade-in max-w-3xl mx-auto">
+    //     <div class="glass-card rounded-3xl p-8">
+    //         <h2 class="text-2xl font-bold mb-5">Privacy Policy</h2>
+    //         <div class="space-y-3 text-gray-300 text-sm leading-relaxed">
+    //             <p>Your privacy is important to us.</p>
+    //             <ul class="list-disc pl-5 space-y-2">
+    //                 <li>Text you convert is processed and never permanently stored on our servers.</li>
+    //                 <li>We use Redis to count anonymous usage statistics only.</li>
+    //                 <li>No personal information is collected without your consent.</li>
+    //                 <li>Audio files are deleted immediately after delivery.</li>
+    //                 <li>We never sell or share your data with third parties.</li>
+    //                 <li>We use no third-party advertising or tracking.</li>
+    //             </ul>
+    //         </div>
+    //     </div>
+    // </div>`;
+    //     }
 
         // ==================== NAVIGATION ====================
         function navigate(page) {
@@ -857,7 +898,14 @@
             const app = document.getElementById('app-content');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            const pages = { home: renderHome, voices: renderVoices, blog: renderBlog, contact: renderContact, about: renderAbout, terms: renderTerms, privacy: renderPrivacy };
+            // const pages = { home: renderHome, voices: renderVoices, contact: renderContact, terms: renderTerms, privacy: renderPrivacy };
+
+            const pages = { home: renderHome,
+                 voices: renderVoices, 
+                 contact: renderContact, 
+                //  terms: renderTerms,
+                //   privacy: renderPrivacy 
+                };
             app.innerHTML = (pages[page] || renderHome)();
 
             // Update active nav
