@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service – VoicePro TTS Studio 2026</title>
-  <meta name="description" content="VoicePro Terms of Service. Free AI text to speech — usage terms, acceptable use policy, and your rights as a user.">
+  <meta name="description" content="VoicePro Terms of Service. Free AI text to speech — usage terms, acceptable use policy, intellectual property rights, and your legal rights as a user.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.texttoaudiomp3.site/terms.html">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,6 +20,8 @@
     h1,h2,h3{font-family:'Syne',sans-serif;letter-spacing:-0.02em;}
     .tg{background:linear-gradient(130deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     a{text-decoration:none;}
+
+    /* HEADER */
     .site-header{background:rgba(7,11,18,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
     .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
     .logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--txt);}
@@ -27,22 +29,49 @@
     .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
     .nav-link{padding:7px 13px;border-radius:9px;font-size:.85rem;color:var(--muted);transition:all .18s;}
     .nav-link:hover,.nav-link.active{color:var(--a1);background:rgba(59,158,255,0.09);}
-    .content-wrap{max-width:800px;margin:0 auto;padding:56px 24px 80px;}
+
+    /* CONTENT */
+    .content-wrap{max-width:820px;margin:0 auto;padding:56px 24px 80px;}
     .badge{display:inline-block;background:rgba(59,158,255,0.1);border:1px solid rgba(59,158,255,0.2);border-radius:100px;padding:4px 14px;font-size:.74rem;font-weight:700;color:var(--a1);letter-spacing:.5px;font-family:'Syne',sans-serif;margin-bottom:14px;}
-    .policy-section{margin-bottom:20px;padding:24px 28px;background:var(--card);border:1px solid var(--border);border-radius:18px;transition:border-color .2s;}
-    .policy-section:hover{border-color:rgba(59,158,255,0.2);}
-    .policy-section h2{font-size:1.05rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-    .section-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
-    .policy-section p{color:var(--txt2);font-size:.92rem;line-height:1.82;margin-bottom:10px;}
+
+    /* TOC */
+    .toc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 26px;margin-bottom:32px;}
+    .toc h3{font-size:.9rem;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase;}
+    .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px;}
+    .toc-link{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:7px;color:var(--txt2);font-size:.84rem;transition:all .15s;}
+    .toc-link:hover{color:var(--a1);background:rgba(59,158,255,0.07);}
+    .toc-link span{color:var(--muted);font-size:.75rem;font-weight:700;min-width:18px;}
+
+    /* SECTIONS */
+    .policy-section{margin-bottom:18px;padding:24px 28px;background:var(--card);border:1px solid var(--border);border-radius:18px;transition:border-color .2s;}
+    .policy-section:hover{border-color:rgba(59,158,255,0.18);}
+    .policy-section h2{font-size:1.05rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+    .section-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.88rem;flex-shrink:0;}
+    .policy-section p{color:var(--txt2);font-size:.9rem;line-height:1.82;margin-bottom:10px;}
     .policy-section p:last-child{margin-bottom:0;}
-    .policy-section ul{padding-left:0;list-style:none;}
-    .policy-section ul li{color:var(--txt2);font-size:.92rem;line-height:1.75;padding:6px 0 6px 24px;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .policy-section h3{font-size:.9rem;font-weight:700;color:var(--txt);margin:16px 0 8px;padding-left:10px;border-left:2px solid var(--a1);}
+
+    /* LISTS */
+    .policy-section ul{padding-left:0;list-style:none;margin-bottom:8px;}
+    .policy-section ul li{color:var(--txt2);font-size:.9rem;line-height:1.75;padding:7px 0 7px 26px;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);}
     .policy-section ul li:last-child{border-bottom:none;}
-    .policy-section ul li::before{content:'arrow';position:absolute;left:0;color:var(--a1);font-weight:700;font-size:.85rem;}
-    .allowed-list li::before{color:var(--ok)!important;}
-    .denied-list li::before{color:#f87171!important;}
+    .policy-section ul li::before{content:'›';position:absolute;left:6px;color:var(--a1);font-weight:700;font-size:1rem;}
+    .allowed-list li::before{content:'✓';color:var(--ok)!important;font-size:.8rem;top:8px;}
+    .denied-list li::before{content:'✗';color:#f87171!important;font-size:.8rem;top:8px;}
+    .policy-section ul li strong{color:var(--txt);}
+
+    /* TABLE */
+    .policy-section table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0;}
+    .policy-section th{background:rgba(255,255,255,0.05);color:var(--txt);padding:9px 14px;text-align:left;font-weight:600;border:1px solid var(--border);}
+    .policy-section td{padding:8px 14px;color:var(--txt2);border:1px solid var(--border);}
+    .policy-section tr:hover td{background:rgba(255,255,255,0.02);}
+
+    /* BOXES */
     .highlight-box{background:rgba(59,158,255,0.07);border:1px solid rgba(59,158,255,0.2);border-radius:16px;padding:22px 26px;margin-bottom:28px;}
-    .cta-box{background:rgba(61,214,140,0.07);border:1px solid rgba(61,214,140,0.2);border-radius:16px;padding:24px;text-align:center;margin-top:36px;}
+    .warn-box{background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.2);border-radius:14px;padding:16px 20px;margin:16px 0;}
+    .cta-box{background:rgba(61,214,140,0.07);border:1px solid rgba(61,214,140,0.2);border-radius:16px;padding:28px;text-align:center;margin-top:36px;}
+
+    /* FOOTER */
     .site-footer{background:rgba(5,8,14,0.97);border-top:1px solid var(--border);padding:30px 24px;margin-top:auto;}
     .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
     .footer-links{display:flex;gap:16px;flex-wrap:wrap;}
@@ -71,126 +100,306 @@
 
 <div class="content-wrap">
 
-  <div style="margin-bottom:40px;">
-    <div class="badge">Legal Document</div>
+  <!-- HERO -->
+  <div style="margin-bottom:36px;">
+    <div class="badge"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Legal Document</div>
     <h1 style="font-size:clamp(2rem,5vw,2.8rem);font-weight:800;margin-bottom:12px;">
       Terms of <span class="tg">Service</span>
     </h1>
     <p style="color:var(--muted);font-size:.95rem;line-height:1.75;">
-      Last updated: <strong style="color:var(--txt);">January 1, 2026</strong> &nbsp;&bull;&nbsp; By using VoicePro TTS Studio, you agree to these terms.
+      Last updated: <strong style="color:var(--txt);">January 1, 2026</strong> &nbsp;&bull;&nbsp; Effective immediately upon use of VoicePro TTS Studio.
     </p>
   </div>
 
+  <!-- SUMMARY BOX -->
   <div class="highlight-box">
-    <p style="font-weight:700;color:var(--txt);font-family:'Syne',sans-serif;margin-bottom:8px;">
-      <i class="fa-solid fa-circle-check" style="color:var(--ok);margin-right:8px;"></i>The Short Version
+    <p style="font-weight:700;color:var(--txt);font-family:'Syne',sans-serif;margin-bottom:10px;">
+      <i class="fa-solid fa-circle-check" style="color:var(--ok);margin-right:8px;"></i>The Short Version (Plain English)
     </p>
-    <p style="color:var(--txt2);font-size:.93rem;line-height:1.78;">Use VoicePro freely and responsibly. The audio you generate belongs entirely to you — use it commercially, on YouTube, in podcasts, anywhere. Just don't use this service to create harmful, illegal, or fraudulent content.</p>
+    <ul style="list-style:none;padding:0;">
+      <li style="color:var(--txt2);font-size:.9rem;line-height:1.75;padding:4px 0 4px 20px;position:relative;">
+        <span style="position:absolute;left:0;color:var(--ok);">✓</span> VoicePro is 100% free. No hidden charges, no premium tier.
+      </li>
+      <li style="color:var(--txt2);font-size:.9rem;line-height:1.75;padding:4px 0 4px 20px;position:relative;">
+        <span style="position:absolute;left:0;color:var(--ok);">✓</span> Audio you generate is entirely yours — use it commercially on YouTube, podcasts, e-learning, anywhere.
+      </li>
+      <li style="color:var(--txt2);font-size:.9rem;line-height:1.75;padding:4px 0 4px 20px;position:relative;">
+        <span style="position:absolute;left:0;color:var(--ok);">✓</span> We do not store your text or generated audio.
+      </li>
+      <li style="color:var(--txt2);font-size:.9rem;line-height:1.75;padding:4px 0 4px 20px;position:relative;">
+        <span style="position:absolute;left:0;color:#f87171;">✗</span> Don't use VoicePro to create illegal, harmful, deceptive, or abusive content.
+      </li>
+      <li style="color:var(--txt2);font-size:.9rem;line-height:1.75;padding:4px 0 4px 20px;position:relative;">
+        <span style="position:absolute;left:0;color:#f87171;">✗</span> Service is provided "as is" — we don't guarantee 100% uptime.
+      </li>
+    </ul>
   </div>
 
-  <div class="policy-section">
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3><i class="fa-solid fa-list" style="margin-right:7px;"></i>Contents</h3>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-link"><span>01</span> Acceptance of Terms</a>
+      <a href="#s2" class="toc-link"><span>02</span> Service Description</a>
+      <a href="#s3" class="toc-link"><span>03</span> Permitted Use</a>
+      <a href="#s4" class="toc-link"><span>04</span> Prohibited Use</a>
+      <a href="#s5" class="toc-link"><span>05</span> Your Content & Ownership</a>
+      <a href="#s6" class="toc-link"><span>06</span> Intellectual Property</a>
+      <a href="#s7" class="toc-link"><span>07</span> Service Availability</a>
+      <a href="#s8" class="toc-link"><span>08</span> Disclaimer of Warranties</a>
+      <a href="#s9" class="toc-link"><span>09</span> Limitation of Liability</a>
+      <a href="#s10" class="toc-link"><span>10</span> Third-Party Services</a>
+      <a href="#s11" class="toc-link"><span>11</span> Children's Safety</a>
+      <a href="#s12" class="toc-link"><span>12</span> Changes to Terms</a>
+      <a href="#s13" class="toc-link"><span>13</span> Governing Law</a>
+      <a href="#s14" class="toc-link"><span>14</span> Contact Us</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div id="s1" class="policy-section">
     <h2>
-      <div class="section-icon" style="background:rgba(59,158,255,0.12);"><i class="fa-solid fa-circle-info" style="color:var(--a1);"></i></div>
-      1. Service Description
+      <div class="section-icon" style="background:rgba(59,158,255,0.12);"><i class="fa-solid fa-handshake" style="color:var(--a1);"></i></div>
+      1. Acceptance of Terms
     </h2>
-    <p>VoicePro TTS Studio provides a free online AI-powered text-to-speech service at <strong style="color:var(--a1);">texttoaudiomp3.site</strong>. It converts written text into audio using Microsoft's neural voice synthesis technology. The service is completely free for both personal and commercial use — no account, subscription, or credit card required.</p>
+    <p>By accessing or using VoicePro TTS Studio ("the Service", "VoicePro") at <strong style="color:var(--a1);">texttoaudiomp3.site</strong>, you confirm that you have read, understood, and agree to be bound by these Terms of Service ("Terms").</p>
+    <p>If you do not agree to any part of these Terms, please discontinue use of the Service immediately. These Terms apply to all visitors, users, and anyone who accesses or uses the Service in any way.</p>
+    <p>Using the Service constitutes your full acceptance of these Terms. We recommend saving or printing a copy of these Terms for your records.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 2 -->
+  <div id="s2" class="policy-section">
+    <h2>
+      <div class="section-icon" style="background:rgba(59,158,255,0.12);"><i class="fa-solid fa-microphone-lines" style="color:var(--a1);"></i></div>
+      2. Service Description
+    </h2>
+    <p>VoicePro TTS Studio is a free, browser-based AI text-to-speech platform. The Service enables users to convert written text into natural-sounding audio using Microsoft's Azure Neural TTS engine. Core features include:</p>
+    <ul>
+      <li>Text-to-speech conversion in <strong>100+ languages</strong> including all major Indian regional languages</li>
+      <li>Selection of 8 neural <strong>voice characters</strong> with per-voice speed and pitch presets</li>
+      <li>16 <strong>speaking styles</strong> including Newscast, Documentary, Cheerful, Poetry, and more</li>
+      <li>Download of generated audio as <strong>MP3</strong> (compressed) or <strong>WAV</strong> (uncompressed studio quality)</li>
+    </ul>
+    <p>The Service is completely free of charge. No account, subscription, or payment of any kind is required. We reserve the right to modify or discontinue any feature of the Service at any time.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div id="s3" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(61,214,140,0.12);"><i class="fa-solid fa-circle-check" style="color:var(--ok);"></i></div>
-      2. What You Can Do
+      3. Permitted Use
     </h2>
-    <p style="margin-bottom:14px;">You are free to use VoicePro and your generated audio for:</p>
+    <p>You are expressly permitted to use VoicePro and the audio you generate for both personal and commercial purposes, including:</p>
     <ul class="allowed-list">
-      <li>YouTube videos, short films, and monetised video content</li>
-      <li>Podcasts, audiobooks, and streaming audio content</li>
-      <li>E-learning courses, educational materials, and training videos</li>
-      <li>Business presentations, marketing content, and commercial projects</li>
-      <li>App prototypes, demos, and developer testing</li>
-      <li>Accessibility tools for visually impaired or dyslexic users</li>
-      <li>Social media content including Reels, TikToks, and Shorts</li>
-      <li>Personal projects and non-commercial creative work</li>
+      <li><strong>YouTube videos</strong> — monetised channels, faceless content, educational and entertainment videos</li>
+      <li><strong>Podcasts and audio shows</strong> — intros, outros, narration, ad reads, full episode narration</li>
+      <li><strong>E-learning and online courses</strong> — SCORM packages, LMS content, tutorial narration, multilingual audio</li>
+      <li><strong>Business and marketing</strong> — IVR recordings, product announcements, explainer videos, ad narration</li>
+      <li><strong>Social media content</strong> — Instagram Reels, TikTok videos, YouTube Shorts, Facebook videos</li>
+      <li><strong>Accessibility tools</strong> — screen reader content, document-to-audio conversion, assistive apps</li>
+      <li><strong>App and software development</strong> — prototypes, voice UI testing, chatbot audio, demo content</li>
+      <li><strong>Personal and creative projects</strong> — stories, poems, personal videos, non-commercial creative work</li>
     </ul>
+    <p style="margin-top:10px;">VoicePro claims <strong style="color:var(--ok);">zero ownership</strong> over audio you generate. No attribution to VoicePro is required.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 4 -->
+  <div id="s4" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(248,113,113,0.12);"><i class="fa-solid fa-ban" style="color:#f87171;"></i></div>
-      3. What You Cannot Do
+      4. Prohibited Use
     </h2>
-    <p style="margin-bottom:14px;">You must NOT use VoicePro to create content that is:</p>
+    <p>You must not use VoicePro to create, distribute, or facilitate content that is:</p>
     <ul class="denied-list">
-      <li>Defamatory, harassing, threatening, or abusive toward any person</li>
-      <li>Fraudulent, deceptive, or designed to scam or mislead others</li>
-      <li>Impersonating real individuals without consent in a harmful way</li>
-      <li>Illegal under the laws of your country or jurisdiction</li>
-      <li>Spam, automated bulk messaging, or robocall content</li>
-      <li>Content that incites violence, hatred, or discrimination</li>
-      <li>In violation of third-party intellectual property rights</li>
+      <li><strong>Defamatory or harassing</strong> — targeting, threatening, or harming specific individuals or groups</li>
+      <li><strong>Fraudulent or deceptive</strong> — scams, phishing, fake testimonials, or misleading impersonation</li>
+      <li><strong>Illegal</strong> — violating any applicable law, regulation, or court order in any jurisdiction</li>
+      <li><strong>Hateful</strong> — inciting violence, discrimination, or hatred based on race, ethnicity, religion, gender, disability, or other protected characteristics</li>
+      <li><strong>Spam or robocall content</strong> — unsolicited bulk messaging, automated calls, or SMS spam</li>
+      <li><strong>Intellectual property infringing</strong> — reproducing copyrighted texts, lyrics, scripts, or books you do not have rights to use</li>
+      <li><strong>Adult or explicit content</strong> — pornographic, sexually explicit, or obscene material</li>
+      <li><strong>Harmful impersonation</strong> — creating audio designed to deceive listeners into believing they are hearing a real person speaking in a way that causes harm</li>
     </ul>
-    <p style="margin-top:14px;">We reserve the right to restrict access to users who violate these terms.</p>
+    <p style="margin-top:10px;">We reserve the right to restrict or permanently block access to any user or IP address in violation of these prohibitions, without prior notice and without liability.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 5 -->
+  <div id="s5" class="policy-section">
+    <h2>
+      <div class="section-icon" style="background:rgba(124,95,230,0.12);"><i class="fa-solid fa-user-shield" style="color:var(--a2);"></i></div>
+      5. Your Content and Ownership
+    </h2>
+    <p>You retain full ownership of all text you submit to VoicePro and all audio files you generate using the Service.</p>
+    <p>By submitting text, you grant VoicePro a temporary, limited, non-exclusive licence to process your text solely for the purpose of generating the audio you requested. This licence ends immediately after audio delivery. Your text is never stored, analysed, sold, or used for any other purpose.</p>
+    <p>You represent and warrant that you have the necessary rights or permissions to submit any text you input, and that doing so does not infringe the intellectual property rights of any third party.</p>
+    <p>You are solely responsible for the content you generate and all consequences arising from how you use it. VoicePro accepts no liability for misuse of generated audio.</p>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div id="s6" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(124,95,230,0.12);"><i class="fa-solid fa-copyright" style="color:var(--a2);"></i></div>
-      4. Your Content and Ownership
+      6. Intellectual Property — VoicePro
     </h2>
-    <p>You retain full ownership of both the text you input and all audio files you generate. <strong style="color:var(--txt);">VoicePro claims zero ownership over your generated audio content.</strong> You are free to use it commercially without attribution.</p>
-    <p>You are responsible for ensuring your input text does not infringe third-party intellectual property rights — for example, reproducing copyrighted scripts, song lyrics, or passages you do not have rights to use.</p>
+    <p>The VoicePro TTS Studio website, its design, code, branding, logo, blog content, and all other original materials are owned by VoicePro TTS Studio and are protected by applicable intellectual property laws.</p>
+    <p>You may not copy, reproduce, distribute, modify, or create derivative works of VoicePro's website content or branding without prior written permission.</p>
+    <p>The underlying neural voice synthesis technology is developed and owned by <strong style="color:var(--txt);">Microsoft Corporation</strong> (Azure Cognitive Services / Edge TTS). Microsoft's own intellectual property terms apply to the voice technology. Large-scale commercial or programmatic deployment of Microsoft's neural voices may require a direct licensing agreement with Microsoft.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 7 -->
+  <div id="s7" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(251,191,36,0.12);"><i class="fa-solid fa-server" style="color:#fbbf24;"></i></div>
-      5. Service Availability
+      7. Service Availability
     </h2>
-    <p>VoicePro is provided <strong style="color:var(--txt);">"as is"</strong> without any warranty. We do not guarantee the service will be available at all times, error-free, or uninterrupted. We reserve the right to modify, suspend, or discontinue the service at any time without prior notice and without liability.</p>
+    <p>VoicePro is provided on a best-effort basis. We aim to maintain high availability but do not guarantee that the Service will be available at all times. The Service may be temporarily unavailable due to:</p>
+    <ul>
+      <li>Scheduled maintenance or updates</li>
+      <li>Unplanned technical issues or outages</li>
+      <li>Issues with upstream third-party services (Microsoft Azure, Cloudflare CDN)</li>
+      <li>Force majeure events beyond our reasonable control</li>
+    </ul>
+    <p>We reserve the right to modify, suspend, or permanently discontinue any part of the Service at any time without prior notice and without liability to you.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 8 -->
+  <div id="s8" class="policy-section">
+    <h2>
+      <div class="section-icon" style="background:rgba(233,79,163,0.12);"><i class="fa-solid fa-triangle-exclamation" style="color:var(--a3);"></i></div>
+      8. Disclaimer of Warranties
+    </h2>
+    <p>THE SERVICE IS PROVIDED <strong style="color:var(--txt);">"AS IS"</strong> AND <strong style="color:var(--txt);">"AS AVAILABLE"</strong> WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, OR NON-INFRINGEMENT.</p>
+    <p>VoicePro does not warrant that:</p>
+    <ul>
+      <li>The Service will meet your specific requirements or expectations</li>
+      <li>Generated audio will be error-free or meet any quality standard</li>
+      <li>All languages and voices will produce perfectly accurate pronunciation in all cases</li>
+      <li>The Service will be continuously available, secure, or free from bugs</li>
+    </ul>
+    <p>You assume full responsibility for evaluating whether the Service is suitable for your intended use.</p>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div id="s9" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(233,79,163,0.12);"><i class="fa-solid fa-shield" style="color:var(--a3);"></i></div>
-      6. Limitation of Liability
+      9. Limitation of Liability
     </h2>
-    <p>To the maximum extent permitted by law, VoicePro and its operators are not liable for any direct, indirect, incidental, or consequential damages arising from your use of this service. You are solely responsible for the content you generate and how you use it.</p>
+    <p>To the maximum extent permitted by applicable law, VoicePro TTS Studio and its operators shall not be liable for any:</p>
+    <ul>
+      <li>Direct, indirect, incidental, or consequential damages of any kind</li>
+      <li>Loss of profits, revenue, data, or business opportunities</li>
+      <li>Damages arising from your use of or inability to use the Service</li>
+      <li>Damages arising from errors, interruptions, or defects in generated audio</li>
+      <li>Actions or content of third-party services integrated with VoicePro</li>
+    </ul>
+    <p>Since the Service is provided free of charge, our total aggregate liability to you for any claims arising from these Terms or use of the Service shall not exceed <strong style="color:var(--txt);">zero</strong>.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 10 -->
+  <div id="s10" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(59,158,255,0.12);"><i class="fa-solid fa-link" style="color:var(--a1);"></i></div>
-      7. Third-Party Technology
+      10. Third-Party Services
     </h2>
-    <p><strong style="color:var(--txt);">Microsoft Azure / Edge Neural TTS</strong> powers our voice synthesis. Text submitted is processed by Microsoft's infrastructure and is not retained by Microsoft for this use case. Use is subject to Microsoft's applicable policies.</p>
-    <p><strong style="color:var(--txt);">Google AdSense</strong> is used to display ads. Google may use cookies for ad personalisation. You can manage this via <a href="https://adssettings.google.com" target="_blank" style="color:var(--a1);">Google's ad settings</a>.</p>
+    <p>VoicePro integrates the following third-party services. Their respective terms and privacy policies apply:</p>
+
+    <table>
+      <tr>
+        <th>Service</th>
+        <th>Purpose</th>
+        <th>Provider Policy</th>
+      </tr>
+      <tr>
+        <td><strong>Microsoft Azure Neural TTS</strong></td>
+        <td>Voice audio synthesis engine</td>
+        <td><a href="https://privacy.microsoft.com" target="_blank" rel="noopener" style="color:var(--a1);">privacy.microsoft.com</a></td>
+      </tr>
+      <tr>
+        <td><strong>Google AdSense</strong></td>
+        <td>Advertisement display</td>
+        <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--a1);">policies.google.com</a></td>
+      </tr>
+      <tr>
+        <td><strong>Google Fonts</strong></td>
+        <td>Web typography (Syne, DM Sans)</td>
+        <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--a1);">policies.google.com</a></td>
+      </tr>
+      <tr>
+        <td><strong>Cloudflare CDN</strong></td>
+        <td>Static asset delivery (Font Awesome, Tailwind)</td>
+        <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" style="color:var(--a1);">cloudflare.com</a></td>
+      </tr>
+    </table>
+
+    <p>VoicePro is not responsible for the data practices, availability, or content of these third-party services.</p>
+
+    <div class="warn-box">
+      <strong style="color:var(--txt);"><i class="fa-solid fa-triangle-exclamation" style="color:#fbbf24;margin-right:6px;"></i>Note on Commercial Scale Use:</strong>
+      <p style="font-size:.87rem;margin-top:8px;margin-bottom:0;color:var(--txt2);">Free use of VoicePro is suitable for personal and standard commercial projects. However, large-scale or programmatic commercial deployment of Microsoft Azure Neural TTS voices (e.g., generating millions of audio files for a product) may require a direct licensing agreement with Microsoft. Review <a href="https://azure.microsoft.com/en-us/support/legal/" target="_blank" rel="noopener" style="color:var(--a1);">Microsoft's Azure licensing terms</a> for enterprise use cases.</p>
+    </div>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 11 -->
+  <div id="s11" class="policy-section">
+    <h2>
+      <div class="section-icon" style="background:rgba(61,214,140,0.12);"><i class="fa-solid fa-child" style="color:var(--ok);"></i></div>
+      11. Children's Safety
+    </h2>
+
+
+    
+    <p>VoicePro is not directed at or intended for use by children under the age of <strong style="color:var(--txt);">13 years</strong>. We do not knowingly collect personal information from children under 13.</p>
+    <p>If you are a parent or guardian and believe your child has used the Service or submitted personal information, please contact us immediately via our <a href="contact.html" style="color:var(--a1);">Contact page</a> and we will take appropriate action.</p>
+    <p>Users aged 13–17 should use the Service only with parental supervision and consent.</p>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div id="s12" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(59,158,255,0.12);"><i class="fa-solid fa-rotate" style="color:var(--a1);"></i></div>
-      8. Updates to These Terms
+      12. Changes to These Terms
     </h2>
-    <p>We may update these Terms at any time. Updated terms will be posted on this page with a revised date. Continued use of VoicePro after any changes constitutes your acceptance of the updated terms.</p>
+    <p>We reserve the right to update or revise these Terms of Service at any time. When we make changes, we will:</p>
+    <ul>
+      <li>Update the <strong>"Last updated"</strong> date at the top of this page</li>
+      <li>Post the revised Terms on this page immediately</li>
+      <li>For significant changes, display a notice on the VoicePro homepage</li>
+    </ul>
+    <p>Your continued use of the Service after any changes are posted constitutes your acceptance of the revised Terms. If you do not agree to the revised Terms, please stop using the Service.</p>
+    <p>We encourage you to review these Terms periodically to stay informed of any updates.</p>
   </div>
 
-  <div class="policy-section">
+  <!-- SECTION 13 -->
+  <div id="s13" class="policy-section">
+    <h2>
+      <div class="section-icon" style="background:rgba(251,191,36,0.12);"><i class="fa-solid fa-scale-balanced" style="color:#fbbf24;"></i></div>
+      13. Governing Law and Jurisdiction
+    </h2>
+    <p>These Terms of Service shall be governed by and construed in accordance with the laws of <strong style="color:var(--txt);">India</strong>, without regard to its conflict of law principles.</p>
+    <p>Any disputes, claims, or controversies arising from or relating to these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the competent courts of <strong style="color:var(--txt);">India</strong>.</p>
+    <p>If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions shall continue in full force and effect.</p>
+  </div>
+
+  <!-- SECTION 14 -->
+  <div id="s14" class="policy-section">
     <h2>
       <div class="section-icon" style="background:rgba(61,214,140,0.12);"><i class="fa-solid fa-envelope" style="color:var(--ok);"></i></div>
-      9. Contact Us
+      14. Contact Us
     </h2>
-    <p>For questions about these Terms of Service:</p>
-    <a href="mailto:rupeshjadyar21@gmail.com" style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.22);border-radius:10px;padding:11px 18px;font-size:.9rem;color:var(--a1);transition:background .2s;" onmouseover="this.style.background='rgba(59,158,255,0.16)'" onmouseout="this.style.background='rgba(59,158,255,0.08)'">
+    <p>For questions, concerns, or notices regarding these Terms of Service, please contact us:</p>
+    <a href="mailto:rupeshjadyar21@gmail.com" style="display:inline-flex;align-items:center;gap:9px;margin:12px 0 10px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.22);border-radius:11px;padding:12px 20px;font-size:.9rem;color:var(--a1);transition:background .2s;" onmouseover="this.style.background='rgba(59,158,255,0.16)'" onmouseout="this.style.background='rgba(59,158,255,0.08)'">
       <i class="fa-solid fa-at"></i> rupeshjadyar21@gmail.com
     </a>
-    <p style="margin-top:10px;color:var(--muted);font-size:.84rem;"><i class="fa-regular fa-clock" style="margin-right:5px;"></i>We typically respond within 24 hours on weekdays.</p>
+    <p>Or use our <a href="contact.html" style="color:var(--a1);">Contact form</a> — we typically respond within <strong style="color:var(--txt);">24–48 hours</strong> on working days (Monday–Friday, IST).</p>
   </div>
 
+  <!-- CTA -->
   <div class="cta-box">
-    <p style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Ready to generate AI voices for free?</p>
-    <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">No account needed. Just type, generate, and download.</p>
-    <a href="/" style="display:inline-block;padding:11px 26px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:11px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;">
-      <i class="fa-solid fa-microphone-lines" style="margin-right:7px;"></i>Open Voice Studio
+    <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:8px;">Ready to generate AI voices for free?</p>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:20px;">No account needed. 100+ languages. Download MP3 or WAV instantly.</p>
+    <a href="/" style="display:inline-block;padding:13px 30px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:12px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;box-shadow:0 0 20px rgba(59,158,255,0.25);">
+      <i class="fa-solid fa-microphone-lines" style="margin-right:8px;"></i>Open Voice Studio
     </a>
   </div>
 

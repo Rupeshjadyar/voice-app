@@ -1023,13 +1023,42 @@
       background: rgba(59, 158, 255, 0.12);
       color: var(--a1);
     }
+    
+    /* DEFAULT */
+.nav-desktop {
+  display: flex;
+}
+
+.nav-mobile-btn {
+  display: none;
+}
+
+.mob-menu.hidden {
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mobile-btn {
+    display: block;
+  }
+}
+
+
+
+
+
   </style>
 </head>
 
 <body>
 
   <!-- NAV -->
-  <nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+  <!-- <nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
     <div
       style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
       <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="navigate('home')">
@@ -1071,7 +1100,77 @@
         style="text-decoration:none;margin-top:8px;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-size:.92rem;font-weight:700;text-align:center;font-family:'Syne',sans-serif;"><i
           class="fa-solid fa-headset" style="margin-right:6px;"></i>Contact</a>
     </div>
-  </nav>
+  </nav> -->
+
+  <nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
+
+    <!-- LOGO -->
+    <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="navigate('home')">
+      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
+        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+      </div>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;">Voice<span style="color:var(--a1);">Pro</span></span>
+    </div>
+
+    <!-- DESKTOP MENU -->
+   <div class="nav-desktop" style="align-items:center;gap:6px;">
+
+      <button onclick="navigate('home')" class="nav-btn">
+        <i class="fa-solid fa-house" style="margin-right:5px;"></i>Home
+      </button>
+
+      <a href="about.html" class="nav-btn">
+        <i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About
+      </a>
+
+      <a href="contact.html" class="nav-btn">
+        <i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact
+      </a>
+
+      <a href="privacy.html" class="nav-btn">
+        <i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy
+      </a>
+
+      <a href="terms.html" class="nav-btn">
+        <i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms
+      </a>
+
+    </div>
+
+    <!-- MOBILE BUTTON -->
+    <button class="nav-mobile-btn" onclick="toggleMob()"
+      style="background:none;border:none;color:var(--muted);font-size:1.2rem;">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mob-menu" class="hidden md:hidden"
+    style="background:rgba(7,11,18,0.99);border-top:1px solid var(--border);padding:14px;display:flex;flex-direction:column;gap:6px;">
+
+    <button onclick="navigate('home');toggleMob()" class="nav-btn" style="text-align:left;">
+      <i class="fa-solid fa-house" style="margin-right:8px;"></i>Home
+    </button>
+
+    <a href="about.html" class="nav-btn">
+      <i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About
+    </a>
+
+    <a href="contact.html" class="nav-btn">
+      <i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact
+    </a>
+
+    <a href="privacy.html" class="nav-btn">
+      <i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy
+    </a>
+
+    <a href="terms.html" class="nav-btn">
+      <i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service
+    </a>
+
+  </div>
+</nav>
 
   <!-- MAIN APP -->
   <main id="app" style="flex:1;padding-top:60px;padding-bottom:0;"></main>

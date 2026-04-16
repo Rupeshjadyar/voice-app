@@ -4,7 +4,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707682105347147" crossorigin="anonymous"></script>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About VoicePro – Free AI Text to Speech Studio 2026</title>
-  <meta name="description" content="Learn about VoicePro TTS Studio — our mission, technology, and commitment to providing free AI voice generation to creators worldwide.">
+  <meta name="description" content="Learn about VoicePro TTS Studio — our mission, the story behind the tool, our technology, and our commitment to providing free AI voice generation to creators worldwide.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.texttoaudiomp3.site/about.html">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
     .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
     .logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;}
     .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;}
-    .nav-links{display:flex;gap:4px;}
+    .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
     .nav-link{padding:7px 13px;border-radius:9px;font-size:.85rem;color:var(--muted);transition:all .18s;}
     .nav-link:hover,.nav-link.active{color:var(--a1);background:rgba(59,158,255,0.09);}
     .content-wrap{max-width:820px;margin:0 auto;padding:56px 24px 72px;}
@@ -31,11 +31,22 @@
     .stat-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;}
     .value-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0;}
     .value-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+    .timeline{position:relative;padding-left:28px;margin:24px 0;}
+    .timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--a1),var(--a2),transparent);}
+    .timeline-item{position:relative;margin-bottom:28px;}
+    .timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--a1);border:2px solid var(--bg);}
+    .timeline-item h3{font-size:.95rem;color:var(--a1);margin-bottom:4px;}
+    .timeline-item p{color:var(--txt2);font-size:.875rem;line-height:1.7;}
+    .faq-item{border-bottom:1px solid var(--border);padding:18px 0;}
+    .faq-q{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+    .faq-a{color:var(--txt2);font-size:.875rem;line-height:1.75;margin-top:12px;display:none;}
+    .faq-a.open{display:block;}
     .site-footer{background:rgba(5,8,14,0.97);border-top:1px solid var(--border);padding:30px 24px;margin-top:auto;}
     .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
     .footer-links{display:flex;gap:16px;flex-wrap:wrap;}
     .footer-links a{color:var(--muted);font-size:.84rem;transition:color .18s;}
     .footer-links a:hover{color:var(--a1);}
+    p{color:var(--txt2);line-height:1.82;font-size:.97rem;margin-bottom:16px;}
   </style>
 </head>
 <body>
@@ -52,32 +63,122 @@
 
 <div class="content-wrap">
   <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:16px;"><span class="tg">About VoicePro</span></h1>
-  <p style="color:var(--txt2);font-size:1.05rem;line-height:1.85;margin-bottom:28px;">VoicePro TTS Studio was built with a single mission: make professional-grade AI voice generation accessible to everyone — creators, educators, developers, and businesses — at zero cost, with no barriers.</p>
+  <p>VoicePro TTS Studio is a free, browser-based AI text-to-speech platform built to make professional-quality voice generation accessible to everyone — content creators, educators, developers, and small businesses — without subscriptions, accounts, or software to install.</p>
 
-  <div style="background:rgba(59,158,255,0.07);border:1px solid rgba(59,158,255,0.2);border-radius:18px;padding:28px;margin-bottom:36px;">
-    <h2 style="font-size:1.4rem;margin-bottom:12px;">Our Mission</h2>
-    <p style="color:var(--txt2);line-height:1.82;font-size:.97rem;">We believe that high-quality voice generation should not be locked behind expensive subscriptions or complex API setups. Whether you're a YouTuber in Mumbai creating Hindi tutorials, an educator in Lagos building Yoruba learning content, or a developer in Berlin prototyping a voice UI — VoicePro gives you the same neural voice quality that enterprises pay thousands for, completely free.</p>
+  <!-- OUR STORY -->
+  <div style="background:rgba(59,158,255,0.07);border:1px solid rgba(59,158,255,0.2);border-radius:18px;padding:28px;margin:32px 0;">
+    <h2 style="font-size:1.4rem;margin-bottom:14px;">Our Story</h2>
+    <p style="margin-bottom:12px;">VoicePro started with a simple frustration: creating audio content in Indian regional languages was needlessly expensive and complicated. Quality TTS tools required API accounts, billing setup, and technical knowledge. Free alternatives sounded robotic and mispronounced basic Hindi and Marathi words.</p>
+    <p style="margin-bottom:12px;">We built VoicePro to solve this. Our goal was a tool that a teacher in a small town, a YouTuber just starting out, or an NGO building accessible content could open in a browser and immediately generate professional-quality audio — in Hindi, Marathi, Tamil, or any other language they needed — with no barriers.</p>
+    <p style="margin-bottom:0;">We launched in late 2025 and have been improving the platform continuously based on feedback from creators, educators, and developers who use it every day.</p>
   </div>
 
+  <!-- STATS -->
   <div class="stat-row">
-    <div class="stat-box"><div style="font-size:1.8rem;margin-bottom:8px;">🌍</div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:linear-gradient(130deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100+</div><div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Languages Supported</div></div>
-    <div class="stat-box"><div style="font-size:1.8rem;margin-bottom:8px;">🎙️</div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--a1);">8</div><div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Neural Voice Characters</div></div>
-    <div class="stat-box"><div style="font-size:1.8rem;margin-bottom:8px;">✨</div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--ok);">Free</div><div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Forever, No Login</div></div>
+    <div class="stat-box">
+      <div style="font-size:1.8rem;margin-bottom:8px;">🌍</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:linear-gradient(130deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100+</div>
+      <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Languages Supported</div>
+    </div>
+    <div class="stat-box">
+      <div style="font-size:1.8rem;margin-bottom:8px;">🎙️</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--a1);">8</div>
+      <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Neural Voice Characters</div>
+    </div>
+    <div class="stat-box">
+      <div style="font-size:1.8rem;margin-bottom:8px;">✨</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--ok);">Free</div>
+      <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">No Login, Ever</div>
+    </div>
   </div>
 
-  <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:16px;margin-top:8px;">Our Technology</h2>
-  <p style="color:var(--txt2);line-height:1.82;font-size:.97rem;margin-bottom:16px;">VoicePro is powered by Microsoft's Edge Neural TTS engine — the same infrastructure behind Microsoft Azure Cognitive Services. This gives us access to hundreds of neural voices trained on native speaker data across 100+ languages, including all major Indian regional languages.</p>
-  <p style="color:var(--txt2);line-height:1.82;font-size:.97rem;margin-bottom:32px;">Each voice generation request is processed in real time. Your text is sent to the neural engine, which analyses the context and produces audio with the correct prosody, rhythm, pauses, and intonation. The audio is returned as a base64-encoded MP3 or WAV and delivered instantly — your text is never stored on our servers.</p>
+  <!-- WHAT WE DO -->
+  <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:14px;">What VoicePro Does</h2>
+  <p>VoicePro converts typed or pasted text into natural-sounding MP3 or WAV audio files using AI neural voice technology. Users can choose from 100+ languages, select from 8 different voice characters, adjust speaking speed and pitch, and apply speaking styles such as Newscast, Documentary, Cheerful, or Poetry Reading.</p>
+  <p>Audio is generated in real time — typically within 2–5 seconds — and can be downloaded immediately as MP3 (compressed, universally compatible) or WAV (uncompressed, studio quality). No account is needed, no personal data is stored, and there are no usage limits beyond the per-request character limit.</p>
 
-  <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:16px;">Our Values</h2>
+  <!-- TECHNOLOGY -->
+  <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:14px;margin-top:32px;">Our Technology</h2>
+  <p>VoicePro uses Microsoft's Edge Neural TTS engine — the same neural voice infrastructure behind Microsoft Azure Cognitive Services. This gives the platform access to hundreds of neural voices trained on native speaker recordings across more than 100 languages, including dedicated high-quality models for all major Indian regional languages.</p>
+  <p>Each request is processed in real time. Text is analysed for context, prosody, and intonation before audio is synthesised — this is what produces natural-sounding speech rather than robotic word-by-word reading. Audio is returned as base64-encoded MP3 or WAV and delivered directly to your browser. Your text is never stored on our servers or used for any purpose beyond generating the requested audio.</p>
+
+  <!-- TIMELINE -->
+  <h2 style="font-size:1.4rem;font-weight:700;margin:32px 0 16px;">How VoicePro Has Grown</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>August 2025 — First Version Launched</h3>
+      <p>Initial release with basic TTS functionality, 5 languages, and MP3 download. Built to solve the problem of expensive and complicated Hindi TTS tools.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>October 2025 — Indian Language Expansion</h3>
+      <p>Added dedicated neural voices for all major Indian regional languages — Marathi, Tamil, Telugu, Gujarati, Kannada, Malayalam, Bengali, Punjabi, Odia, and Urdu — with native speaker-quality pronunciation.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>December 2025 — Speaking Styles Added</h3>
+      <p>Introduced 16 speaking styles including Documentary, Newscast, Cheerful, Poetry Reading, and Sports Commentary based on user feedback from content creators and educators.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>February 2026 — WAV Download and Per-Voice Presets</h3>
+      <p>Added WAV (uncompressed) export option and per-voice speed and pitch presets, making the tool more useful for professional audio production workflows.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>2026 (Ongoing) — Continuous Improvement</h3>
+      <p>Regular updates based on user feedback. Currently exploring additional Indian language voices, improved Hinglish handling, and SSML support for advanced users.</p>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <h2 style="font-size:1.4rem;font-weight:700;margin:32px 0 16px;">Our Values</h2>
   <div class="value-cards">
-    <div class="value-card"><div style="font-size:1.6rem;margin-bottom:10px;">🔓</div><h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Radical Accessibility</h3><p style="color:var(--muted);font-size:.85rem;line-height:1.65;">No paywalls. No sign-ups. No watermarks. Professional voice generation should be available to everyone, regardless of budget or technical skill.</p></div>
-    <div class="value-card"><div style="font-size:1.6rem;margin-bottom:10px;">🔒</div><h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Privacy First</h3><p style="color:var(--muted);font-size:.85rem;line-height:1.65;">Your text content is never stored, analysed, or monetised. Audio files are deleted immediately after delivery. No personal data is ever collected.</p></div>
-    <div class="value-card"><div style="font-size:1.6rem;margin-bottom:10px;">🌏</div><h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Language Diversity</h3><p style="color:var(--muted);font-size:.85rem;line-height:1.65;">We actively prioritise Indian regional languages and global minority languages that are underserved by mainstream AI tools.</p></div>
-    <div class="value-card"><div style="font-size:1.6rem;margin-bottom:10px;">⚡</div><h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Speed &amp; Reliability</h3><p style="color:var(--muted);font-size:.85rem;line-height:1.65;">Audio is generated in seconds with no queues or waiting lists. Our infrastructure scales automatically to handle demand.</p></div>
+    <div class="value-card">
+      <div style="font-size:1.6rem;margin-bottom:10px;">🔓</div>
+      <h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">No Barriers</h3>
+      <p style="font-size:.85rem;line-height:1.65;margin-bottom:0;">No paywalls, no sign-ups, no watermarks. Professional voice generation should be available to anyone, regardless of budget or technical background.</p>
+    </div>
+    <div class="value-card">
+      <div style="font-size:1.6rem;margin-bottom:10px;">🔒</div>
+      <h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Privacy First</h3>
+      <p style="font-size:.85rem;line-height:1.65;margin-bottom:0;">Your text is never stored, analysed, or shared. Audio files are deleted immediately after delivery. We collect no personal data.</p>
+    </div>
+    <div class="value-card">
+      <div style="font-size:1.6rem;margin-bottom:10px;">🌏</div>
+      <h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Language Inclusion</h3>
+      <p style="font-size:.85rem;line-height:1.65;margin-bottom:0;">We prioritise Indian regional languages and minority languages underserved by mainstream TTS tools.</p>
+    </div>
+    <div class="value-card">
+      <div style="font-size:1.6rem;margin-bottom:10px;">♿</div>
+      <h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">Accessibility</h3>
+      <p style="font-size:.85rem;line-height:1.65;margin-bottom:0;">We believe audio access to written content matters for visually impaired users, people with dyslexia, and non-native language readers.</p>
+    </div>
   </div>
 
-  <div style="background:rgba(61,214,140,0.07);border:1px solid rgba(61,214,140,0.2);border-radius:16px;padding:24px;margin-top:36px;text-align:center;">
+  <!-- FAQ -->
+  <h2 style="font-size:1.4rem;font-weight:700;margin:36px 0 8px;">Frequently Asked Questions</h2>
+  <div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq('f1',this)">Is VoicePro really free? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
+      <div id="f1" class="faq-a">Yes, completely free. There are no premium plans, no subscription tiers, and no hidden charges. The tool will always be free to use. We do not upsell, require credit cards, or put generated audio behind a paywall.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq('f2',this)">How is VoicePro free if it uses paid APIs? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
+      <div id="f2" class="faq-a">VoicePro uses the Microsoft Edge Neural TTS API, which provides a generous free usage tier. We optimise our implementation to stay within these free limits while delivering a reliable service to our users. If we ever exceed these limits significantly, we will look at sustainable ways to continue offering the service for free.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq('f3',this)">Is my text stored or used for training? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
+      <div id="f3" class="faq-a">No. Text submitted to VoicePro is sent directly to the TTS engine for audio synthesis and is not stored on our servers. We do not log, analyse, or use your text content for any purpose. Generated audio is also deleted immediately after it is delivered to your browser.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq('f4',this)">Can I use generated audio commercially? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
+      <div id="f4" class="faq-a">Yes. Audio generated using VoicePro is yours to use for personal or commercial purposes — YouTube videos, podcasts, e-learning courses, business presentations, and more. VoicePro claims no ownership over generated content and places no restrictions on its use. Note that commercial use of Microsoft Azure TTS in other contexts may be subject to Microsoft's own licensing terms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq('f5',this)">How can I contact you or report a problem? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
+      <div id="f5" class="faq-a">Use our <a href="contact.html" style="color:var(--a1);">Contact page</a> to report bugs, suggest improvements, or ask questions. We read every message and aim to respond within 48 hours on working days.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:rgba(61,214,140,0.07);border:1px solid rgba(61,214,140,0.2);border-radius:16px;padding:24px;margin-top:40px;text-align:center;">
     <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:10px;">Ready to try VoicePro?</h3>
     <p style="color:var(--muted);font-size:.9rem;margin-bottom:16px;">Generate your first AI voiceover in under 60 seconds — completely free.</p>
     <a href="/" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:12px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;">🎙️ Open Voice Studio</a>
@@ -86,12 +187,21 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p style="color:var(--muted);font-size:.82rem;">&copy; 2026 VoicePro TTS Studio. All rights reserved.</p>
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:0;">&copy; 2026 VoicePro TTS Studio. All rights reserved.</p>
     <div class="footer-links">
       <a href="/">Home</a><a href="blog.html">Blog</a><a href="about.html">About</a>
       <a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
     </div>
   </div>
 </footer>
+<script>
+function toggleFaq(id,el){
+  const a=document.getElementById(id);
+  const isOpen=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-q i').forEach(x=>x.className='fa-solid fa-chevron-down');
+  if(!isOpen){a.classList.add('open');el.querySelector('i').className='fa-solid fa-chevron-up';}
+}
+</script>
 </body>
 </html>
