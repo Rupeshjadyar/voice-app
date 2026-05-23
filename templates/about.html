@@ -6,9 +6,8 @@
   <title>About VoicePro – Free AI Text to Speech Studio 2026</title>
   <meta name="description" content="Learn about VoicePro TTS Studio — our mission, the story behind the tool, our technology, and our commitment to providing free AI voice generation to creators worldwide.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.texttoaudiomp3.site/about.html">
+  <link rel="canonical" href="https://texttoaudiomp3.site/about.html">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root{--bg:#070b12;--card:rgba(255,255,255,0.035);--border:rgba(255,255,255,0.07);--a1:#3b9eff;--a2:#7c5fe6;--a3:#e94fa3;--txt:#dde4f0;--txt2:#b8c4d8;--muted:#6e7e98;--ok:#3dd68c;}
@@ -21,12 +20,12 @@
     a{text-decoration:none;}
     .site-header{background:rgba(7,11,18,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
     .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-    .logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;}
+    .logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--txt);}
     .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;}
     .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
     .nav-link{padding:7px 13px;border-radius:9px;font-size:.85rem;color:var(--muted);transition:all .18s;}
     .nav-link:hover,.nav-link.active{color:var(--a1);background:rgba(59,158,255,0.09);}
-    .content-wrap{max-width:820px;margin:0 auto;padding:56px 24px 72px;}
+    .content-wrap{max-width:820px;margin:0 auto;padding:56px 24px 72px;flex:1;}
     .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:40px 0;}
     .stat-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;}
     .value-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0;}
@@ -38,9 +37,17 @@
     .timeline-item h3{font-size:.95rem;color:var(--a1);margin-bottom:4px;}
     .timeline-item p{color:var(--txt2);font-size:.875rem;line-height:1.7;}
     .faq-item{border-bottom:1px solid var(--border);padding:18px 0;}
-    .faq-q{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+    .faq-q{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--txt);}
     .faq-a{color:var(--txt2);font-size:.875rem;line-height:1.75;margin-top:12px;display:none;}
     .faq-a.open{display:block;}
+    /* BLOG LINKS SECTION */
+    .blog-links-section{margin:40px 0;}
+    .blog-links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px;}
+    .blog-link-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;transition:border-color .2s,transform .2s;display:block;}
+    .blog-link-card:hover{border-color:rgba(59,158,255,0.35);transform:translateY(-2px);}
+    .blog-link-card .tag{font-size:.68rem;font-weight:700;font-family:'Syne',sans-serif;color:var(--a1);margin-bottom:6px;display:block;}
+    .blog-link-card h4{font-size:.88rem;font-weight:700;color:var(--txt);line-height:1.4;margin-bottom:4px;}
+    .blog-link-card p{font-size:.76rem;color:var(--muted);margin-bottom:0;line-height:1.4;}
     .site-footer{background:rgba(5,8,14,0.97);border-top:1px solid var(--border);padding:30px 24px;margin-top:auto;}
     .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
     .footer-links{display:flex;gap:16px;flex-wrap:wrap;}
@@ -54,9 +61,12 @@
   <div class="header-inner">
     <a href="/" class="logo"><div class="logo-icon"><i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.82rem;"></i></div>Voice<span style="color:var(--a1);">Pro</span></a>
     <nav class="nav-links">
-      <a href="/" class="nav-link">Studio</a><a href="blog.html" class="nav-link">Blog</a>
-      <a href="about.html" class="nav-link active">About</a><a href="contact.html" class="nav-link">Contact</a>
-      <a href="privacy.html" class="nav-link">Privacy</a><a href="terms.html" class="nav-link">Terms</a>
+      <a href="/" class="nav-link">Studio</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="privacy.html" class="nav-link">Privacy</a>
+      <a href="terms.html" class="nav-link">Terms</a>
     </nav>
   </div>
 </header>
@@ -152,6 +162,54 @@
     </div>
   </div>
 
+  <!-- ✅ NEW: BLOG LINKS SECTION — Helps Google crawl blog articles -->
+  <div class="blog-links-section">
+    <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:6px;">Learn More — From Our Blog</h2>
+    <p style="margin-bottom:0;">In-depth guides on using VoicePro for every use case:</p>
+    <div class="blog-links-grid">
+      <a href="/blog/what-is-ai-text-to-speech" class="blog-link-card">
+        <span class="tag">Beginner Guide</span>
+        <h4>What is AI Text to Speech?</h4>
+        <p>Complete 2026 guide to neural TTS technology.</p>
+      </a>
+      <a href="/blog/hindi-text-to-speech-guide" class="blog-link-card">
+        <span class="tag">Hindi TTS</span>
+        <h4>Hindi Text to Speech Guide</h4>
+        <p>Neural voices, Devanagari script, and Hindi creator tips.</p>
+      </a>
+      <a href="/blog/marathi-text-to-speech-guide" class="blog-link-card">
+        <span class="tag">Marathi TTS</span>
+        <h4>Marathi Text to Speech Guide</h4>
+        <p>AarohiNeural, ManoharNeural and Marathi phonology.</p>
+      </a>
+      <a href="/blog/ai-voiceover-youtube" class="blog-link-card">
+        <span class="tag">YouTube</span>
+        <h4>AI Voiceovers for YouTube</h4>
+        <p>Complete workflow for faceless YouTube channels.</p>
+      </a>
+      <a href="/blog/convert-text-to-mp3-free" class="blog-link-card">
+        <span class="tag">Tutorial</span>
+        <h4>Convert Text to MP3 Free</h4>
+        <p>Step-by-step guide — 60 seconds, no account.</p>
+      </a>
+      <a href="/blog/tts-for-podcasters" class="blog-link-card">
+        <span class="tag">Podcasting</span>
+        <h4>TTS for Podcasters</h4>
+        <p>Intros, ad reads and full episode narration guide.</p>
+      </a>
+      <a href="/blog/elearning-audio-workflow" class="blog-link-card">
+        <span class="tag">E-Learning</span>
+        <h4>E-Learning Audio Workflow</h4>
+        <p>Multilingual course audio from script to LMS upload.</p>
+      </a>
+      <a href="/blog/tts-for-accessibility" class="blog-link-card">
+        <span class="tag">Accessibility</span>
+        <h4>TTS for Accessibility</h4>
+        <p>Build accessible content for visually impaired users.</p>
+      </a>
+    </div>
+  </div>
+
   <!-- FAQ -->
   <h2 style="font-size:1.4rem;font-weight:700;margin:36px 0 8px;">Frequently Asked Questions</h2>
   <div>
@@ -161,15 +219,15 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq('f2',this)">How is VoicePro free if it uses paid APIs? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
-      <div id="f2" class="faq-a">VoicePro uses the Microsoft Edge Neural TTS API, which provides a generous free usage tier. We optimise our implementation to stay within these free limits while delivering a reliable service to our users. If we ever exceed these limits significantly, we will look at sustainable ways to continue offering the service for free.</div>
+      <div id="f2" class="faq-a">VoicePro uses the Microsoft Edge Neural TTS API, which provides a generous free usage tier. We optimise our implementation to stay within these free limits while delivering a reliable service to our users.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq('f3',this)">Is my text stored or used for training? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
-      <div id="f3" class="faq-a">No. Text submitted to VoicePro is sent directly to the TTS engine for audio synthesis and is not stored on our servers. We do not log, analyse, or use your text content for any purpose. Generated audio is also deleted immediately after it is delivered to your browser.</div>
+      <div id="f3" class="faq-a">No. Text submitted to VoicePro is sent directly to the TTS engine for audio synthesis and is not stored on our servers. We do not log, analyse, or use your text content for any purpose.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq('f4',this)">Can I use generated audio commercially? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
-      <div id="f4" class="faq-a">Yes. Audio generated using VoicePro is yours to use for personal or commercial purposes — YouTube videos, podcasts, e-learning courses, business presentations, and more. VoicePro claims no ownership over generated content and places no restrictions on its use. Note that commercial use of Microsoft Azure TTS in other contexts may be subject to Microsoft's own licensing terms.</div>
+      <div id="f4" class="faq-a">Yes. Audio generated using VoicePro is yours to use for personal or commercial purposes — YouTube videos, podcasts, e-learning courses, business presentations, and more. VoicePro claims no ownership over generated content.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq('f5',this)">How can I contact you or report a problem? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>

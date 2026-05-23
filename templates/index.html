@@ -2,6 +2,20 @@
 <html lang="en">
 
 <head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7HBHXRYG5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X7HBHXRYG5');
+</script>
+
+
+
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707682105347147"
     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
@@ -1573,7 +1587,7 @@
       ],
       voices: [
         { id: 'female-1', name: 'Female 1 – Natural', icon: '👩', sub: 'Conversational & warm', rate: 1.0, pitch: 0, style: 'general', badge: 'Natural' },
-        { id: 'female-2', name: 'Female 2 – Soft', icon: '👩‍🦰', sub: 'Gentle & lower pitch', rate: 0.85, pitch: -3, style: 'narration-relaxed', badge: 'Soft' },
+        { id: 'female-2', name: 'Female 2 – Soft', icon: '👩‍🦰', sub: 'Gentle & lower pitch', rate: 0.85, pitch: -3, style: 'general', badge: 'Soft' },
         { id: 'female-3', name: 'Female 3 – Pro', icon: '👩‍💼', sub: 'Crisp & confident', rate: 1.1, pitch: 2, style: 'newscast-formal', badge: 'Professional' },
         { id: 'male-1', name: 'Male 1 – Deep', icon: '👨', sub: 'Deep bass & resonance', rate: 0.9, pitch: -5, style: 'general', badge: 'Deep' },
         { id: 'male-2', name: 'Male 2 – Friendly', icon: '👨‍🦰', sub: 'Warm & approachable', rate: 1.05, pitch: -2, style: 'friendly', badge: 'Friendly' },
@@ -1653,7 +1667,8 @@
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px;">
     <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🎙️</div><div id="st-total" style="font-size:1.35rem;font-weight:800;font-family:'Syne',sans-serif;" class="tg">${fmtN(S.total)}</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Total Generations</div></div>
-    <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">📅</div><div id="st-today" style="font-size:1.35rem;font-weight:800;color:var(--a1);font-family:'Syne',sans-serif;">${fmtN(S.today)}</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Today's Usage</div></div>
+    
+    <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;"></div><div id="st-today" style="font-size:1.35rem;font-weight:800;color:var(--a1);font-family:'Syne',sans-serif;">${fmtN(S.today)}</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Today's Usage</div></div>
     <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🌍</div><div style="font-size:1.35rem;font-weight:800;color:var(--a2);font-family:'Syne',sans-serif;">100+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Languages</div></div>
   </div>
 
@@ -1687,7 +1702,7 @@
 
 
     <!-- VOICE CARDS -->
-    // 
+    
 
     <!-- SLIDERS -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;">

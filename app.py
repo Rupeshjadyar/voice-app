@@ -629,5 +629,62 @@ def terms():
     return render_template('terms.html')
 
 
+
+# ─────────────────────────────────────────────
+#  ✅ NEW BLOG ROUTES — Add these to your app.py
+#  Place these BEFORE the line: if __name__ == '__main__':
+# ─────────────────────────────────────────────
+
+@app.route('/blog/what-is-ai-text-to-speech')
+def blog_what_is_tts():
+    return render_template('blog-what-is-tts.html')
+
+
+@app.route('/blog/convert-text-to-mp3-free')
+def blog_convert_mp3():
+    return render_template('blog-convert-text-to-mp3.html')
+
+
+@app.route('/blog/hindi-text-to-speech-guide')
+def blog_hindi_tts():
+    return render_template('blog-hindi-tts-guide.html')
+
+
+@app.route('/blog/ai-voiceover-youtube')
+def blog_youtube():
+    return render_template('blog-youtube-voiceover.html')
+
+
+@app.route('/blog/voice-customization-guide')
+def blog_voice_customization():
+    return render_template('blog-voice-customization.html')
+
+
+@app.route('/blog/free-vs-paid-tts-tools')
+def blog_free_vs_paid():
+    return render_template('blog-free-vs-paid-tts.html')
+
+
+@app.route('/blog/tts-for-accessibility')
+def blog_accessibility():
+    return render_template('blog-tts-accessibility.html')
+
+
+@app.route('/blog/elearning-audio-workflow')
+def blog_elearning():
+    return render_template('blog-elearning-audio.html')
+
+
+@app.route('/blog/marathi-text-to-speech-guide')
+def blog_marathi_tts():
+    return render_template('blog-marathi-tts.html')
+
+
+@app.route('/blog/tts-for-podcasters')
+def blog_podcasters():
+    return render_template('blog-tts-for-podcasters.html')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
