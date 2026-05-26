@@ -599,9 +599,9 @@ def test_redis():
         return jsonify({"status": "error", "message": str(e)})
 
 
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory(app.root_path, 'sitemap.xml')
+# @app.route('/sitemap.xml')
+# def sitemap():
+#     return send_from_directory(app.root_path, 'sitemap.xml')
 
 
 @app.route('/about.html')
@@ -683,6 +683,93 @@ def blog_marathi_tts():
 @app.route('/blog/tts-for-podcasters')
 def blog_podcasters():
     return render_template('blog-tts-for-podcasters.html')
+
+
+
+
+
+
+# all page 107
+
+# ─── pSEO: Load manifest once at startup ───────────────────
+import json as _json
+
+_PSEO_MANIFEST = []
+_manifest_path = os.path.join(os.path.dirname(__file__), 'templates', 'tts_manifest.json')
+if os.path.exists(_manifest_path):
+    with open(_manifest_path, encoding='utf-8') as _f:
+        _PSEO_MANIFEST = _json.load(_f)
+    print(f"✅ pSEO: {len(_PSEO_MANIFEST)} language pages loaded")
+
+
+# ─── pSEO: Individual language page ────────────────────────
+@app.route('/tts/<slug>')
+def tts_lang_page(slug):
+    try:
+        return render_template(f'tts/{slug}.html')
+    except Exception:
+        return render_template('index.html'), 404
+
+
+# ─── pSEO: All languages index ─────────────────────────────
+@app.route('/tts/')
+@app.route('/tts')
+def tts_index():
+    return render_template('tts_index.html', languages=_PSEO_MANIFEST)
+
+
+# ─── pSEO: Updated Sitemap with all 104 pages ──────────────
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    from flask import Response
+    from datetime import datetime
+
+    base  = 'https://www.texttoaudiomp3.site'
+    today = datetime.utcnow().strftime('%Y-%m-%d')
+
+    static_urls = [
+        ('/',             '1.0', 'daily'),
+        ('/tts/',         '0.9', 'weekly'),
+        ('/about.html',   '0.6', 'monthly'),
+        ('/blog.html',    '0.8', 'weekly'),
+        ('/contact.html', '0.5', 'monthly'),
+        ('/privacy.html', '0.3', 'yearly'),
+        ('/terms.html',   '0.3', 'yearly'),
+        ('/blog/what-is-ai-text-to-speech',    '0.7', 'monthly'),
+        ('/blog/convert-text-to-mp3-free',     '0.7', 'monthly'),
+        ('/blog/hindi-text-to-speech-guide',   '0.7', 'monthly'),
+        ('/blog/ai-voiceover-youtube',         '0.7', 'monthly'),
+        ('/blog/voice-customization-guide',    '0.7', 'monthly'),
+        ('/blog/free-vs-paid-tts-tools',       '0.7', 'monthly'),
+        ('/blog/tts-for-accessibility',        '0.7', 'monthly'),
+        ('/blog/elearning-audio-workflow',     '0.7', 'monthly'),
+        ('/blog/marathi-text-to-speech-guide', '0.7', 'monthly'),
+        ('/blog/tts-for-podcasters',           '0.7', 'monthly'),
+    ]
+
+    urls_xml = []
+    for path, priority, freq in static_urls:
+        urls_xml.append(f"""  <url>
+    <loc>{base}{path}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>{freq}</changefreq>
+    <priority>{priority}</priority>
+  </url>""")
+
+    for entry in _PSEO_MANIFEST:
+        urls_xml.append(f"""  <url>
+    <loc>{base}{entry['url']}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>""")
+
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap += '\n'.join(urls_xml)
+    sitemap += '\n</urlset>'
+
+    return Response(sitemap, mimetype='application/xml')
 
 
 

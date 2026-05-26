@@ -1150,6 +1150,8 @@
         <i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms
       </a>
 
+      <a href="/tts/" class="footer-link">All Languages TTS</a>
+
     </div>
 
     <!-- MOBILE BUTTON -->
@@ -1182,6 +1184,8 @@
     <a href="terms.html" class="nav-btn">
       <i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service
     </a>
+
+    <a href="/tts/" class="footer-link">All Languages TTS</a>
 
   </div>
 </nav>
@@ -1474,6 +1478,9 @@
             style="width:16px;margin-right:6px;color:var(--a1);font-size:.8rem;"></i>Home / Studio</a>
         <a href="/" class="footer-link" onclick="navigate('voices');return false;"><i class="fa-solid fa-robot"
             style="width:16px;margin-right:6px;color:var(--a2);font-size:.8rem;"></i>Voice Library</a>
+            
+        <a href="/tts/" class="footer-link">🌍 All Languages TTS</a>  
+
         <a href="blog.html" class="footer-link"><i class="fa-solid fa-blog"
             style="width:16px;margin-right:6px;color:var(--a3);font-size:.8rem;"></i>Blog</a>
         <a href="about.html" class="footer-link"><i class="fa-solid fa-info-circle"
@@ -1829,6 +1836,11 @@
     }
 
     /* ── NAVIGATION ── */
+
+
+
+
+  
     function navigate(page) {
       const app = n$('app'); window.scrollTo({ top: 0, behavior: 'smooth' });
       const pages = { home: renderHome, voices: renderVoices };

@@ -1,0 +1,730 @@
+[
+  {
+    "code": "hi-IN",
+    "lang": "Hindi",
+    "country": "India",
+    "slug": "hindi-text-to-speech-india",
+    "url": "/tts/hindi-text-to-speech-india"
+  },
+  {
+    "code": "mr-IN",
+    "lang": "Marathi",
+    "country": "India",
+    "slug": "marathi-text-to-speech-india",
+    "url": "/tts/marathi-text-to-speech-india"
+  },
+  {
+    "code": "gu-IN",
+    "lang": "Gujarati",
+    "country": "India",
+    "slug": "gujarati-text-to-speech-india",
+    "url": "/tts/gujarati-text-to-speech-india"
+  },
+  {
+    "code": "ta-IN",
+    "lang": "Tamil",
+    "country": "India",
+    "slug": "tamil-text-to-speech-india",
+    "url": "/tts/tamil-text-to-speech-india"
+  },
+  {
+    "code": "te-IN",
+    "lang": "Telugu",
+    "country": "India",
+    "slug": "telugu-text-to-speech-india",
+    "url": "/tts/telugu-text-to-speech-india"
+  },
+  {
+    "code": "kn-IN",
+    "lang": "Kannada",
+    "country": "India",
+    "slug": "kannada-text-to-speech-india",
+    "url": "/tts/kannada-text-to-speech-india"
+  },
+  {
+    "code": "ml-IN",
+    "lang": "Malayalam",
+    "country": "India",
+    "slug": "malayalam-text-to-speech-india",
+    "url": "/tts/malayalam-text-to-speech-india"
+  },
+  {
+    "code": "bn-IN",
+    "lang": "Bengali",
+    "country": "India",
+    "slug": "bengali-text-to-speech-india",
+    "url": "/tts/bengali-text-to-speech-india"
+  },
+  {
+    "code": "pa-IN",
+    "lang": "Punjabi",
+    "country": "India",
+    "slug": "punjabi-text-to-speech-india",
+    "url": "/tts/punjabi-text-to-speech-india"
+  },
+  {
+    "code": "or-IN",
+    "lang": "Odia",
+    "country": "India",
+    "slug": "odia-text-to-speech-india",
+    "url": "/tts/odia-text-to-speech-india"
+  },
+  {
+    "code": "bn-BD",
+    "lang": "Bengali",
+    "country": "Bangladesh",
+    "slug": "bengali-text-to-speech-bangladesh",
+    "url": "/tts/bengali-text-to-speech-bangladesh"
+  },
+  {
+    "code": "ur-PK",
+    "lang": "Urdu",
+    "country": "Pakistan",
+    "slug": "urdu-text-to-speech-pakistan",
+    "url": "/tts/urdu-text-to-speech-pakistan"
+  },
+  {
+    "code": "ne-NP",
+    "lang": "Nepali",
+    "country": "Nepal",
+    "slug": "nepali-text-to-speech-nepal",
+    "url": "/tts/nepali-text-to-speech-nepal"
+  },
+  {
+    "code": "si-LK",
+    "lang": "Sinhala",
+    "country": "Sri Lanka",
+    "slug": "sinhala-text-to-speech-sri-lanka",
+    "url": "/tts/sinhala-text-to-speech-sri-lanka"
+  },
+  {
+    "code": "en-US",
+    "lang": "English",
+    "country": "United States",
+    "slug": "english-text-to-speech-usa",
+    "url": "/tts/english-text-to-speech-usa"
+  },
+  {
+    "code": "en-GB",
+    "lang": "English",
+    "country": "United Kingdom",
+    "slug": "english-text-to-speech-uk",
+    "url": "/tts/english-text-to-speech-uk"
+  },
+  {
+    "code": "en-AU",
+    "lang": "English",
+    "country": "Australia",
+    "slug": "english-text-to-speech-australia",
+    "url": "/tts/english-text-to-speech-australia"
+  },
+  {
+    "code": "en-IN",
+    "lang": "English",
+    "country": "India",
+    "slug": "english-text-to-speech-india",
+    "url": "/tts/english-text-to-speech-india"
+  },
+  {
+    "code": "en-CA",
+    "lang": "English",
+    "country": "Canada",
+    "slug": "english-text-to-speech-canada",
+    "url": "/tts/english-text-to-speech-canada"
+  },
+  {
+    "code": "en-ZA",
+    "lang": "English",
+    "country": "South Africa",
+    "slug": "english-text-to-speech-south-africa",
+    "url": "/tts/english-text-to-speech-south-africa"
+  },
+  {
+    "code": "en-NG",
+    "lang": "English",
+    "country": "Nigeria",
+    "slug": "english-text-to-speech-nigeria",
+    "url": "/tts/english-text-to-speech-nigeria"
+  },
+  {
+    "code": "es-ES",
+    "lang": "Spanish",
+    "country": "Spain",
+    "slug": "spanish-text-to-speech-spain",
+    "url": "/tts/spanish-text-to-speech-spain"
+  },
+  {
+    "code": "es-MX",
+    "lang": "Spanish",
+    "country": "Mexico",
+    "slug": "spanish-text-to-speech-mexico",
+    "url": "/tts/spanish-text-to-speech-mexico"
+  },
+  {
+    "code": "es-AR",
+    "lang": "Spanish",
+    "country": "Argentina",
+    "slug": "spanish-text-to-speech-argentina",
+    "url": "/tts/spanish-text-to-speech-argentina"
+  },
+  {
+    "code": "es-CO",
+    "lang": "Spanish",
+    "country": "Colombia",
+    "slug": "spanish-text-to-speech-colombia",
+    "url": "/tts/spanish-text-to-speech-colombia"
+  },
+  {
+    "code": "es-US",
+    "lang": "Spanish",
+    "country": "United States",
+    "slug": "spanish-text-to-speech-usa",
+    "url": "/tts/spanish-text-to-speech-usa"
+  },
+  {
+    "code": "fr-FR",
+    "lang": "French",
+    "country": "France",
+    "slug": "french-text-to-speech-france",
+    "url": "/tts/french-text-to-speech-france"
+  },
+  {
+    "code": "fr-CA",
+    "lang": "French",
+    "country": "Canada",
+    "slug": "french-text-to-speech-canada",
+    "url": "/tts/french-text-to-speech-canada"
+  },
+  {
+    "code": "de-DE",
+    "lang": "German",
+    "country": "Germany",
+    "slug": "german-text-to-speech-germany",
+    "url": "/tts/german-text-to-speech-germany"
+  },
+  {
+    "code": "de-AT",
+    "lang": "German",
+    "country": "Austria",
+    "slug": "german-text-to-speech-austria",
+    "url": "/tts/german-text-to-speech-austria"
+  },
+  {
+    "code": "it-IT",
+    "lang": "Italian",
+    "country": "Italy",
+    "slug": "italian-text-to-speech-italy",
+    "url": "/tts/italian-text-to-speech-italy"
+  },
+  {
+    "code": "pt-BR",
+    "lang": "Portuguese",
+    "country": "Brazil",
+    "slug": "portuguese-text-to-speech-brazil",
+    "url": "/tts/portuguese-text-to-speech-brazil"
+  },
+  {
+    "code": "pt-PT",
+    "lang": "Portuguese",
+    "country": "Portugal",
+    "slug": "portuguese-text-to-speech-portugal",
+    "url": "/tts/portuguese-text-to-speech-portugal"
+  },
+  {
+    "code": "nl-NL",
+    "lang": "Dutch",
+    "country": "Netherlands",
+    "slug": "dutch-text-to-speech-netherlands",
+    "url": "/tts/dutch-text-to-speech-netherlands"
+  },
+  {
+    "code": "sv-SE",
+    "lang": "Swedish",
+    "country": "Sweden",
+    "slug": "swedish-text-to-speech-sweden",
+    "url": "/tts/swedish-text-to-speech-sweden"
+  },
+  {
+    "code": "nb-NO",
+    "lang": "Norwegian",
+    "country": "Norway",
+    "slug": "norwegian-text-to-speech-norway",
+    "url": "/tts/norwegian-text-to-speech-norway"
+  },
+  {
+    "code": "da-DK",
+    "lang": "Danish",
+    "country": "Denmark",
+    "slug": "danish-text-to-speech-denmark",
+    "url": "/tts/danish-text-to-speech-denmark"
+  },
+  {
+    "code": "fi-FI",
+    "lang": "Finnish",
+    "country": "Finland",
+    "slug": "finnish-text-to-speech-finland",
+    "url": "/tts/finnish-text-to-speech-finland"
+  },
+  {
+    "code": "pl-PL",
+    "lang": "Polish",
+    "country": "Poland",
+    "slug": "polish-text-to-speech-poland",
+    "url": "/tts/polish-text-to-speech-poland"
+  },
+  {
+    "code": "cs-CZ",
+    "lang": "Czech",
+    "country": "Czech Republic",
+    "slug": "czech-text-to-speech-czech-republic",
+    "url": "/tts/czech-text-to-speech-czech-republic"
+  },
+  {
+    "code": "sk-SK",
+    "lang": "Slovak",
+    "country": "Slovakia",
+    "slug": "slovak-text-to-speech-slovakia",
+    "url": "/tts/slovak-text-to-speech-slovakia"
+  },
+  {
+    "code": "hu-HU",
+    "lang": "Hungarian",
+    "country": "Hungary",
+    "slug": "hungarian-text-to-speech-hungary",
+    "url": "/tts/hungarian-text-to-speech-hungary"
+  },
+  {
+    "code": "ro-RO",
+    "lang": "Romanian",
+    "country": "Romania",
+    "slug": "romanian-text-to-speech-romania",
+    "url": "/tts/romanian-text-to-speech-romania"
+  },
+  {
+    "code": "bg-BG",
+    "lang": "Bulgarian",
+    "country": "Bulgaria",
+    "slug": "bulgarian-text-to-speech-bulgaria",
+    "url": "/tts/bulgarian-text-to-speech-bulgaria"
+  },
+  {
+    "code": "hr-HR",
+    "lang": "Croatian",
+    "country": "Croatia",
+    "slug": "croatian-text-to-speech-croatia",
+    "url": "/tts/croatian-text-to-speech-croatia"
+  },
+  {
+    "code": "uk-UA",
+    "lang": "Ukrainian",
+    "country": "Ukraine",
+    "slug": "ukrainian-text-to-speech-ukraine",
+    "url": "/tts/ukrainian-text-to-speech-ukraine"
+  },
+  {
+    "code": "ru-RU",
+    "lang": "Russian",
+    "country": "Russia",
+    "slug": "russian-text-to-speech-russia",
+    "url": "/tts/russian-text-to-speech-russia"
+  },
+  {
+    "code": "el-GR",
+    "lang": "Greek",
+    "country": "Greece",
+    "slug": "greek-text-to-speech-greece",
+    "url": "/tts/greek-text-to-speech-greece"
+  },
+  {
+    "code": "tr-TR",
+    "lang": "Turkish",
+    "country": "Turkey",
+    "slug": "turkish-text-to-speech-turkey",
+    "url": "/tts/turkish-text-to-speech-turkey"
+  },
+  {
+    "code": "ja-JP",
+    "lang": "Japanese",
+    "country": "Japan",
+    "slug": "japanese-text-to-speech-japan",
+    "url": "/tts/japanese-text-to-speech-japan"
+  },
+  {
+    "code": "zh-CN",
+    "lang": "Chinese",
+    "country": "China",
+    "slug": "chinese-text-to-speech-china",
+    "url": "/tts/chinese-text-to-speech-china"
+  },
+  {
+    "code": "zh-TW",
+    "lang": "Chinese",
+    "country": "Taiwan",
+    "slug": "chinese-text-to-speech-taiwan",
+    "url": "/tts/chinese-text-to-speech-taiwan"
+  },
+  {
+    "code": "zh-HK",
+    "lang": "Cantonese",
+    "country": "Hong Kong",
+    "slug": "chinese-text-to-speech-hong-kong",
+    "url": "/tts/chinese-text-to-speech-hong-kong"
+  },
+  {
+    "code": "ko-KR",
+    "lang": "Korean",
+    "country": "South Korea",
+    "slug": "korean-text-to-speech-south-korea",
+    "url": "/tts/korean-text-to-speech-south-korea"
+  },
+  {
+    "code": "vi-VN",
+    "lang": "Vietnamese",
+    "country": "Vietnam",
+    "slug": "vietnamese-text-to-speech-vietnam",
+    "url": "/tts/vietnamese-text-to-speech-vietnam"
+  },
+  {
+    "code": "th-TH",
+    "lang": "Thai",
+    "country": "Thailand",
+    "slug": "thai-text-to-speech-thailand",
+    "url": "/tts/thai-text-to-speech-thailand"
+  },
+  {
+    "code": "id-ID",
+    "lang": "Indonesian",
+    "country": "Indonesia",
+    "slug": "indonesian-text-to-speech-indonesia",
+    "url": "/tts/indonesian-text-to-speech-indonesia"
+  },
+  {
+    "code": "ms-MY",
+    "lang": "Malay",
+    "country": "Malaysia",
+    "slug": "malay-text-to-speech-malaysia",
+    "url": "/tts/malay-text-to-speech-malaysia"
+  },
+  {
+    "code": "fil-PH",
+    "lang": "Filipino",
+    "country": "Philippines",
+    "slug": "filipino-text-to-speech-philippines",
+    "url": "/tts/filipino-text-to-speech-philippines"
+  },
+  {
+    "code": "ar-SA",
+    "lang": "Arabic",
+    "country": "Saudi Arabia",
+    "slug": "arabic-text-to-speech-saudi-arabia",
+    "url": "/tts/arabic-text-to-speech-saudi-arabia"
+  },
+  {
+    "code": "ar-EG",
+    "lang": "Arabic",
+    "country": "Egypt",
+    "slug": "arabic-text-to-speech-egypt",
+    "url": "/tts/arabic-text-to-speech-egypt"
+  },
+  {
+    "code": "fa-IR",
+    "lang": "Persian",
+    "country": "Iran",
+    "slug": "persian-text-to-speech-iran",
+    "url": "/tts/persian-text-to-speech-iran"
+  },
+  {
+    "code": "he-IL",
+    "lang": "Hebrew",
+    "country": "Israel",
+    "slug": "hebrew-text-to-speech-israel",
+    "url": "/tts/hebrew-text-to-speech-israel"
+  },
+  {
+    "code": "ka-GE",
+    "lang": "Georgian",
+    "country": "Georgia",
+    "slug": "georgian-text-to-speech-georgia",
+    "url": "/tts/georgian-text-to-speech-georgia"
+  },
+  {
+    "code": "sw-KE",
+    "lang": "Swahili",
+    "country": "Kenya",
+    "slug": "swahili-text-to-speech-kenya",
+    "url": "/tts/swahili-text-to-speech-kenya"
+  },
+  {
+    "code": "am-ET",
+    "lang": "Amharic",
+    "country": "Ethiopia",
+    "slug": "amharic-text-to-speech-ethiopia",
+    "url": "/tts/amharic-text-to-speech-ethiopia"
+  },
+  {
+    "code": "zu-ZA",
+    "lang": "Zulu",
+    "country": "South Africa",
+    "slug": "zulu-text-to-speech-south-africa",
+    "url": "/tts/zulu-text-to-speech-south-africa"
+  },
+  {
+    "code": "af-ZA",
+    "lang": "Afrikaans",
+    "country": "South Africa",
+    "slug": "afrikaans-text-to-speech-south-africa",
+    "url": "/tts/afrikaans-text-to-speech-south-africa"
+  },
+  {
+    "code": "lv-LV",
+    "lang": "Latvian",
+    "country": "Latvia",
+    "slug": "latvian-text-to-speech-latvia",
+    "url": "/tts/latvian-text-to-speech-latvia"
+  },
+  {
+    "code": "lt-LT",
+    "lang": "Lithuanian",
+    "country": "Lithuania",
+    "slug": "lithuanian-text-to-speech-lithuania",
+    "url": "/tts/lithuanian-text-to-speech-lithuania"
+  },
+  {
+    "code": "et-EE",
+    "lang": "Estonian",
+    "country": "Estonia",
+    "slug": "estonian-text-to-speech-estonia",
+    "url": "/tts/estonian-text-to-speech-estonia"
+  },
+  {
+    "code": "az-AZ",
+    "lang": "Azerbaijani",
+    "country": "Azerbaijan",
+    "slug": "azerbaijani-text-to-speech-azerbaijan",
+    "url": "/tts/azerbaijani-text-to-speech-azerbaijan"
+  },
+  {
+    "code": "kk-KZ",
+    "lang": "Kazakh",
+    "country": "Kazakhstan",
+    "slug": "kazakh-text-to-speech-kazakhstan",
+    "url": "/tts/kazakh-text-to-speech-kazakhstan"
+  },
+  {
+    "code": "uz-UZ",
+    "lang": "Uzbek",
+    "country": "Uzbekistan",
+    "slug": "uzbek-text-to-speech-uzbekistan",
+    "url": "/tts/uzbek-text-to-speech-uzbekistan"
+  },
+  {
+    "code": "sq-AL",
+    "lang": "Albanian",
+    "country": "Albania",
+    "slug": "albanian-text-to-speech-albania",
+    "url": "/tts/albanian-text-to-speech-albania"
+  },
+  {
+    "code": "mk-MK",
+    "lang": "Macedonian",
+    "country": "North Macedonia",
+    "slug": "macedonian-text-to-speech-north-macedonia",
+    "url": "/tts/macedonian-text-to-speech-north-macedonia"
+  },
+  {
+    "code": "bs-BA",
+    "lang": "Bosnian",
+    "country": "Bosnia",
+    "slug": "bosnian-text-to-speech-bosnia",
+    "url": "/tts/bosnian-text-to-speech-bosnia"
+  },
+  {
+    "code": "sr-RS",
+    "lang": "Serbian",
+    "country": "Serbia",
+    "slug": "serbian-text-to-speech-serbia",
+    "url": "/tts/serbian-text-to-speech-serbia"
+  },
+  {
+    "code": "sl-SI",
+    "lang": "Slovenian",
+    "country": "Slovenia",
+    "slug": "slovenian-text-to-speech-slovenia",
+    "url": "/tts/slovenian-text-to-speech-slovenia"
+  },
+  {
+    "code": "mt-MT",
+    "lang": "Maltese",
+    "country": "Malta",
+    "slug": "maltese-text-to-speech-malta",
+    "url": "/tts/maltese-text-to-speech-malta"
+  },
+  {
+    "code": "cy-GB",
+    "lang": "Welsh",
+    "country": "Wales",
+    "slug": "welsh-text-to-speech-uk",
+    "url": "/tts/welsh-text-to-speech-uk"
+  },
+  {
+    "code": "ga-IE",
+    "lang": "Irish",
+    "country": "Ireland",
+    "slug": "irish-text-to-speech-ireland",
+    "url": "/tts/irish-text-to-speech-ireland"
+  },
+  {
+    "code": "ca-ES",
+    "lang": "Catalan",
+    "country": "Spain",
+    "slug": "catalan-text-to-speech-spain",
+    "url": "/tts/catalan-text-to-speech-spain"
+  },
+  {
+    "code": "is-IS",
+    "lang": "Icelandic",
+    "country": "Iceland",
+    "slug": "icelandic-text-to-speech-iceland",
+    "url": "/tts/icelandic-text-to-speech-iceland"
+  },
+  {
+    "code": "mn-MN",
+    "lang": "Mongolian",
+    "country": "Mongolia",
+    "slug": "mongolian-text-to-speech-mongolia",
+    "url": "/tts/mongolian-text-to-speech-mongolia"
+  },
+  {
+    "code": "km-KH",
+    "lang": "Khmer",
+    "country": "Cambodia",
+    "slug": "khmer-text-to-speech-cambodia",
+    "url": "/tts/khmer-text-to-speech-cambodia"
+  },
+  {
+    "code": "lo-LA",
+    "lang": "Lao",
+    "country": "Laos",
+    "slug": "lao-text-to-speech-laos",
+    "url": "/tts/lao-text-to-speech-laos"
+  },
+  {
+    "code": "my-MM",
+    "lang": "Burmese",
+    "country": "Myanmar",
+    "slug": "burmese-text-to-speech-myanmar",
+    "url": "/tts/burmese-text-to-speech-myanmar"
+  },
+  {
+    "code": "ps-AF",
+    "lang": "Pashto",
+    "country": "Afghanistan",
+    "slug": "pashto-text-to-speech-afghanistan",
+    "url": "/tts/pashto-text-to-speech-afghanistan"
+  },
+  {
+    "code": "yo-NG",
+    "lang": "Yoruba",
+    "country": "Nigeria",
+    "slug": "yoruba-text-to-speech-nigeria",
+    "url": "/tts/yoruba-text-to-speech-nigeria"
+  },
+  {
+    "code": "ha-NG",
+    "lang": "Hausa",
+    "country": "Nigeria",
+    "slug": "hausa-text-to-speech-nigeria",
+    "url": "/tts/hausa-text-to-speech-nigeria"
+  },
+  {
+    "code": "so-SO",
+    "lang": "Somali",
+    "country": "Somalia",
+    "slug": "somali-text-to-speech-somalia",
+    "url": "/tts/somali-text-to-speech-somalia"
+  },
+  {
+    "code": "jv-ID",
+    "lang": "Javanese",
+    "country": "Indonesia",
+    "slug": "javanese-text-to-speech-indonesia",
+    "url": "/tts/javanese-text-to-speech-indonesia"
+  },
+  {
+    "code": "gl-ES",
+    "lang": "Galician",
+    "country": "Spain",
+    "slug": "galician-text-to-speech-spain",
+    "url": "/tts/galician-text-to-speech-spain"
+  },
+  {
+    "code": "eu-ES",
+    "lang": "Basque",
+    "country": "Spain",
+    "slug": "basque-text-to-speech-spain",
+    "url": "/tts/basque-text-to-speech-spain"
+  },
+  {
+    "code": "hy-AM",
+    "lang": "Armenian",
+    "country": "Armenia",
+    "slug": "armenian-text-to-speech-armenia",
+    "url": "/tts/armenian-text-to-speech-armenia"
+  },
+  {
+    "code": "tk-TM",
+    "lang": "Turkmen",
+    "country": "Turkmenistan",
+    "slug": "turkmen-text-to-speech-turkmenistan",
+    "url": "/tts/turkmen-text-to-speech-turkmenistan"
+  },
+  {
+    "code": "ky-KG",
+    "lang": "Kyrgyz",
+    "country": "Kyrgyzstan",
+    "slug": "kyrgyz-text-to-speech-kyrgyzstan",
+    "url": "/tts/kyrgyz-text-to-speech-kyrgyzstan"
+  },
+  {
+    "code": "nl-BE",
+    "lang": "Dutch",
+    "country": "Belgium",
+    "slug": "dutch-text-to-speech-belgium",
+    "url": "/tts/dutch-text-to-speech-belgium"
+  },
+  {
+    "code": "fr-BE",
+    "lang": "French",
+    "country": "Belgium",
+    "slug": "french-text-to-speech-belgium",
+    "url": "/tts/french-text-to-speech-belgium"
+  },
+  {
+    "code": "de-CH",
+    "lang": "German",
+    "country": "Switzerland",
+    "slug": "german-text-to-speech-switzerland",
+    "url": "/tts/german-text-to-speech-switzerland"
+  },
+  {
+    "code": "fr-CH",
+    "lang": "French",
+    "country": "Switzerland",
+    "slug": "french-text-to-speech-switzerland",
+    "url": "/tts/french-text-to-speech-switzerland"
+  },
+  {
+    "code": "ar-AE",
+    "lang": "Arabic",
+    "country": "UAE",
+    "slug": "arabic-text-to-speech-uae",
+    "url": "/tts/arabic-text-to-speech-uae"
+  },
+  {
+    "code": "ar-MA",
+    "lang": "Arabic",
+    "country": "Morocco",
+    "slug": "arabic-text-to-speech-morocco",
+    "url": "/tts/arabic-text-to-speech-morocco"
+  }
+]
