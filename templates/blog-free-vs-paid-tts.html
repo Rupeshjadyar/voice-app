@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Theme FOUC Prevention Script -->
+<script>
+  (function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707682105347147" crossorigin="anonymous"></script>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free vs Paid TTS Tools in 2026: Honest Comparison | VoicePro Blog</title>
@@ -16,7 +24,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root{--bg:#070b12;--card:rgba(255,255,255,0.035);--border:rgba(255,255,255,0.07);--a1:#3b9eff;--a2:#7c5fe6;--a3:#e94fa3;--txt:#dde4f0;--txt2:#b8c4d8;--muted:#6e7e98;--ok:#3dd68c;}
+    :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: rgba(0, 0, 0, 0.08);
+    --borderH: rgba(59, 158, 255, 0.5);
+    --a1: #1d4ed8;
+    --a2: #6d28d9;
+    --a3: #db2777;
+    --txt: #0f172a;
+    --txt2: #334155;
+    --muted: #64748b;
+    --panel: #f1f5f9;
+    --ok: #10b981;
+    --grid-line: rgba(0, 0, 0, 0.03);
+  }
+  [data-theme="dark"] {
+    --bg: #070b12;
+    --card: rgba(255, 255, 255, 0.032);
+    --border: rgba(255, 255, 255, 0.07);
+    --borderH: rgba(59, 158, 255, 0.38);
+    --a1: #3b9eff;
+    --a2: #7c5fe6;
+    --a3: #e94fa3;
+    --txt: #dde4f0;
+    --txt2: #b8c4d8;
+    --muted: #6e7e98;
+    --panel: #0c1220;
+    --ok: #3dd68c;
+    --grid-line: var(--grid-line);
+  }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
     body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 15% 10%,rgba(59,158,255,0.05) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 85% 85%,rgba(124,95,230,0.04) 0%,transparent 60%);}
@@ -24,7 +61,7 @@
     h1,h2,h3,h4{font-family:'Syne',sans-serif;letter-spacing:-0.02em;}
     .tg{background:linear-gradient(130deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     a{text-decoration:none;color:var(--a1);}
-    .site-header{background:rgba(7,11,18,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+    .site-header{background:var(--bg); opacity:0.96;backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
     .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
     .logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--txt);}
     .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;}
@@ -87,7 +124,7 @@
     .related-card h4{font-size:.9rem;font-weight:700;margin-bottom:6px;color:var(--txt);font-family:'Syne',sans-serif;}
     .related-card p{font-size:.8rem;color:var(--muted);margin-bottom:0;line-height:1.5;}
     .ad-slot{margin:28px 0;text-align:center;}
-    .site-footer{background:rgba(5,8,14,0.97);border-top:1px solid var(--border);padding:30px 24px;margin-top:auto;}
+    .site-footer{background:var(--card);border-top:1px solid var(--border);padding:30px 24px;margin-top:auto;}
     .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
     .footer-links{display:flex;gap:16px;flex-wrap:wrap;}
     .footer-links a{color:var(--muted);font-size:.84rem;}
@@ -106,7 +143,7 @@
       <a href="/contact.html" class="nav-link">Contact</a>
       <a href="/privacy.html" class="nav-link">Privacy</a>
       <a href="/terms.html" class="nav-link">Terms</a>
-    </nav>
+    <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;margin-left:5px;" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button></nav>
   </div>
 </header>
 

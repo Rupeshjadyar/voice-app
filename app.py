@@ -16,18 +16,18 @@ load_dotenv()
 try:
     import edge_tts
     EDGE_AVAILABLE = True
-    print("✅ edge-tts available")
+    print("[OK] edge-tts available")
 except ImportError:
     EDGE_AVAILABLE = False
-    print("❌ edge-tts not available  →  pip install edge-tts")
+    print("[FAIL] edge-tts not available -> pip install edge-tts")
 
 try:
     from gtts import gTTS
     GTTS_AVAILABLE = True
-    print("✅ gTTS available")
+    print("[OK] gTTS available")
 except ImportError:
     GTTS_AVAILABLE = False
-    print("❌ gTTS not available")
+    print("[FAIL] gTTS not available")
 
 try:
     import pyttsx3
@@ -43,11 +43,11 @@ try:
     redis = Redis(url=os.getenv("KV_REST_API_URL"), token=os.getenv("KV_REST_API_TOKEN"))
     redis.ping()
     REDIS_AVAILABLE = True
-    print("✅ Upstash Redis connected")
+    print("[OK] Upstash Redis connected")
 except Exception as e:
     redis = None
     REDIS_AVAILABLE = False
-    print(f"⚠️  Redis not available: {e}")
+    print(f"[WARN] Redis not available: {e}")
 
 # ─────────────────────────────────────────────
 #  Flask
@@ -63,18 +63,40 @@ os.makedirs(TEMP_FOLDER, exist_ok=True)
 VOICE_MAPPING = {
     ('en-US','female-1'): 'en-US-AriaNeural',
     ('en-US','female-2'): 'en-US-JennyNeural',
-    ('en-US','female-3'): 'en-US-SaraNeural',
+    ('en-US','female-3'): 'en-US-EmmaNeural',
     ('en-US','male-1'):   'en-US-GuyNeural',
     ('en-US','male-2'):   'en-US-RogerNeural',
     ('en-US','male-3'):   'en-US-SteffanNeural',
-    ('en-US','young'):    'en-US-AshleyNeural',
-    ('en-US','old'):      'en-US-JaneNeural',
+    ('en-US','young'):    'en-US-AvaNeural',
+    ('en-US','old'):      'en-US-BrianNeural',
+    ('en-US','kid-f1'):   'en-US-AnaNeural',
+    ('en-US','kid-f2'):   'en-US-JennyNeural',
+    ('en-US','kid-m1'):   'en-US-AnaNeural',
+    ('en-US','kid-m2'):   'en-US-BrianNeural',
+    ('en-US','teen-f1'):  'en-US-JennyNeural',
+    ('en-US','teen-f2'):  'en-US-AriaNeural',
+    ('en-US','teen-m1'):  'en-US-ChristopherNeural',
+    ('en-US','teen-m2'):  'en-US-SteffanNeural',
+    ('en-US','young-f1'): 'en-US-AriaNeural',
+    ('en-US','young-f2'): 'en-US-JennyNeural',
+    ('en-US','young-f3'): 'en-US-EmmaNeural',
+    ('en-US','young-m1'): 'en-US-GuyNeural',
+    ('en-US','young-m2'): 'en-US-RogerNeural',
+    ('en-US','young-m3'): 'en-US-SteffanNeural',
+    ('en-US','mid-f1'):   'en-US-MichelleNeural',
+    ('en-US','mid-f2'):   'en-US-MichelleNeural',
+    ('en-US','mid-m1'):   'en-US-EricNeural',
+    ('en-US','mid-m2'):   'en-US-BrianNeural',
+    ('en-US','senior-f1'):'en-US-MichelleNeural',
+    ('en-US','senior-f2'):'en-US-MichelleNeural',
+    ('en-US','senior-m1'):'en-US-BrianNeural',
+    ('en-US','senior-m2'):'en-US-BrianNeural',
     ('en-GB','female-1'): 'en-GB-SoniaNeural',
     ('en-GB','female-2'): 'en-GB-LibbyNeural',
     ('en-GB','male-1'):   'en-GB-RyanNeural',
-    ('en-GB','male-2'):   'en-GB-AlfieNeural',
+    ('en-GB','male-2'):   'en-GB-ThomasNeural',
     ('en-AU','female-1'): 'en-AU-NatashaNeural',
-    ('en-AU','male-1'):   'en-AU-WilliamNeural',
+    ('en-AU','male-1'):   'en-AU-WilliamMultilingualNeural',
     ('en-IN','female-1'): 'en-IN-NeerjaNeural',
     ('en-IN','male-1'):   'en-IN-PrabhatNeural',
     ('en-CA','female-1'): 'en-CA-ClaraNeural',
@@ -84,13 +106,35 @@ VOICE_MAPPING = {
     ('en-ZA','female-1'): 'en-ZA-LeahNeural',
     ('en-ZA','male-1'):   'en-ZA-LukeNeural',
     ('hi-IN','female-1'): 'hi-IN-SwaraNeural',
-    ('hi-IN','female-2'): 'hi-IN-AnanyaNeural',
+    ('hi-IN','female-2'): 'hi-IN-SwaraNeural',
     ('hi-IN','female-3'): 'hi-IN-SwaraNeural',
     ('hi-IN','male-1'):   'hi-IN-MadhurNeural',
-    ('hi-IN','male-2'):   'hi-IN-PrabhatNeural',
+    ('hi-IN','male-2'):   'hi-IN-MadhurNeural',
     ('hi-IN','male-3'):   'hi-IN-MadhurNeural',
-    ('hi-IN','young'):    'hi-IN-AnanyaNeural',
+    ('hi-IN','young'):    'hi-IN-SwaraNeural',
     ('hi-IN','old'):      'hi-IN-MadhurNeural',
+    ('hi-IN','kid-f1'):   'hi-IN-SwaraNeural',
+    ('hi-IN','kid-f2'):   'hi-IN-SwaraNeural',
+    ('hi-IN','kid-m1'):   'hi-IN-MadhurNeural',
+    ('hi-IN','kid-m2'):   'hi-IN-MadhurNeural',
+    ('hi-IN','teen-f1'):  'hi-IN-SwaraNeural',
+    ('hi-IN','teen-f2'):  'hi-IN-SwaraNeural',
+    ('hi-IN','teen-m1'):  'hi-IN-MadhurNeural',
+    ('hi-IN','teen-m2'):  'hi-IN-MadhurNeural',
+    ('hi-IN','young-f1'): 'hi-IN-SwaraNeural',
+    ('hi-IN','young-f2'): 'hi-IN-SwaraNeural',
+    ('hi-IN','young-f3'): 'hi-IN-SwaraNeural',
+    ('hi-IN','young-m1'): 'hi-IN-MadhurNeural',
+    ('hi-IN','young-m2'): 'hi-IN-MadhurNeural',
+    ('hi-IN','young-m3'): 'hi-IN-MadhurNeural',
+    ('hi-IN','mid-f1'):   'hi-IN-SwaraNeural',
+    ('hi-IN','mid-f2'):   'hi-IN-SwaraNeural',
+    ('hi-IN','mid-m1'):   'hi-IN-MadhurNeural',
+    ('hi-IN','mid-m2'):   'hi-IN-MadhurNeural',
+    ('hi-IN','senior-f1'):'hi-IN-SwaraNeural',
+    ('hi-IN','senior-f2'):'hi-IN-SwaraNeural',
+    ('hi-IN','senior-m1'):'hi-IN-MadhurNeural',
+    ('hi-IN','senior-m2'):'hi-IN-MadhurNeural',
     ('mr-IN','female-1'): 'mr-IN-AarohiNeural',
     ('mr-IN','male-1'):   'mr-IN-ManoharNeural',
     ('gu-IN','female-1'): 'gu-IN-DhwaniNeural',
@@ -143,7 +187,7 @@ VOICE_MAPPING = {
     ('pt-PT','male-1'):   'pt-PT-DuarteNeural',
     ('nl-NL','female-1'): 'nl-NL-ColetteNeural',
     ('nl-NL','male-1'):   'nl-NL-MaartenNeural',
-    ('sv-SE','female-1'): 'sv-SE-HilleviNeural',
+    ('sv-SE','female-1'): 'sv-SE-SofieNeural',
     ('sv-SE','male-1'):   'sv-SE-MattiasNeural',
     ('nb-NO','female-1'): 'nb-NO-PernilleNeural',
     ('nb-NO','male-1'):   'nb-NO-FinnNeural',
@@ -175,7 +219,7 @@ VOICE_MAPPING = {
     ('tr-TR','male-1'):   'tr-TR-AhmetNeural',
     ('ja-JP','female-1'): 'ja-JP-NanamiNeural',
     ('ja-JP','male-1'):   'ja-JP-KeitaNeural',
-    ('ja-JP','young'):    'ja-JP-AoiNeural',
+    ('ja-JP','young'):    'ja-JP-NanamiNeural',
     ('zh-CN','female-1'): 'zh-CN-XiaoxiaoNeural',
     ('zh-CN','male-1'):   'zh-CN-YunxiNeural',
     ('zh-CN','young'):    'zh-CN-XiaoyiNeural',
@@ -248,17 +292,36 @@ DEFAULT_SAMPLE = "Hello! This is a voice preview. Enjoy!"
 
 
 def get_voice(lang: str, voice_type: str) -> str:
+    # 1. Direct match
     voice = VOICE_MAPPING.get((lang, voice_type))
     if voice:
         return voice
-    voice = VOICE_MAPPING.get((lang, 'female-1'))
-    if voice:
-        return voice
+    
+    # 2. Gender-smart fallback for the same language
+    vt = voice_type.lower()
+    is_male = False
+    if 'female' in vt or '-f' in vt:
+        is_male = False
+    elif 'male' in vt or '-m' in vt or vt == 'old':
+        is_male = True
+    else:
+        is_male = False
+        
+    fallback_sequence = ['male-1', 'female-1'] if is_male else ['female-1', 'male-1']
+    
+    for gender_vt in fallback_sequence:
+        v = VOICE_MAPPING.get((lang, gender_vt))
+        if v:
+            return v
+            
+    # 3. Language prefix fallback
     lang_prefix = lang.split('-')[0]
-    for vt in ['female-1', 'male-1']:
+    for gender_vt in fallback_sequence:
         for code, v in VOICE_MAPPING.items():
-            if code[0].startswith(lang_prefix) and code[1] == vt:
+            if code[0].startswith(lang_prefix) and code[1] == gender_vt:
                 return v
+                
+    # 4. Global fallback
     return 'en-US-AriaNeural'
 
 
@@ -356,21 +419,26 @@ STYLE_CAPABLE_VOICES = {
 async def _generate_edge(text, voice, rate_str, pitch_str, volume_str, style, filepath):
     """
     ✅ FIXED: Tries with SSML style first (for capable voices),
-    falls back to plain text on any error.
+    falls back to plain text on any error. Includes prosody settings for speed/pitch/volume.
     """
+    import html
     ssml_style = STYLE_MAP.get(style)
 
     # --- attempt 1: with SSML style (if voice supports it) ---
     if ssml_style and voice in STYLE_CAPABLE_VOICES:
         try:
+            escaped_text = html.escape(text)
+            lang_code = '-'.join(voice.split('-')[:2])
             ssml = (
                 f'<speak version="1.0" '
                 f'xmlns="http://www.w3.org/2001/10/synthesis" '
                 f'xmlns:mstts="http://www.w3.org/2001/mstts" '
-                f'xml:lang="en-US">'
+                f'xml:lang="{lang_code}">'
                 f'<voice name="{voice}">'
                 f'<mstts:express-as style="{ssml_style}">'
-                f'{text}'
+                f'<prosody rate="{rate_str}" pitch="{pitch_str}" volume="{volume_str}">'
+                f'{escaped_text}'
+                f'</prosody>'
                 f'</mstts:express-as>'
                 f'</voice></speak>'
             )
@@ -599,9 +667,15 @@ def test_redis():
         return jsonify({"status": "error", "message": str(e)})
 
 
-# @app.route('/sitemap.xml')
-# def sitemap():
-#     return send_from_directory(app.root_path, 'sitemap.xml')
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory(app.root_path, 'robots.txt')
+
+
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory(app.root_path, 'ads.txt')
+
 
 
 @app.route('/about.html')
@@ -699,7 +773,7 @@ _manifest_path = os.path.join(os.path.dirname(__file__), 'templates', 'tts_manif
 if os.path.exists(_manifest_path):
     with open(_manifest_path, encoding='utf-8') as _f:
         _PSEO_MANIFEST = _json.load(_f)
-    print(f"✅ pSEO: {len(_PSEO_MANIFEST)} language pages loaded")
+    print(f"[OK] pSEO: {len(_PSEO_MANIFEST)} language pages loaded")
 
 
 # ─── pSEO: Individual language page ────────────────────────
@@ -771,6 +845,15 @@ def sitemap_xml():
 
     return Response(sitemap, mimetype='application/xml')
 
+
+@app.route('/robots.txt')
+def serve_robots():
+    return send_from_directory(app.root_path, 'robots.txt')
+
+
+@app.route('/ads.txt')
+def serve_ads():
+    return send_from_directory(app.root_path, 'ads.txt')
 
 
 if __name__ == '__main__':

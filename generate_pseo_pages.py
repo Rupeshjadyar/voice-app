@@ -6,6 +6,7 @@ Output: templates/tts/<slug>.html  (one file per language)
 """
 
 import os, json, re
+from app import VOICE_MAPPING
 
 # ──────────────────────────────────────────────────────────────
 #  MASTER LANGUAGE DATA  (100 + entries)
@@ -295,7 +296,40 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  :root{{--bg:#070b12;--card:rgba(255,255,255,0.032);--border:rgba(255,255,255,0.07);--borderH:rgba(59,158,255,0.38);--a1:#3b9eff;--a2:#7c5fe6;--a3:#e94fa3;--txt:#dde4f0;--txt2:#b8c4d8;--muted:#6e7e98;--panel:#0c1220;--ok:#3dd68c;}}
+  :root{{
+    --bg:#d8dee9;
+    --card:#ffffff;
+    --border:rgba(15,23,42,0.12);
+    --borderH:rgba(59,158,255,0.4);
+    --a1:#1d4ed8;
+    --a2:#6d28d9;
+    --a3:#db2777;
+    --txt:#0f172a;
+    --txt2:#334155;
+    --muted:#64748b;
+    --panel:#edf2f7;
+    --ok:#10b981;
+    --grid-line:rgba(0,0,0,0.02);
+    --shadow:0 10px 30px -5px rgba(0,0,0,0.04),0 8px 16px -6px rgba(0,0,0,0.04);
+    --nav-bg:#ffffff;
+  }}
+  [data-theme="dark"]{{
+    --bg:#070b12;
+    --card:rgba(255,255,255,0.032);
+    --border:rgba(255,255,255,0.07);
+    --borderH:rgba(59,158,255,0.38);
+    --a1:#3b9eff;
+    --a2:#7c5fe6;
+    --a3:#e94fa3;
+    --txt:#dde4f0;
+    --txt2:#b8c4d8;
+    --muted:#6e7e98;
+    --panel:#0c1220;
+    --ok:#3dd68c;
+    --grid-line:rgba(255,255,255,0.012);
+    --shadow:none;
+    --nav-bg:#070b12;
+  }}
   *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0;}}
   html{{scroll-behavior:smooth;}}
   body{{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}}
@@ -304,23 +338,23 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   h1,h2,h3,h4{{font-family:'Syne',sans-serif;letter-spacing:-0.02em;line-height:1.15;}}
   .tg{{background:linear-gradient(130deg,var(--a1) 0%,var(--a2) 50%,var(--a3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}}
   .mono{{font-family:'Space Mono',monospace;}}
-  .glass-nav{{background:rgba(7,11,18,0.93);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}}
+  .glass-nav{{background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);opacity:0.96;}}
   .nav-btn{{padding:7px 14px;border-radius:10px;font-size:.85rem;font-weight:500;transition:all .18s;color:var(--muted);border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}}
   .nav-btn:hover{{color:var(--a1);background:rgba(59,158,255,0.09);}}
-  .glass{{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:22px;}}
+  .glass{{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);}}
   .btn-primary{{background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));background-size:220%;border:none;border-radius:14px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:15px 28px;cursor:pointer;width:100%;transition:background-position .45s,transform .15s,box-shadow .3s;box-shadow:0 4px 28px rgba(59,158,255,0.24);}}
   .btn-primary:hover{{background-position:right;box-shadow:0 6px 36px rgba(59,158,255,0.4);}}
   .btn-primary:disabled{{opacity:.5;cursor:not-allowed;}}
-  textarea{{background:rgba(255,255,255,0.038);border:1px solid var(--border);border-radius:14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:.96rem;line-height:1.65;padding:14px 18px;width:100%;outline:none;resize:none;transition:border-color .2s,box-shadow .2s;}}
+  textarea{{background:var(--panel);border:1.5px solid var(--border);border-radius:14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:.96rem;line-height:1.65;padding:14px 18px 24px;width:100%;outline:none;resize:none;transition:border-color .2s,box-shadow .2s;min-height:120px;max-height:400px;overflow-y:auto;}}
   textarea:focus{{border-color:var(--a1);box-shadow:0 0 0 3px rgba(59,158,255,0.13);}}
   textarea::placeholder{{color:var(--muted);}}
-  select{{appearance:none;background:rgba(255,255,255,0.038);border:1px solid var(--border);border-radius:12px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:.9rem;padding:11px 36px 11px 14px;outline:none;cursor:pointer;width:100%;transition:border-color .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%236e7e98' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}}
+  select{{appearance:none;background:var(--panel);border:1px solid var(--border);border-radius:12px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:.9rem;padding:11px 36px 11px 14px;outline:none;cursor:pointer;width:100%;transition:border-color .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%236e7e98' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}}
   select:focus{{border-color:var(--a1);}}
-  select option{{background:#111827;}}
+  select option{{background:var(--bg);color:var(--txt);}}
   input[type=range]{{-webkit-appearance:none;width:100%;background:transparent;cursor:pointer;}}
   input[type=range]::-webkit-slider-runnable-track{{height:5px;background:rgba(255,255,255,0.09);border-radius:3px;}}
   input[type=range]::-webkit-slider-thumb{{-webkit-appearance:none;height:18px;width:18px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));cursor:pointer;margin-top:-6.5px;border:2px solid rgba(255,255,255,0.88);box-shadow:0 0 10px rgba(59,158,255,0.55);}}
-  .ctrl{{background:rgba(255,255,255,0.022);border:1px solid var(--border);border-radius:14px;padding:14px 16px;}}
+  .ctrl{{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 16px;}}
   .slbl{{display:block;font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}}
   .wave{{display:flex;align-items:center;gap:4px;height:34px;}}
   .wave-bar{{width:3px;height:12px;background:linear-gradient(180deg,var(--a1),var(--a2));border-radius:2px;animation:wv 1s ease-in-out infinite;}}
@@ -373,6 +407,9 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
       <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
       <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
+      <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </div>
     <button class="nav-mobile-btn" onclick="document.getElementById('mob-menu').classList.toggle('hidden')"
       style="background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;">
@@ -380,11 +417,14 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     </button>
   </div>
   <div id="mob-menu" class="hidden"
-    style="background:rgba(7,11,18,0.99);border-top:1px solid var(--border);padding:14px;display:flex;flex-direction:column;gap:6px;">
+    style="background:var(--bg);border-top:1px solid var(--border);padding:14px;display:flex;flex-direction:column;gap:6px;">
     <a href="/" class="nav-btn" style="text-align:left;"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
     <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
     <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
     <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy</a>
+    <button onclick="toggleTheme()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;">
+      <i class="fa-solid fa-moon"></i>Toggle Theme
+    </button>
   </div>
 </nav>
 
@@ -429,7 +469,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <div style="margin-bottom:18px;">
       <span class="slbl"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your {lang_name} Text</span>
       <textarea id="txt" rows="5" placeholder="Type or paste {lang_name} text here… (up to 5000 characters)" oninput="onTxt(this)"></textarea>
-      <div style="display:flex;justify-content:space-between;margin-top:7px;font-size:.76rem;color:var(--muted);">
+      <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:.76rem;color:var(--muted);">
         <span><span id="cc">0</span> / 5000</span>
         <span>~<span id="te">0</span> sec audio</span>
       </div>
@@ -445,14 +485,48 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <div>
         <span class="slbl"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice</span>
         <select id="sel-voice">
-          <option value="female-1">👩 Female 1 – Natural</option>
-          <option value="female-2">👩‍🦰 Female 2 – Soft</option>
-          <option value="female-3">👩‍💼 Female 3 – Pro</option>
-          <option value="male-1">👨 Male 1 – Deep</option>
-          <option value="male-2">👨‍🦰 Male 2 – Friendly</option>
-          <option value="male-3">👨‍💼 Male 3 – Authority</option>
-          <option value="young">🧒 Young Voice</option>
-          <option value="old">🧓 Mature Voice</option>
+          <optgroup label="General Voices">
+            <option value="female-1">👩 Female 1 – Natural</option>
+            <option value="female-2">👩‍🦰 Female 2 – Soft</option>
+            <option value="female-3">👩‍💼 Female 3 – Pro</option>
+            <option value="male-1">👨 Male 1 – Deep</option>
+            <option value="male-2">👨‍🦰 Male 2 – Friendly</option>
+            <option value="male-3">👨‍💼 Male 3 – Authority</option>
+            <option value="young">🧒 Young Voice</option>
+            <option value="old">🧓 Mature Voice</option>
+          </optgroup>
+          <optgroup label="Kids (1-15)">
+            <option value="kid-f1">👧 Lily (Age 7) – Kid Female</option>
+            <option value="kid-f2">👧 Chloe (Age 10) – Kid Female</option>
+            <option value="kid-m1">👦 Mason (Age 8) – Kid Male</option>
+            <option value="kid-m2">👦 Logan (Age 12) – Kid Male</option>
+          </optgroup>
+          <optgroup label="Teens (15-20)">
+            <option value="teen-f1">👩 Sophia (Age 17) – Teen Female</option>
+            <option value="teen-f2">👩 Emma (Age 19) – Teen Female</option>
+            <option value="teen-m1">👨 Ethan (Age 16) – Teen Male</option>
+            <option value="teen-m2">👨 Noah (Age 18) – Teen Male</option>
+          </optgroup>
+          <optgroup label="Young Adults (20-40)">
+            <option value="young-f1">👩‍🦰 Aria (Age 25) – Female Natural</option>
+            <option value="young-f2">👩 Jenny (Age 28) – Female Friendly</option>
+            <option value="young-f3">👩‍💼 Sara (Age 32) – Female Pro</option>
+            <option value="young-m1">👨‍🦰 Guy (Age 26) – Male Natural</option>
+            <option value="young-m2">👨‍💼 Roger (Age 30) – Male Pro</option>
+            <option value="young-m3">👨 Ryan (Age 34) – Male Deep</option>
+          </optgroup>
+          <optgroup label="Middle-Aged (40-60)">
+            <option value="mid-f1">👩‍🦳 Michelle (Age 45) – Female Exec</option>
+            <option value="mid-f2">👩‍🦳 Helen (Age 52) – Female Warm</option>
+            <option value="mid-m1">👨‍🦳 Steffan (Age 48) – Male Presenter</option>
+            <option value="mid-m2">👨‍🦳 Brian (Age 55) – Male Narrator</option>
+          </optgroup>
+          <optgroup label="Seniors (60-90)">
+            <option value="senior-f1">👵 Abigail (Age 68) – Senior Female</option>
+            <option value="senior-f2">👵 Esther (Age 75) – Senior Female</option>
+            <option value="senior-m1">👴 Arthur (Age 70) – Senior Male</option>
+            <option value="senior-m2">👴 Thomas (Age 82) – Senior Male</option>
+          </optgroup>
         </select>
       </div>
     </div>
@@ -512,14 +586,48 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     </button>
 
     <div id="result-area" class="hidden">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <div class="wave"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
-        <div>
-          <p style="font-weight:700;color:var(--ok);font-family:'Syne',sans-serif;font-size:.95rem;">Audio Ready!</p>
-          <p id="gen-info" style="font-size:.76rem;color:var(--muted);">Generated successfully</p>
+      <!-- Custom Player UI -->
+      <div style="background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px;">
+        <!-- Top row -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <i class="fa-solid fa-square-check" style="color:var(--ok);font-size:1.25rem;"></i>
+            <div>
+              <div style="font-weight:700;color:var(--ok);font-size:.9rem;font-family:'Syne',sans-serif;">Audio Ready!</div>
+              <div id="custom-player-meta" style="font-size:.74rem;color:var(--muted);margin-top:1px;">Edge TTS · en-US-AriaNeural · English (US)</div>
+            </div>
+          </div>
+          <div id="custom-player-badge" class="badge-pill" style="margin:0;font-size:.7rem;background:rgba(59,158,255,0.1);color:var(--a1);border:1px solid rgba(59,158,255,0.15);text-transform:capitalize;">👩 Natural Female</div>
+        </div>
+        <!-- Waveform Player control bar -->
+        <div style="display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:12px;padding:10px 14px;border:1px solid var(--border);">
+          <button id="play-pause-btn" onclick="togglePlayPause()" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 10px rgba(59,158,255,0.25);transition:transform .15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='none'">
+            <i class="fa-solid fa-play" id="play-pause-icon"></i>
+          </button>
+          <span id="player-time-current" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;">0:00</span>
+          <!-- Seekable waveform timeline track -->
+          <div id="player-timeline" onclick="seekAudio(event)" style="flex:1;height:32px;position:relative;cursor:pointer;display:flex;align-items:center;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+            <!-- Waveform bars -->
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 6px;opacity:0.35;pointer-events:none;">
+              <div style="width:2px;height:8px;background:var(--a1);border-radius:1px;"></div>
+              <div style="width:2px;height:14px;background:var(--a1);border-radius:1px;"></div>
+              <div style="width:2px;height:10px;background:var(--a1);border-radius:1px;"></div>
+              <div style="width:2px;height:18px;background:var(--a1);border-radius:1px;"></div>
+              <div style="width:2px;height:12px;background:var(--a1);border-radius:1px;"></div>
+              <div style="width:2px;height:16px;background:var(--a2);border-radius:1px;"></div>
+              <div style="width:2px;height:8px;background:var(--a2);border-radius:1px;"></div>
+              <div style="width:2px;height:18px;background:var(--a2);border-radius:1px;"></div>
+              <div style="width:2px;height:14px;background:var(--a3);border-radius:1px;"></div>
+              <div style="width:2px;height:10px;background:var(--a3);border-radius:1px;"></div>
+              <div style="width:2px;height:16px;background:var(--a3);border-radius:1px;"></div>
+              <div style="width:2px;height:8px;background:var(--a3);border-radius:1px;"></div>
+            </div>
+            <div id="player-progress" style="width:0%;height:100%;background:linear-gradient(90deg, rgba(59,158,255,0.15) 0%, rgba(124,95,230,0.15) 100%);border-right:2px solid var(--a3);transition:width 0.15s linear;"></div>
+          </div>
+          <span id="player-time-duration" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;text-align:right;">0:00</span>
         </div>
       </div>
-      <audio id="player" controls></audio>
+      <audio id="player" style="display:none;"></audio>
       <div style="display:flex;gap:10px;margin-bottom:10px;">
         <button onclick="doDownload('mp3')" style="flex:1;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.28);color:var(--ok);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;">
           <i class="fa-solid fa-download" style="margin-right:6px;"></i>MP3
@@ -537,6 +645,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     </div>
   </div>
 </section>
+
+{voices_table_html}
 
 <!-- USE CASES -->
 <section style="max-width:1100px;margin:0 auto;padding:0 18px 56px;">
@@ -665,6 +775,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     if (c > 5000) {{ el.value = el.value.substring(0, 5000); c = 5000; }}
     document.getElementById('cc').textContent = c;
     document.getElementById('te').textContent = Math.ceil(c / 15);
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
   }}
 
   function showToast(msg, type='ok') {{
@@ -700,6 +812,25 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       if (d.success) {{
         lastAudio = d.audio_data; lastFile = d.filename;
         document.getElementById('player').src = d.audio_data;
+        
+        // Update custom player UI
+        const selVal = document.getElementById('sel-voice').value;
+        const selOpt = document.querySelector('#sel-voice option[value="' + selVal + '"]');
+        const voiceName = selOpt ? selOpt.textContent.replace(/^[^\s]+\s+/, '') : selVal;
+        
+        document.getElementById('custom-player-meta').textContent = d.method + ' · ' + voiceName + ' · ' + LANG_NAME;
+        
+        let badge = 'Natural';
+        if (selVal.includes('kid')) badge = 'Kid';
+        else if (selVal.includes('teen')) badge = 'Teen';
+        else if (selVal.includes('young')) badge = 'Young Adult';
+        else if (selVal.includes('mid')) badge = 'Middle-Aged';
+        else if (selVal.includes('senior')) badge = 'Senior';
+        else if (selVal === 'old') badge = 'Mature';
+        else if (selVal === 'young') badge = 'Young';
+        
+        document.getElementById('custom-player-badge').textContent = badge;
+        
         document.getElementById('gen-info').textContent = d.method + ' · ' + (d.voice_used || '') + ' · ' + LANG_CODE;
         document.getElementById('result-area').classList.remove('hidden');
         showToast(LANG_NAME + ' audio ready! 🎉');
@@ -737,9 +868,154 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
     if (!wasOpen) item.classList.add('open');
   }}
+
+  function toggleTheme() {{
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const target = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', target);
+    localStorage.setItem('theme', target);
+    updateThemeIcons();
+  }}
+
+  function updateThemeIcons() {{
+    const theme = document.documentElement.getAttribute('data-theme') || 'light';
+    const btn = document.getElementById('theme-btn');
+    const btnMob = document.getElementById('theme-btn-mob');
+    const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    if (btn) btn.innerHTML = '<i class="' + iconClass + '"></i>';
+    if (btnMob) btnMob.innerHTML = '<i class="' + iconClass + '" style="margin-right:8px;"></i>Toggle Theme';
+  }}
+
+  /* ── CUSTOM PLAYER CONTROLS ── */
+  function togglePlayPause() {{
+    const audio = document.getElementById('player');
+    if (!audio) return;
+    if (audio.paused) {{
+      audio.play();
+    }} else {{
+      audio.pause();
+    }}
+  }}
+
+  function seekAudio(e) {{
+    const audio = document.getElementById('player');
+    if (!audio || !audio.duration) return;
+    const rect = document.getElementById('player-timeline').getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  }}
+
+  function formatTime(secs) {{
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }}
+
+  function initCustomPlayer() {{
+    const audio = document.getElementById('player');
+    if (!audio) return;
+    
+    audio.addEventListener('play', () => {{
+      const icon = document.getElementById('play-pause-icon');
+      if (icon) icon.className = 'fa-solid fa-pause';
+    }});
+    
+    audio.addEventListener('pause', () => {{
+      const icon = document.getElementById('play-pause-icon');
+      if (icon) icon.className = 'fa-solid fa-play';
+    }});
+    
+    audio.addEventListener('timeupdate', () => {{
+      const cur = audio.currentTime;
+      const dur = audio.duration || 0;
+      const pct = dur > 0 ? (cur / dur) * 100 : 0;
+      const prog = document.getElementById('player-progress');
+      if (prog) prog.style.width = pct + '%';
+      const curTxt = document.getElementById('player-time-current');
+      if (curTxt) curTxt.textContent = formatTime(cur);
+      const durTxt = document.getElementById('player-time-duration');
+      if (durTxt && audio.duration) durTxt.textContent = formatTime(dur);
+    }});
+    
+    audio.addEventListener('loadedmetadata', () => {{
+      const durTxt = document.getElementById('player-time-duration');
+      if (durTxt && audio.duration) durTxt.textContent = formatTime(audio.duration);
+    }});
+
+    audio.addEventListener('ended', () => {{
+      const icon = document.getElementById('play-pause-icon');
+      if (icon) icon.className = 'fa-solid fa-play';
+      const prog = document.getElementById('player-progress');
+      if (prog) prog.style.width = '0%';
+      const curTxt = document.getElementById('player-time-current');
+      if (curTxt) curTxt.textContent = '0:00';
+    }});
+  }}
+
+  document.addEventListener('DOMContentLoaded', () => {{
+    updateThemeIcons();
+    initCustomPlayer();
+  }});
 </script>
 </body>
 </html>"""
+
+
+# ──────────────────────────────────────────────────────────────
+#  BUILD PAGES
+ALL_VOICES_DEFINITION = [
+    { 'id': 'female-1', 'name': 'Female 1 – Natural', 'icon': '👩', 'badge': 'Female (Adult)' },
+    { 'id': 'female-2', 'name': 'Female 2 – Soft', 'icon': '👩‍🦰', 'badge': 'Female (Soft)' },
+    { 'id': 'female-3', 'name': 'Female 3 – Pro', 'icon': '👩‍💼', 'badge': 'Female (Professional)' },
+    { 'id': 'male-1', 'name': 'Male 1 – Deep', 'icon': '👨', 'badge': 'Male (Adult)' },
+    { 'id': 'male-2', 'name': 'Male 2 – Friendly', 'icon': '👨‍🦰', 'badge': 'Male (Friendly)' },
+    { 'id': 'male-3', 'name': 'Male 3 – Authority', 'icon': '👨‍💼', 'badge': 'Male (Authority)' },
+    { 'id': 'young', 'name': 'Young Voice', 'icon': '🧒', 'badge': 'Child / Energetic' },
+    { 'id': 'old', 'name': 'Mature Voice', 'icon': '🧓', 'badge': 'Senior / Seasoned' },
+    { 'id': 'kid-f1', 'name': 'Lily (Age 7) – Kid Female', 'icon': '👧', 'badge': 'Kid (Female)' },
+    { 'id': 'kid-f2', 'name': 'Chloe (Age 10) – Kid Female', 'icon': '👧', 'badge': 'Kid (Female)' },
+    { 'id': 'kid-m1', 'name': 'Mason (Age 8) – Kid Male', 'icon': '👦', 'badge': 'Kid (Male)' },
+    { 'id': 'kid-m2', 'name': 'Logan (Age 12) – Kid Male', 'icon': '👦', 'badge': 'Kid (Male)' },
+    { 'id': 'teen-f1', 'name': 'Sophia (Age 17) – Teen Female', 'icon': '👩', 'badge': 'Teen (Female)' },
+    { 'id': 'teen-f2', 'name': 'Emma (Age 19) – Teen Female', 'icon': '👩', 'badge': 'Teen (Female)' },
+    { 'id': 'teen-m1', 'name': 'Ethan (Age 16) – Teen Male', 'icon': '👨', 'badge': 'Teen (Male)' },
+    { 'id': 'teen-m2', 'name': 'Noah (Age 18) – Teen Male', 'icon': '👨', 'badge': 'Teen (Male)' },
+    { 'id': 'young-f1', 'name': 'Aria (Age 25) – Female Natural', 'icon': '👩‍🦰', 'badge': 'Young Adult (Female)' },
+    { 'id': 'young-f2', 'name': 'Jenny (Age 28) – Female Friendly', 'icon': '👩', 'badge': 'Young Adult (Female)' },
+    { 'id': 'young-f3', 'name': 'Sara (Age 32) – Female Pro', 'icon': '👩‍💼', 'badge': 'Young Adult (Female)' },
+    { 'id': 'young-m1', 'name': 'Guy (Age 26) – Male Natural', 'icon': '👨‍🦰', 'badge': 'Young Adult (Male)' },
+    { 'id': 'young-m2', 'name': 'Roger (Age 30) – Male Professional', 'icon': '👨‍💼', 'badge': 'Young Adult (Male)' },
+    { 'id': 'young-m3', 'name': 'Ryan (Age 34) – Male Deep', 'icon': '👨', 'badge': 'Young Adult (Male)' },
+    { 'id': 'mid-f1', 'name': 'Michelle (Age 45) – Female Executive', 'icon': '👩‍🦳', 'badge': 'Middle-Aged (Female)' },
+    { 'id': 'mid-f2', 'name': 'Helen (Age 52) – Female Warm', 'icon': '👩‍🦳', 'badge': 'Middle-Aged (Female)' },
+    { 'id': 'mid-m1', 'name': 'Steffan (Age 48) – Male Presenter', 'icon': '👨‍🦳', 'badge': 'Middle-Aged (Male)' },
+    { 'id': 'mid-m2', 'name': 'Brian (Age 55) – Male Narrator', 'icon': '👨‍🦳', 'badge': 'Middle-Aged (Male)' },
+    { 'id': 'senior-f1', 'name': 'Abigail (Age 68) – Senior Female', 'icon': '👵', 'badge': 'Senior (Female)' },
+    { 'id': 'senior-f2', 'name': 'Esther (Age 75) – Senior Female', 'icon': '👵', 'badge': 'Senior (Female)' },
+    { 'id': 'senior-m1', 'name': 'Arthur (Age 70) – Senior Male', 'icon': '👴', 'badge': 'Senior (Male)' },
+    { 'id': 'senior-m2', 'name': 'Thomas (Age 82) – Senior Male', 'icon': '👴', 'badge': 'Senior (Male)' }
+]
+
+def get_voice_for_table(lang: str, voice_type: str):
+    voice = VOICE_MAPPING.get((lang, voice_type))
+    if voice:
+        return voice, "Direct Model"
+    
+    is_male = 'm' in voice_type.lower() or 'male' in voice_type.lower()
+    fallback_sequence = ['male-1', 'female-1'] if is_male else ['female-1', 'male-1']
+    
+    for gender_vt in fallback_sequence:
+        v = VOICE_MAPPING.get((lang, gender_vt))
+        if v:
+            return v, f"Language Fallback ({gender_vt})"
+            
+    lang_prefix = lang.split('-')[0]
+    for gender_vt in fallback_sequence:
+        for k, v in VOICE_MAPPING.items():
+            if k[0].startswith(lang_prefix) and k[1] == gender_vt:
+                return v, f"Regional Fallback ({gender_vt})"
+                
+    return 'en-US-AriaNeural', "Global Fallback"
 
 
 # ──────────────────────────────────────────────────────────────
@@ -792,6 +1068,46 @@ def build_page(entry):
         for e in related
     )
 
+    # Generate Voice table HTML
+    voices_rows = []
+    for v in ALL_VOICES_DEFINITION:
+        model, mapping_type = get_voice_for_table(code, v['id'])
+        gender_age = v['badge']
+        emoji = v['icon']
+        char_name = v['name'].split("–")[0].strip()
+        voices_rows.append(f"""
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:12px 18px;font-weight:600;">{emoji} {char_name}</td>
+          <td style="padding:12px 18px;"><span class="badge-pill" style="margin:0;font-size:.68rem;background:rgba(124,95,230,0.08);color:var(--a2);border:1px solid rgba(124,95,230,0.12);">{gender_age}</span></td>
+          <td style="padding:12px 18px;font-family:\'Space Mono\',monospace;font-size:.76rem;color:var(--muted);">{model}</td>
+          <td style="padding:12px 18px;font-size:.78rem;color:var(--txt2);">{mapping_type}</td>
+        </tr>""")
+    
+    voices_rows_html = "".join(voices_rows)
+    voices_table_html = f"""
+<!-- VOICE PROFILES TABLE -->
+<section style="max-width:920px;margin:0 auto 56px;padding:0 18px;">
+  <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;margin-bottom:8px;text-align:center;">
+    Available <span class="tg">{lang_name} Voice Profiles</span>
+  </h2>
+  <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:24px;">Explore the full list of neural voice models available for {lang_name} ({country}) speech generation.</p>
+  <div style="overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.02);">
+    <table style="width:100%;border-collapse:collapse;text-align:left;font-size:.88rem;color:var(--txt);">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);">
+          <th style="padding:14px 18px;font-weight:700;color:var(--muted);font-family:\'Syne\',sans-serif;">Voice Character</th>
+          <th style="padding:14px 18px;font-weight:700;color:var(--muted);font-family:\'Syne\',sans-serif;">Gender / Age</th>
+          <th style="padding:14px 18px;font-weight:700;color:var(--muted);font-family:\'Syne\',sans-serif;">Neural Model ID</th>
+          <th style="padding:14px 18px;font-weight:700;color:var(--muted);font-family:\'Syne\',sans-serif;">Mapping Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {voices_rows_html}
+      </tbody>
+    </table>
+  </div>
+</section>"""
+
     page = PAGE_TEMPLATE.format(
         html_lang=html_lang,
         meta_title=meta_title,
@@ -811,6 +1127,7 @@ def build_page(entry):
         use_case_tags=uc_tags,
         faq_html=faq_html,
         related_links=related_links,
+        voices_table_html=voices_table_html,
     )
     return page_slug, page
 
@@ -829,14 +1146,14 @@ def main():
             "code": entry[0], "lang": entry[1], "country": entry[2],
             "slug": page_slug, "url": f"/tts/{page_slug}"
         })
-        print(f"  ✅  {filepath}")
+        print(f"  [OK]  {filepath}")
 
     # Write manifest JSON
     with open(os.path.join("templates", "tts_manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
 
-    print(f"\n🎉  Generated {len(manifest)} pSEO pages → templates/tts/")
-    print(f"📄  Manifest  → templates/tts_manifest.json")
+    print(f"\nGenerated {len(manifest)} pSEO pages -> templates/tts/")
+    print(f"Manifest -> templates/tts_manifest.json")
     return manifest
 
 
