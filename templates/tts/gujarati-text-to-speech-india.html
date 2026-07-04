@@ -27,7 +27,12 @@
 <meta name="theme-color" content="#0a0f1a">
 <link rel="icon" type="image/png" href="/favicon.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "VoicePro Gujarati TTS Studio", "url": "https://www.texttoaudiomp3.site/tts/gujarati-text-to-speech-india", "description": "Convert Gujarati text to speech free online. 2 neural AI voices for India. Instant MP3/WAV download, no login. Best Gujarati TTS tool 2026.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Web Browser", "inLanguage": "gu-IN", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "1200"}}</script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>
+  (function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -75,7 +80,7 @@
   .mono{font-family:'Space Mono',monospace;}
   .glass-nav{background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);opacity:0.96;}
   .nav-btn{padding:7px 14px;border-radius:10px;font-size:.85rem;font-weight:500;transition:all .18s;color:var(--muted);border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}
-  .nav-btn:hover{color:var(--a1);background:rgba(59,158,255,0.09);}
+  .nav-btn:hover, .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active{color:var(--a1)!important;background:rgba(59,158,255,0.09);}
   .glass{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);}
   .btn-primary{background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));background-size:220%;border:none;border-radius:14px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:15px 28px;cursor:pointer;width:100%;transition:background-position .45s,transform .15s,box-shadow .3s;box-shadow:0 4px 28px rgba(59,158,255,0.24);}
   .btn-primary:hover{background-position:right;box-shadow:0 6px 36px rgba(59,158,255,0.4);}
@@ -121,47 +126,84 @@
   #result-area{border-top:1px solid var(--border);padding-top:22px;margin-top:22px;}
   .lang-pill{display:inline-block;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:100px;padding:5px 14px;font-size:.8rem;color:var(--muted);margin:3px;text-decoration:none;transition:all .18s;}
   .lang-pill:hover{border-color:var(--a1);color:var(--a1);background:rgba(59,158,255,0.07);}
-  .nav-desktop{display:flex;}
+  /* --- CUSTOM RESPONSIVE NAV --- */
   .nav-mobile-btn{display:none;}
-  @media(max-width:768px){.nav-desktop{display:none;}.nav-mobile-btn{display:block;}}
+  .nav-mobile-menu{display:none;}
+  @media (max-width: 768px) {
+    .site-header .nav-links {
+      display: none !important;
+    }
+    .nav-mobile-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .nav-mobile-menu.active {
+      display: flex !important;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 14px 24px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+    .nav-mobile-menu .nav-link {
+      display: block;
+      padding: 10px 14px;
+      text-align: left;
+      border-radius: 9px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
-  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
-    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
-        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.82rem;"></i>
       </div>
-      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;">Voice<span style="color:var(--a1);">Pro</span></span>
+      Voice<span style="color:var(--a1);">Pro</span>
     </a>
-    <div class="nav-desktop" style="align-items:center;gap:6px;">
-      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
-      <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
-      <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
-      <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
-      <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Studio</a>
+      <a href="/blog.html" class="nav-link">Blog</a>
+      <a href="/about.html" class="nav-link">About</a>
+      <a href="/contact.html" class="nav-link">Contact</a>
+      <a href="/privacy.html" class="nav-link">Privacy</a>
+      <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;margin-left:5px;" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
       </button>
-    </div>
-    <button class="nav-mobile-btn" onclick="document.getElementById('mob-menu').classList.toggle('hidden')"
-      style="background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;">
+    </nav>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
-  <div id="mob-menu" class="hidden"
-    style="background:var(--bg);border-top:1px solid var(--border);padding:14px;display:flex;flex-direction:column;gap:6px;">
-    <a href="/" class="nav-btn" style="text-align:left;"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
-    <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
-    <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
-    <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy</a>
-    <button onclick="toggleTheme()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;">
+  <div id="mobile-menu" class="nav-mobile-menu">
+    <a href="/" class="nav-link">Studio</a>
+    <a href="/blog.html" class="nav-link">Blog</a>
+    <a href="/about.html" class="nav-link">About</a>
+    <a href="/contact.html" class="nav-link">Contact</a>
+    <a href="/privacy.html" class="nav-link">Privacy</a>
+    <button onclick="toggleTheme(); toggleMobileMenu()" class="nav-link" id="theme-btn-mob" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;width:100%;box-sizing:border-box;" aria-label="Toggle theme">
       <i class="fa-solid fa-moon"></i>Toggle Theme
     </button>
   </div>
-</nav>
+</header>
 
 <!-- HERO -->
 <section style="padding:100px 20px 48px;max-width:1100px;margin:0 auto;text-align:center;">
@@ -864,7 +906,8 @@
   }
 
   function updateThemeIcons() {
-    const theme = document.documentElement.getAttribute('data-theme') || 'light';
+    const theme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
     const btn = document.getElementById('theme-btn');
     const btnMob = document.getElementById('theme-btn-mob');
     const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
@@ -942,6 +985,13 @@
     updateThemeIcons();
     initCustomPlayer();
   });
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+      menu.classList.toggle('active');
+    }
+  }
 </script>
 </body>
 </html>

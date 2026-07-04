@@ -6,6 +6,7 @@
   (function() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    
   })();
 </script>
 
@@ -78,7 +79,54 @@
   .nav-desktop{display:flex;}
   .nav-mobile-btn{display:none;}
   @media(max-width:768px){.nav-desktop{display:none;}.nav-mobile-btn{display:block;}}
+
+  /* --- CUSTOM RESPONSIVE NAV --- */
+  .nav-mobile-btn {
+    display: none;
+  }
+  .nav-mobile-menu {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .site-header .nav-links {
+      display: none !important;
+    }
+    .nav-mobile-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .nav-mobile-menu.active {
+      display: flex !important;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 14px 24px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+    .nav-mobile-menu .nav-link {
+      display: block;
+      padding: 10px 14px;
+      text-align: left;
+      border-radius: 9px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
 </style>
+  
 </head>
 <body>
 
@@ -219,5 +267,16 @@
     document.getElementById('no-results').classList.toggle('hidden', shown > 0);
   }
 </script>
+
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.classList.toggle('active');
+  }
+}
+</script>
+
 </body>
 </html>

@@ -1282,8 +1282,46 @@
         display: none;
       }
 
-      .mob-menu.hidden {
+      .nav-mobile-menu {
         display: none;
+      }
+
+      @media (max-width: 768px) {
+        .nav-desktop {
+          display: none !important;
+        }
+        .nav-mobile-btn {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          border: none;
+          color: var(--muted);
+          font-size: 1.25rem;
+          cursor: pointer;
+        }
+        .nav-mobile-menu.active {
+          display: flex !important;
+          flex-direction: column;
+          gap: 6px;
+          background: var(--bg);
+          border-top: 1px solid var(--border);
+          padding: 14px 24px;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          right: 0;
+          z-index: 100;
+          box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+        .nav-mobile-menu .nav-link, .nav-mobile-menu .nav-btn {
+          display: block;
+          padding: 10px 14px;
+          text-align: left;
+          border-radius: 9px;
+          width: 100%;
+          box-sizing: border-box;
+        }
       }
 
       .controls-grid {
@@ -1346,7 +1384,7 @@
               style="color:var(--a1);">Pro</span></span>
         </div>
         <div class="nav-desktop" style="align-items:center;gap:6px;">
-          <button onclick="navigate('home')" class="nav-btn">
+          <button onclick="navigate('home')" class="nav-btn nav-active" id="nav-home">
             <i class="fa-solid fa-house" style="margin-right:5px;"></i>Home
           </button>
           <a href="about.html" class="nav-btn">
@@ -1361,19 +1399,18 @@
           <a href="terms.html" class="nav-btn">
             <i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms
           </a>
-          <a href="/tts/" class="footer-link" style="margin-right: 8px;">All Languages TTS</a>
+          <a href="/tts/" class="nav-btn">All Languages TTS</a>
           <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
             <i class="fa-solid fa-moon"></i>
           </button>
         </div>
-        <button class="nav-mobile-btn" onclick="toggleMob()"
+        <button class="nav-mobile-btn" onclick="toggleMobileMenu()"
           style="background:none;border:none;color:var(--muted);font-size:1.2rem;">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
-      <div id="mob-menu" class="hidden md:hidden"
-        style="background:var(--bg);border-top:1px solid var(--border);padding:14px;display:flex;flex-direction:column;gap:6px;">
-        <button onclick="navigate('home');toggleMob()" class="nav-btn" style="text-align:left;">
+      <div id="mobile-menu" class="nav-mobile-menu">
+        <button onclick="navigate('home');toggleMobileMenu()" class="nav-btn" style="text-align:left;">
           <i class="fa-solid fa-house" style="margin-right:8px;"></i>Home
         </button>
         <a href="about.html" class="nav-btn">
@@ -1388,8 +1425,8 @@
         <a href="terms.html" class="nav-btn">
           <i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service
         </a>
-        <a href="/tts/" class="footer-link">All Languages TTS</a>
-        <button onclick="toggleTheme()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <a href="/tts/" class="nav-btn">All Languages TTS</a>
+        <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
           <i class="fa-solid fa-moon"></i>Toggle Theme
         </button>
       </div>
@@ -2121,7 +2158,13 @@
         const ab = n$('nav-' + page); if (ab) ab.classList.add('nav-active');
         if (page === 'home') { loadStats(); setTimeout(() => { buildLangDD(); buildVoiceDD(); }, 0); }
       }
-      function toggleMob() { const m = n$('mob-menu'); m.classList.toggle('hidden'); }
+      function toggleMob() { }
+      function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (menu) {
+          menu.classList.toggle('active');
+        }
+      }
 
       /* ── TEXT INPUT ── */
       function onTxt(el) {
@@ -2466,7 +2509,8 @@
       }
 
       function updateThemeIcons() {
-        const theme = document.documentElement.getAttribute('data-theme') || 'light';
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
         const btn = document.getElementById('theme-btn');
         const btnMob = document.getElementById('theme-btn-mob');
         const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';

@@ -6,6 +6,7 @@
   (function() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    
   })();
 </script>
 
@@ -91,20 +92,89 @@
     .footer-links a{color:var(--muted);font-size:.84rem;transition:color .18s;}
     .footer-links a:hover{color:var(--a1);}
     p{color:var(--txt2);line-height:1.82;font-size:.97rem;margin-bottom:16px;}
-  </style>
+  
+  /* --- CUSTOM RESPONSIVE NAV --- */
+  .nav-mobile-btn {
+    display: none;
+  }
+  .nav-mobile-menu {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .site-header .nav-links {
+      display: none !important;
+    }
+    .nav-mobile-btn {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .nav-mobile-menu.active {
+      display: flex !important;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 14px 24px;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+    .nav-mobile-menu .nav-link {
+      display: block;
+      padding: 10px 14px;
+      text-align: left;
+      border-radius: 9px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+</style>
+  
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a href="/" class="logo"><div class="logo-icon"><i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.82rem;"></i></div>Voice<span style="color:var(--a1);">Pro</span></a>
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.82rem;"></i>
+      </div>
+      Voice<span style="color:var(--a1);">Pro</span>
+    </a>
     <nav class="nav-links">
-      <a href="/" class="nav-link">Studio</a>
-      <a href="blog.html" class="nav-link">Blog</a>
-      <a href="about.html" class="nav-link active">About</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-      <a href="privacy.html" class="nav-link">Privacy</a>
-      <a href="terms.html" class="nav-link">Terms</a>
-    <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;margin-left:5px;" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button></nav>
+      <a href="/" class="nav-link ">Studio</a>
+      <a href="/blog.html" class="nav-link ">Blog</a>
+      <a href="/about.html" class="nav-link active">About</a>
+      <a href="/contact.html" class="nav-link ">Contact</a>
+      <a href="/privacy.html" class="nav-link ">Privacy</a>
+      <a href="/terms.html" class="nav-link ">Terms</a>
+      <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;margin-left:5px;" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" class="nav-mobile-menu">
+    <a href="/" class="nav-link ">Studio</a>
+    <a href="/blog.html" class="nav-link ">Blog</a>
+    <a href="/about.html" class="nav-link active">About</a>
+    <a href="/contact.html" class="nav-link ">Contact</a>
+    <a href="/privacy.html" class="nav-link ">Privacy</a>
+    <a href="/terms.html" class="nav-link ">Terms</a>
+    <button onclick="toggleTheme(); toggleMobileMenu()" class="nav-link" id="theme-btn-mob" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;width:100%;box-sizing:border-box;" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>Toggle Theme
+    </button>
   </div>
 </header>
 
@@ -121,10 +191,9 @@
   </div>
 
   <!-- STATS -->
-  <div class="stat-row">
-    <div class="stat-box">
-      <div style="font-size:1.8rem;margin-bottom:8px;">🌍</div>
-      <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:linear-gradient(130deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100+</div>
+  <div class="row g-3 my-4">
+
+</div><div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:linear-gradient(130deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100+</div>
       <div style="color:var(--muted);font-size:.8rem;margin-top:4px;">Languages Supported</div>
     </div>
     <div class="stat-box">
@@ -176,10 +245,9 @@
 
   <!-- VALUES -->
   <h2 style="font-size:1.4rem;font-weight:700;margin:32px 0 16px;">Our Values</h2>
-  <div class="value-cards">
-    <div class="value-card">
-      <div style="font-size:1.6rem;margin-bottom:10px;">🔓</div>
-      <h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">No Barriers</h3>
+  <div class="row g-3 my-3">
+
+</div><h3 style="font-size:.95rem;font-weight:700;margin-bottom:6px;">No Barriers</h3>
       <p style="font-size:.85rem;line-height:1.65;margin-bottom:0;">No paywalls, no sign-ups, no watermarks. Professional voice generation should be available to anyone, regardless of budget or technical background.</p>
     </div>
     <div class="value-card">
@@ -298,5 +366,16 @@ function toggleFaq(id,el){
   if(!isOpen){a.classList.add('open');el.querySelector('i').className='fa-solid fa-chevron-up';}
 }
 </script>
+
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    menu.classList.toggle('active');
+  }
+}
+</script>
+
 </body>
 </html>
