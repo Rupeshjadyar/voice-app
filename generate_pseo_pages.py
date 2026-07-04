@@ -1148,9 +1148,34 @@ def main():
         })
         print(f"  [OK]  {filepath}")
 
+
     # Write manifest JSON
     with open(os.path.join("templates", "tts_manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
+
+    # Generate sitemap.xml
+    sitemap_path = os.path.join("templates", "sitemap.xml")
+    with open(sitemap_path, "w", encoding="utf-8") as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+        for m in manifest:
+            f.write(f"  <url>\n    <loc>https://www.texttoaudiomp3.site{m['url']}</loc>\n  </url>\n")
+        f.write('</urlset>\n')
+    print(f"Generated sitemap -> {sitemap_path}")
+
+    # Write robots.txt
+    robots_path = os.path.join("templates", "robots.txt")
+    with open(robots_path, "w", encoding="utf-8") as f:
+        f.write("User-agent: *\n")
+        f.write("Allow: /\n")
+        f.write("Sitemap: https://www.texttoaudiomp3.site/sitemap.xml\n")
+    print(f"Generated robots.txt -> {robots_path}")
+
+    # Optional Google site verification placeholder (replace with actual token if needed)
+    verification_path = os.path.join("templates", "google1234567890abcdef.html")
+    with open(verification_path, "w", encoding="utf-8") as f:
+        f.write("<meta name=\"google-site-verification\" content=\"YOUR_VERIFICATION_CODE\" />")
+    print(f"Generated Google site verification file -> {verification_path}")
 
     print(f"\nGenerated {len(manifest)} pSEO pages -> templates/tts/")
     print(f"Manifest -> templates/tts_manifest.json")

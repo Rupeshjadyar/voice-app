@@ -1286,13 +1286,46 @@
         display: none;
       }
 
-      @media (max-width: 768px) {
-        .nav-desktop {
-          display: none;
+      .controls-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .inputs-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .options-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 640px) {
+        .controls-grid {
+          grid-template-columns: 1fr;
+          gap: 10px;
         }
-
-        .nav-mobile-btn {
-          display: block;
+      }
+      @media (max-width: 500px) {
+        .inputs-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .options-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+      }
+      @media (max-width: 480px) {
+        .glass {
+          border-radius: 16px;
+        }
+        .glass[style*="padding:30px"], .glass[style*="padding: 30px"] {
+          padding: 16px !important;
         }
       }
     </style>
@@ -1871,8 +1904,8 @@
       
       <!-- Tab Switcher -->
       <div style="display:flex;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:22px;gap:4px;">
-        <button onclick="setTtsMode('single')" id="tab-btn-single" style="flex:1;padding:9px 12px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;">Single Voice</button>
-        <button onclick="setTtsMode('multi')" id="tab-btn-multi" style="flex:1;padding:9px 12px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;background:transparent;color:var(--muted);">Multi-Voice Dialogue</button>
+        <button onclick="setTtsMode('single')" id="tab-btn-single" style="flex:1;padding:9px 12px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;white-space:nowrap;">Single Voice</button>
+        <button onclick="setTtsMode('multi')" id="tab-btn-multi" style="flex:1;padding:9px 12px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;background:transparent;color:var(--muted);white-space:nowrap;">Multi-Voice Dialogue</button>
       </div>
 
       <!-- Single Mode Container -->
@@ -1882,7 +1915,7 @@
           <textarea id="txt" rows="5" placeholder="Type or paste your text here… (max 5000 characters)" oninput="onTxt(this)"></textarea>
           <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:.76rem;color:var(--muted);"><span><i class="fa-regular fa-keyboard" style="margin-right:3px;"></i><span id="cc">0</span> / 5000</span><span><i class="fa-regular fa-clock" style="margin-right:3px;"></i>~<span id="te">0</span> sec</span></div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px;">
+        <div class="inputs-grid">
           <div style="min-width:0;">
             <span class="slbl"><i class="fa-solid fa-language" style="margin-right:5px;color:var(--a1);"></i>Language</span>
             <div id="dd-lang"></div>
@@ -1892,7 +1925,7 @@
             <div id="dd-voice"></div>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;">
+        <div class="controls-grid">
           <div class="ctrl">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;"><span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-gauge-high" style="color:var(--ok);margin-right:4px;"></i>Speed</span><span id="badge-rate" class="mono" style="font-size:.76rem;background:rgba(61,214,140,0.1);color:var(--ok);padding:2px 8px;border-radius:20px;">1.0x</span></div>
             <input type="range" id="sl-rate" min="0.5" max="2.0" step="0.1" value="1.0" oninput="n$('badge-rate').textContent=parseFloat(this.value).toFixed(1)+'x'">
@@ -1909,7 +1942,7 @@
             <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔇</span><span>🔊</span></div>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:24px;">
+        <div class="options-grid">
           <div>
             <span class="slbl"><i class="fa-solid fa-palette" style="color:#f472b6;margin-right:5px;"></i>Speaking Style</span>
             <select id="sel-style">
@@ -1944,9 +1977,9 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
-          <button onclick="toggleImportArea(true)" style="background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.82rem;transition:all .2s;"><i class="fa-solid fa-file-import" style="margin-right:6px;"></i>Import Full Script</button>
-          <button onclick="addDialogueLine()" style="background:var(--panel);border:1px solid var(--border);color:var(--txt);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.82rem;transition:all .2s;"><i class="fa-solid fa-plus" style="margin-right:6px;"></i>Add Line Manually</button>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+          <button onclick="toggleImportArea(true)" style="flex:1;min-width:140px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.82rem;transition:all .2s;white-space:nowrap;"><i class="fa-solid fa-file-import" style="margin-right:6px;"></i>Import Full Script</button>
+          <button onclick="addDialogueLine()" style="flex:1;min-width:140px;background:var(--panel);border:1px solid var(--border);color:var(--txt);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.82rem;transition:all .2s;white-space:nowrap;"><i class="fa-solid fa-plus" style="margin-right:6px;"></i>Add Line Manually</button>
         </div>
 
         <div id="dialogue-lines" style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;"></div>
@@ -2036,7 +2069,7 @@
     <h2 style="font-size:1.85rem;font-weight:800;text-align:center;margin-bottom:10px;" class="tg">Available Voices</h2>
     <p style="text-align:center;color:var(--muted);font-size:.92rem;margin-bottom:28px;">Click any voice to hear a preview. 8 neural characters per language.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:14px;">
-      ${S.languages.slice(0, 48).map(lang => `<div class="gcard" style="padding:18px;">
+      ${S.languages.map(lang => `<div class="gcard" style="padding:18px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
           <div style="display:flex;align-items:center;gap:9px;"><span style="font-size:1.7rem;">${lang.flag}</span><span style="font-weight:700;font-size:.9rem;font-family:'Syne',sans-serif;">${lang.name}</span></div>
           <span style="font-size:.68rem;background:rgba(59,158,255,0.1);color:var(--a1);padding:3px 9px;border-radius:20px;font-weight:600;">${S.voices.length} voices</span>
@@ -2140,23 +2173,23 @@
         
         const row = document.createElement('div');
         row.id = id;
-        row.style = "background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px;position:relative;display:flex;flex-direction:column;gap:10px;";
+        row.style = "background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;position:relative;display:flex;flex-direction:column;gap:12px;";
         row.innerHTML = `
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-            <div style="flex:1;min-width:0;">
-              <span class="slbl" style="margin-bottom:5px;font-size:.74rem;display:flex;align-items:center;justify-content:space-between;">
-                <span><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Character Voice ${speakerName ? `(${speakerName})` : ''}</span>
-                ${speakerName ? `<span style="font-size:.68rem;background:rgba(59,158,255,0.08);color:var(--a1);padding:1px 6px;border-radius:4px;font-weight:700;">Script Name: ${speakerName}</span>` : ''}
-              </span>
-              <select class="dl-voice-select" style="width:100%;font-size:.82rem;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;">
-                ${optionsHtml}
-              </select>
-            </div>
-            <button onclick="removeDialogueLine('${id}')" style="width:34px;height:34px;border-radius:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:20px;transition:all .2s;" title="Remove line"><i class="fa-solid fa-trash-can" style="font-size:.8rem;"></i></button>
+          <!-- Absolute Positioned Delete Button -->
+          <button onclick="removeDialogueLine('${id}')" style="position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:6px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;" title="Remove line"><i class="fa-solid fa-xmark" style="font-size:.85rem;"></i></button>
+          
+          <div style="padding-right:24px;">
+            <span class="slbl" style="margin-bottom:6px;font-size:.74rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;line-height:1.3;">
+              <span><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Character Voice ${speakerName ? `(${speakerName})` : ''}</span>
+              ${speakerName ? `<span style="font-size:.68rem;background:rgba(59,158,255,0.08);color:var(--a1);padding:1px 6px;border-radius:4px;font-weight:700;white-space:nowrap;">Script Name: ${speakerName}</span>` : ''}
+            </span>
+            <select class="dl-voice-select" style="width:100%;max-width:100%;font-size:.82rem;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;box-sizing:border-box;">
+              ${optionsHtml}
+            </select>
           </div>
           <div>
-            <span class="slbl" style="margin-bottom:5px;font-size:.74rem;"><i class="fa-solid fa-quote-left" style="margin-right:5px;color:var(--muted);"></i>Dialogue Speech</span>
-            <textarea class="dl-text-area" rows="2" style="width:100%;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;resize:vertical;" placeholder="Type what this character says…">${initialText}</textarea>
+            <span class="slbl" style="margin-bottom:6px;font-size:.74rem;"><i class="fa-solid fa-quote-left" style="margin-right:5px;color:var(--muted);"></i>Dialogue Speech</span>
+            <textarea class="dl-text-area" rows="2" style="width:100%;max-width:100%;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;resize:vertical;box-sizing:border-box;" placeholder="Type what this character says…">${initialText}</textarea>
           </div>
         `;
         container.appendChild(row);
