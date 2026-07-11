@@ -1,0 +1,46 @@
+{
+  "name": "VoicePro TTS Studio",
+  "short_name": "VoicePro",
+  "description": "Free AI Text to Speech — 100+ languages, neural voices, MP3 download. No login needed.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0f1a",
+  "theme_color": "#3b9eff",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "VoicePro TTS Studio - Text to Speech"
+    }
+  ],
+  "categories": ["productivity", "utilities", "education"],
+  "shortcuts": [
+    {
+      "name": "Generate Voice",
+      "short_name": "Generate",
+      "description": "Generate AI voice from text",
+      "url": "/",
+      "icons": [{ "src": "/favicon.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

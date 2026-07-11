@@ -16,6 +16,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707682105347147"
       crossorigin="anonymous"></script>
 
+    <!-- ✅ MONETAG VERIFICATION -->
+    <meta name="monetag" content="df392a699f813691935e38bba65c002d">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -77,6 +80,12 @@
     <!-- ✅ FAVICON -->
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
+
+    <!-- ✅ PWA MANIFEST -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#0a0f1a">
 
     <!-- ✅ SCHEMA 1: SoftwareApplication -->
     <script type="application/ld+json">
@@ -764,16 +773,17 @@
         right: 22px;
         background: rgba(8, 13, 24, 0.97);
         backdrop-filter: blur(14px);
-        border: 1px solid var(--border);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 14px;
         padding: 13px 20px;
-        color: var(--txt);
+        color: #f1f5f9;
         transform: translateY(120px);
         opacity: 0;
         transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
         z-index: 99999;
         max-width: 320px;
         font-size: .88rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       }
 
       .toast.on {
@@ -1403,6 +1413,10 @@
           <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
             <i class="fa-solid fa-moon"></i>
           </button>
+          <!-- ✅ PWA Install Button — shown only when browser supports install -->
+          <button id="pwa-install-btn" onclick="triggerPWAInstall()" style="display:none;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Syne',sans-serif;white-space:nowrap;box-shadow:0 0 12px rgba(59,158,255,0.3);animation:pulse-glow 2s infinite;" aria-label="Install App">
+            <i class="fa-solid fa-mobile-screen-button"></i> Install App
+          </button>
         </div>
         <button class="nav-mobile-btn" onclick="toggleMobileMenu()"
           style="background:none;border:none;color:var(--muted);font-size:1.2rem;">
@@ -1766,6 +1780,7 @@
       /* ── STATE ── */
       const S = {
         total: 0, today: 0, lang: 'en-US', voice: 'female-1', lastAudio: null, lastFile: null,
+        naturalMode: true,
         languages: [
           { code: 'en-US', name: 'English (USA)', flag: '🇺🇸' }, { code: 'en-GB', name: 'English (UK)', flag: '🇬🇧' },
           { code: 'en-AU', name: 'English (Australia)', flag: '🇦🇺' }, { code: 'en-IN', name: 'English (India)', flag: '🇮🇳' },
@@ -1823,47 +1838,49 @@
           { code: 'so-SO', name: 'Somali', flag: '🇸🇴' }, { code: 'zu-ZA', name: 'Zulu', flag: '🇿🇦' },
         ],
         voices: [
-          { id: 'female-1', name: 'Female 1 – Natural', icon: '👩', sub: 'Conversational & warm', rate: 1.0, pitch: 0, style: 'general', badge: 'Natural' },
-          { id: 'female-2', name: 'Female 2 – Soft', icon: '👩‍🦰', sub: 'Gentle & conversational', rate: 0.95, pitch: -1, style: 'general', badge: 'Soft' },
-          { id: 'female-3', name: 'Female 3 – Pro', icon: '👩‍💼', sub: 'Crisp & confident', rate: 1.1, pitch: 2, style: 'newscast-formal', badge: 'Professional' },
-          { id: 'male-1', name: 'Male 1 – Deep', icon: '👨', sub: 'Deep bass & resonance', rate: 0.9, pitch: -5, style: 'general', badge: 'Deep' },
-          { id: 'male-2', name: 'Male 2 – Friendly', icon: '👨‍🦰', sub: 'Warm & approachable', rate: 1.05, pitch: -2, style: 'friendly', badge: 'Friendly' },
-          { id: 'male-3', name: 'Male 3 – Authority', icon: '👨‍💼', sub: 'Low & commanding', rate: 0.95, pitch: -4, style: 'newscast', badge: 'Authority' },
-          { id: 'young', name: 'Young Voice', icon: '🧒', sub: 'High pitch, fast & energetic', rate: 1.2, pitch: 5, style: 'cheerful', badge: 'Young' },
-          { id: 'old', name: 'Mature Voice', icon: '🧓', sub: 'Low pitch, slow & seasoned', rate: 0.8, pitch: -4, style: 'narration-professional', badge: 'Mature' },
-          
-          // Kids (1-15)
-          { id: 'kid-f1', name: 'Lily (Age 7) – Kid Female', icon: '👧', sub: 'Playful & sweet', rate: 1.0, pitch: 4, style: 'cheerful', badge: 'Kid' },
-          { id: 'kid-f2', name: 'Chloe (Age 10) – Kid Female', icon: '👧', sub: 'Bright & curious', rate: 1.05, pitch: 3, style: 'cheerful', badge: 'Kid' },
-          { id: 'kid-m1', name: 'Mason (Age 8) – Kid Male', icon: '👦', sub: 'Energetic & friendly', rate: 1.0, pitch: 3, style: 'cheerful', badge: 'Kid' },
-          { id: 'kid-m2', name: 'Logan (Age 12) – Kid Male', icon: '👦', sub: 'Clear & expressive', rate: 0.95, pitch: 2, style: 'general', badge: 'Kid' },
-          
-          // Teens (15-20)
-          { id: 'teen-f1', name: 'Sophia (Age 17) – Teen Female', icon: '👩', sub: 'Casual & upbeat', rate: 1.05, pitch: 1, style: 'general', badge: 'Teen' },
-          { id: 'teen-f2', name: 'Emma (Age 19) – Teen Female', icon: '👩', sub: 'Expressive & friendly', rate: 1.0, pitch: 2, style: 'friendly', badge: 'Teen' },
-          { id: 'teen-m1', name: 'Ethan (Age 16) – Teen Male', icon: '👨', sub: 'Casual & warm', rate: 1.0, pitch: -1, style: 'general', badge: 'Teen' },
-          { id: 'teen-m2', name: 'Noah (Age 18) – Teen Male', icon: '👨', sub: 'Approachable & steady', rate: 1.05, pitch: -2, style: 'friendly', badge: 'Teen' },
+          // ── CORE 8 VOICES — clearly distinguishable ──────────────────────
+          { id: 'female-1', name: 'Female 1 – Natural',    icon: '👩',   sub: 'Conversational & warm · Aria',       rate: 1.0,  pitch:  0, style: 'general',                badge: 'Natural'      },
+          { id: 'female-2', name: 'Female 2 – Soft',       icon: '👩‍🦰', sub: 'Gentle, slow & soothing · Jenny',    rate: 0.80, pitch:  4, style: 'general',                badge: 'Soft'         },
+          { id: 'female-3', name: 'Female 3 – Pro',        icon: '👩‍💼', sub: 'Crisp, fast & confident · Emma',     rate: 1.22, pitch: -2, style: 'general',                badge: 'Professional' },
+          { id: 'male-1',   name: 'Male 1 – Deep',         icon: '👨',   sub: 'Slow, deep & powerful · Guy',        rate: 0.82, pitch: -8, style: 'general',                badge: 'Deep'         },
+          { id: 'male-2',   name: 'Male 2 – Friendly',     icon: '👨‍🦰', sub: 'Upbeat & approachable · Roger',      rate: 1.1,  pitch:  3, style: 'general',                badge: 'Friendly'     },
+          { id: 'male-3',   name: 'Male 3 – Authority',    icon: '👨‍💼', sub: 'Commanding & serious · Steffan',     rate: 0.88, pitch: -6, style: 'general',                badge: 'Authority'    },
+          { id: 'young',    name: 'Young Voice',            icon: '🧒',   sub: 'Fast, high-pitched & energetic',     rate: 1.35, pitch:  7, style: 'general',                badge: 'Young'        },
+          { id: 'old',      name: 'Mature Voice',           icon: '🧓',   sub: 'Slow, deep & wise',                  rate: 0.72, pitch: -6, style: 'general',                badge: 'Mature'       },
 
-          // Young Adults (20-40)
-          { id: 'young-f1', name: 'Aria (Age 25) – Female Natural', icon: '👩‍🦰', sub: 'Clear & conversational', rate: 1.0, pitch: 0, style: 'general', badge: 'Young Adult' },
-          { id: 'young-f2', name: 'Jenny (Age 28) – Female Friendly', icon: '👩', sub: 'Warm & engaging', rate: 1.0, pitch: 1, style: 'friendly', badge: 'Young Adult' },
-          { id: 'young-f3', name: 'Sara (Age 32) – Female Pro', icon: '👩‍💼', sub: 'Crisp & professional', rate: 1.05, pitch: 1, style: 'newscast-formal', badge: 'Young Adult' },
-          { id: 'young-m1', name: 'Guy (Age 26) – Male Natural', icon: '👨‍🦰', sub: 'Steady & relaxed', rate: 1.0, pitch: 0, style: 'general', badge: 'Young Adult' },
-          { id: 'young-m2', name: 'Roger (Age 30) – Male Professional', icon: '👨‍💼', sub: 'Polished & corporate', rate: 1.0, pitch: -1, style: 'newscast', badge: 'Young Adult' },
-          { id: 'young-m3', name: 'Ryan (Age 34) – Male Deep', icon: '👨', sub: 'Deep & confident', rate: 0.95, pitch: -3, style: 'narration-professional', badge: 'Young Adult' },
+          // ── KIDS (1–15) ──────────────────────────────────────────────────
+          { id: 'kid-f1',   name: 'Lily (Age 7) – Kid Female',      icon: '👧', sub: 'Playful & sweet, high-pitched',   rate: 1.15, pitch:  6, style: 'general', badge: 'Kid' },
+          { id: 'kid-f2',   name: 'Chloe (Age 10) – Kid Female',    icon: '👧', sub: 'Bright & curious',                rate: 1.05, pitch:  4, style: 'general', badge: 'Kid' },
+          { id: 'kid-m1',   name: 'Mason (Age 8) – Kid Male',       icon: '👦', sub: 'Energetic & lively',              rate: 1.1,  pitch:  5, style: 'general', badge: 'Kid' },
+          { id: 'kid-m2',   name: 'Logan (Age 12) – Kid Male',      icon: '👦', sub: 'Clear & expressive',              rate: 1.0,  pitch:  3, style: 'general', badge: 'Kid' },
 
-          // Middle-Aged (40-60)
-          { id: 'mid-f1', name: 'Michelle (Age 45) – Female Executive', icon: '👩‍🦳', sub: 'Clear & authoritative', rate: 1.0, pitch: -1, style: 'general', badge: 'Middle-Aged' },
-          { id: 'mid-f2', name: 'Helen (Age 52) – Female Warm', icon: '👩‍🦳', sub: 'Seasoned & maternal', rate: 0.95, pitch: -1, style: 'general', badge: 'Middle-Aged' },
-          { id: 'mid-m1', name: 'Steffan (Age 48) – Male Presenter', icon: '👨‍🦳', sub: 'Clear & corporate', rate: 0.95, pitch: -3, style: 'newscast', badge: 'Middle-Aged' },
-          { id: 'mid-m2', name: 'Brian (Age 55) – Male Narrator', icon: '👨‍🦳', sub: 'Gravely & mature', rate: 0.9, pitch: -4, style: 'narration-professional', badge: 'Middle-Aged' },
+          // ── TEENS (15–20) ────────────────────────────────────────────────
+          { id: 'teen-f1',  name: 'Sophia (Age 17) – Teen Female',  icon: '👩', sub: 'Casual & upbeat',                rate: 1.08, pitch:  2, style: 'general', badge: 'Teen' },
+          { id: 'teen-f2',  name: 'Emma (Age 19) – Teen Female',    icon: '👩', sub: 'Expressive & friendly',           rate: 1.0,  pitch:  3, style: 'general', badge: 'Teen' },
+          { id: 'teen-m1',  name: 'Ethan (Age 16) – Teen Male',     icon: '👨', sub: 'Casual & warm',                  rate: 1.05, pitch: -1, style: 'general', badge: 'Teen' },
+          { id: 'teen-m2',  name: 'Noah (Age 18) – Teen Male',      icon: '👨', sub: 'Approachable & steady',           rate: 1.0,  pitch: -2, style: 'general', badge: 'Teen' },
 
-          // Seniors (60-90)
-          { id: 'senior-f1', name: 'Abigail (Age 68) – Senior Female', icon: '👵', sub: 'Soft & wise', rate: 0.9, pitch: -1, style: 'general', badge: 'Senior' },
-          { id: 'senior-f2', name: 'Esther (Age 75) – Senior Female', icon: '👵', sub: 'Slow & comforting', rate: 0.85, pitch: -2, style: 'general', badge: 'Senior' },
-          { id: 'senior-m1', name: 'Arthur (Age 70) – Senior Male', icon: '👴', sub: 'Wise & seasoned', rate: 0.85, pitch: -4, style: 'general', badge: 'Senior' },
-          { id: 'senior-m2', name: 'Thomas (Age 82) – Senior Male', icon: '👴', sub: 'Low pitch & slow paced', rate: 0.78, pitch: -5, style: 'general', badge: 'Senior' }
+          // ── YOUNG ADULTS (20–40) ─────────────────────────────────────────
+          { id: 'young-f1', name: 'Aria (Age 25) – Female Natural', icon: '👩‍🦰', sub: 'Clear & conversational · 1.0x',  rate: 1.0,  pitch:  0, style: 'general', badge: 'Young Adult' },
+          { id: 'young-f2', name: 'Jenny (Age 28) – Female Soft',   icon: '👩',   sub: 'Warm, slow & soothing · 0.80x', rate: 0.80, pitch:  4, style: 'general', badge: 'Young Adult' },
+          { id: 'young-f3', name: 'Sara (Age 32) – Female Pro',     icon: '👩‍💼', sub: 'Fast & professional · 1.22x',   rate: 1.22, pitch: -2, style: 'general', badge: 'Young Adult' },
+          { id: 'young-m1', name: 'Guy (Age 26) – Male Natural',    icon: '👨‍🦰', sub: 'Steady & relaxed · 1.0x',       rate: 1.0,  pitch:  0, style: 'general', badge: 'Young Adult' },
+          { id: 'young-m2', name: 'Roger (Age 30) – Male Friendly', icon: '👨‍💼', sub: 'Upbeat & polished · 1.1x',      rate: 1.1,  pitch:  2, style: 'general', badge: 'Young Adult' },
+          { id: 'young-m3', name: 'Ryan (Age 34) – Male Deep',      icon: '👨',   sub: 'Deep & confident · 0.88x -5Hz', rate: 0.88, pitch: -5, style: 'general', badge: 'Young Adult' },
+
+          // ── MIDDLE-AGED (40–60) ──────────────────────────────────────────
+          { id: 'mid-f1',   name: 'Michelle (Age 45) – Female Exec',icon: '👩‍🦳', sub: 'Clear & authoritative · 1.0x',  rate: 1.0,  pitch: -2, style: 'general', badge: 'Middle-Aged' },
+          { id: 'mid-f2',   name: 'Helen (Age 52) – Female Warm',   icon: '👩‍🦳', sub: 'Slow & maternal · 0.85x',       rate: 0.85, pitch: -1, style: 'general', badge: 'Middle-Aged' },
+          { id: 'mid-m1',   name: 'Steffan (Age 48) – Male Pres.',  icon: '👨‍🦳', sub: 'Deliberate · 0.92x -4Hz',       rate: 0.92, pitch: -4, style: 'general', badge: 'Middle-Aged' },
+          { id: 'mid-m2',   name: 'Brian (Age 55) – Male Narrator', icon: '👨‍🦳', sub: 'Gravely & slow · 0.80x -6Hz',   rate: 0.80, pitch: -6, style: 'general', badge: 'Middle-Aged' },
+
+          // ── SENIORS (60–90) ──────────────────────────────────────────────
+          { id: 'senior-f1',name: 'Abigail (Age 68) – Senior F',    icon: '👵', sub: 'Soft & wise · 0.85x',             rate: 0.85, pitch: -2, style: 'general', badge: 'Senior' },
+          { id: 'senior-f2',name: 'Esther (Age 75) – Senior F',     icon: '👵', sub: 'Very slow & gentle · 0.75x',      rate: 0.75, pitch: -3, style: 'general', badge: 'Senior' },
+          { id: 'senior-m1',name: 'Arthur (Age 70) – Senior M',     icon: '👴', sub: 'Deep & wise · 0.80x -6Hz',        rate: 0.80, pitch: -6, style: 'general', badge: 'Senior' },
+          { id: 'senior-m2',name: 'Thomas (Age 82) – Senior M',     icon: '👴', sub: 'Very slow & low · 0.68x -8Hz',    rate: 0.68, pitch: -8, style: 'general', badge: 'Senior' }
         ],
+
       };
 
       /* ── UTILS ── */
@@ -1948,7 +1965,12 @@
       <!-- Single Mode Container -->
       <div id="single-mode-container">
         <div style="margin-bottom:18px;">
-          <span class="slbl"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your Text</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span class="slbl" style="margin-bottom:0;"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your Text</span>
+            <span id="lang-detect-pill" style="display:none;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:20px;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(124,95,230,0.15));border:1px solid rgba(59,158,255,0.3);color:var(--a1);font-family:'Syne',sans-serif;transition:all .3s;">
+              <i class="fa-solid fa-language" style="margin-right:4px;"></i><span id="lang-detect-name">Detected</span>
+            </span>
+          </div>
           <textarea id="txt" rows="5" placeholder="Type or paste your text here… (max 5000 characters)" oninput="onTxt(this)"></textarea>
           <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:.76rem;color:var(--muted);"><span><i class="fa-regular fa-keyboard" style="margin-right:3px;"></i><span id="cc">0</span> / 5000</span><span><i class="fa-regular fa-clock" style="margin-right:3px;"></i>~<span id="te">0</span> sec</span></div>
         </div>
@@ -1998,6 +2020,26 @@
             <select id="sel-fmt"><option value="mp3">MP3 (Recommended)</option><option value="wav">WAV (Studio)</option></select>
           </div>
         </div>
+
+        <!-- ✅ Natural Mode Toggle -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--a2);font-size:1.1rem;"></i>
+            <div>
+              <div style="font-size:.88rem;font-weight:700;color:var(--txt);font-family:'Syne',sans-serif;">Natural Voice Mode</div>
+              <div style="font-size:.72rem;color:var(--muted);margin-top:2px;line-height:1.3;">Smart prosody — questions rise ↑, exclamations get energy ⚡, natural pauses at commas & full stops</div>
+            </div>
+          </div>
+          <label style="position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0;margin-left:12px;cursor:pointer;">
+            <input type="checkbox" id="natural-mode-toggle" checked onchange="S.naturalMode=this.checked;showToast(this.checked?'Natural Mode ON 🎙️':'Plain Mode — raw text reading','ok')" style="opacity:0;width:0;height:0;">
+            <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--border);transition:.3s;border-radius:26px;"></span>
+            <span id="natural-toggle-knob" style="position:absolute;content:'';height:20px;width:20px;left:3px;bottom:3px;background:#fff;transition:.3s;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></span>
+          </label>
+        </div>
+        <style>
+          #natural-mode-toggle:checked + span { background: linear-gradient(135deg, var(--a1), var(--a2)) !important; box-shadow: 0 0 12px rgba(59,158,255,0.4); }
+          #natural-mode-toggle:checked + span + span { transform: translateX(22px); }
+        </style>
       </div>
 
       <!-- Multi Mode Container -->
@@ -2079,9 +2121,44 @@
           </div>
         </div>
         <div style="margin-top:10px;"><button onclick="doGenerate()" style="width:100%;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:11px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;font-size:.88rem;"><i class="fa-solid fa-rotate-right" style="margin-right:6px;"></i>Regenerate</button></div>
+
+        <!-- ✅ Social Share Buttons -->
+        <div style="margin-top:14px;">
+          <div style="font-size:.72rem;color:var(--muted);text-align:center;margin-bottom:8px;font-weight:600;letter-spacing:.04em;">SHARE THIS TOOL</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+            <!-- WhatsApp -->
+            <button onclick="shareWhatsApp()" title="Share on WhatsApp"
+              style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border-radius:12px;border:1px solid rgba(37,211,102,0.25);background:rgba(37,211,102,0.08);color:#25d366;cursor:pointer;transition:all .2s;font-size:.7rem;font-weight:700;font-family:'Syne',sans-serif;"
+              onmouseover="this.style.background='rgba(37,211,102,0.18)'" onmouseout="this.style.background='rgba(37,211,102,0.08)'">
+              <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i>
+              WhatsApp
+            </button>
+            <!-- Twitter / X -->
+            <button onclick="shareTwitter()" title="Share on X / Twitter"
+              style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border-radius:12px;border:1px solid rgba(0,0,0,0.2);background:rgba(0,0,0,0.06);color:var(--txt);cursor:pointer;transition:all .2s;font-size:.7rem;font-weight:700;font-family:'Syne',sans-serif;"
+              onmouseover="this.style.background='rgba(0,0,0,0.12)'" onmouseout="this.style.background='rgba(0,0,0,0.06)'">
+              <i class="fa-brands fa-x-twitter" style="font-size:1.2rem;"></i>
+              Twitter/X
+            </button>
+            <!-- Facebook -->
+            <button onclick="shareFacebook()" title="Share on Facebook"
+              style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border-radius:12px;border:1px solid rgba(24,119,242,0.25);background:rgba(24,119,242,0.08);color:#1877f2;cursor:pointer;transition:all .2s;font-size:.7rem;font-weight:700;font-family:'Syne',sans-serif;"
+              onmouseover="this.style.background='rgba(24,119,242,0.18)'" onmouseout="this.style.background='rgba(24,119,242,0.08)'">
+              <i class="fa-brands fa-facebook" style="font-size:1.2rem;"></i>
+              Facebook
+            </button>
+            <!-- Copy Link -->
+            <button onclick="shareLink()" title="Copy site link"
+              style="display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border-radius:12px;border:1px solid rgba(124,95,230,0.25);background:rgba(124,95,230,0.08);color:var(--a2);cursor:pointer;transition:all .2s;font-size:.7rem;font-weight:700;font-family:'Syne',sans-serif;"
+              onmouseover="this.style.background='rgba(124,95,230,0.18)'" onmouseout="this.style.background='rgba(124,95,230,0.08)'">
+              <i class="fa-solid fa-link" style="font-size:1.2rem;"></i>
+              Copy Link
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    
+
     <!-- Local Generation History Card -->
     <div id="history-card" class="glass hidden" style="padding:24px;margin-bottom:22px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
@@ -2175,6 +2252,14 @@
         if (te) te.textContent = Math.ceil(c / 15);
         el.style.height = 'auto';
         el.style.height = el.scrollHeight + 'px';
+        // Auto language detection (debounced 800ms)
+        clearTimeout(onTxt._detectTimer);
+        if (c > 8) {
+          onTxt._detectTimer = setTimeout(() => autoDetectLanguage(el.value), 800);
+        } else {
+          const pill = n$('lang-detect-pill');
+          if (pill) pill.style.display = 'none';
+        }
       }
 
       /* ── DIALOGUE / MULTI-VOICE ── */
@@ -2364,6 +2449,7 @@
             fd.append('emotion', 'neutral');
             fd.append('format', 'mp3');
             fd.append('response_type', 'base64');
+            fd.append('natural_mode', S.naturalMode ? 'true' : 'false');
 
             const r = await fetch('/generate', { method: 'POST', body: fd });
             const d = await r.json();
@@ -2458,6 +2544,7 @@
         fd.append('rate', rateVal.toFixed(2)); fd.append('pitch', pitchVal.toString());
         fd.append('volume', volVal.toString()); fd.append('style', styleVal);
         fd.append('emotion', 'neutral'); fd.append('format', fmtVal); fd.append('response_type', 'base64');
+        fd.append('natural_mode', S.naturalMode ? 'true' : 'false');
         try {
           const r = await fetch('/generate', { method: 'POST', body: fd }); const d = await r.json();
           if (d.success) {
@@ -2673,7 +2760,143 @@
         updateThemeIcons();
         initCustomPlayer();
         renderHistoryList();
+        initPWA();
       });
+
+      /* ──────────────────────────────────────────────────────
+         ✅ FEATURE 1: AUTO LANGUAGE DETECTION
+         Uses Unicode script ranges — zero external API calls
+      ────────────────────────────────────────────────────── */
+      const SCRIPT_MAP = [
+        { re: /[\u0900-\u097F]/, code: 'hi-IN',  name: '🇮🇳 Hindi',      vt: 'female-1' },
+        { re: /[\u0980-\u09FF]/, code: 'bn-IN',  name: '🇮🇳 Bengali',     vt: 'female-1' },
+        { re: /[\u0A80-\u0AFF]/, code: 'gu-IN',  name: '🇮🇳 Gujarati',    vt: 'female-1' },
+        { re: /[\u0A00-\u0A7F]/, code: 'pa-IN',  name: '🇮🇳 Punjabi',     vt: 'female-1' },
+        { re: /[\u0B80-\u0BFF]/, code: 'ta-IN',  name: '🇮🇳 Tamil',       vt: 'female-1' },
+        { re: /[\u0C00-\u0C7F]/, code: 'te-IN',  name: '🇮🇳 Telugu',      vt: 'female-1' },
+        { re: /[\u0C80-\u0CFF]/, code: 'kn-IN',  name: '🇮🇳 Kannada',     vt: 'female-1' },
+        { re: /[\u0D00-\u0D7F]/, code: 'ml-IN',  name: '🇮🇳 Malayalam',   vt: 'female-1' },
+        { re: /[\u0B00-\u0B7F]/, code: 'or-IN',  name: '🇮🇳 Odia',        vt: 'female-1' },
+        { re: /[\u0600-\u06FF]/, code: 'ar-EG',  name: '🇸🇦 Arabic',      vt: 'female-1' },
+        { re: /[\u4E00-\u9FFF]/, code: 'zh-CN',  name: '🇨🇳 Chinese',     vt: 'female-1' },
+        { re: /[\u3040-\u30FF]/, code: 'ja-JP',  name: '🇯🇵 Japanese',    vt: 'female-1' },
+        { re: /[\uAC00-\uD7AF]/, code: 'ko-KR',  name: '🇰🇷 Korean',      vt: 'female-1' },
+        { re: /[\u0400-\u04FF]/, code: 'ru-RU',  name: '🇷🇺 Russian',     vt: 'female-1' },
+        { re: /[\u0370-\u03FF]/, code: 'el-GR',  name: '🇬🇷 Greek',       vt: 'female-1' },
+        { re: /[\u0E00-\u0E7F]/, code: 'th-TH',  name: '🇹🇭 Thai',        vt: 'female-1' },
+        { re: /[\u1200-\u137F]/, code: 'am-ET',  name: '🇪🇹 Amharic',     vt: 'female-1' },
+      ];
+
+      function autoDetectLanguage(text) {
+        const pill  = n$('lang-detect-pill');
+        const pname = n$('lang-detect-name');
+        if (!pill || !pname) return;
+
+        let detected = null;
+        for (const entry of SCRIPT_MAP) {
+          if (entry.re.test(text)) { detected = entry; break; }
+        }
+
+        if (!detected) {
+          // Default: English — hide pill (Latin text is ambiguous)
+          pill.style.display = 'none';
+          return;
+        }
+
+        // Show pill
+        pname.textContent = detected.name;
+        pill.style.display = 'inline-flex';
+        pill.style.alignItems = 'center';
+
+        // Auto-update language dropdown if it exists and user hasn't manually changed
+        const sel = document.getElementById('sel-lang');
+        if (sel && sel.value !== detected.code) {
+          sel.value = detected.code;
+          // Trigger change event so voice list updates
+          sel.dispatchEvent(new Event('change'));
+          S.lang = detected.code;
+        }
+      }
+
+      /* ──────────────────────────────────────────────────────
+         ✅ FEATURE 2: SOCIAL SHARE FUNCTIONS
+         All free — native share APIs / window.open
+      ────────────────────────────────────────────────────── */
+      const SITE_URL  = 'https://www.texttoaudiomp3.site/';
+      const SITE_NAME = 'VoicePro TTS';
+      const SHARE_MSG = encodeURIComponent(`🎙️ Check out ${SITE_NAME} — Free AI Text to Speech! 100+ languages, realistic voices, MP3 download. No login needed. `);
+
+      function shareWhatsApp() {
+        window.open(`https://wa.me/?text=${SHARE_MSG}${encodeURIComponent(SITE_URL)}`, '_blank', 'noopener');
+        showToast('Opening WhatsApp… 💬');
+      }
+
+      function shareTwitter() {
+        const tweet = encodeURIComponent(`🎙️ Free AI Text to Speech — 100+ languages, neural voices, instant MP3 download. No login needed!\n\n${SITE_URL}\n\n#TextToSpeech #AI #TTS #FreeTools`);
+        window.open(`https://twitter.com/intent/tweet?text=${tweet}`, '_blank', 'noopener');
+        showToast('Opening Twitter/X… 🐦');
+      }
+
+      function shareFacebook() {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE_URL)}`, '_blank', 'noopener');
+        showToast('Opening Facebook… 👍');
+      }
+
+      function shareLink() {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(SITE_URL).then(() => showToast('Link copied! 🔗 Share with friends!'));
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = SITE_URL;
+          document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+          showToast('Link copied! 🔗');
+        }
+      }
+
+      /* ──────────────────────────────────────────────────────
+         ✅ FEATURE 3: PWA INSTALL PROMPT
+         Browser shows install when criteria met (service worker + manifest)
+      ────────────────────────────────────────────────────── */
+      let _pwaPrompt = null;
+
+      function initPWA() {
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+            .then(reg => console.log('✅ SW registered:', reg.scope))
+            .catch(err => console.warn('SW registration failed:', err));
+        }
+
+        // Capture install prompt
+        window.addEventListener('beforeinstallprompt', e => {
+          e.preventDefault();
+          _pwaPrompt = e;
+          // Show install button in navbar if it exists
+          const btn = n$('pwa-install-btn');
+          if (btn) { btn.style.display = 'flex'; }
+          showToast('📱 App install available! Tap the install button.', 'ok');
+        });
+
+        // Hide install button after install
+        window.addEventListener('appinstalled', () => {
+          _pwaPrompt = null;
+          const btn = n$('pwa-install-btn');
+          if (btn) btn.style.display = 'none';
+          showToast('✅ VoicePro installed as App! 🎉', 'ok');
+        });
+      }
+
+      function triggerPWAInstall() {
+        if (!_pwaPrompt) {
+          showToast('App already installed or not supported in this browser.', 'err');
+          return;
+        }
+        _pwaPrompt.prompt();
+        _pwaPrompt.userChoice.then(res => {
+          if (res.outcome === 'accepted') showToast('Installing VoicePro… 🚀');
+          _pwaPrompt = null;
+        });
+      }
     </script>
   </body>
 

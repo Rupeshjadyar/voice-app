@@ -445,7 +445,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       Voice<span style="color:var(--a1);">Pro</span>
     </a>
     <nav class="nav-links">
-      <a href="/" class="nav-link">Studio</a>
+      <a href="/" class="nav-link">Home Studio</a>
       <a href="/blog.html" class="nav-link">Blog</a>
       <a href="/about.html" class="nav-link">About</a>
       <a href="/contact.html" class="nav-link">Contact</a>
@@ -459,7 +459,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     </button>
   </div>
   <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="/" class="nav-link">Studio</a>
+    <a href="/" class="nav-link">Home Studio</a>
     <a href="/blog.html" class="nav-link">Blog</a>
     <a href="/about.html" class="nav-link">About</a>
     <a href="/contact.html" class="nav-link">Contact</a>

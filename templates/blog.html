@@ -186,7 +186,7 @@
       Voice<span style="color:var(--a1);">Pro</span>
     </a>
     <nav class="nav-links">
-      <a href="/" class="nav-link ">Studio</a>
+      <a href="/" class="nav-link ">Home Studio</a>
       <a href="/blog.html" class="nav-link active">Blog</a>
       <a href="/about.html" class="nav-link ">About</a>
       <a href="/contact.html" class="nav-link ">Contact</a>
@@ -201,7 +201,7 @@
     </button>
   </div>
   <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="/" class="nav-link ">Studio</a>
+    <a href="/" class="nav-link ">Home Studio</a>
     <a href="/blog.html" class="nav-link active">Blog</a>
     <a href="/about.html" class="nav-link ">About</a>
     <a href="/contact.html" class="nav-link ">Contact</a>
@@ -401,5 +401,30 @@ function toggleMobileMenu() {
 }
 </script>
 
+
+<script>
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const target = current === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', target);
+  localStorage.setItem('theme', target);
+  updateThemeIcons();
+}
+
+function updateThemeIcons() {
+  const theme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  const btn = document.getElementById('theme-btn');
+  const btnMob = document.getElementById('theme-btn-mob');
+  const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+  if (btn) btn.innerHTML = '<i class="' + iconClass + '"></i>';
+  if (btnMob) btnMob.innerHTML = '<i class="' + iconClass + '"></i>Toggle Theme';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateThemeIcons();
+});
+</script>
 </body>
+
 </html>
