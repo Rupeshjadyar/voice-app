@@ -91,6 +91,99 @@ VOICE_MAPPING = {
     ('en-US','senior-f2'):'en-US-MichelleNeural',
     ('en-US','senior-m1'):'en-US-BrianNeural',
     ('en-US','senior-m2'):'en-US-BrianNeural',
+    # ── Expanded 100+ Sound Types (en-US) ──
+    ('en-US','normal-f1'):       'en-US-JennyNeural',
+    ('en-US','normal-m1'):       'en-US-ChristopherNeural',
+    ('en-US','normal-f2'):       'en-US-SaraNeural',
+    ('en-US','normal-m2'):       'en-US-EricNeural',
+    ('en-US','normal-studio-f1'):'en-US-SoniaNeural',
+    ('en-US','normal-studio-m1'):'en-US-RyanNeural',
+    ('en-US','normal-casual-f'): 'en-US-AvaNeural',
+    ('en-US','normal-casual-m'): 'en-US-AndrewNeural',
+    ('en-US','normal-podcast-f'):'en-US-MichelleNeural',
+    ('en-US','normal-podcast-m'):'en-US-BrianNeural',
+    ('en-US','soft-f1'):         'en-US-AriaNeural',
+    ('en-US','soft-m1'):         'en-US-GuyNeural',
+    ('en-US','soft-asmr-f1'):    'en-US-JennyNeural',
+    ('en-US','soft-asmr-m1'):    'en-US-RogerNeural',
+    ('en-US','soft-meditation-f'):'en-US-MichelleNeural',
+    ('en-US','soft-meditation-m'):'en-US-BrianNeural',
+    ('en-US','soft-lullaby-f'):  'en-US-SoniaNeural',
+    ('en-US','soft-counselor-f'):'en-US-EmmaNeural',
+    ('en-US','soft-counselor-m'):'en-US-EricNeural',
+    ('en-US','soft-silk-f'):     'en-US-SaraNeural',
+    ('en-US','soft-velvet-m'):   'en-US-SteffanNeural',
+    ('en-US','soft-quiet-f'):    'en-US-AnaNeural',
+    ('en-US','soft-quiet-m'):    'en-US-ChristopherNeural',
+    ('en-US','hard-trailer-m1'): 'en-US-GuyNeural',
+    ('en-US','hard-trailer-f1'): 'en-US-AriaNeural',
+    ('en-US','hard-action-m'):   'en-US-ChristopherNeural',
+    ('en-US','hard-action-f'):   'en-US-SaraNeural',
+    ('en-US','hard-hype-m'):     'en-US-RogerNeural',
+    ('en-US','hard-sports-m'):   'en-US-GuyNeural',
+    ('en-US','hard-gamer-m'):    'en-US-EricNeural',
+    ('en-US','hard-gamer-f'):    'en-US-EmmaNeural',
+    ('en-US','hard-commander-m'):'en-US-SteffanNeural',
+    ('en-US','hard-heavy-bass'): 'en-US-BrianNeural',
+    ('en-US','hard-breaking-f'): 'en-US-JennyNeural',
+    ('en-US','hard-breaking-m'): 'en-US-GuyNeural',
+    ('en-US','hard-power-orator'):'en-US-RyanNeural',
+    ('en-US','emo-cheerful-f'):  'en-US-AriaNeural',
+    ('en-US','emo-cheerful-m'):  'en-US-GuyNeural',
+    ('en-US','emo-sad-f'):       'en-US-JennyNeural',
+    ('en-US','emo-sad-m'):       'en-US-GuyNeural',
+    ('en-US','emo-angry-f'):     'en-US-AriaNeural',
+    ('en-US','emo-angry-m'):     'en-US-GuyNeural',
+    ('en-US','emo-excited-f'):   'en-US-SaraNeural',
+    ('en-US','emo-excited-m'):   'en-US-RogerNeural',
+    ('en-US','emo-friendly-f'):  'en-US-JennyNeural',
+    ('en-US','emo-friendly-m'):  'en-US-GuyNeural',
+    ('en-US','emo-empathetic-f'):'en-US-MichelleNeural',
+    ('en-US','emo-suspense-f'):  'en-US-EmmaNeural',
+    ('en-US','emo-suspense-m'):  'en-US-SteffanNeural',
+    ('en-US','emo-hopeful-f'):   'en-US-SoniaNeural',
+    ('en-US','news-anchor-f'):   'en-US-AriaNeural',
+    ('en-US','news-anchor-m'):   'en-US-GuyNeural',
+    ('en-US','news-casual-f'):   'en-US-JennyNeural',
+    ('en-US','news-casual-m'):   'en-US-RogerNeural',
+    ('en-US','news-formal-f'):   'en-US-AriaNeural',
+    ('en-US','news-formal-m'):   'en-US-GuyNeural',
+    ('en-US','story-docu-f'):    'en-US-AriaNeural',
+    ('en-US','story-docu-m'):    'en-US-GuyNeural',
+    ('en-US','story-relaxed-f'): 'en-US-JennyNeural',
+    ('en-US','story-relaxed-m'): 'en-US-GuyNeural',
+    ('en-US','story-poetry-f'):  'en-US-AriaNeural',
+    ('en-US','story-mythic-m'):  'en-US-BrianNeural',
+    ('en-US','pro-elearning-f'): 'en-US-EmmaNeural',
+    ('en-US','pro-elearning-m'): 'en-US-EricNeural',
+    ('en-US','pro-audiobook-f'): 'en-US-SoniaNeural',
+    ('en-US','pro-audiobook-m'): 'en-US-RyanNeural',
+    ('en-US','pro-commercial-f'):'en-US-SaraNeural',
+    ('en-US','pro-commercial-m'):'en-US-RogerNeural',
+    ('en-US','pro-assistant-f'): 'en-US-AriaNeural',
+    ('en-US','pro-assistant-m'): 'en-US-GuyNeural',
+    ('en-US','pro-support-f'):   'en-US-JennyNeural',
+    ('en-US','pro-ivr-f'):       'en-US-MichelleNeural',
+    ('en-US','pro-presentation'):'en-US-ChristopherNeural',
+    ('en-US','pro-motivation-m'):'en-US-SteffanNeural',
+    ('en-US','char-anime-f'):    'en-US-AvaNeural',
+    ('en-US','char-anime-hero'): 'en-US-ChristopherNeural',
+    ('en-US','char-robot-ai'):   'en-US-EmmaNeural',
+    ('en-US','char-cyborg-m'):   'en-US-SteffanNeural',
+    ('en-US','char-chipmunk'):   'en-US-AnaNeural',
+    ('en-US','char-giant-deep'): 'en-US-BrianNeural',
+    ('en-US','char-pirate-m'):   'en-US-GuyNeural',
+    ('en-US','char-wizard-m'):   'en-US-BrianNeural',
+    ('en-US','char-villain-m'):  'en-US-SteffanNeural',
+    ('en-US','char-fairy-f'):    'en-US-AnaNeural',
+    ('en-US','char-detective'):  'en-US-EricNeural',
+    ('en-US','char-royal-f'):    'en-US-MichelleNeural',
+    ('en-US','kid-toddler-f'):   'en-US-AnaNeural',
+    ('en-US','kid-toddler-m'):   'en-US-AnaNeural',
+    ('en-US','teen-gamer-f'):    'en-US-SaraNeural',
+    ('en-US','senior-wise-f'):   'en-US-JennyNeural',
+    ('en-US','senior-wise-m'):   'en-US-GuyNeural',
+    ('en-US','senior-professor'):'en-US-SteffanNeural',
     ('en-GB','female-1'): 'en-GB-SoniaNeural',
     ('en-GB','female-2'): 'en-GB-LibbyNeural',
     ('en-GB','male-1'):   'en-GB-RyanNeural',
@@ -135,6 +228,99 @@ VOICE_MAPPING = {
     ('hi-IN','senior-f2'):'hi-IN-SwaraNeural',
     ('hi-IN','senior-m1'):'hi-IN-MadhurNeural',
     ('hi-IN','senior-m2'):'hi-IN-MadhurNeural',
+    # ── Expanded 100+ Sound Types (hi-IN) ──
+    ('hi-IN','normal-f1'):       'hi-IN-SwaraNeural',
+    ('hi-IN','normal-m1'):       'hi-IN-MadhurNeural',
+    ('hi-IN','normal-f2'):       'hi-IN-SwaraNeural',
+    ('hi-IN','normal-m2'):       'hi-IN-MadhurNeural',
+    ('hi-IN','normal-studio-f1'):'hi-IN-SwaraNeural',
+    ('hi-IN','normal-studio-m1'):'hi-IN-MadhurNeural',
+    ('hi-IN','normal-casual-f'): 'hi-IN-SwaraNeural',
+    ('hi-IN','normal-casual-m'): 'hi-IN-MadhurNeural',
+    ('hi-IN','normal-podcast-f'):'hi-IN-SwaraNeural',
+    ('hi-IN','normal-podcast-m'):'hi-IN-MadhurNeural',
+    ('hi-IN','soft-f1'):         'hi-IN-SwaraNeural',
+    ('hi-IN','soft-m1'):         'hi-IN-MadhurNeural',
+    ('hi-IN','soft-asmr-f1'):    'hi-IN-SwaraNeural',
+    ('hi-IN','soft-asmr-m1'):    'hi-IN-MadhurNeural',
+    ('hi-IN','soft-meditation-f'):'hi-IN-SwaraNeural',
+    ('hi-IN','soft-meditation-m'):'hi-IN-MadhurNeural',
+    ('hi-IN','soft-lullaby-f'):  'hi-IN-SwaraNeural',
+    ('hi-IN','soft-counselor-f'):'hi-IN-SwaraNeural',
+    ('hi-IN','soft-counselor-m'):'hi-IN-MadhurNeural',
+    ('hi-IN','soft-silk-f'):     'hi-IN-SwaraNeural',
+    ('hi-IN','soft-velvet-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','soft-quiet-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','soft-quiet-m'):    'hi-IN-MadhurNeural',
+    ('hi-IN','hard-trailer-m1'): 'hi-IN-MadhurNeural',
+    ('hi-IN','hard-trailer-f1'): 'hi-IN-SwaraNeural',
+    ('hi-IN','hard-action-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','hard-action-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','hard-hype-m'):     'hi-IN-MadhurNeural',
+    ('hi-IN','hard-sports-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','hard-gamer-m'):    'hi-IN-MadhurNeural',
+    ('hi-IN','hard-gamer-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','hard-commander-m'):'hi-IN-MadhurNeural',
+    ('hi-IN','hard-heavy-bass'): 'hi-IN-MadhurNeural',
+    ('hi-IN','hard-breaking-f'): 'hi-IN-SwaraNeural',
+    ('hi-IN','hard-breaking-m'): 'hi-IN-MadhurNeural',
+    ('hi-IN','hard-power-orator'):'hi-IN-MadhurNeural',
+    ('hi-IN','emo-cheerful-f'):  'hi-IN-SwaraNeural',
+    ('hi-IN','emo-cheerful-m'):  'hi-IN-MadhurNeural',
+    ('hi-IN','emo-sad-f'):       'hi-IN-SwaraNeural',
+    ('hi-IN','emo-sad-m'):       'hi-IN-MadhurNeural',
+    ('hi-IN','emo-angry-f'):     'hi-IN-SwaraNeural',
+    ('hi-IN','emo-angry-m'):     'hi-IN-MadhurNeural',
+    ('hi-IN','emo-excited-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','emo-excited-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','emo-friendly-f'):  'hi-IN-SwaraNeural',
+    ('hi-IN','emo-friendly-m'):  'hi-IN-MadhurNeural',
+    ('hi-IN','emo-empathetic-f'):'hi-IN-SwaraNeural',
+    ('hi-IN','emo-suspense-f'):  'hi-IN-SwaraNeural',
+    ('hi-IN','emo-suspense-m'):  'hi-IN-MadhurNeural',
+    ('hi-IN','emo-hopeful-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','news-anchor-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','news-anchor-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','news-casual-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','news-casual-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','news-formal-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','news-formal-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','story-docu-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','story-docu-m'):    'hi-IN-MadhurNeural',
+    ('hi-IN','story-relaxed-f'): 'hi-IN-SwaraNeural',
+    ('hi-IN','story-relaxed-m'): 'hi-IN-MadhurNeural',
+    ('hi-IN','story-poetry-f'):  'hi-IN-SwaraNeural',
+    ('hi-IN','story-mythic-m'):  'hi-IN-MadhurNeural',
+    ('hi-IN','pro-elearning-f'): 'hi-IN-SwaraNeural',
+    ('hi-IN','pro-elearning-m'): 'hi-IN-MadhurNeural',
+    ('hi-IN','pro-audiobook-f'): 'hi-IN-SwaraNeural',
+    ('hi-IN','pro-audiobook-m'): 'hi-IN-MadhurNeural',
+    ('hi-IN','pro-commercial-f'):'hi-IN-SwaraNeural',
+    ('hi-IN','pro-commercial-m'):'hi-IN-MadhurNeural',
+    ('hi-IN','pro-assistant-f'): 'hi-IN-SwaraNeural',
+    ('hi-IN','pro-assistant-m'): 'hi-IN-MadhurNeural',
+    ('hi-IN','pro-support-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','pro-ivr-f'):       'hi-IN-SwaraNeural',
+    ('hi-IN','pro-presentation'):'hi-IN-MadhurNeural',
+    ('hi-IN','pro-motivation-m'):'hi-IN-MadhurNeural',
+    ('hi-IN','char-anime-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','char-anime-hero'): 'hi-IN-MadhurNeural',
+    ('hi-IN','char-robot-ai'):   'hi-IN-SwaraNeural',
+    ('hi-IN','char-cyborg-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','char-chipmunk'):   'hi-IN-SwaraNeural',
+    ('hi-IN','char-giant-deep'): 'hi-IN-MadhurNeural',
+    ('hi-IN','char-pirate-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','char-wizard-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','char-villain-m'):  'hi-IN-MadhurNeural',
+    ('hi-IN','char-fairy-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','char-detective'):  'hi-IN-MadhurNeural',
+    ('hi-IN','char-royal-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','kid-toddler-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','kid-toddler-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','teen-gamer-f'):    'hi-IN-SwaraNeural',
+    ('hi-IN','senior-wise-f'):   'hi-IN-SwaraNeural',
+    ('hi-IN','senior-wise-m'):   'hi-IN-MadhurNeural',
+    ('hi-IN','senior-professor'):'hi-IN-MadhurNeural',
     ('mr-IN','female-1'): 'mr-IN-AarohiNeural',
     ('mr-IN','male-1'):   'mr-IN-ManoharNeural',
     ('gu-IN','female-1'): 'gu-IN-DhwaniNeural',
@@ -297,12 +483,18 @@ def get_voice(lang: str, voice_type: str) -> str:
     if voice:
         return voice
     
-    # 2. Gender-smart fallback for the same language
+    # 2. Gender/Character-smart fallback for ANY language
     vt = voice_type.lower()
     is_male = False
-    if 'female' in vt or '-f' in vt:
+    male_keywords = [
+        'male', '-m', 'guy', 'man', 'boy', 'dad', 'deep', 'giant', 'trailer',
+        'authority', 'hard', 'hero', 'commanding', 'sports', 'gamer', 'intense',
+        'baritone', 'action', 'orator', 'commander', 'bass', 'cyborg', 'pirate',
+        'wizard', 'villain', 'detective', 'professor', 'grandfather'
+    ]
+    if any(k in vt for k in ['female', '-f', 'woman', 'girl', 'mom', 'lady', 'soft', 'asmr', 'whisper', 'soothing', 'queen', 'nurse', 'gentle', 'fairy', 'grandmother']):
         is_male = False
-    elif 'male' in vt or '-m' in vt or vt == 'old':
+    elif any(k in vt for k in male_keywords) or vt == 'old':
         is_male = True
     else:
         is_male = False
@@ -684,6 +876,9 @@ def preview_voice():
         data       = request.get_json()
         lang       = data.get('language', 'en-US')
         voice_type = data.get('voice_type', 'female-1')
+        rate       = data.get('rate', 1.0)
+        pitch      = data.get('pitch', 0)
+        style      = data.get('style', 'general')
         text       = SAMPLE_TEXTS.get(lang, DEFAULT_SAMPLE)
         voice      = get_voice(lang, voice_type)
 
@@ -691,7 +886,9 @@ def preview_voice():
             return jsonify({"success": False, "error": "edge-tts not installed"})
 
         filepath = os.path.join(TEMP_FOLDER, f"prev_{uuid.uuid4().hex}.mp3")
-        ok = asyncio.run(_generate_edge(text, voice, "+0%", "+0Hz", "+0%", "general", filepath))
+        rate_str  = build_rate(rate)
+        pitch_str = build_pitch(pitch)
+        ok = asyncio.run(_generate_edge(text, voice, rate_str, pitch_str, "+0%", style, filepath))
         if not ok:
             return jsonify({"success": False, "error": "Preview generation failed"})
 
@@ -789,6 +986,11 @@ def terms():
 #  ✅ NEW BLOG ROUTES — Add these to your app.py
 #  Place these BEFORE the line: if __name__ == '__main__':
 # ─────────────────────────────────────────────
+
+@app.route('/blog/100-languages-and-voices-guide')
+def blog_100_languages():
+    return render_template('blog-100-languages-voices.html')
+
 
 @app.route('/blog/what-is-ai-text-to-speech')
 def blog_what_is_tts():
@@ -890,6 +1092,7 @@ def sitemap_xml():
         ('/contact.html', '0.5', 'monthly'),
         ('/privacy.html', '0.3', 'yearly'),
         ('/terms.html',   '0.3', 'yearly'),
+        ('/blog/100-languages-and-voices-guide', '0.8', 'monthly'),
         ('/blog/what-is-ai-text-to-speech',    '0.7', 'monthly'),
         ('/blog/convert-text-to-mp3-free',     '0.7', 'monthly'),
         ('/blog/hindi-text-to-speech-guide',   '0.7', 'monthly'),

@@ -859,7 +859,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         // Update custom player UI
         const selVal = document.getElementById('sel-voice').value;
         const selOpt = document.querySelector('#sel-voice option[value="' + selVal + '"]');
-        const voiceName = selOpt ? selOpt.textContent.replace(/^[^\s]+\s+/, '') : selVal;
+        const voiceName = selOpt ? selOpt.textContent.replace(/^[^\\s]+\\s+/, '') : selVal;
         
         document.getElementById('custom-player-meta').textContent = d.method + ' · ' + voiceName + ' · ' + LANG_NAME;
         
