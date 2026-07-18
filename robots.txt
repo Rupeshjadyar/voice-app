@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://www.texttoaudiomp3.site/sitemap.xml

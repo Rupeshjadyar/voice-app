@@ -5,7 +5,7 @@ Run:  python generate_pseo_pages.py
 Output: templates/tts/<slug>.html  (one file per language)
 """
 
-import os, json, re
+import os, json, re, datetime
 from app import VOICE_MAPPING
 
 # ──────────────────────────────────────────────────────────────
@@ -721,7 +721,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <div class="feature-card">
       <div style="font-size:1.9rem;margin-bottom:14px;">🎛️</div>
       <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Full Voice Control</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Adjust speed (0.5x–2x), pitch (−10 to +10), volume, and speaking style. 8 voice characters and 16 styles — fully customizable.</p>
+      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Adjust speed (0.5x–2x), pitch (−10 to +10), volume, and speaking style. 100+ voice characters and 16 styles — fully customizable.</p>
     </div>
     <div class="feature-card">
       <div style="font-size:1.9rem;margin-bottom:14px;">🔒</div>
@@ -1204,15 +1204,49 @@ def main():
     with open(os.path.join("templates", "tts_manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
 
-    # Generate sitemap.xml
+    # Generate comprehensive sitemap.xml with priorities and lastmod
     sitemap_path = os.path.join("templates", "sitemap.xml")
+    today_str = datetime.datetime.now().strftime("%Y-%m-%d")
     with open(sitemap_path, "w", encoding="utf-8") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+        
+        # Core pages
+        core_pages = [
+            ("/", "1.0", "daily"),
+            ("/about.html", "0.8", "monthly"),
+            ("/blog.html", "0.9", "weekly"),
+            ("/tts/", "0.9", "weekly"),
+            ("/contact.html", "0.6", "monthly"),
+            ("/privacy.html", "0.5", "yearly"),
+            ("/terms.html", "0.5", "yearly"),
+        ]
+        for url_path, priority, freq in core_pages:
+            f.write(f"  <url>\n    <loc>https://www.texttoaudiomp3.site{url_path}</loc>\n    <lastmod>{today_str}</lastmod>\n    <changefreq>{freq}</changefreq>\n    <priority>{priority}</priority>\n  </url>\n")
+            
+        # Blog guides
+        blog_guides = [
+            "/blog/what-is-ai-text-to-speech",
+            "/blog/convert-text-to-mp3-free",
+            "/blog/hindi-text-to-speech-guide",
+            "/blog/ai-voiceover-youtube",
+            "/blog/voice-customization-guide",
+            "/blog/free-vs-paid-tts-tools",
+            "/blog/tts-for-accessibility",
+            "/blog/elearning-audio-workflow",
+            "/blog/marathi-text-to-speech-guide",
+            "/blog/tts-for-podcasters",
+            "/blog/100-languages-and-voices-guide",
+        ]
+        for guide_slug in blog_guides:
+            f.write(f"  <url>\n    <loc>https://www.texttoaudiomp3.site{guide_slug}</loc>\n    <lastmod>{today_str}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n")
+            
+        # pSEO pages
         for m in manifest:
-            f.write(f"  <url>\n    <loc>https://www.texttoaudiomp3.site{m['url']}</loc>\n  </url>\n")
+            f.write(f"  <url>\n    <loc>https://www.texttoaudiomp3.site{m['url']}</loc>\n    <lastmod>{today_str}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n")
+            
         f.write('</urlset>\n')
-    print(f"Generated sitemap -> {sitemap_path}")
+    print(f"Generated comprehensive sitemap -> {sitemap_path}")
 
     # Write robots.txt
     robots_path = os.path.join("templates", "robots.txt")

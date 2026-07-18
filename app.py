@@ -927,12 +927,16 @@ def test_redis():
 
 @app.route('/robots.txt')
 def robots_txt():
-    return send_from_directory(app.root_path, 'robots.txt')
+    from flask import Response
+    content = "User-agent: *\nAllow: /\nSitemap: https://www.texttoaudiomp3.site/sitemap.xml\n"
+    return Response(content, mimetype='text/plain')
 
 
 @app.route('/ads.txt')
 def ads_txt():
-    return send_from_directory(app.root_path, 'ads.txt')
+    from flask import Response
+    content = "google.com, pub-9707682105347147, DIRECT, f08c47fec0942fa0\n"
+    return Response(content, mimetype='text/plain')
 
 
 # ── PWA Routes ──────────────────────────────────────
