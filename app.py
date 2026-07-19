@@ -939,6 +939,16 @@ def ads_txt():
     return Response(content, mimetype='text/plain')
 
 
+@app.route('/favicon.png')
+@app.route('/favicon.ico')
+def favicon():
+    import os
+    if os.path.exists(os.path.join(app.root_path, 'favicon.png')):
+        return send_from_directory(app.root_path, 'favicon.png', mimetype='image/png')
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.png', mimetype='image/png')
+
+
+
 # ── PWA Routes ──────────────────────────────────────
 @app.route('/manifest.json')
 def manifest():
