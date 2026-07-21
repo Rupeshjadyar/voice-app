@@ -175,251 +175,526 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="/" class="logo">
-      <div class="logo-icon">
-        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.82rem;"></i>
-      </div>
+      <div class="logo-icon"><i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.82rem;"></i></div>
       Voice<span style="color:var(--a1);">Pro</span>
     </a>
     <nav class="nav-links">
-      <a href="/" class="nav-link">Home Studio</a>
-      <a href="/blog.html" class="nav-link">Blog</a>
+      <a href="/" class="nav-link"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
+      <a href="/blog.html" class="nav-link"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
       <a href="/about.html" class="nav-link">About</a>
       <a href="/contact.html" class="nav-link">Contact</a>
-      <a href="/privacy.html" class="nav-link">Privacy</a>
-      <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;margin-left:5px;" aria-label="Toggle theme">
+      <a href="/tts/" class="nav-link" style="color:var(--a1);font-weight:600;">🌐 All Languages</a>
+      <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
       </button>
     </nav>
-    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Menu">
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
   <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="/" class="nav-link">Home Studio</a>
-    <a href="/blog.html" class="nav-link">Blog</a>
+    <a href="/" class="nav-link"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home Studio</a>
+    <a href="/blog.html" class="nav-link"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
     <a href="/about.html" class="nav-link">About</a>
     <a href="/contact.html" class="nav-link">Contact</a>
-    <a href="/privacy.html" class="nav-link">Privacy</a>
-    <button onclick="toggleTheme(); toggleMobileMenu()" class="nav-link" id="theme-btn-mob" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;width:100%;box-sizing:border-box;" aria-label="Toggle theme">
+    <a href="/privacy.html" class="nav-link">Privacy Policy</a>
+    <a href="/tts/" class="nav-link" style="color:var(--a1);font-weight:700;">🌐 All 104 Languages</a>
+    <button onclick="toggleTheme();toggleMobileMenu()" class="nav-link" id="theme-btn-mob" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;width:100%;box-sizing:border-box;">
       <i class="fa-solid fa-moon"></i>Toggle Theme
     </button>
   </div>
 </header>
 
 <!-- HERO -->
-<section style="padding:100px 20px 48px;max-width:1100px;margin:0 auto;text-align:center;">
-  <div style="margin-bottom:16px;">
-    <span style="font-size:2.8rem;">🇨🇿</span>
+<section style="padding:88px 20px 32px;max-width:1100px;margin:0 auto;text-align:center;">
+  <div class="breadcrumb" style="margin-bottom:16px;">
+    <a href="/">Home</a> &rsaquo; <a href="/tts/">All Languages</a> &rsaquo; <span style="color:var(--txt);">🇨🇿 Czech (Czech Republic)</span>
   </div>
-  <div class="badge-pill" style="margin-bottom:18px;">✦ FREE CZECH TEXT TO SPEECH 2026 ✦</div>
-  <h1 style="font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;margin-bottom:16px;">
+  <div style="margin-bottom:14px;"><span style="font-size:2.8rem;">🇨🇿</span></div>
+  <div class="badge-pill" style="margin-bottom:16px;">✦ FREE CZECH TEXT TO SPEECH 2026 ✦</div>
+  <h1 style="font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;margin-bottom:14px;">
     <span class="tg">Free Czech Text to Speech</span><br>
-    <span style="font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--txt2);font-weight:600;">Czech Republic · Neural AI Voice Generator</span>
+    <span style="font-size:clamp(1rem,2.5vw,1.5rem);color:var(--txt2);font-weight:600;">Czech Republic · Neural AI Voice Generator · No Login</span>
   </h1>
-  <p style="color:var(--txt2);font-size:1.02rem;max-width:640px;margin:0 auto 28px;line-height:1.78;">
-    Convert Czech text to natural speech instantly. 2 neural voices, MP3/WAV download, 
-    no login required. The best free Czech TTS tool for Czech Republic in 2026.
+  <p style="color:var(--txt2);font-size:1rem;max-width:640px;margin:0 auto 24px;line-height:1.78;">
+    Convert Czech text to natural speech instantly. 2+ neural voices, MP3/WAV download,
+    no login required. Best free Czech TTS tool for Czech Republic in 2026.
   </p>
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;">
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:8px;">
     <span style="background:rgba(61,214,140,0.1);border:1px solid rgba(61,214,140,0.2);color:var(--ok);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-check" style="margin-right:5px;"></i>100% Free</span>
     <span style="background:rgba(59,158,255,0.1);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-bolt" style="margin-right:5px;"></i>Instant MP3</span>
-    <span style="background:rgba(124,95,230,0.1);border:1px solid rgba(124,95,230,0.2);color:var(--a2);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-robot" style="margin-right:5px;"></i>Neural AI Voice</span>
+    <span style="background:rgba(124,95,230,0.1);border:1px solid rgba(124,95,230,0.2);color:var(--a2);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-robot" style="margin-right:5px;"></i>2+ Neural Voices</span>
     <span style="background:rgba(233,79,163,0.1);border:1px solid rgba(233,79,163,0.2);color:var(--a3);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-user-slash" style="margin-right:5px;"></i>No Login</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="max-width:860px;margin:0 auto 32px;padding:0 18px;">
+  <div class="stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+    <div class="stat-card">
+      <div style="font-size:1.5rem;margin-bottom:6px;">🎙️</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--a1);">2+</div>
+      <div style="font-size:.74rem;color:var(--muted);font-weight:500;">Czech Voices</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:1.5rem;margin-bottom:6px;">🌍</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--a2);">104</div>
+      <div style="font-size:.74rem;color:var(--muted);font-weight:500;">Languages</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:1.5rem;margin-bottom:6px;">⚡</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--ok);">5K</div>
+      <div style="font-size:.74rem;color:var(--muted);font-weight:500;">Chars / Request</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:1.5rem;margin-bottom:6px;">🆓</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--a3);">100%</div>
+      <div style="font-size:.74rem;color:var(--muted);font-weight:500;">Free Forever</div>
+    </div>
   </div>
 </section>
 
 <!-- TTS STUDIO WIDGET -->
 <section style="max-width:860px;margin:0 auto;padding:0 18px 56px;">
   <div class="glass" style="padding:30px;">
-    <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:9px;">
+    <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:9px;">
       <i class="fa-solid fa-microphone-lines" style="color:var(--a1);"></i>
       Czech Voice Generator — Live Studio
     </h2>
 
-    <!-- Sample text button -->
-    <div style="margin-bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-      <button onclick="loadSample()" style="background:rgba(59,158,255,0.1);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:9px;padding:7px 14px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
-        <i class="fa-solid fa-magic-wand-sparkles" style="margin-right:5px;"></i>Load Sample Czech Text
+    <!-- Mode Tabs -->
+    <div style="display:flex;gap:8px;margin-bottom:22px;background:var(--panel);border-radius:14px;padding:5px;border:1px solid var(--border);">
+      <button class="tab-btn active" id="tab-single" onclick="switchTab('single')">
+        <i class="fa-solid fa-microphone" style="margin-right:6px;"></i>Single Voice
       </button>
-      <span style="font-size:.78rem;color:var(--muted);">or type your own below</span>
+      <button class="tab-btn" id="tab-multi" onclick="switchTab('multi')">
+        <i class="fa-solid fa-users" style="margin-right:6px;"></i>Multi-Voice Dialogue
+      </button>
     </div>
 
-    <div style="margin-bottom:18px;">
-      <span class="slbl"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your Czech Text</span>
-      <textarea id="txt" rows="5" placeholder="Type or paste Czech text here… (up to 5000 characters)" oninput="onTxt(this)"></textarea>
-      <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:.76rem;color:var(--muted);">
-        <span><span id="cc">0</span> / 5000</span>
-        <span>~<span id="te">0</span> sec audio</span>
+    <!-- SINGLE VOICE PANEL -->
+    <div id="panel-single">
+      <div style="margin-bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <button onclick="loadSample()" style="background:rgba(59,158,255,0.1);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:9px;padding:7px 14px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
+          <i class="fa-solid fa-magic-wand-sparkles" style="margin-right:5px;"></i>Load Sample Czech Text
+        </button>
+        <span style="font-size:.78rem;color:var(--muted);">or type your own below</span>
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <span class="slbl"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your Czech Text</span>
+        <textarea id="txt" rows="5" placeholder="Type or paste Czech text here… (up to 5000 characters)" oninput="onTxt(this)"></textarea>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:.76rem;color:var(--muted);">
+          <span><span id="cc">0</span> / 5000</span>
+          <span>~<span id="te">0</span> sec audio</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px;">
+        <div>
+          <span class="slbl"><i class="fa-solid fa-language" style="margin-right:5px;color:var(--a1);"></i>Language</span>
+          <select id="sel-lang" onchange="redirectToLang(this.value)">
+            <option value="hi-IN">🇮🇳 Hindi (India)</option>
+<option value="mr-IN">🇮🇳 Marathi (India)</option>
+<option value="gu-IN">🇮🇳 Gujarati (India)</option>
+<option value="ta-IN">🇮🇳 Tamil (India)</option>
+<option value="te-IN">🇮🇳 Telugu (India)</option>
+<option value="kn-IN">🇮🇳 Kannada (India)</option>
+<option value="ml-IN">🇮🇳 Malayalam (India)</option>
+<option value="bn-IN">🇮🇳 Bengali (India)</option>
+<option value="pa-IN">🇮🇳 Punjabi (India)</option>
+<option value="or-IN">🇮🇳 Odia (India)</option>
+<option value="bn-BD">🇧🇩 Bengali (Bangladesh)</option>
+<option value="ur-PK">🇵🇰 Urdu (Pakistan)</option>
+<option value="ne-NP">🇳🇵 Nepali (Nepal)</option>
+<option value="si-LK">🇱🇰 Sinhala (Sri Lanka)</option>
+<option value="en-US">🇺🇸 English (United States)</option>
+<option value="en-GB">🇬🇧 English (United Kingdom)</option>
+<option value="en-AU">🇦🇺 English (Australia)</option>
+<option value="en-IN">🇮🇳 English (India)</option>
+<option value="en-CA">🇨🇦 English (Canada)</option>
+<option value="en-ZA">🇿🇦 English (South Africa)</option>
+<option value="en-NG">🇳🇬 English (Nigeria)</option>
+<option value="es-ES">🇪🇸 Spanish (Spain)</option>
+<option value="es-MX">🇲🇽 Spanish (Mexico)</option>
+<option value="es-AR">🇦🇷 Spanish (Argentina)</option>
+<option value="es-CO">🇨🇴 Spanish (Colombia)</option>
+<option value="es-US">🇺🇸 Spanish (United States)</option>
+<option value="fr-FR">🇫🇷 French (France)</option>
+<option value="fr-CA">🇨🇦 French (Canada)</option>
+<option value="de-DE">🇩🇪 German (Germany)</option>
+<option value="de-AT">🇦🇹 German (Austria)</option>
+<option value="it-IT">🇮🇹 Italian (Italy)</option>
+<option value="pt-BR">🇧🇷 Portuguese (Brazil)</option>
+<option value="pt-PT">🇵🇹 Portuguese (Portugal)</option>
+<option value="nl-NL">🇳🇱 Dutch (Netherlands)</option>
+<option value="sv-SE">🇸🇪 Swedish (Sweden)</option>
+<option value="nb-NO">🇳🇴 Norwegian (Norway)</option>
+<option value="da-DK">🇩🇰 Danish (Denmark)</option>
+<option value="fi-FI">🇫🇮 Finnish (Finland)</option>
+<option value="pl-PL">🇵🇱 Polish (Poland)</option>
+<option value="cs-CZ" selected>🇨🇿 Czech (Czech Republic)</option>
+<option value="sk-SK">🇸🇰 Slovak (Slovakia)</option>
+<option value="hu-HU">🇭🇺 Hungarian (Hungary)</option>
+<option value="ro-RO">🇷🇴 Romanian (Romania)</option>
+<option value="bg-BG">🇧🇬 Bulgarian (Bulgaria)</option>
+<option value="hr-HR">🇭🇷 Croatian (Croatia)</option>
+<option value="uk-UA">🇺🇦 Ukrainian (Ukraine)</option>
+<option value="ru-RU">🇷🇺 Russian (Russia)</option>
+<option value="el-GR">🇬🇷 Greek (Greece)</option>
+<option value="tr-TR">🇹🇷 Turkish (Turkey)</option>
+<option value="ja-JP">🇯🇵 Japanese (Japan)</option>
+<option value="zh-CN">🇨🇳 Chinese (China)</option>
+<option value="zh-TW">🇹🇼 Chinese (Taiwan)</option>
+<option value="zh-HK">🇭🇰 Cantonese (Hong Kong)</option>
+<option value="ko-KR">🇰🇷 Korean (South Korea)</option>
+<option value="vi-VN">🇻🇳 Vietnamese (Vietnam)</option>
+<option value="th-TH">🇹🇭 Thai (Thailand)</option>
+<option value="id-ID">🇮🇩 Indonesian (Indonesia)</option>
+<option value="ms-MY">🇲🇾 Malay (Malaysia)</option>
+<option value="fil-PH">🇵🇭 Filipino (Philippines)</option>
+<option value="ar-SA">🇸🇦 Arabic (Saudi Arabia)</option>
+<option value="ar-EG">🇪🇬 Arabic (Egypt)</option>
+<option value="fa-IR">🇮🇷 Persian (Iran)</option>
+<option value="he-IL">🇮🇱 Hebrew (Israel)</option>
+<option value="ka-GE">🇬🇪 Georgian (Georgia)</option>
+<option value="sw-KE">🇰🇪 Swahili (Kenya)</option>
+<option value="am-ET">🇪🇹 Amharic (Ethiopia)</option>
+<option value="zu-ZA">🇿🇦 Zulu (South Africa)</option>
+<option value="af-ZA">🇿🇦 Afrikaans (South Africa)</option>
+<option value="lv-LV">🇱🇻 Latvian (Latvia)</option>
+<option value="lt-LT">🇱🇹 Lithuanian (Lithuania)</option>
+<option value="et-EE">🇪🇪 Estonian (Estonia)</option>
+<option value="az-AZ">🇦🇿 Azerbaijani (Azerbaijan)</option>
+<option value="kk-KZ">🇰🇿 Kazakh (Kazakhstan)</option>
+<option value="uz-UZ">🇺🇿 Uzbek (Uzbekistan)</option>
+<option value="sq-AL">🇦🇱 Albanian (Albania)</option>
+<option value="mk-MK">🇲🇰 Macedonian (North Macedonia)</option>
+<option value="bs-BA">🇧🇦 Bosnian (Bosnia)</option>
+<option value="sr-RS">🇷🇸 Serbian (Serbia)</option>
+<option value="sl-SI">🇸🇮 Slovenian (Slovenia)</option>
+<option value="mt-MT">🇲🇹 Maltese (Malta)</option>
+<option value="cy-GB">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh (Wales)</option>
+<option value="ga-IE">🇮🇪 Irish (Ireland)</option>
+<option value="ca-ES">🇪🇸 Catalan (Spain)</option>
+<option value="is-IS">🇮🇸 Icelandic (Iceland)</option>
+<option value="mn-MN">🇲🇳 Mongolian (Mongolia)</option>
+<option value="km-KH">🇰🇭 Khmer (Cambodia)</option>
+<option value="lo-LA">🇱🇦 Lao (Laos)</option>
+<option value="my-MM">🇲🇲 Burmese (Myanmar)</option>
+<option value="ps-AF">🇦🇫 Pashto (Afghanistan)</option>
+<option value="yo-NG">🇳🇬 Yoruba (Nigeria)</option>
+<option value="ha-NG">🇳🇬 Hausa (Nigeria)</option>
+<option value="so-SO">🇸🇴 Somali (Somalia)</option>
+<option value="jv-ID">🇮🇩 Javanese (Indonesia)</option>
+<option value="gl-ES">🇪🇸 Galician (Spain)</option>
+<option value="eu-ES">🇪🇸 Basque (Spain)</option>
+<option value="hy-AM">🇦🇲 Armenian (Armenia)</option>
+<option value="tk-TM">🇹🇲 Turkmen (Turkmenistan)</option>
+<option value="ky-KG">🇰🇬 Kyrgyz (Kyrgyzstan)</option>
+<option value="nl-BE">🇧🇪 Dutch (Belgium)</option>
+<option value="fr-BE">🇧🇪 French (Belgium)</option>
+<option value="de-CH">🇨🇭 German (Switzerland)</option>
+<option value="fr-CH">🇨🇭 French (Switzerland)</option>
+<option value="ar-AE">🇦🇪 Arabic (UAE)</option>
+<option value="ar-MA">🇲🇦 Arabic (Morocco)</option>
+          </select>
+        </div>
+        <div>
+          <span class="slbl"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice</span>
+          <select id="sel-voice">
+            <optgroup label="General Voices">
+              <option value="female-1">👩 Female 1 – Natural</option>
+              <option value="female-2">👩‍🦰 Female 2 – Soft</option>
+              <option value="female-3">👩‍💼 Female 3 – Pro</option>
+              <option value="male-1">👨 Male 1 – Deep</option>
+              <option value="male-2">👨‍🦰 Male 2 – Friendly</option>
+              <option value="male-3">👨‍💼 Male 3 – Authority</option>
+              <option value="young">🧒 Young Voice</option>
+              <option value="old">🧓 Mature Voice</option>
+            </optgroup>
+            <optgroup label="Kids (1-15)">
+              <option value="kid-f1">👧 Lily (Age 7) – Kid Female</option>
+              <option value="kid-f2">👧 Chloe (Age 10) – Kid Female</option>
+              <option value="kid-m1">👦 Mason (Age 8) – Kid Male</option>
+              <option value="kid-m2">👦 Logan (Age 12) – Kid Male</option>
+            </optgroup>
+            <optgroup label="Teens (15-20)">
+              <option value="teen-f1">👩 Sophia (Age 17) – Teen Female</option>
+              <option value="teen-f2">👩 Emma (Age 19) – Teen Female</option>
+              <option value="teen-m1">👨 Ethan (Age 16) – Teen Male</option>
+              <option value="teen-m2">👨 Noah (Age 18) – Teen Male</option>
+            </optgroup>
+            <optgroup label="Young Adults (20-40)">
+              <option value="young-f1">👩‍🦰 Aria (Age 25) – Female Natural</option>
+              <option value="young-f2">👩 Jenny (Age 28) – Female Friendly</option>
+              <option value="young-f3">👩‍💼 Sara (Age 32) – Female Pro</option>
+              <option value="young-m1">👨‍🦰 Guy (Age 26) – Male Natural</option>
+              <option value="young-m2">👨‍💼 Roger (Age 30) – Male Pro</option>
+              <option value="young-m3">👨 Ryan (Age 34) – Male Deep</option>
+            </optgroup>
+            <optgroup label="Middle-Aged (40-60)">
+              <option value="mid-f1">👩‍🦳 Michelle (Age 45) – Female Exec</option>
+              <option value="mid-f2">👩‍🦳 Helen (Age 52) – Female Warm</option>
+              <option value="mid-m1">👨‍🦳 Steffan (Age 48) – Male Presenter</option>
+              <option value="mid-m2">👨‍🦳 Brian (Age 55) – Male Narrator</option>
+            </optgroup>
+            <optgroup label="Seniors (60-90)">
+              <option value="senior-f1">👵 Abigail (Age 68) – Senior Female</option>
+              <option value="senior-f2">👵 Esther (Age 75) – Senior Female</option>
+              <option value="senior-m1">👴 Arthur (Age 70) – Senior Male</option>
+              <option value="senior-m2">👴 Thomas (Age 82) – Senior Male</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="controls-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;">
+        <div class="ctrl">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
+            <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-gauge-high" style="color:var(--ok);margin-right:4px;"></i>Speed</span>
+            <span id="badge-rate" style="font-size:.76rem;background:rgba(61,214,140,0.1);color:var(--ok);padding:2px 8px;border-radius:20px;font-family:'Space Mono',monospace;">1.0x</span>
+          </div>
+          <input type="range" id="sl-rate" min="0.5" max="2.0" step="0.1" value="1.0" oninput="document.getElementById('badge-rate').textContent=parseFloat(this.value).toFixed(1)+'x'">
+          <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🐢</span><span>⚡</span></div>
+        </div>
+        <div class="ctrl">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
+            <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-music" style="color:var(--a2);margin-right:4px;"></i>Pitch</span>
+            <span id="badge-pitch" style="font-size:.76rem;background:rgba(124,95,230,0.1);color:var(--a2);padding:2px 8px;border-radius:20px;font-family:'Space Mono',monospace;">+0</span>
+          </div>
+          <input type="range" id="sl-pitch" min="-10" max="10" step="1" value="0" oninput="document.getElementById('badge-pitch').textContent=(this.value>=0?'+':'')+this.value">
+          <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔽</span><span>🔼</span></div>
+        </div>
+        <div class="ctrl">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
+            <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-volume-high" style="color:var(--a1);margin-right:4px;"></i>Volume</span>
+            <span id="badge-vol" style="font-size:.76rem;background:rgba(59,158,255,0.1);color:var(--a1);padding:2px 8px;border-radius:20px;font-family:'Space Mono',monospace;">100%</span>
+          </div>
+          <input type="range" id="sl-vol" min="0" max="100" step="5" value="100" oninput="document.getElementById('badge-vol').textContent=this.value+'%'">
+          <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔇</span><span>🔊</span></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:24px;">
+        <div>
+          <span class="slbl"><i class="fa-solid fa-palette" style="color:#f472b6;margin-right:5px;"></i>Speaking Style</span>
+          <select id="sel-style">
+            <option value="general">🗣️ General</option>
+            <option value="cheerful">😊 Cheerful</option>
+            <option value="newscast-formal">📜 Newscast Formal</option>
+            <option value="narration-professional">🎬 Narration Pro</option>
+            <option value="friendly">🤝 Friendly</option>
+            <option value="poetry-reading">📖 Poetry</option>
+            <option value="documentary-narration">🎥 Documentary</option>
+            <option value="customerservice">📞 Customer Service</option>
+          </select>
+        </div>
+        <div>
+          <span class="slbl"><i class="fa-solid fa-file-audio" style="color:#fb923c;margin-right:5px;"></i>Format</span>
+          <select id="sel-fmt">
+            <option value="mp3">MP3</option>
+            <option value="wav">WAV (Studio)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="gen-btn" class="btn-primary" onclick="doGenerate()">
+        <span id="gen-lbl"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Czech Voice</span>
+      </button>
+
+      <div id="result-area" class="hidden">
+        <div style="background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <i class="fa-solid fa-square-check" style="color:var(--ok);font-size:1.25rem;"></i>
+              <div>
+                <div style="font-weight:700;color:var(--ok);font-size:.9rem;font-family:'Syne',sans-serif;">Audio Ready!</div>
+                <div id="gen-info" style="font-size:.74rem;color:var(--muted);margin-top:1px;">Neural TTS · Czech</div>
+              </div>
+            </div>
+            <div id="custom-player-badge" class="badge-pill" style="margin:0;font-size:.7rem;">Natural</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:12px;padding:10px 14px;border:1px solid var(--border);">
+            <button id="play-pause-btn" onclick="togglePlayPause()" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 10px rgba(59,158,255,0.25);transition:transform .15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='none'">
+              <i class="fa-solid fa-play" id="play-pause-icon"></i>
+            </button>
+            <span id="player-time-current" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;">0:00</span>
+            <div id="player-timeline" onclick="seekAudio(event)" style="flex:1;height:32px;position:relative;cursor:pointer;display:flex;align-items:center;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+              <div id="player-progress" style="width:0%;height:100%;background:linear-gradient(90deg,rgba(59,158,255,0.15),rgba(124,95,230,0.15));border-right:2px solid var(--a3);transition:width 0.15s linear;"></div>
+            </div>
+            <span id="player-time-duration" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;text-align:right;">0:00</span>
+          </div>
+        </div>
+        <audio id="player" style="display:none;"></audio>
+        <div style="display:flex;gap:10px;margin-bottom:10px;">
+          <button onclick="doDownload('mp3')" style="flex:1;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.28);color:var(--ok);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;"><i class="fa-solid fa-download" style="margin-right:6px;"></i>MP3</button>
+          <button onclick="doDownload('wav')" style="flex:1;background:rgba(124,95,230,0.12);border:1px solid rgba(124,95,230,0.28);color:var(--a2);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;"><i class="fa-solid fa-download" style="margin-right:6px;"></i>WAV</button>
+          <button onclick="copyAudioLink()" style="flex:1;background:rgba(59,158,255,0.12);border:1px solid rgba(59,158,255,0.28);color:var(--a1);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;"><i class="fa-solid fa-link" style="margin-right:6px;"></i>Copy</button>
+        </div>
+        <button onclick="doGenerate()" style="width:100%;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:11px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;font-size:.88rem;">
+          <i class="fa-solid fa-rotate-right" style="margin-right:6px;"></i>Regenerate
+        </button>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px;">
-      <div>
-        <span class="slbl"><i class="fa-solid fa-language" style="margin-right:5px;color:var(--a1);"></i>Language</span>
-        <select id="sel-lang" onchange="syncLang(this.value)">
-          <option value="cs-CZ" selected>🇨🇿 Czech (Czech Republic)</option>
-        </select>
+    <!-- MULTI VOICE PANEL -->
+    <div id="panel-multi" class="hidden">
+      <div style="background:rgba(59,158,255,0.05);border:1px solid rgba(59,158,255,0.15);border-radius:14px;padding:16px;margin-bottom:18px;font-size:.85rem;color:var(--txt2);">
+        <i class="fa-solid fa-circle-info" style="color:var(--a1);margin-right:6px;"></i>
+        <strong>Multi-Voice Dialogue:</strong> Write lines starting with <code style="background:var(--panel);padding:2px 6px;border-radius:5px;">Speaker1:</code> and <code style="background:var(--panel);padding:2px 6px;border-radius:5px;">Speaker2:</code>. Each line will use a different voice.
       </div>
-      <div>
-        <span class="slbl"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice</span>
-        <select id="sel-voice">
-          <optgroup label="General Voices">
+      <div style="margin-bottom:14px;">
+        <span class="slbl">Dialogue Script</span>
+        <textarea id="multi-txt" rows="8" placeholder="Speaker1: Hello! Welcome to VoicePro.&#10;Speaker2: Thank you! This is amazing.&#10;Speaker1: You can generate natural audio in Czech!&#10;Speaker2: And download it as MP3 or WAV for free!"></textarea>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+        <div>
+          <span class="slbl">Speaker 1 Voice</span>
+          <select id="multi-voice1">
             <option value="female-1">👩 Female 1 – Natural</option>
-            <option value="female-2">👩‍🦰 Female 2 – Soft</option>
-            <option value="female-3">👩‍💼 Female 3 – Pro</option>
+            <option value="young-f1">👩‍🦰 Aria – Female Young</option>
+            <option value="mid-f1">👩‍🦳 Michelle – Female Exec</option>
             <option value="male-1">👨 Male 1 – Deep</option>
-            <option value="male-2">👨‍🦰 Male 2 – Friendly</option>
-            <option value="male-3">👨‍💼 Male 3 – Authority</option>
-            <option value="young">🧒 Young Voice</option>
-            <option value="old">🧓 Mature Voice</option>
-          </optgroup>
-          <optgroup label="Kids (1-15)">
-            <option value="kid-f1">👧 Lily (Age 7) – Kid Female</option>
-            <option value="kid-f2">👧 Chloe (Age 10) – Kid Female</option>
-            <option value="kid-m1">👦 Mason (Age 8) – Kid Male</option>
-            <option value="kid-m2">👦 Logan (Age 12) – Kid Male</option>
-          </optgroup>
-          <optgroup label="Teens (15-20)">
-            <option value="teen-f1">👩 Sophia (Age 17) – Teen Female</option>
-            <option value="teen-f2">👩 Emma (Age 19) – Teen Female</option>
-            <option value="teen-m1">👨 Ethan (Age 16) – Teen Male</option>
-            <option value="teen-m2">👨 Noah (Age 18) – Teen Male</option>
-          </optgroup>
-          <optgroup label="Young Adults (20-40)">
-            <option value="young-f1">👩‍🦰 Aria (Age 25) – Female Natural</option>
-            <option value="young-f2">👩 Jenny (Age 28) – Female Friendly</option>
-            <option value="young-f3">👩‍💼 Sara (Age 32) – Female Pro</option>
-            <option value="young-m1">👨‍🦰 Guy (Age 26) – Male Natural</option>
-            <option value="young-m2">👨‍💼 Roger (Age 30) – Male Pro</option>
-            <option value="young-m3">👨 Ryan (Age 34) – Male Deep</option>
-          </optgroup>
-          <optgroup label="Middle-Aged (40-60)">
-            <option value="mid-f1">👩‍🦳 Michelle (Age 45) – Female Exec</option>
-            <option value="mid-f2">👩‍🦳 Helen (Age 52) – Female Warm</option>
-            <option value="mid-m1">👨‍🦳 Steffan (Age 48) – Male Presenter</option>
-            <option value="mid-m2">👨‍🦳 Brian (Age 55) – Male Narrator</option>
-          </optgroup>
-          <optgroup label="Seniors (60-90)">
-            <option value="senior-f1">👵 Abigail (Age 68) – Senior Female</option>
-            <option value="senior-f2">👵 Esther (Age 75) – Senior Female</option>
-            <option value="senior-m1">👴 Arthur (Age 70) – Senior Male</option>
-            <option value="senior-m2">👴 Thomas (Age 82) – Senior Male</option>
-          </optgroup>
-        </select>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;">
-      <div class="ctrl">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
-          <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-gauge-high" style="color:var(--ok);margin-right:4px;"></i>Speed</span>
-          <span id="badge-rate" class="mono" style="font-size:.76rem;background:rgba(61,214,140,0.1);color:var(--ok);padding:2px 8px;border-radius:20px;">1.0x</span>
+            <option value="young-m1">👨‍🦰 Guy – Male Natural</option>
+          </select>
         </div>
-        <input type="range" id="sl-rate" min="0.5" max="2.0" step="0.1" value="1.0" oninput="document.getElementById('badge-rate').textContent=parseFloat(this.value).toFixed(1)+'x'">
-        <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🐢</span><span>⚡</span></div>
-      </div>
-      <div class="ctrl">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
-          <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-music" style="color:var(--a2);margin-right:4px;"></i>Pitch</span>
-          <span id="badge-pitch" class="mono" style="font-size:.76rem;background:rgba(124,95,230,0.1);color:var(--a2);padding:2px 8px;border-radius:20px;">+0</span>
-        </div>
-        <input type="range" id="sl-pitch" min="-10" max="10" step="1" value="0" oninput="document.getElementById('badge-pitch').textContent=(this.value>=0?'+':'')+this.value">
-        <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔽</span><span>🔼</span></div>
-      </div>
-      <div class="ctrl">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
-          <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-volume-high" style="color:var(--a1);margin-right:4px;"></i>Volume</span>
-          <span id="badge-vol" class="mono" style="font-size:.76rem;background:rgba(59,158,255,0.1);color:var(--a1);padding:2px 8px;border-radius:20px;">100%</span>
-        </div>
-        <input type="range" id="sl-vol" min="0" max="100" step="5" value="100" oninput="document.getElementById('badge-vol').textContent=this.value+'%'">
-        <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔇</span><span>🔊</span></div>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:24px;">
-      <div>
-        <span class="slbl"><i class="fa-solid fa-palette" style="color:#f472b6;margin-right:5px;"></i>Speaking Style</span>
-        <select id="sel-style">
-          <option value="general">🗣️ General</option>
-          <option value="cheerful">😊 Cheerful</option>
-          <option value="newscast-formal">📜 Newscast Formal</option>
-          <option value="narration-professional">🎬 Narration Pro</option>
-          <option value="friendly">🤝 Friendly</option>
-          <option value="poetry-reading">📖 Poetry</option>
-          <option value="documentary-narration">🎥 Documentary</option>
-          <option value="customerservice">📞 Customer Service</option>
-        </select>
-      </div>
-      <div>
-        <span class="slbl"><i class="fa-solid fa-file-audio" style="color:#fb923c;margin-right:5px;"></i>Format</span>
-        <select id="sel-fmt">
-          <option value="mp3">MP3</option>
-          <option value="wav">WAV (Studio)</option>
-        </select>
-      </div>
-    </div>
-
-    <button id="gen-btn" class="btn-primary" onclick="doGenerate()">
-      <span id="gen-lbl"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Czech Voice</span>
-    </button>
-
-    <div id="result-area" class="hidden">
-      <!-- Custom Player UI -->
-      <div style="background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px;">
-        <!-- Top row -->
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <i class="fa-solid fa-square-check" style="color:var(--ok);font-size:1.25rem;"></i>
-            <div>
-              <div style="font-weight:700;color:var(--ok);font-size:.9rem;font-family:'Syne',sans-serif;">Audio Ready!</div>
-              <div id="custom-player-meta" style="font-size:.74rem;color:var(--muted);margin-top:1px;">Edge TTS · en-US-AriaNeural · English (US)</div>
-            </div>
-          </div>
-          <div id="custom-player-badge" class="badge-pill" style="margin:0;font-size:.7rem;background:rgba(59,158,255,0.1);color:var(--a1);border:1px solid rgba(59,158,255,0.15);text-transform:capitalize;">👩 Natural Female</div>
-        </div>
-        <!-- Waveform Player control bar -->
-        <div style="display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:12px;padding:10px 14px;border:1px solid var(--border);">
-          <button id="play-pause-btn" onclick="togglePlayPause()" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 10px rgba(59,158,255,0.25);transition:transform .15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='none'">
-            <i class="fa-solid fa-play" id="play-pause-icon"></i>
-          </button>
-          <span id="player-time-current" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;">0:00</span>
-          <!-- Seekable waveform timeline track -->
-          <div id="player-timeline" onclick="seekAudio(event)" style="flex:1;height:32px;position:relative;cursor:pointer;display:flex;align-items:center;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);">
-            <!-- Waveform bars -->
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 6px;opacity:0.35;pointer-events:none;">
-              <div style="width:2px;height:8px;background:var(--a1);border-radius:1px;"></div>
-              <div style="width:2px;height:14px;background:var(--a1);border-radius:1px;"></div>
-              <div style="width:2px;height:10px;background:var(--a1);border-radius:1px;"></div>
-              <div style="width:2px;height:18px;background:var(--a1);border-radius:1px;"></div>
-              <div style="width:2px;height:12px;background:var(--a1);border-radius:1px;"></div>
-              <div style="width:2px;height:16px;background:var(--a2);border-radius:1px;"></div>
-              <div style="width:2px;height:8px;background:var(--a2);border-radius:1px;"></div>
-              <div style="width:2px;height:18px;background:var(--a2);border-radius:1px;"></div>
-              <div style="width:2px;height:14px;background:var(--a3);border-radius:1px;"></div>
-              <div style="width:2px;height:10px;background:var(--a3);border-radius:1px;"></div>
-              <div style="width:2px;height:16px;background:var(--a3);border-radius:1px;"></div>
-              <div style="width:2px;height:8px;background:var(--a3);border-radius:1px;"></div>
-            </div>
-            <div id="player-progress" style="width:0%;height:100%;background:linear-gradient(90deg, rgba(59,158,255,0.15) 0%, rgba(124,95,230,0.15) 100%);border-right:2px solid var(--a3);transition:width 0.15s linear;"></div>
-          </div>
-          <span id="player-time-duration" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;text-align:right;">0:00</span>
+        <div>
+          <span class="slbl">Speaker 2 Voice</span>
+          <select id="multi-voice2">
+            <option value="male-1">👨 Male 1 – Deep</option>
+            <option value="young-m1">👨‍🦰 Guy – Male Natural</option>
+            <option value="female-1">👩 Female 1 – Natural</option>
+            <option value="young-f1">👩‍🦰 Aria – Female Young</option>
+            <option value="mid-m1">👨‍🦳 Steffan – Male Presenter</option>
+          </select>
         </div>
       </div>
-      <audio id="player" style="display:none;"></audio>
-      <div style="display:flex;gap:10px;margin-bottom:10px;">
-        <button onclick="doDownload('mp3')" style="flex:1;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.28);color:var(--ok);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;">
-          <i class="fa-solid fa-download" style="margin-right:6px;"></i>MP3
-        </button>
-        <button onclick="doDownload('wav')" style="flex:1;background:rgba(124,95,230,0.12);border:1px solid rgba(124,95,230,0.28);color:var(--a2);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;">
-          <i class="fa-solid fa-download" style="margin-right:6px;"></i>WAV
-        </button>
-        <button onclick="copyAudioLink()" style="flex:1;background:rgba(59,158,255,0.12);border:1px solid rgba(59,158,255,0.28);color:var(--a1);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.85rem;">
-          <i class="fa-solid fa-link" style="margin-right:6px;"></i>Copy Link
-        </button>
+      <div style="margin-bottom:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <span class="slbl">Language</span>
+          <select id="multi-lang" onchange="redirectToLang(this.value)">
+            <option value="hi-IN">🇮🇳 Hindi (India)</option>
+<option value="mr-IN">🇮🇳 Marathi (India)</option>
+<option value="gu-IN">🇮🇳 Gujarati (India)</option>
+<option value="ta-IN">🇮🇳 Tamil (India)</option>
+<option value="te-IN">🇮🇳 Telugu (India)</option>
+<option value="kn-IN">🇮🇳 Kannada (India)</option>
+<option value="ml-IN">🇮🇳 Malayalam (India)</option>
+<option value="bn-IN">🇮🇳 Bengali (India)</option>
+<option value="pa-IN">🇮🇳 Punjabi (India)</option>
+<option value="or-IN">🇮🇳 Odia (India)</option>
+<option value="bn-BD">🇧🇩 Bengali (Bangladesh)</option>
+<option value="ur-PK">🇵🇰 Urdu (Pakistan)</option>
+<option value="ne-NP">🇳🇵 Nepali (Nepal)</option>
+<option value="si-LK">🇱🇰 Sinhala (Sri Lanka)</option>
+<option value="en-US">🇺🇸 English (United States)</option>
+<option value="en-GB">🇬🇧 English (United Kingdom)</option>
+<option value="en-AU">🇦🇺 English (Australia)</option>
+<option value="en-IN">🇮🇳 English (India)</option>
+<option value="en-CA">🇨🇦 English (Canada)</option>
+<option value="en-ZA">🇿🇦 English (South Africa)</option>
+<option value="en-NG">🇳🇬 English (Nigeria)</option>
+<option value="es-ES">🇪🇸 Spanish (Spain)</option>
+<option value="es-MX">🇲🇽 Spanish (Mexico)</option>
+<option value="es-AR">🇦🇷 Spanish (Argentina)</option>
+<option value="es-CO">🇨🇴 Spanish (Colombia)</option>
+<option value="es-US">🇺🇸 Spanish (United States)</option>
+<option value="fr-FR">🇫🇷 French (France)</option>
+<option value="fr-CA">🇨🇦 French (Canada)</option>
+<option value="de-DE">🇩🇪 German (Germany)</option>
+<option value="de-AT">🇦🇹 German (Austria)</option>
+<option value="it-IT">🇮🇹 Italian (Italy)</option>
+<option value="pt-BR">🇧🇷 Portuguese (Brazil)</option>
+<option value="pt-PT">🇵🇹 Portuguese (Portugal)</option>
+<option value="nl-NL">🇳🇱 Dutch (Netherlands)</option>
+<option value="sv-SE">🇸🇪 Swedish (Sweden)</option>
+<option value="nb-NO">🇳🇴 Norwegian (Norway)</option>
+<option value="da-DK">🇩🇰 Danish (Denmark)</option>
+<option value="fi-FI">🇫🇮 Finnish (Finland)</option>
+<option value="pl-PL">🇵🇱 Polish (Poland)</option>
+<option value="cs-CZ" selected>🇨🇿 Czech (Czech Republic)</option>
+<option value="sk-SK">🇸🇰 Slovak (Slovakia)</option>
+<option value="hu-HU">🇭🇺 Hungarian (Hungary)</option>
+<option value="ro-RO">🇷🇴 Romanian (Romania)</option>
+<option value="bg-BG">🇧🇬 Bulgarian (Bulgaria)</option>
+<option value="hr-HR">🇭🇷 Croatian (Croatia)</option>
+<option value="uk-UA">🇺🇦 Ukrainian (Ukraine)</option>
+<option value="ru-RU">🇷🇺 Russian (Russia)</option>
+<option value="el-GR">🇬🇷 Greek (Greece)</option>
+<option value="tr-TR">🇹🇷 Turkish (Turkey)</option>
+<option value="ja-JP">🇯🇵 Japanese (Japan)</option>
+<option value="zh-CN">🇨🇳 Chinese (China)</option>
+<option value="zh-TW">🇹🇼 Chinese (Taiwan)</option>
+<option value="zh-HK">🇭🇰 Cantonese (Hong Kong)</option>
+<option value="ko-KR">🇰🇷 Korean (South Korea)</option>
+<option value="vi-VN">🇻🇳 Vietnamese (Vietnam)</option>
+<option value="th-TH">🇹🇭 Thai (Thailand)</option>
+<option value="id-ID">🇮🇩 Indonesian (Indonesia)</option>
+<option value="ms-MY">🇲🇾 Malay (Malaysia)</option>
+<option value="fil-PH">🇵🇭 Filipino (Philippines)</option>
+<option value="ar-SA">🇸🇦 Arabic (Saudi Arabia)</option>
+<option value="ar-EG">🇪🇬 Arabic (Egypt)</option>
+<option value="fa-IR">🇮🇷 Persian (Iran)</option>
+<option value="he-IL">🇮🇱 Hebrew (Israel)</option>
+<option value="ka-GE">🇬🇪 Georgian (Georgia)</option>
+<option value="sw-KE">🇰🇪 Swahili (Kenya)</option>
+<option value="am-ET">🇪🇹 Amharic (Ethiopia)</option>
+<option value="zu-ZA">🇿🇦 Zulu (South Africa)</option>
+<option value="af-ZA">🇿🇦 Afrikaans (South Africa)</option>
+<option value="lv-LV">🇱🇻 Latvian (Latvia)</option>
+<option value="lt-LT">🇱🇹 Lithuanian (Lithuania)</option>
+<option value="et-EE">🇪🇪 Estonian (Estonia)</option>
+<option value="az-AZ">🇦🇿 Azerbaijani (Azerbaijan)</option>
+<option value="kk-KZ">🇰🇿 Kazakh (Kazakhstan)</option>
+<option value="uz-UZ">🇺🇿 Uzbek (Uzbekistan)</option>
+<option value="sq-AL">🇦🇱 Albanian (Albania)</option>
+<option value="mk-MK">🇲🇰 Macedonian (North Macedonia)</option>
+<option value="bs-BA">🇧🇦 Bosnian (Bosnia)</option>
+<option value="sr-RS">🇷🇸 Serbian (Serbia)</option>
+<option value="sl-SI">🇸🇮 Slovenian (Slovenia)</option>
+<option value="mt-MT">🇲🇹 Maltese (Malta)</option>
+<option value="cy-GB">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh (Wales)</option>
+<option value="ga-IE">🇮🇪 Irish (Ireland)</option>
+<option value="ca-ES">🇪🇸 Catalan (Spain)</option>
+<option value="is-IS">🇮🇸 Icelandic (Iceland)</option>
+<option value="mn-MN">🇲🇳 Mongolian (Mongolia)</option>
+<option value="km-KH">🇰🇭 Khmer (Cambodia)</option>
+<option value="lo-LA">🇱🇦 Lao (Laos)</option>
+<option value="my-MM">🇲🇲 Burmese (Myanmar)</option>
+<option value="ps-AF">🇦🇫 Pashto (Afghanistan)</option>
+<option value="yo-NG">🇳🇬 Yoruba (Nigeria)</option>
+<option value="ha-NG">🇳🇬 Hausa (Nigeria)</option>
+<option value="so-SO">🇸🇴 Somali (Somalia)</option>
+<option value="jv-ID">🇮🇩 Javanese (Indonesia)</option>
+<option value="gl-ES">🇪🇸 Galician (Spain)</option>
+<option value="eu-ES">🇪🇸 Basque (Spain)</option>
+<option value="hy-AM">🇦🇲 Armenian (Armenia)</option>
+<option value="tk-TM">🇹🇲 Turkmen (Turkmenistan)</option>
+<option value="ky-KG">🇰🇬 Kyrgyz (Kyrgyzstan)</option>
+<option value="nl-BE">🇧🇪 Dutch (Belgium)</option>
+<option value="fr-BE">🇧🇪 French (Belgium)</option>
+<option value="de-CH">🇨🇭 German (Switzerland)</option>
+<option value="fr-CH">🇨🇭 French (Switzerland)</option>
+<option value="ar-AE">🇦🇪 Arabic (UAE)</option>
+<option value="ar-MA">🇲🇦 Arabic (Morocco)</option>
+          </select>
+        </div>
+        <div>
+          <span class="slbl">Format</span>
+          <select id="multi-fmt">
+            <option value="mp3">MP3</option>
+            <option value="wav">WAV</option>
+          </select>
+        </div>
       </div>
-      <button onclick="doGenerate()" style="width:100%;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:11px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;font-size:.88rem;">
-        <i class="fa-solid fa-rotate-right" style="margin-right:6px;"></i>Regenerate
+      <button id="multi-gen-btn" class="btn-primary" onclick="doMultiGenerate()">
+        <span id="multi-gen-lbl"><i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue</span>
       </button>
+      <div id="multi-result" class="hidden" style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px;">
+        <div style="font-weight:700;color:var(--ok);margin-bottom:12px;font-family:'Syne',sans-serif;"><i class="fa-solid fa-square-check" style="margin-right:6px;"></i>Dialogue Audio Ready!</div>
+        <div id="multi-lines-output"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -630,66 +905,34 @@
 
 <!-- USE CASES -->
 <section style="max-width:1100px;margin:0 auto;padding:0 18px 56px;">
-  <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:8px;text-align:center;">
-    Who Uses <span class="tg">Czech TTS</span>?
-  </h2>
+  <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:8px;text-align:center;">Who Uses <span class="tg">Czech TTS</span>?</h2>
   <p style="text-align:center;color:var(--muted);font-size:.92rem;margin-bottom:28px;">Popular use cases for Czech voice generation in Czech Republic</p>
-  <div style="text-align:center;">
-    <span class="use-tag">✓ YouTube voiceovers in Czech</span>
+  <div style="text-align:center;"><span class="use-tag">✓ YouTube voiceovers in Czech</span>
 <span class="use-tag">✓ E-learning audio for Czech Republic students</span>
 <span class="use-tag">✓ Podcast narration in Czech</span>
 <span class="use-tag">✓ IVR / phone system voices in Czech</span>
 <span class="use-tag">✓ Accessibility tools for Czech Republic</span>
 <span class="use-tag">✓ Social media reels & short videos</span>
 <span class="use-tag">✓ Business presentations & demos</span>
-<span class="use-tag">✓ Audiobook creation in Czech</span>
-  </div>
+<span class="use-tag">✓ Audiobook creation in Czech</span></div>
 </section>
 
 <!-- FEATURES -->
 <section style="max-width:1100px;margin:0 auto;padding:0 18px 56px;">
-  <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:28px;text-align:center;">
-    Why VoicePro for <span class="tg">Czech</span>?
-  </h2>
+  <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:28px;text-align:center;">Why VoicePro for <span class="tg">Czech</span>?</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
-    <div class="feature-card">
-      <div style="font-size:1.9rem;margin-bottom:14px;">🧠</div>
-      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Czech-Native Neural Voices</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Voices trained specifically on Czech (Czech Republic) native speaker data. Correct pronunciation, natural intonation, and authentic regional accent.</p>
-    </div>
-    <div class="feature-card">
-      <div style="font-size:1.9rem;margin-bottom:14px;">⚡</div>
-      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Instant MP3 / WAV Download</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">No queues, no waiting. Generate up to 5,000 characters (~5 min of audio) in seconds. Download MP3 for web or WAV for studio quality.</p>
-    </div>
-    <div class="feature-card">
-      <div style="font-size:1.9rem;margin-bottom:14px;">🎛️</div>
-      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Full Voice Control</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Adjust speed (0.5x–2x), pitch (−10 to +10), volume, and speaking style. 100+ voice characters and 16 styles — fully customizable.</p>
-    </div>
-    <div class="feature-card">
-      <div style="font-size:1.9rem;margin-bottom:14px;">🔒</div>
-      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">No Login, No Tracking</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">No account required. Your Czech text is processed on-demand and never stored, sold, or shared. 100% private.</p>
-    </div>
-    <div class="feature-card">
-      <div style="font-size:1.9rem;margin-bottom:14px;">🆓</div>
-      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Commercial Use Included</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Generated Czech audio is yours. Use it in YouTube videos, courses, podcasts, IVR systems, or any commercial project — royalty-free.</p>
-    </div>
-    <div class="feature-card">
-      <div style="font-size:1.9rem;margin-bottom:14px;">📱</div>
-      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Works on Any Device</h3>
-      <p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Fully responsive on mobile, tablet, and desktop. No app download needed — works directly in your browser on iOS, Android, and PC.</p>
-    </div>
+    <div class="feature-card"><div style="font-size:1.9rem;margin-bottom:14px;">🧠</div><h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Czech-Native Neural Voices</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Voices trained specifically on Czech (Czech Republic) native speaker data. Correct pronunciation, natural intonation, and authentic regional accent.</p></div>
+    <div class="feature-card"><div style="font-size:1.9rem;margin-bottom:14px;">⚡</div><h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Instant MP3 / WAV Download</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">No queues, no waiting. Generate up to 5,000 characters in seconds. Download MP3 for web or WAV for studio quality.</p></div>
+    <div class="feature-card"><div style="font-size:1.9rem;margin-bottom:14px;">🎛️</div><h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Full Voice Control</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Adjust speed (0.5x–2x), pitch (−10 to +10), volume, and speaking style. 100+ voice characters — fully customizable.</p></div>
+    <div class="feature-card"><div style="font-size:1.9rem;margin-bottom:14px;">👥</div><h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Multi-Voice Dialogue</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Create Czech conversations with 2 different voices. Perfect for podcasts, YouTube videos, educational content, and audiobooks.</p></div>
+    <div class="feature-card"><div style="font-size:1.9rem;margin-bottom:14px;">🔒</div><h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">No Login, No Tracking</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">No account required. Your Czech text is processed on-demand and never stored, sold, or shared. 100% private.</p></div>
+    <div class="feature-card"><div style="font-size:1.9rem;margin-bottom:14px;">📱</div><h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">Works on Any Device</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Fully responsive on mobile, tablet, and desktop. No app download needed — works on iOS, Android, and PC.</p></div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section style="max-width:780px;margin:0 auto;padding:0 18px 64px;">
-  <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:8px;text-align:center;">
-    Frequently Asked <span class="tg">Questions</span>
-  </h2>
+  <h2 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:8px;text-align:center;">Frequently Asked <span class="tg">Questions</span></h2>
   <p style="text-align:center;color:var(--muted);font-size:.92rem;margin-bottom:28px;">About Czech Text to Speech</p>
   <div class="faq-item open" id="faq1">
   <div class="faq-q" onclick="toggleFaq('faq1')"><span>Is Czech Text to Speech free?</span><i class="fa-solid fa-chevron-down faq-chev"></i></div>
@@ -719,11 +962,8 @@
 
 <!-- RELATED LANGUAGES -->
 <section style="max-width:1100px;margin:0 auto;padding:0 18px 64px;">
-  <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:16px;text-align:center;">
-    Explore Other <span class="tg">Languages</span>
-  </h2>
-  <div style="text-align:center;max-width:800px;margin:0 auto;">
-    <a href="/tts/hindi-text-to-speech-india" class="lang-pill">🇮🇳 Hindi (India)</a>
+  <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:16px;text-align:center;">Explore Other <span class="tg">Languages</span></h2>
+  <div style="text-align:center;max-width:900px;margin:0 auto;"><a href="/tts/hindi-text-to-speech-india" class="lang-pill">🇮🇳 Hindi (India)</a>
 <a href="/tts/marathi-text-to-speech-india" class="lang-pill">🇮🇳 Marathi (India)</a>
 <a href="/tts/gujarati-text-to-speech-india" class="lang-pill">🇮🇳 Gujarati (India)</a>
 <a href="/tts/tamil-text-to-speech-india" class="lang-pill">🇮🇳 Tamil (India)</a>
@@ -742,8 +982,7 @@
 <a href="/tts/english-text-to-speech-australia" class="lang-pill">🇦🇺 English (Australia)</a>
 <a href="/tts/english-text-to-speech-india" class="lang-pill">🇮🇳 English (India)</a>
 <a href="/tts/english-text-to-speech-canada" class="lang-pill">🇨🇦 English (Canada)</a>
-<a href="/tts/english-text-to-speech-south-africa" class="lang-pill">🇿🇦 English (South Africa)</a>
-  </div>
+<a href="/tts/english-text-to-speech-south-africa" class="lang-pill">🇿🇦 English (South Africa)</a></div>
 </section>
 
 <!-- FOOTER -->
@@ -751,17 +990,16 @@
   <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--border);">
     <div>
       <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-        <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;">
-          <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.8rem;"></i>
-        </div>
+        <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.8rem;"></i></div>
         Voice<span style="color:var(--a1);">Pro</span>
       </div>
-      <p style="color:var(--muted);font-size:.875rem;line-height:1.75;margin-bottom:8px;">Free Czech Text-to-Speech. Neural AI voices, instant MP3 download. No login — ever.</p>
+      <p style="color:var(--muted);font-size:.875rem;line-height:1.75;">Free Czech Text-to-Speech. 104 languages, 100+ neural voices, instant MP3 download. No login — ever.</p>
     </div>
     <div>
       <p class="footer-heading">Navigation</p>
       <a href="/" class="footer-link">Home / Studio</a>
       <a href="/blog.html" class="footer-link">Blog</a>
+      <a href="/tts/" class="footer-link">All Languages</a>
       <a href="/about.html" class="footer-link">About Us</a>
       <a href="/contact.html" class="footer-link">Contact</a>
     </div>
@@ -790,22 +1028,40 @@
   const SAMPLE_TEXT = "Hello! VoicePro AI converts your Czech text to natural speech instantly.";
   let lastAudio = null, lastFile = null;
 
-  function loadSample() {
-    const t = document.getElementById('txt');
-    t.value = SAMPLE_TEXT;
-    onTxt(t);
-    showToast('Sample ' + LANG_NAME + ' text loaded!');
+  const LANG_SLUG_MAP = {"hi-IN": "hindi-text-to-speech-india", "mr-IN": "marathi-text-to-speech-india", "gu-IN": "gujarati-text-to-speech-india", "ta-IN": "tamil-text-to-speech-india", "te-IN": "telugu-text-to-speech-india", "kn-IN": "kannada-text-to-speech-india", "ml-IN": "malayalam-text-to-speech-india", "bn-IN": "bengali-text-to-speech-india", "pa-IN": "punjabi-text-to-speech-india", "or-IN": "odia-text-to-speech-india", "bn-BD": "bengali-text-to-speech-bangladesh", "ur-PK": "urdu-text-to-speech-pakistan", "ne-NP": "nepali-text-to-speech-nepal", "si-LK": "sinhala-text-to-speech-sri-lanka", "en-US": "english-text-to-speech-usa", "en-GB": "english-text-to-speech-uk", "en-AU": "english-text-to-speech-australia", "en-IN": "english-text-to-speech-india", "en-CA": "english-text-to-speech-canada", "en-ZA": "english-text-to-speech-south-africa", "en-NG": "english-text-to-speech-nigeria", "es-ES": "spanish-text-to-speech-spain", "es-MX": "spanish-text-to-speech-mexico", "es-AR": "spanish-text-to-speech-argentina", "es-CO": "spanish-text-to-speech-colombia", "es-US": "spanish-text-to-speech-usa", "fr-FR": "french-text-to-speech-france", "fr-CA": "french-text-to-speech-canada", "de-DE": "german-text-to-speech-germany", "de-AT": "german-text-to-speech-austria", "it-IT": "italian-text-to-speech-italy", "pt-BR": "portuguese-text-to-speech-brazil", "pt-PT": "portuguese-text-to-speech-portugal", "nl-NL": "dutch-text-to-speech-netherlands", "sv-SE": "swedish-text-to-speech-sweden", "nb-NO": "norwegian-text-to-speech-norway", "da-DK": "danish-text-to-speech-denmark", "fi-FI": "finnish-text-to-speech-finland", "pl-PL": "polish-text-to-speech-poland", "cs-CZ": "czech-text-to-speech-czech-republic", "sk-SK": "slovak-text-to-speech-slovakia", "hu-HU": "hungarian-text-to-speech-hungary", "ro-RO": "romanian-text-to-speech-romania", "bg-BG": "bulgarian-text-to-speech-bulgaria", "hr-HR": "croatian-text-to-speech-croatia", "uk-UA": "ukrainian-text-to-speech-ukraine", "ru-RU": "russian-text-to-speech-russia", "el-GR": "greek-text-to-speech-greece", "tr-TR": "turkish-text-to-speech-turkey", "ja-JP": "japanese-text-to-speech-japan", "zh-CN": "chinese-text-to-speech-china", "zh-TW": "chinese-text-to-speech-taiwan", "zh-HK": "chinese-text-to-speech-hong-kong", "ko-KR": "korean-text-to-speech-south-korea", "vi-VN": "vietnamese-text-to-speech-vietnam", "th-TH": "thai-text-to-speech-thailand", "id-ID": "indonesian-text-to-speech-indonesia", "ms-MY": "malay-text-to-speech-malaysia", "fil-PH": "filipino-text-to-speech-philippines", "ar-SA": "arabic-text-to-speech-saudi-arabia", "ar-EG": "arabic-text-to-speech-egypt", "fa-IR": "persian-text-to-speech-iran", "he-IL": "hebrew-text-to-speech-israel", "ka-GE": "georgian-text-to-speech-georgia", "sw-KE": "swahili-text-to-speech-kenya", "am-ET": "amharic-text-to-speech-ethiopia", "zu-ZA": "zulu-text-to-speech-south-africa", "af-ZA": "afrikaans-text-to-speech-south-africa", "lv-LV": "latvian-text-to-speech-latvia", "lt-LT": "lithuanian-text-to-speech-lithuania", "et-EE": "estonian-text-to-speech-estonia", "az-AZ": "azerbaijani-text-to-speech-azerbaijan", "kk-KZ": "kazakh-text-to-speech-kazakhstan", "uz-UZ": "uzbek-text-to-speech-uzbekistan", "sq-AL": "albanian-text-to-speech-albania", "mk-MK": "macedonian-text-to-speech-north-macedonia", "bs-BA": "bosnian-text-to-speech-bosnia", "sr-RS": "serbian-text-to-speech-serbia", "sl-SI": "slovenian-text-to-speech-slovenia", "mt-MT": "maltese-text-to-speech-malta", "cy-GB": "welsh-text-to-speech-uk", "ga-IE": "irish-text-to-speech-ireland", "ca-ES": "catalan-text-to-speech-spain", "is-IS": "icelandic-text-to-speech-iceland", "mn-MN": "mongolian-text-to-speech-mongolia", "km-KH": "khmer-text-to-speech-cambodia", "lo-LA": "lao-text-to-speech-laos", "my-MM": "burmese-text-to-speech-myanmar", "ps-AF": "pashto-text-to-speech-afghanistan", "yo-NG": "yoruba-text-to-speech-nigeria", "ha-NG": "hausa-text-to-speech-nigeria", "so-SO": "somali-text-to-speech-somalia", "jv-ID": "javanese-text-to-speech-indonesia", "gl-ES": "galician-text-to-speech-spain", "eu-ES": "basque-text-to-speech-spain", "hy-AM": "armenian-text-to-speech-armenia", "tk-TM": "turkmen-text-to-speech-turkmenistan", "ky-KG": "kyrgyz-text-to-speech-kyrgyzstan", "nl-BE": "dutch-text-to-speech-belgium", "fr-BE": "french-text-to-speech-belgium", "de-CH": "german-text-to-speech-switzerland", "fr-CH": "french-text-to-speech-switzerland", "ar-AE": "arabic-text-to-speech-uae", "ar-MA": "arabic-text-to-speech-morocco"};
+
+  function redirectToLang(code) {
+    if (code === LANG_CODE) return;
+    const s = LANG_SLUG_MAP[code];
+    if (s) window.location.href = '/tts/' + s;
   }
 
-  function syncLang(v) { /* lang already fixed for this page */ }
+  function switchTab(tab) {
+    const single = document.getElementById('panel-single');
+    const multi = document.getElementById('panel-multi');
+    const btnS = document.getElementById('tab-single');
+    const btnM = document.getElementById('tab-multi');
+    if (tab === 'single') {
+      single.classList.remove('hidden'); multi.classList.add('hidden');
+      btnS.classList.add('active'); btnM.classList.remove('active');
+    } else {
+      single.classList.add('hidden'); multi.classList.remove('hidden');
+      btnS.classList.remove('active'); btnM.classList.add('active');
+    }
+  }
+
+  function loadSample() {
+    const t = document.getElementById('txt');
+    t.value = SAMPLE_TEXT; onTxt(t);
+    showToast('Sample ' + LANG_NAME + ' text loaded!');
+  }
 
   function onTxt(el) {
     let c = el.value.length;
     if (c > 5000) { el.value = el.value.substring(0, 5000); c = 5000; }
     document.getElementById('cc').textContent = c;
     document.getElementById('te').textContent = Math.ceil(c / 15);
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
+    el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px';
   }
 
   function showToast(msg, type='ok') {
@@ -823,10 +1079,8 @@
     btn.disabled = true;
     lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Generating…</span>';
     document.getElementById('result-area').classList.add('hidden');
-
     const fd = new FormData();
-    fd.append('text', text);
-    fd.append('language', LANG_CODE);
+    fd.append('text', text); fd.append('language', LANG_CODE);
     fd.append('voice_type', document.getElementById('sel-voice').value);
     fd.append('rate', parseFloat(document.getElementById('sl-rate').value).toFixed(2));
     fd.append('pitch', document.getElementById('sl-pitch').value);
@@ -834,44 +1088,82 @@
     fd.append('style', document.getElementById('sel-style').value);
     fd.append('format', document.getElementById('sel-fmt').value);
     fd.append('response_type', 'base64');
-
     try {
       const r = await fetch('/generate', { method: 'POST', body: fd });
       const d = await r.json();
       if (d.success) {
         lastAudio = d.audio_data; lastFile = d.filename;
         document.getElementById('player').src = d.audio_data;
-        
-        // Update custom player UI
         const selVal = document.getElementById('sel-voice').value;
         const selOpt = document.querySelector('#sel-voice option[value="' + selVal + '"]');
         const voiceName = selOpt ? selOpt.textContent.replace(/^[^\s]+\s+/, '') : selVal;
-        
-        document.getElementById('custom-player-meta').textContent = d.method + ' · ' + voiceName + ' · ' + LANG_NAME;
-        
+        const genInfo = document.getElementById('gen-info');
+        if (genInfo) genInfo.textContent = (d.method || 'Neural TTS') + ' · ' + voiceName + ' · ' + LANG_NAME;
         let badge = 'Natural';
-        if (selVal.includes('kid')) badge = 'Kid';
-        else if (selVal.includes('teen')) badge = 'Teen';
-        else if (selVal.includes('young')) badge = 'Young Adult';
-        else if (selVal.includes('mid')) badge = 'Middle-Aged';
-        else if (selVal.includes('senior')) badge = 'Senior';
-        else if (selVal === 'old') badge = 'Mature';
-        else if (selVal === 'young') badge = 'Young';
-        
-        document.getElementById('custom-player-badge').textContent = badge;
-        
-        document.getElementById('gen-info').textContent = d.method + ' · ' + (d.voice_used || '') + ' · ' + LANG_CODE;
+        if (selVal.includes('kid')) badge = '👧 Kid';
+        else if (selVal.includes('teen')) badge = '🧑 Teen';
+        else if (selVal.includes('young-f') || selVal.includes('young-m')) badge = '⭐ Young Adult';
+        else if (selVal.includes('mid')) badge = '💼 Middle-Aged';
+        else if (selVal.includes('senior')) badge = '👴 Senior';
+        else if (selVal.includes('female')) badge = '👩 Female';
+        else if (selVal.includes('male')) badge = '👨 Male';
+        const badgeEl = document.getElementById('custom-player-badge');
+        if (badgeEl) badgeEl.textContent = badge;
         document.getElementById('result-area').classList.remove('hidden');
         showToast(LANG_NAME + ' audio ready! 🎉');
-      } else {
-        showToast(d.error || 'Generation failed', 'err');
-      }
-    } catch(e) {
-      showToast('Network error — please retry', 'err');
-    } finally {
+      } else { showToast(d.error || 'Generation failed', 'err'); }
+    } catch(e) { showToast('Network error — please retry', 'err'); }
+    finally {
       btn.disabled = false;
       lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Czech Voice';
     }
+  }
+
+  async function doMultiGenerate() {
+    const script = document.getElementById('multi-txt').value.trim();
+    if (!script) { showToast('Please enter dialogue script!', 'err'); return; }
+    const lines = script.split('\n').filter(l => l.trim());
+    const btn = document.getElementById('multi-gen-btn'), lbl = document.getElementById('multi-gen-lbl');
+    btn.disabled = true;
+    lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Generating dialogue…</span>';
+    const voice1 = document.getElementById('multi-voice1').value;
+    const voice2 = document.getElementById('multi-voice2').value;
+    const fmt = document.getElementById('multi-fmt').value;
+    const outputDiv = document.getElementById('multi-lines-output');
+    outputDiv.innerHTML = ''; document.getElementById('multi-result').classList.add('hidden');
+    let successCount = 0;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const isSpeaker2 = line.toLowerCase().startsWith('speaker2:');
+      const text = line.replace(/^speaker[12]:/i, '').trim();
+      if (!text) continue;
+      const voice = isSpeaker2 ? voice2 : voice1;
+      const speakerLabel = isSpeaker2 ? 'Speaker 2' : 'Speaker 1';
+      const color = isSpeaker2 ? 'var(--a2)' : 'var(--a1)';
+      try {
+        const fd = new FormData();
+        fd.append('text', text); fd.append('language', LANG_CODE);
+        fd.append('voice_type', voice); fd.append('rate', '1.0');
+        fd.append('pitch', '0'); fd.append('volume', '100');
+        fd.append('style', 'general'); fd.append('format', fmt);
+        fd.append('response_type', 'base64');
+        const r = await fetch('/generate', { method: 'POST', body: fd });
+        const d = await r.json();
+        if (d.success) {
+          successCount++;
+          const lineDiv = document.createElement('div');
+          lineDiv.style.cssText = 'margin-bottom:16px;padding:14px;background:var(--panel);border:1px solid var(--border);border-radius:12px;border-left:3px solid ' + color + ';';
+          lineDiv.innerHTML = '<div style="font-size:.76rem;font-weight:700;color:' + color + ';margin-bottom:6px;font-family:Syne,sans-serif;">' + speakerLabel + '</div><div style="font-size:.9rem;color:var(--txt2);margin-bottom:10px;">' + text + '</div><audio src="' + d.audio_data + '" controls style="width:100%;height:36px;"></audio>';
+          outputDiv.appendChild(lineDiv);
+        }
+      } catch(e) { /* skip */ }
+    }
+    btn.disabled = false;
+    lbl.innerHTML = '<i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue';
+    if (successCount > 0) {
+      document.getElementById('multi-result').classList.remove('hidden');
+      showToast('Dialogue generated! ' + successCount + ' lines ready 🎙️');
+    } else { showToast('Generation failed. Please retry.', 'err'); }
   }
 
   function doDownload(type) {
@@ -885,9 +1177,8 @@
   }
 
   function copyAudioLink() {
-    if (!lastAudio) { showToast('Generate audio first!', 'err'); return; }
-    navigator.clipboard.writeText(lastAudio)
-      .then(() => showToast('Audio link copied! 📋'))
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => showToast('Page link copied! 📋'))
       .catch(() => showToast('Copy failed', 'err'));
   }
 
