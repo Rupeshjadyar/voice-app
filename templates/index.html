@@ -2837,7 +2837,9 @@
           if (d.success) {
             S.total++; S.today++; setTxt('st-total', fmtN(S.total)); setTxt('st-today', fmtN(S.today));
             S.lastAudio = d.audio_data; S.lastFile = d.filename;
-            n$('player').src = d.audio_data;
+            const playerEl = n$('player');
+            playerEl.src = d.audio_data;
+            playerEl.play().catch(e => console.log('Autoplay blocked:', e));
             const vdata = S.voices.find(v => v.id === S.voice) || { name: S.voice, badge: 'Natural' };
             const ldata = S.languages.find(l => l.code === S.lang) || { name: S.lang };
             setTxt('custom-player-meta', `${d.method} · ${vdata.name} · ${ldata.name}`);

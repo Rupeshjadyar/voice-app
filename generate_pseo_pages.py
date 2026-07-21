@@ -263,7 +263,7 @@ def faq_items(lang_name, country, code):
 # ──────────────────────────────────────────────────────────────
 #  HTML TEMPLATE
 # ──────────────────────────────────────────────────────────────
-PAGE_TEMPLATE = """<!DOCTYPE html>
+PAGE_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="{html_lang}">
 <head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7HBHXRYG5"></script>
@@ -364,7 +364,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   .feature-card{{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;transition:border-color .25s,box-shadow .25s,transform .2s;}}
   .feature-card:hover{{border-color:var(--borderH);box-shadow:0 0 24px rgba(59,158,255,0.07);transform:translateY(-2px);}}
   .feature-icon{{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:16px;}}
-  .lang-badge{{display:inline-block;background:rgba(59,158,255,0.09);border:1px solid rgba(59,158,255,0.18);border-radius:100px;padding:4px 13px;font-size:.78rem;color:var(--a1);margin:3px;font-weight:500;}}
+  .lang-badge{{display:inline-block;background:rgba(59,158,255,0.09);border:1px solid rgba(59,158,255,0.18);border-radius:100px;padding:5px 14px;font-size:.8rem;color:var(--a1);margin:4px;font-weight:600;text-decoration:none;transition:all .2s;}}
+  .lang-badge:hover{{background:rgba(59,158,255,0.18);transform:translateY(-1px);box-shadow:0 2px 10px rgba(59,158,255,0.15);}}
   .section-divider{{display:flex;align-items:center;gap:16px;margin-bottom:48px;}}
   .section-divider::before,.section-divider::after{{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}}
   .section-label{{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}}
@@ -455,9 +456,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <span style="margin:0 6px;">&#8250;</span>
     <a href="/tts/" style="color:var(--a1);text-decoration:none;">All Languages</a>
     <span style="margin:0 6px;">&#8250;</span>
-    <span style="color:var(--txt);">{flag} {lang_name} ({country})</span>
+    <span style="color:var(--txt);">{lang_name} ({country})</span>
   </nav>
-  <div style="margin-bottom:16px;"><span style="font-size:3rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));">{flag}</span></div>
   <div class="badge-pill" style="margin-bottom:18px;">&#10022; FREE {lang_upper} TEXT TO SPEECH STUDIO 2026 &#10022;</div>
   <h1 style="font-size:clamp(2rem,5vw,3.4rem);font-weight:800;margin-bottom:16px;">
     <span class="tg">{lang_name} Text to Speech</span>
@@ -526,7 +526,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
       <div style="margin-bottom:18px;">
         <span class="slbl"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your {lang_name} Text</span>
-        <textarea id="txt" rows="5" placeholder="Type or paste {lang_name} text here... (up to 5000 characters)" oninput="onTxt(this)"></textarea>
+        <textarea id="txt" rows="5" placeholder="Type or paste {lang_name} text here... (up to 5000 characters)" oninput="onTxt(this)" onchange="onTxt(this)" onkeyup="onTxt(this)" onpaste="setTimeout(()=>onTxt(this), 50)"></textarea>
         <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:.76rem;color:var(--muted);">
           <span><span id="cc">0</span> / 5000 chars</span>
           <span>~<span id="te">0</span> sec audio</span>
@@ -541,7 +541,10 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
           </select>
         </div>
         <div>
-          <span class="slbl"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice Character</span>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span class="slbl" style="margin:0;"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice Character</span>
+            <button type="button" onclick="doPreviewVoice()" style="background:none;border:none;color:var(--a1);font-size:.76rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;"><i class="fa-solid fa-circle-play"></i>Preview</button>
+          </div>
           <select id="sel-voice">
             <optgroup label="General Voices">
               <option value="female-1">Female 1 - Natural</option>
@@ -873,6 +876,31 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     setTimeout(()=>e.classList.remove('on'), 3500);
   }}
 
+  async function doPreviewVoice() {{
+    const vtype = document.getElementById('sel-voice').value;
+    const rate = parseFloat(document.getElementById('sl-rate').value).toFixed(2);
+    const pitch = document.getElementById('sl-pitch').value;
+    const style = document.getElementById('sel-style').value;
+    showToast('Loading ' + LANG_NAME + ' preview...');
+    try {{
+      const r = await fetch('/preview-voice', {{
+        method: 'POST',
+        headers: {{ 'Content-Type': 'application/json' }},
+        body: JSON.stringify({{ language: LANG_CODE, voice_type: vtype, rate: parseFloat(rate), pitch: parseInt(pitch), style: style }})
+      }});
+      const d = await r.json();
+      if (d.success) {{
+        const audio = new Audio(d.audio_data);
+        audio.play();
+        showToast('▶ Playing preview');
+      }} else {{
+        showToast(d.error || 'Preview unavailable', 'err');
+      }}
+    }} catch(e) {{
+      showToast('Network error — preview failed', 'err');
+    }}
+  }}
+
   async function doGenerate() {{
     const text = document.getElementById('txt').value.trim();
     if (!text) {{ showToast('Please enter ' + LANG_NAME + ' text first!', 'err'); return; }}
@@ -890,12 +918,15 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     fd.append('style', document.getElementById('sel-style').value);
     fd.append('format', document.getElementById('sel-fmt').value);
     fd.append('response_type', 'base64');
+    fd.append('natural_mode', 'true');
     try {{
       const r = await fetch('/generate', {{method:'POST', body:fd}});
       const d = await r.json();
       if (d.success) {{
         lastAudio = d.audio_data; lastFile = d.filename;
-        document.getElementById('player').src = d.audio_data;
+        const playerEl = document.getElementById('player');
+        playerEl.src = d.audio_data;
+        playerEl.play().catch(e => console.log('Autoplay blocked:', e));
         const selVal = document.getElementById('sel-voice').value;
         const selOpt = document.querySelector('#sel-voice option[value="' + selVal + '"]');
         const voiceName = selOpt ? selOpt.textContent.replace(/^[^-]+-\s*/, '').trim() : selVal;
@@ -912,7 +943,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         const badgeEl = document.getElementById('custom-player-badge');
         if (badgeEl) badgeEl.textContent = badge;
         document.getElementById('result-area').classList.remove('hidden');
-        showToast(LANG_NAME + ' audio ready!');
+        showToast(LANG_NAME + ' audio ready! 🎉');
       }} else {{ showToast(d.error || 'Generation failed', 'err'); }}
     }} catch(e) {{ showToast('Network error — please retry', 'err'); }}
     finally {{
@@ -966,6 +997,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     lbl.innerHTML = '<i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue';
     if (successCount > 0) {{
       document.getElementById('multi-result').classList.remove('hidden');
+      const firstAudio = outputDiv.querySelector('audio');
+      if (firstAudio) firstAudio.play().catch(e => console.log('Autoplay blocked:', e));
       showToast('Dialogue ready! ' + successCount + ' lines generated');
     }} else {{ showToast('Generation failed. Please retry.', 'err'); }}
   }}
@@ -1052,6 +1085,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   document.addEventListener('DOMContentLoaded', () => {{
     updateThemeIcons();
     initCustomPlayer();
+    const txtEl = document.getElementById('txt');
+    if (txtEl && txtEl.value) onTxt(txtEl);
   }});
 </script>
 </body>
@@ -1161,7 +1196,7 @@ def build_page(entry):
     # Related language links (pick ~20 others)
     related = [e for e in LANGUAGES if e[0] != code][:20]
     related_links = "\n".join(
-        f'<a href="/tts/{slug(e[0])}" class="lang-pill">{e[3]} {e[1]} ({e[2]})</a>'
+        f'<a href="/tts/{slug(e[0])}" class="lang-badge">{e[1]} ({e[2]})</a>'
         for e in related
     )
 
@@ -1207,7 +1242,7 @@ def build_page(entry):
 
     # Build all-languages dropdown options (for language switcher)
     all_languages_options = "\n".join(
-        f'<option value="{e[0]}"{" selected" if e[0] == code else ""}>{e[3]} {e[1]} ({e[2]})</option>'
+        f'<option value="{e[0]}"{" selected" if e[0] == code else ""}>{e[1]} ({e[2]})</option>'
         for e in LANGUAGES
     )
 

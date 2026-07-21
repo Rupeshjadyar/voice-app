@@ -99,7 +99,8 @@
   .feature-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;transition:border-color .25s,box-shadow .25s,transform .2s;}
   .feature-card:hover{border-color:var(--borderH);box-shadow:0 0 24px rgba(59,158,255,0.07);transform:translateY(-2px);}
   .feature-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:16px;}
-  .lang-badge{display:inline-block;background:rgba(59,158,255,0.09);border:1px solid rgba(59,158,255,0.18);border-radius:100px;padding:4px 13px;font-size:.78rem;color:var(--a1);margin:3px;font-weight:500;}
+  .lang-badge{display:inline-block;background:rgba(59,158,255,0.09);border:1px solid rgba(59,158,255,0.18);border-radius:100px;padding:5px 14px;font-size:.8rem;color:var(--a1);margin:4px;font-weight:600;text-decoration:none;transition:all .2s;}
+  .lang-badge:hover{background:rgba(59,158,255,0.18);transform:translateY(-1px);box-shadow:0 2px 10px rgba(59,158,255,0.15);}
   .section-divider{display:flex;align-items:center;gap:16px;margin-bottom:48px;}
   .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
   .section-label{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
@@ -190,9 +191,8 @@
     <span style="margin:0 6px;">&#8250;</span>
     <a href="/tts/" style="color:var(--a1);text-decoration:none;">All Languages</a>
     <span style="margin:0 6px;">&#8250;</span>
-    <span style="color:var(--txt);">🇪🇸 Catalan (Spain)</span>
+    <span style="color:var(--txt);">Catalan (Spain)</span>
   </nav>
-  <div style="margin-bottom:16px;"><span style="font-size:3rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));">🇪🇸</span></div>
   <div class="badge-pill" style="margin-bottom:18px;">&#10022; FREE CATALAN TEXT TO SPEECH STUDIO 2026 &#10022;</div>
   <h1 style="font-size:clamp(2rem,5vw,3.4rem);font-weight:800;margin-bottom:16px;">
     <span class="tg">Catalan Text to Speech</span>
@@ -261,7 +261,7 @@
 
       <div style="margin-bottom:18px;">
         <span class="slbl"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your Catalan Text</span>
-        <textarea id="txt" rows="5" placeholder="Type or paste Catalan text here... (up to 5000 characters)" oninput="onTxt(this)"></textarea>
+        <textarea id="txt" rows="5" placeholder="Type or paste Catalan text here... (up to 5000 characters)" oninput="onTxt(this)" onchange="onTxt(this)" onkeyup="onTxt(this)" onpaste="setTimeout(()=>onTxt(this), 50)"></textarea>
         <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:.76rem;color:var(--muted);">
           <span><span id="cc">0</span> / 5000 chars</span>
           <span>~<span id="te">0</span> sec audio</span>
@@ -272,114 +272,117 @@
         <div>
           <span class="slbl"><i class="fa-solid fa-language" style="margin-right:5px;color:var(--a1);"></i>Language</span>
           <select id="sel-lang" onchange="redirectToLang(this.value)">
-            <option value="hi-IN">🇮🇳 Hindi (India)</option>
-<option value="mr-IN">🇮🇳 Marathi (India)</option>
-<option value="gu-IN">🇮🇳 Gujarati (India)</option>
-<option value="ta-IN">🇮🇳 Tamil (India)</option>
-<option value="te-IN">🇮🇳 Telugu (India)</option>
-<option value="kn-IN">🇮🇳 Kannada (India)</option>
-<option value="ml-IN">🇮🇳 Malayalam (India)</option>
-<option value="bn-IN">🇮🇳 Bengali (India)</option>
-<option value="pa-IN">🇮🇳 Punjabi (India)</option>
-<option value="or-IN">🇮🇳 Odia (India)</option>
-<option value="bn-BD">🇧🇩 Bengali (Bangladesh)</option>
-<option value="ur-PK">🇵🇰 Urdu (Pakistan)</option>
-<option value="ne-NP">🇳🇵 Nepali (Nepal)</option>
-<option value="si-LK">🇱🇰 Sinhala (Sri Lanka)</option>
-<option value="en-US">🇺🇸 English (United States)</option>
-<option value="en-GB">🇬🇧 English (United Kingdom)</option>
-<option value="en-AU">🇦🇺 English (Australia)</option>
-<option value="en-IN">🇮🇳 English (India)</option>
-<option value="en-CA">🇨🇦 English (Canada)</option>
-<option value="en-ZA">🇿🇦 English (South Africa)</option>
-<option value="en-NG">🇳🇬 English (Nigeria)</option>
-<option value="es-ES">🇪🇸 Spanish (Spain)</option>
-<option value="es-MX">🇲🇽 Spanish (Mexico)</option>
-<option value="es-AR">🇦🇷 Spanish (Argentina)</option>
-<option value="es-CO">🇨🇴 Spanish (Colombia)</option>
-<option value="es-US">🇺🇸 Spanish (United States)</option>
-<option value="fr-FR">🇫🇷 French (France)</option>
-<option value="fr-CA">🇨🇦 French (Canada)</option>
-<option value="de-DE">🇩🇪 German (Germany)</option>
-<option value="de-AT">🇦🇹 German (Austria)</option>
-<option value="it-IT">🇮🇹 Italian (Italy)</option>
-<option value="pt-BR">🇧🇷 Portuguese (Brazil)</option>
-<option value="pt-PT">🇵🇹 Portuguese (Portugal)</option>
-<option value="nl-NL">🇳🇱 Dutch (Netherlands)</option>
-<option value="sv-SE">🇸🇪 Swedish (Sweden)</option>
-<option value="nb-NO">🇳🇴 Norwegian (Norway)</option>
-<option value="da-DK">🇩🇰 Danish (Denmark)</option>
-<option value="fi-FI">🇫🇮 Finnish (Finland)</option>
-<option value="pl-PL">🇵🇱 Polish (Poland)</option>
-<option value="cs-CZ">🇨🇿 Czech (Czech Republic)</option>
-<option value="sk-SK">🇸🇰 Slovak (Slovakia)</option>
-<option value="hu-HU">🇭🇺 Hungarian (Hungary)</option>
-<option value="ro-RO">🇷🇴 Romanian (Romania)</option>
-<option value="bg-BG">🇧🇬 Bulgarian (Bulgaria)</option>
-<option value="hr-HR">🇭🇷 Croatian (Croatia)</option>
-<option value="uk-UA">🇺🇦 Ukrainian (Ukraine)</option>
-<option value="ru-RU">🇷🇺 Russian (Russia)</option>
-<option value="el-GR">🇬🇷 Greek (Greece)</option>
-<option value="tr-TR">🇹🇷 Turkish (Turkey)</option>
-<option value="ja-JP">🇯🇵 Japanese (Japan)</option>
-<option value="zh-CN">🇨🇳 Chinese (China)</option>
-<option value="zh-TW">🇹🇼 Chinese (Taiwan)</option>
-<option value="zh-HK">🇭🇰 Cantonese (Hong Kong)</option>
-<option value="ko-KR">🇰🇷 Korean (South Korea)</option>
-<option value="vi-VN">🇻🇳 Vietnamese (Vietnam)</option>
-<option value="th-TH">🇹🇭 Thai (Thailand)</option>
-<option value="id-ID">🇮🇩 Indonesian (Indonesia)</option>
-<option value="ms-MY">🇲🇾 Malay (Malaysia)</option>
-<option value="fil-PH">🇵🇭 Filipino (Philippines)</option>
-<option value="ar-SA">🇸🇦 Arabic (Saudi Arabia)</option>
-<option value="ar-EG">🇪🇬 Arabic (Egypt)</option>
-<option value="fa-IR">🇮🇷 Persian (Iran)</option>
-<option value="he-IL">🇮🇱 Hebrew (Israel)</option>
-<option value="ka-GE">🇬🇪 Georgian (Georgia)</option>
-<option value="sw-KE">🇰🇪 Swahili (Kenya)</option>
-<option value="am-ET">🇪🇹 Amharic (Ethiopia)</option>
-<option value="zu-ZA">🇿🇦 Zulu (South Africa)</option>
-<option value="af-ZA">🇿🇦 Afrikaans (South Africa)</option>
-<option value="lv-LV">🇱🇻 Latvian (Latvia)</option>
-<option value="lt-LT">🇱🇹 Lithuanian (Lithuania)</option>
-<option value="et-EE">🇪🇪 Estonian (Estonia)</option>
-<option value="az-AZ">🇦🇿 Azerbaijani (Azerbaijan)</option>
-<option value="kk-KZ">🇰🇿 Kazakh (Kazakhstan)</option>
-<option value="uz-UZ">🇺🇿 Uzbek (Uzbekistan)</option>
-<option value="sq-AL">🇦🇱 Albanian (Albania)</option>
-<option value="mk-MK">🇲🇰 Macedonian (North Macedonia)</option>
-<option value="bs-BA">🇧🇦 Bosnian (Bosnia)</option>
-<option value="sr-RS">🇷🇸 Serbian (Serbia)</option>
-<option value="sl-SI">🇸🇮 Slovenian (Slovenia)</option>
-<option value="mt-MT">🇲🇹 Maltese (Malta)</option>
-<option value="cy-GB">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh (Wales)</option>
-<option value="ga-IE">🇮🇪 Irish (Ireland)</option>
-<option value="ca-ES" selected>🇪🇸 Catalan (Spain)</option>
-<option value="is-IS">🇮🇸 Icelandic (Iceland)</option>
-<option value="mn-MN">🇲🇳 Mongolian (Mongolia)</option>
-<option value="km-KH">🇰🇭 Khmer (Cambodia)</option>
-<option value="lo-LA">🇱🇦 Lao (Laos)</option>
-<option value="my-MM">🇲🇲 Burmese (Myanmar)</option>
-<option value="ps-AF">🇦🇫 Pashto (Afghanistan)</option>
-<option value="yo-NG">🇳🇬 Yoruba (Nigeria)</option>
-<option value="ha-NG">🇳🇬 Hausa (Nigeria)</option>
-<option value="so-SO">🇸🇴 Somali (Somalia)</option>
-<option value="jv-ID">🇮🇩 Javanese (Indonesia)</option>
-<option value="gl-ES">🇪🇸 Galician (Spain)</option>
-<option value="eu-ES">🇪🇸 Basque (Spain)</option>
-<option value="hy-AM">🇦🇲 Armenian (Armenia)</option>
-<option value="tk-TM">🇹🇲 Turkmen (Turkmenistan)</option>
-<option value="ky-KG">🇰🇬 Kyrgyz (Kyrgyzstan)</option>
-<option value="nl-BE">🇧🇪 Dutch (Belgium)</option>
-<option value="fr-BE">🇧🇪 French (Belgium)</option>
-<option value="de-CH">🇨🇭 German (Switzerland)</option>
-<option value="fr-CH">🇨🇭 French (Switzerland)</option>
-<option value="ar-AE">🇦🇪 Arabic (UAE)</option>
-<option value="ar-MA">🇲🇦 Arabic (Morocco)</option>
+            <option value="hi-IN">Hindi (India)</option>
+<option value="mr-IN">Marathi (India)</option>
+<option value="gu-IN">Gujarati (India)</option>
+<option value="ta-IN">Tamil (India)</option>
+<option value="te-IN">Telugu (India)</option>
+<option value="kn-IN">Kannada (India)</option>
+<option value="ml-IN">Malayalam (India)</option>
+<option value="bn-IN">Bengali (India)</option>
+<option value="pa-IN">Punjabi (India)</option>
+<option value="or-IN">Odia (India)</option>
+<option value="bn-BD">Bengali (Bangladesh)</option>
+<option value="ur-PK">Urdu (Pakistan)</option>
+<option value="ne-NP">Nepali (Nepal)</option>
+<option value="si-LK">Sinhala (Sri Lanka)</option>
+<option value="en-US">English (United States)</option>
+<option value="en-GB">English (United Kingdom)</option>
+<option value="en-AU">English (Australia)</option>
+<option value="en-IN">English (India)</option>
+<option value="en-CA">English (Canada)</option>
+<option value="en-ZA">English (South Africa)</option>
+<option value="en-NG">English (Nigeria)</option>
+<option value="es-ES">Spanish (Spain)</option>
+<option value="es-MX">Spanish (Mexico)</option>
+<option value="es-AR">Spanish (Argentina)</option>
+<option value="es-CO">Spanish (Colombia)</option>
+<option value="es-US">Spanish (United States)</option>
+<option value="fr-FR">French (France)</option>
+<option value="fr-CA">French (Canada)</option>
+<option value="de-DE">German (Germany)</option>
+<option value="de-AT">German (Austria)</option>
+<option value="it-IT">Italian (Italy)</option>
+<option value="pt-BR">Portuguese (Brazil)</option>
+<option value="pt-PT">Portuguese (Portugal)</option>
+<option value="nl-NL">Dutch (Netherlands)</option>
+<option value="sv-SE">Swedish (Sweden)</option>
+<option value="nb-NO">Norwegian (Norway)</option>
+<option value="da-DK">Danish (Denmark)</option>
+<option value="fi-FI">Finnish (Finland)</option>
+<option value="pl-PL">Polish (Poland)</option>
+<option value="cs-CZ">Czech (Czech Republic)</option>
+<option value="sk-SK">Slovak (Slovakia)</option>
+<option value="hu-HU">Hungarian (Hungary)</option>
+<option value="ro-RO">Romanian (Romania)</option>
+<option value="bg-BG">Bulgarian (Bulgaria)</option>
+<option value="hr-HR">Croatian (Croatia)</option>
+<option value="uk-UA">Ukrainian (Ukraine)</option>
+<option value="ru-RU">Russian (Russia)</option>
+<option value="el-GR">Greek (Greece)</option>
+<option value="tr-TR">Turkish (Turkey)</option>
+<option value="ja-JP">Japanese (Japan)</option>
+<option value="zh-CN">Chinese (China)</option>
+<option value="zh-TW">Chinese (Taiwan)</option>
+<option value="zh-HK">Cantonese (Hong Kong)</option>
+<option value="ko-KR">Korean (South Korea)</option>
+<option value="vi-VN">Vietnamese (Vietnam)</option>
+<option value="th-TH">Thai (Thailand)</option>
+<option value="id-ID">Indonesian (Indonesia)</option>
+<option value="ms-MY">Malay (Malaysia)</option>
+<option value="fil-PH">Filipino (Philippines)</option>
+<option value="ar-SA">Arabic (Saudi Arabia)</option>
+<option value="ar-EG">Arabic (Egypt)</option>
+<option value="fa-IR">Persian (Iran)</option>
+<option value="he-IL">Hebrew (Israel)</option>
+<option value="ka-GE">Georgian (Georgia)</option>
+<option value="sw-KE">Swahili (Kenya)</option>
+<option value="am-ET">Amharic (Ethiopia)</option>
+<option value="zu-ZA">Zulu (South Africa)</option>
+<option value="af-ZA">Afrikaans (South Africa)</option>
+<option value="lv-LV">Latvian (Latvia)</option>
+<option value="lt-LT">Lithuanian (Lithuania)</option>
+<option value="et-EE">Estonian (Estonia)</option>
+<option value="az-AZ">Azerbaijani (Azerbaijan)</option>
+<option value="kk-KZ">Kazakh (Kazakhstan)</option>
+<option value="uz-UZ">Uzbek (Uzbekistan)</option>
+<option value="sq-AL">Albanian (Albania)</option>
+<option value="mk-MK">Macedonian (North Macedonia)</option>
+<option value="bs-BA">Bosnian (Bosnia)</option>
+<option value="sr-RS">Serbian (Serbia)</option>
+<option value="sl-SI">Slovenian (Slovenia)</option>
+<option value="mt-MT">Maltese (Malta)</option>
+<option value="cy-GB">Welsh (Wales)</option>
+<option value="ga-IE">Irish (Ireland)</option>
+<option value="ca-ES" selected>Catalan (Spain)</option>
+<option value="is-IS">Icelandic (Iceland)</option>
+<option value="mn-MN">Mongolian (Mongolia)</option>
+<option value="km-KH">Khmer (Cambodia)</option>
+<option value="lo-LA">Lao (Laos)</option>
+<option value="my-MM">Burmese (Myanmar)</option>
+<option value="ps-AF">Pashto (Afghanistan)</option>
+<option value="yo-NG">Yoruba (Nigeria)</option>
+<option value="ha-NG">Hausa (Nigeria)</option>
+<option value="so-SO">Somali (Somalia)</option>
+<option value="jv-ID">Javanese (Indonesia)</option>
+<option value="gl-ES">Galician (Spain)</option>
+<option value="eu-ES">Basque (Spain)</option>
+<option value="hy-AM">Armenian (Armenia)</option>
+<option value="tk-TM">Turkmen (Turkmenistan)</option>
+<option value="ky-KG">Kyrgyz (Kyrgyzstan)</option>
+<option value="nl-BE">Dutch (Belgium)</option>
+<option value="fr-BE">French (Belgium)</option>
+<option value="de-CH">German (Switzerland)</option>
+<option value="fr-CH">French (Switzerland)</option>
+<option value="ar-AE">Arabic (UAE)</option>
+<option value="ar-MA">Arabic (Morocco)</option>
           </select>
         </div>
         <div>
-          <span class="slbl"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice Character</span>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span class="slbl" style="margin:0;"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice Character</span>
+            <button type="button" onclick="doPreviewVoice()" style="background:none;border:none;color:var(--a1);font-size:.76rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;"><i class="fa-solid fa-circle-play"></i>Preview</button>
+          </div>
           <select id="sel-voice">
             <optgroup label="General Voices">
               <option value="female-1">Female 1 - Natural</option>
@@ -548,110 +551,110 @@
         <div>
           <span class="slbl">Language</span>
           <select id="multi-lang" onchange="redirectToLang(this.value)">
-            <option value="hi-IN">🇮🇳 Hindi (India)</option>
-<option value="mr-IN">🇮🇳 Marathi (India)</option>
-<option value="gu-IN">🇮🇳 Gujarati (India)</option>
-<option value="ta-IN">🇮🇳 Tamil (India)</option>
-<option value="te-IN">🇮🇳 Telugu (India)</option>
-<option value="kn-IN">🇮🇳 Kannada (India)</option>
-<option value="ml-IN">🇮🇳 Malayalam (India)</option>
-<option value="bn-IN">🇮🇳 Bengali (India)</option>
-<option value="pa-IN">🇮🇳 Punjabi (India)</option>
-<option value="or-IN">🇮🇳 Odia (India)</option>
-<option value="bn-BD">🇧🇩 Bengali (Bangladesh)</option>
-<option value="ur-PK">🇵🇰 Urdu (Pakistan)</option>
-<option value="ne-NP">🇳🇵 Nepali (Nepal)</option>
-<option value="si-LK">🇱🇰 Sinhala (Sri Lanka)</option>
-<option value="en-US">🇺🇸 English (United States)</option>
-<option value="en-GB">🇬🇧 English (United Kingdom)</option>
-<option value="en-AU">🇦🇺 English (Australia)</option>
-<option value="en-IN">🇮🇳 English (India)</option>
-<option value="en-CA">🇨🇦 English (Canada)</option>
-<option value="en-ZA">🇿🇦 English (South Africa)</option>
-<option value="en-NG">🇳🇬 English (Nigeria)</option>
-<option value="es-ES">🇪🇸 Spanish (Spain)</option>
-<option value="es-MX">🇲🇽 Spanish (Mexico)</option>
-<option value="es-AR">🇦🇷 Spanish (Argentina)</option>
-<option value="es-CO">🇨🇴 Spanish (Colombia)</option>
-<option value="es-US">🇺🇸 Spanish (United States)</option>
-<option value="fr-FR">🇫🇷 French (France)</option>
-<option value="fr-CA">🇨🇦 French (Canada)</option>
-<option value="de-DE">🇩🇪 German (Germany)</option>
-<option value="de-AT">🇦🇹 German (Austria)</option>
-<option value="it-IT">🇮🇹 Italian (Italy)</option>
-<option value="pt-BR">🇧🇷 Portuguese (Brazil)</option>
-<option value="pt-PT">🇵🇹 Portuguese (Portugal)</option>
-<option value="nl-NL">🇳🇱 Dutch (Netherlands)</option>
-<option value="sv-SE">🇸🇪 Swedish (Sweden)</option>
-<option value="nb-NO">🇳🇴 Norwegian (Norway)</option>
-<option value="da-DK">🇩🇰 Danish (Denmark)</option>
-<option value="fi-FI">🇫🇮 Finnish (Finland)</option>
-<option value="pl-PL">🇵🇱 Polish (Poland)</option>
-<option value="cs-CZ">🇨🇿 Czech (Czech Republic)</option>
-<option value="sk-SK">🇸🇰 Slovak (Slovakia)</option>
-<option value="hu-HU">🇭🇺 Hungarian (Hungary)</option>
-<option value="ro-RO">🇷🇴 Romanian (Romania)</option>
-<option value="bg-BG">🇧🇬 Bulgarian (Bulgaria)</option>
-<option value="hr-HR">🇭🇷 Croatian (Croatia)</option>
-<option value="uk-UA">🇺🇦 Ukrainian (Ukraine)</option>
-<option value="ru-RU">🇷🇺 Russian (Russia)</option>
-<option value="el-GR">🇬🇷 Greek (Greece)</option>
-<option value="tr-TR">🇹🇷 Turkish (Turkey)</option>
-<option value="ja-JP">🇯🇵 Japanese (Japan)</option>
-<option value="zh-CN">🇨🇳 Chinese (China)</option>
-<option value="zh-TW">🇹🇼 Chinese (Taiwan)</option>
-<option value="zh-HK">🇭🇰 Cantonese (Hong Kong)</option>
-<option value="ko-KR">🇰🇷 Korean (South Korea)</option>
-<option value="vi-VN">🇻🇳 Vietnamese (Vietnam)</option>
-<option value="th-TH">🇹🇭 Thai (Thailand)</option>
-<option value="id-ID">🇮🇩 Indonesian (Indonesia)</option>
-<option value="ms-MY">🇲🇾 Malay (Malaysia)</option>
-<option value="fil-PH">🇵🇭 Filipino (Philippines)</option>
-<option value="ar-SA">🇸🇦 Arabic (Saudi Arabia)</option>
-<option value="ar-EG">🇪🇬 Arabic (Egypt)</option>
-<option value="fa-IR">🇮🇷 Persian (Iran)</option>
-<option value="he-IL">🇮🇱 Hebrew (Israel)</option>
-<option value="ka-GE">🇬🇪 Georgian (Georgia)</option>
-<option value="sw-KE">🇰🇪 Swahili (Kenya)</option>
-<option value="am-ET">🇪🇹 Amharic (Ethiopia)</option>
-<option value="zu-ZA">🇿🇦 Zulu (South Africa)</option>
-<option value="af-ZA">🇿🇦 Afrikaans (South Africa)</option>
-<option value="lv-LV">🇱🇻 Latvian (Latvia)</option>
-<option value="lt-LT">🇱🇹 Lithuanian (Lithuania)</option>
-<option value="et-EE">🇪🇪 Estonian (Estonia)</option>
-<option value="az-AZ">🇦🇿 Azerbaijani (Azerbaijan)</option>
-<option value="kk-KZ">🇰🇿 Kazakh (Kazakhstan)</option>
-<option value="uz-UZ">🇺🇿 Uzbek (Uzbekistan)</option>
-<option value="sq-AL">🇦🇱 Albanian (Albania)</option>
-<option value="mk-MK">🇲🇰 Macedonian (North Macedonia)</option>
-<option value="bs-BA">🇧🇦 Bosnian (Bosnia)</option>
-<option value="sr-RS">🇷🇸 Serbian (Serbia)</option>
-<option value="sl-SI">🇸🇮 Slovenian (Slovenia)</option>
-<option value="mt-MT">🇲🇹 Maltese (Malta)</option>
-<option value="cy-GB">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh (Wales)</option>
-<option value="ga-IE">🇮🇪 Irish (Ireland)</option>
-<option value="ca-ES" selected>🇪🇸 Catalan (Spain)</option>
-<option value="is-IS">🇮🇸 Icelandic (Iceland)</option>
-<option value="mn-MN">🇲🇳 Mongolian (Mongolia)</option>
-<option value="km-KH">🇰🇭 Khmer (Cambodia)</option>
-<option value="lo-LA">🇱🇦 Lao (Laos)</option>
-<option value="my-MM">🇲🇲 Burmese (Myanmar)</option>
-<option value="ps-AF">🇦🇫 Pashto (Afghanistan)</option>
-<option value="yo-NG">🇳🇬 Yoruba (Nigeria)</option>
-<option value="ha-NG">🇳🇬 Hausa (Nigeria)</option>
-<option value="so-SO">🇸🇴 Somali (Somalia)</option>
-<option value="jv-ID">🇮🇩 Javanese (Indonesia)</option>
-<option value="gl-ES">🇪🇸 Galician (Spain)</option>
-<option value="eu-ES">🇪🇸 Basque (Spain)</option>
-<option value="hy-AM">🇦🇲 Armenian (Armenia)</option>
-<option value="tk-TM">🇹🇲 Turkmen (Turkmenistan)</option>
-<option value="ky-KG">🇰🇬 Kyrgyz (Kyrgyzstan)</option>
-<option value="nl-BE">🇧🇪 Dutch (Belgium)</option>
-<option value="fr-BE">🇧🇪 French (Belgium)</option>
-<option value="de-CH">🇨🇭 German (Switzerland)</option>
-<option value="fr-CH">🇨🇭 French (Switzerland)</option>
-<option value="ar-AE">🇦🇪 Arabic (UAE)</option>
-<option value="ar-MA">🇲🇦 Arabic (Morocco)</option>
+            <option value="hi-IN">Hindi (India)</option>
+<option value="mr-IN">Marathi (India)</option>
+<option value="gu-IN">Gujarati (India)</option>
+<option value="ta-IN">Tamil (India)</option>
+<option value="te-IN">Telugu (India)</option>
+<option value="kn-IN">Kannada (India)</option>
+<option value="ml-IN">Malayalam (India)</option>
+<option value="bn-IN">Bengali (India)</option>
+<option value="pa-IN">Punjabi (India)</option>
+<option value="or-IN">Odia (India)</option>
+<option value="bn-BD">Bengali (Bangladesh)</option>
+<option value="ur-PK">Urdu (Pakistan)</option>
+<option value="ne-NP">Nepali (Nepal)</option>
+<option value="si-LK">Sinhala (Sri Lanka)</option>
+<option value="en-US">English (United States)</option>
+<option value="en-GB">English (United Kingdom)</option>
+<option value="en-AU">English (Australia)</option>
+<option value="en-IN">English (India)</option>
+<option value="en-CA">English (Canada)</option>
+<option value="en-ZA">English (South Africa)</option>
+<option value="en-NG">English (Nigeria)</option>
+<option value="es-ES">Spanish (Spain)</option>
+<option value="es-MX">Spanish (Mexico)</option>
+<option value="es-AR">Spanish (Argentina)</option>
+<option value="es-CO">Spanish (Colombia)</option>
+<option value="es-US">Spanish (United States)</option>
+<option value="fr-FR">French (France)</option>
+<option value="fr-CA">French (Canada)</option>
+<option value="de-DE">German (Germany)</option>
+<option value="de-AT">German (Austria)</option>
+<option value="it-IT">Italian (Italy)</option>
+<option value="pt-BR">Portuguese (Brazil)</option>
+<option value="pt-PT">Portuguese (Portugal)</option>
+<option value="nl-NL">Dutch (Netherlands)</option>
+<option value="sv-SE">Swedish (Sweden)</option>
+<option value="nb-NO">Norwegian (Norway)</option>
+<option value="da-DK">Danish (Denmark)</option>
+<option value="fi-FI">Finnish (Finland)</option>
+<option value="pl-PL">Polish (Poland)</option>
+<option value="cs-CZ">Czech (Czech Republic)</option>
+<option value="sk-SK">Slovak (Slovakia)</option>
+<option value="hu-HU">Hungarian (Hungary)</option>
+<option value="ro-RO">Romanian (Romania)</option>
+<option value="bg-BG">Bulgarian (Bulgaria)</option>
+<option value="hr-HR">Croatian (Croatia)</option>
+<option value="uk-UA">Ukrainian (Ukraine)</option>
+<option value="ru-RU">Russian (Russia)</option>
+<option value="el-GR">Greek (Greece)</option>
+<option value="tr-TR">Turkish (Turkey)</option>
+<option value="ja-JP">Japanese (Japan)</option>
+<option value="zh-CN">Chinese (China)</option>
+<option value="zh-TW">Chinese (Taiwan)</option>
+<option value="zh-HK">Cantonese (Hong Kong)</option>
+<option value="ko-KR">Korean (South Korea)</option>
+<option value="vi-VN">Vietnamese (Vietnam)</option>
+<option value="th-TH">Thai (Thailand)</option>
+<option value="id-ID">Indonesian (Indonesia)</option>
+<option value="ms-MY">Malay (Malaysia)</option>
+<option value="fil-PH">Filipino (Philippines)</option>
+<option value="ar-SA">Arabic (Saudi Arabia)</option>
+<option value="ar-EG">Arabic (Egypt)</option>
+<option value="fa-IR">Persian (Iran)</option>
+<option value="he-IL">Hebrew (Israel)</option>
+<option value="ka-GE">Georgian (Georgia)</option>
+<option value="sw-KE">Swahili (Kenya)</option>
+<option value="am-ET">Amharic (Ethiopia)</option>
+<option value="zu-ZA">Zulu (South Africa)</option>
+<option value="af-ZA">Afrikaans (South Africa)</option>
+<option value="lv-LV">Latvian (Latvia)</option>
+<option value="lt-LT">Lithuanian (Lithuania)</option>
+<option value="et-EE">Estonian (Estonia)</option>
+<option value="az-AZ">Azerbaijani (Azerbaijan)</option>
+<option value="kk-KZ">Kazakh (Kazakhstan)</option>
+<option value="uz-UZ">Uzbek (Uzbekistan)</option>
+<option value="sq-AL">Albanian (Albania)</option>
+<option value="mk-MK">Macedonian (North Macedonia)</option>
+<option value="bs-BA">Bosnian (Bosnia)</option>
+<option value="sr-RS">Serbian (Serbia)</option>
+<option value="sl-SI">Slovenian (Slovenia)</option>
+<option value="mt-MT">Maltese (Malta)</option>
+<option value="cy-GB">Welsh (Wales)</option>
+<option value="ga-IE">Irish (Ireland)</option>
+<option value="ca-ES" selected>Catalan (Spain)</option>
+<option value="is-IS">Icelandic (Iceland)</option>
+<option value="mn-MN">Mongolian (Mongolia)</option>
+<option value="km-KH">Khmer (Cambodia)</option>
+<option value="lo-LA">Lao (Laos)</option>
+<option value="my-MM">Burmese (Myanmar)</option>
+<option value="ps-AF">Pashto (Afghanistan)</option>
+<option value="yo-NG">Yoruba (Nigeria)</option>
+<option value="ha-NG">Hausa (Nigeria)</option>
+<option value="so-SO">Somali (Somalia)</option>
+<option value="jv-ID">Javanese (Indonesia)</option>
+<option value="gl-ES">Galician (Spain)</option>
+<option value="eu-ES">Basque (Spain)</option>
+<option value="hy-AM">Armenian (Armenia)</option>
+<option value="tk-TM">Turkmen (Turkmenistan)</option>
+<option value="ky-KG">Kyrgyz (Kyrgyzstan)</option>
+<option value="nl-BE">Dutch (Belgium)</option>
+<option value="fr-BE">French (Belgium)</option>
+<option value="de-CH">German (Switzerland)</option>
+<option value="fr-CH">French (Switzerland)</option>
+<option value="ar-AE">Arabic (UAE)</option>
+<option value="ar-MA">Arabic (Morocco)</option>
           </select>
         </div>
         <div>
@@ -942,26 +945,26 @@
     <div style="text-align:center;margin-bottom:10px;">
       <h2 style="font-size:1.4rem;font-weight:800;">Explore Other <span class="tg">Languages</span></h2>
     </div>
-    <div style="text-align:center;max-width:960px;margin:0 auto;"><a href="/tts/hindi-text-to-speech-india" class="lang-pill">🇮🇳 Hindi (India)</a>
-<a href="/tts/marathi-text-to-speech-india" class="lang-pill">🇮🇳 Marathi (India)</a>
-<a href="/tts/gujarati-text-to-speech-india" class="lang-pill">🇮🇳 Gujarati (India)</a>
-<a href="/tts/tamil-text-to-speech-india" class="lang-pill">🇮🇳 Tamil (India)</a>
-<a href="/tts/telugu-text-to-speech-india" class="lang-pill">🇮🇳 Telugu (India)</a>
-<a href="/tts/kannada-text-to-speech-india" class="lang-pill">🇮🇳 Kannada (India)</a>
-<a href="/tts/malayalam-text-to-speech-india" class="lang-pill">🇮🇳 Malayalam (India)</a>
-<a href="/tts/bengali-text-to-speech-india" class="lang-pill">🇮🇳 Bengali (India)</a>
-<a href="/tts/punjabi-text-to-speech-india" class="lang-pill">🇮🇳 Punjabi (India)</a>
-<a href="/tts/odia-text-to-speech-india" class="lang-pill">🇮🇳 Odia (India)</a>
-<a href="/tts/bengali-text-to-speech-bangladesh" class="lang-pill">🇧🇩 Bengali (Bangladesh)</a>
-<a href="/tts/urdu-text-to-speech-pakistan" class="lang-pill">🇵🇰 Urdu (Pakistan)</a>
-<a href="/tts/nepali-text-to-speech-nepal" class="lang-pill">🇳🇵 Nepali (Nepal)</a>
-<a href="/tts/sinhala-text-to-speech-sri-lanka" class="lang-pill">🇱🇰 Sinhala (Sri Lanka)</a>
-<a href="/tts/english-text-to-speech-usa" class="lang-pill">🇺🇸 English (United States)</a>
-<a href="/tts/english-text-to-speech-uk" class="lang-pill">🇬🇧 English (United Kingdom)</a>
-<a href="/tts/english-text-to-speech-australia" class="lang-pill">🇦🇺 English (Australia)</a>
-<a href="/tts/english-text-to-speech-india" class="lang-pill">🇮🇳 English (India)</a>
-<a href="/tts/english-text-to-speech-canada" class="lang-pill">🇨🇦 English (Canada)</a>
-<a href="/tts/english-text-to-speech-south-africa" class="lang-pill">🇿🇦 English (South Africa)</a></div>
+    <div style="text-align:center;max-width:960px;margin:0 auto;"><a href="/tts/hindi-text-to-speech-india" class="lang-badge">Hindi (India)</a>
+<a href="/tts/marathi-text-to-speech-india" class="lang-badge">Marathi (India)</a>
+<a href="/tts/gujarati-text-to-speech-india" class="lang-badge">Gujarati (India)</a>
+<a href="/tts/tamil-text-to-speech-india" class="lang-badge">Tamil (India)</a>
+<a href="/tts/telugu-text-to-speech-india" class="lang-badge">Telugu (India)</a>
+<a href="/tts/kannada-text-to-speech-india" class="lang-badge">Kannada (India)</a>
+<a href="/tts/malayalam-text-to-speech-india" class="lang-badge">Malayalam (India)</a>
+<a href="/tts/bengali-text-to-speech-india" class="lang-badge">Bengali (India)</a>
+<a href="/tts/punjabi-text-to-speech-india" class="lang-badge">Punjabi (India)</a>
+<a href="/tts/odia-text-to-speech-india" class="lang-badge">Odia (India)</a>
+<a href="/tts/bengali-text-to-speech-bangladesh" class="lang-badge">Bengali (Bangladesh)</a>
+<a href="/tts/urdu-text-to-speech-pakistan" class="lang-badge">Urdu (Pakistan)</a>
+<a href="/tts/nepali-text-to-speech-nepal" class="lang-badge">Nepali (Nepal)</a>
+<a href="/tts/sinhala-text-to-speech-sri-lanka" class="lang-badge">Sinhala (Sri Lanka)</a>
+<a href="/tts/english-text-to-speech-usa" class="lang-badge">English (United States)</a>
+<a href="/tts/english-text-to-speech-uk" class="lang-badge">English (United Kingdom)</a>
+<a href="/tts/english-text-to-speech-australia" class="lang-badge">English (Australia)</a>
+<a href="/tts/english-text-to-speech-india" class="lang-badge">English (India)</a>
+<a href="/tts/english-text-to-speech-canada" class="lang-badge">English (Canada)</a>
+<a href="/tts/english-text-to-speech-south-africa" class="lang-badge">English (South Africa)</a></div>
   </div>
 </div>
 
@@ -1065,6 +1068,31 @@
     setTimeout(()=>e.classList.remove('on'), 3500);
   }
 
+  async function doPreviewVoice() {
+    const vtype = document.getElementById('sel-voice').value;
+    const rate = parseFloat(document.getElementById('sl-rate').value).toFixed(2);
+    const pitch = document.getElementById('sl-pitch').value;
+    const style = document.getElementById('sel-style').value;
+    showToast('Loading ' + LANG_NAME + ' preview...');
+    try {
+      const r = await fetch('/preview-voice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ language: LANG_CODE, voice_type: vtype, rate: parseFloat(rate), pitch: parseInt(pitch), style: style })
+      });
+      const d = await r.json();
+      if (d.success) {
+        const audio = new Audio(d.audio_data);
+        audio.play();
+        showToast('▶ Playing preview');
+      } else {
+        showToast(d.error || 'Preview unavailable', 'err');
+      }
+    } catch(e) {
+      showToast('Network error — preview failed', 'err');
+    }
+  }
+
   async function doGenerate() {
     const text = document.getElementById('txt').value.trim();
     if (!text) { showToast('Please enter ' + LANG_NAME + ' text first!', 'err'); return; }
@@ -1082,17 +1110,20 @@
     fd.append('style', document.getElementById('sel-style').value);
     fd.append('format', document.getElementById('sel-fmt').value);
     fd.append('response_type', 'base64');
+    fd.append('natural_mode', 'true');
     try {
       const r = await fetch('/generate', {method:'POST', body:fd});
       const d = await r.json();
       if (d.success) {
         lastAudio = d.audio_data; lastFile = d.filename;
-        document.getElementById('player').src = d.audio_data;
+        const playerEl = document.getElementById('player');
+        playerEl.src = d.audio_data;
+        playerEl.play().catch(e => console.log('Autoplay blocked:', e));
         const selVal = document.getElementById('sel-voice').value;
         const selOpt = document.querySelector('#sel-voice option[value="' + selVal + '"]');
         const voiceName = selOpt ? selOpt.textContent.replace(/^[^-]+-\s*/, '').trim() : selVal;
         const genInfo = document.getElementById('gen-info');
-        if (genInfo) genInfo.textContent = (d.method || 'Neural TTS') + ' · ' + voiceName + ' · ' + LANG_NAME;
+        if (genInfo) genInfo.textContent = (d.method || 'Neural TTS') + ' \xb7 ' + voiceName + ' \xb7 ' + LANG_NAME;
         let badge = 'Natural';
         if (selVal.includes('kid')) badge = 'Kid';
         else if (selVal.includes('teen')) badge = 'Teen';
@@ -1104,20 +1135,19 @@
         const badgeEl = document.getElementById('custom-player-badge');
         if (badgeEl) badgeEl.textContent = badge;
         document.getElementById('result-area').classList.remove('hidden');
-        showToast(LANG_NAME + ' audio ready!');
+        showToast(LANG_NAME + ' audio ready! 🎉');
       } else { showToast(d.error || 'Generation failed', 'err'); }
     } catch(e) { showToast('Network error — please retry', 'err'); }
     finally {
       btn.disabled = false;
-      lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Catalan Voice — Free';
+      lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Catalan Voice \u2014 Free';
     }
   }
 
   async function doMultiGenerate() {
     const script = document.getElementById('multi-txt').value.trim();
     if (!script) { showToast('Please enter dialogue script!', 'err'); return; }
-    const lines = script.split('
-').filter(l => l.trim());
+    const lines = script.split('\n').filter(l => l.trim());
     const btn = document.getElementById('multi-gen-btn'), lbl = document.getElementById('multi-gen-lbl');
     btn.disabled = true;
     lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Generating dialogue...</span>';
@@ -1159,6 +1189,8 @@
     lbl.innerHTML = '<i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue';
     if (successCount > 0) {
       document.getElementById('multi-result').classList.remove('hidden');
+      const firstAudio = outputDiv.querySelector('audio');
+      if (firstAudio) firstAudio.play().catch(e => console.log('Autoplay blocked:', e));
       showToast('Dialogue ready! ' + successCount + ' lines generated');
     } else { showToast('Generation failed. Please retry.', 'err'); }
   }
@@ -1245,6 +1277,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     updateThemeIcons();
     initCustomPlayer();
+    const txtEl = document.getElementById('txt');
+    if (txtEl && txtEl.value) onTxt(txtEl);
   });
 </script>
 </body>
