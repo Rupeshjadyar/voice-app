@@ -118,13 +118,30 @@
   .dl-tab{flex:1;padding:10px 8px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;text-align:center;transition:all .2s;font-family:'Syne',sans-serif;}
   .dl-tab.active{border-color:var(--a1);background:rgba(59,158,255,0.12);color:var(--a1);}
   @keyframes pulse-glow{0%,100%{box-shadow:0 0 12px rgba(59,158,255,0.3);}50%{box-shadow:0 0 22px rgba(59,158,255,0.55);}}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .inputs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px;}
+  .controls-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+  .options-grid{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:24px;}
+  .multi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px;}
+  .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--border);}
   @media(max-width:768px){
     .nav-desktop{display:none!important;}
     .nav-mobile-btn{display:flex!important;align-items:center;justify-content:center;background:none;border:none;color:var(--muted);font-size:1.25rem;cursor:pointer;}
     .nav-mobile-menu.active{display:flex!important;flex-direction:column;gap:6px;background:var(--bg);border-top:1px solid var(--border);padding:14px 24px;position:absolute;top:60px;left:0;right:0;z-index:100;box-shadow:0 10px 15px -3px rgba(0,0,0,0.05);}
     .nav-mobile-menu .nav-btn{display:block;padding:10px 14px;text-align:left;border-radius:9px;width:100%;box-sizing:border-box;}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
+    .stats-grid{grid-template-columns:1fr;gap:10px;}
   }
-  @media(max-width:480px){.glass{border-radius:16px;}}
+  @media(max-width:640px){
+    .controls-grid{grid-template-columns:1fr;gap:10px;}
+    .inputs-grid, .multi-grid, .options-grid{grid-template-columns:1fr;gap:12px;}
+    .glass{padding:20px!important;}
+  }
+  @media(max-width:480px){
+    .glass{border-radius:16px;padding:16px!important;}
+    .footer-grid{grid-template-columns:1fr;gap:20px;}
+    .btn-primary{padding:13px 18px;font-size:.92rem;}
+  }
 </style>
 </head>
 <body>
@@ -213,7 +230,7 @@
 
 <!-- STAT CARDS -->
 <section style="max-width:860px;margin:0 auto 32px;padding:0 18px;">
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+  <div class="stats-grid">
     <div class="statc">
       <div style="font-size:1.6rem;margin-bottom:6px;">&#127908;</div>
       <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--a1);">2+</div>
@@ -242,10 +259,10 @@
 
     <!-- MODE TABS -->
     <div style="display:flex;gap:8px;margin-bottom:22px;background:var(--panel);border-radius:14px;padding:5px;border:1px solid var(--border);">
-      <button class="tab-btn active" id="tab-single" onclick="switchTab('single')">
+      <button class="tab-btn active" id="tab-single" onclick="switchTab('single')" style="flex:1;">
         <i class="fa-solid fa-microphone" style="margin-right:6px;"></i>Single Voice
       </button>
-      <button class="tab-btn" id="tab-multi" onclick="switchTab('multi')">
+      <button class="tab-btn" id="tab-multi" onclick="switchTab('multi')" style="flex:1;">
         <i class="fa-solid fa-users" style="margin-right:6px;"></i>Multi-Voice Dialogue
       </button>
     </div>
@@ -268,7 +285,7 @@
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px;">
+      <div class="inputs-grid">
         <div>
           <span class="slbl"><i class="fa-solid fa-language" style="margin-right:5px;color:var(--a1);"></i>Language</span>
           <select id="sel-lang" onchange="redirectToLang(this.value)">
@@ -428,7 +445,7 @@
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;">
+      <div class="controls-grid">
         <div class="ctrl">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;">
             <span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-gauge-high" style="color:var(--ok);margin-right:4px;"></i>Speed</span>
@@ -455,7 +472,7 @@
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:24px;">
+      <div class="options-grid">
         <div>
           <span class="slbl"><i class="fa-solid fa-palette" style="color:#f472b6;margin-right:5px;"></i>Speaking Style</span>
           <select id="sel-style">
@@ -478,11 +495,31 @@
         </div>
       </div>
 
+      <!-- Natural Mode Toggle -->
+      <div style="display:flex;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:24px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--a2);font-size:1.1rem;"></i>
+          <div>
+            <div style="font-size:.88rem;font-weight:700;color:var(--txt);font-family:'Syne',sans-serif;">Natural Voice Mode</div>
+            <div style="font-size:.72rem;color:var(--muted);margin-top:2px;line-height:1.3;">Smart prosody &mdash; questions rise &uarr;, exclamations get energy &#9889;, natural pauses at commas &amp; full stops</div>
+          </div>
+        </div>
+        <label style="position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0;margin-left:12px;cursor:pointer;">
+          <input type="checkbox" id="natural-mode-toggle" checked style="opacity:0;width:0;height:0;">
+          <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--border);transition:.3s;border-radius:26px;"></span>
+          <span id="natural-toggle-knob" style="position:absolute;content:'';height:20px;width:20px;left:3px;bottom:3px;background:#fff;transition:.3s;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></span>
+        </label>
+      </div>
+      <style>
+        #natural-mode-toggle:checked + span { background: linear-gradient(135deg, var(--a1), var(--a2)) !important; box-shadow: 0 0 12px rgba(59,158,255,0.4); }
+        #natural-mode-toggle:checked + span + span { transform: translateX(22px); }
+      </style>
+
       <button id="gen-btn" class="btn-primary" onclick="doGenerate()">
         <span id="gen-lbl"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Slovenian Voice &mdash; Free</span>
       </button>
 
-      <div id="result-area" class="hidden">
+      <div id="result-area" class="hidden" style="margin-top:20px;">
         <div style="background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
             <div style="display:flex;align-items:center;gap:10px;">
@@ -521,156 +558,48 @@
     <div id="panel-multi" class="hidden">
       <div style="background:rgba(59,158,255,0.05);border:1px solid rgba(59,158,255,0.15);border-radius:14px;padding:16px;margin-bottom:18px;font-size:.85rem;color:var(--txt2);">
         <i class="fa-solid fa-circle-info" style="color:var(--a1);margin-right:6px;"></i>
-        <strong>Multi-Voice Dialogue:</strong> Start lines with <code style="background:var(--panel);padding:2px 6px;border-radius:5px;">Speaker1:</code> and <code style="background:var(--panel);padding:2px 6px;border-radius:5px;">Speaker2:</code> &mdash; each gets its own voice!
+        <strong>Multi-Voice Dialogue:</strong> Create scripts with different Slovenian voice characters talking in turn. Paste your full script to auto-generate lines.
       </div>
-      <div style="margin-bottom:14px;">
-        <span class="slbl">Dialogue Script</span>
-        <textarea id="multi-txt" rows="8" placeholder="Speaker1: Hello! Welcome to VoicePro.&#10;Speaker2: Thank you! This is amazing.&#10;Speaker1: Generate Slovenian audio free!&#10;Speaker2: Download as MP3 or WAV instantly!"></textarea>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px;">
-        <div>
-          <span class="slbl">Speaker 1 Voice</span>
-          <select id="multi-voice1">
-            <option value="female-1">Female 1 - Natural</option>
-            <option value="young-f1">Aria - Female Young</option>
-            <option value="mid-f1">Michelle - Female Exec</option>
-            <option value="male-1">Male 1 - Deep</option>
-            <option value="young-m1">Guy - Male Natural</option>
-          </select>
-        </div>
-        <div>
-          <span class="slbl">Speaker 2 Voice</span>
-          <select id="multi-voice2">
-            <option value="male-1">Male 1 - Deep</option>
-            <option value="young-m1">Guy - Male Natural</option>
-            <option value="female-1">Female 1 - Natural</option>
-            <option value="young-f1">Aria - Female Young</option>
-            <option value="mid-m1">Steffan - Male Presenter</option>
-          </select>
-        </div>
-        <div>
-          <span class="slbl">Language</span>
-          <select id="multi-lang" onchange="redirectToLang(this.value)">
-            <option value="hi-IN">Hindi (India)</option>
-<option value="mr-IN">Marathi (India)</option>
-<option value="gu-IN">Gujarati (India)</option>
-<option value="ta-IN">Tamil (India)</option>
-<option value="te-IN">Telugu (India)</option>
-<option value="kn-IN">Kannada (India)</option>
-<option value="ml-IN">Malayalam (India)</option>
-<option value="bn-IN">Bengali (India)</option>
-<option value="pa-IN">Punjabi (India)</option>
-<option value="or-IN">Odia (India)</option>
-<option value="bn-BD">Bengali (Bangladesh)</option>
-<option value="ur-PK">Urdu (Pakistan)</option>
-<option value="ne-NP">Nepali (Nepal)</option>
-<option value="si-LK">Sinhala (Sri Lanka)</option>
-<option value="en-US">English (United States)</option>
-<option value="en-GB">English (United Kingdom)</option>
-<option value="en-AU">English (Australia)</option>
-<option value="en-IN">English (India)</option>
-<option value="en-CA">English (Canada)</option>
-<option value="en-ZA">English (South Africa)</option>
-<option value="en-NG">English (Nigeria)</option>
-<option value="es-ES">Spanish (Spain)</option>
-<option value="es-MX">Spanish (Mexico)</option>
-<option value="es-AR">Spanish (Argentina)</option>
-<option value="es-CO">Spanish (Colombia)</option>
-<option value="es-US">Spanish (United States)</option>
-<option value="fr-FR">French (France)</option>
-<option value="fr-CA">French (Canada)</option>
-<option value="de-DE">German (Germany)</option>
-<option value="de-AT">German (Austria)</option>
-<option value="it-IT">Italian (Italy)</option>
-<option value="pt-BR">Portuguese (Brazil)</option>
-<option value="pt-PT">Portuguese (Portugal)</option>
-<option value="nl-NL">Dutch (Netherlands)</option>
-<option value="sv-SE">Swedish (Sweden)</option>
-<option value="nb-NO">Norwegian (Norway)</option>
-<option value="da-DK">Danish (Denmark)</option>
-<option value="fi-FI">Finnish (Finland)</option>
-<option value="pl-PL">Polish (Poland)</option>
-<option value="cs-CZ">Czech (Czech Republic)</option>
-<option value="sk-SK">Slovak (Slovakia)</option>
-<option value="hu-HU">Hungarian (Hungary)</option>
-<option value="ro-RO">Romanian (Romania)</option>
-<option value="bg-BG">Bulgarian (Bulgaria)</option>
-<option value="hr-HR">Croatian (Croatia)</option>
-<option value="uk-UA">Ukrainian (Ukraine)</option>
-<option value="ru-RU">Russian (Russia)</option>
-<option value="el-GR">Greek (Greece)</option>
-<option value="tr-TR">Turkish (Turkey)</option>
-<option value="ja-JP">Japanese (Japan)</option>
-<option value="zh-CN">Chinese (China)</option>
-<option value="zh-TW">Chinese (Taiwan)</option>
-<option value="zh-HK">Cantonese (Hong Kong)</option>
-<option value="ko-KR">Korean (South Korea)</option>
-<option value="vi-VN">Vietnamese (Vietnam)</option>
-<option value="th-TH">Thai (Thailand)</option>
-<option value="id-ID">Indonesian (Indonesia)</option>
-<option value="ms-MY">Malay (Malaysia)</option>
-<option value="fil-PH">Filipino (Philippines)</option>
-<option value="ar-SA">Arabic (Saudi Arabia)</option>
-<option value="ar-EG">Arabic (Egypt)</option>
-<option value="fa-IR">Persian (Iran)</option>
-<option value="he-IL">Hebrew (Israel)</option>
-<option value="ka-GE">Georgian (Georgia)</option>
-<option value="sw-KE">Swahili (Kenya)</option>
-<option value="am-ET">Amharic (Ethiopia)</option>
-<option value="zu-ZA">Zulu (South Africa)</option>
-<option value="af-ZA">Afrikaans (South Africa)</option>
-<option value="lv-LV">Latvian (Latvia)</option>
-<option value="lt-LT">Lithuanian (Lithuania)</option>
-<option value="et-EE">Estonian (Estonia)</option>
-<option value="az-AZ">Azerbaijani (Azerbaijan)</option>
-<option value="kk-KZ">Kazakh (Kazakhstan)</option>
-<option value="uz-UZ">Uzbek (Uzbekistan)</option>
-<option value="sq-AL">Albanian (Albania)</option>
-<option value="mk-MK">Macedonian (North Macedonia)</option>
-<option value="bs-BA">Bosnian (Bosnia)</option>
-<option value="sr-RS">Serbian (Serbia)</option>
-<option value="sl-SI" selected>Slovenian (Slovenia)</option>
-<option value="mt-MT">Maltese (Malta)</option>
-<option value="cy-GB">Welsh (Wales)</option>
-<option value="ga-IE">Irish (Ireland)</option>
-<option value="ca-ES">Catalan (Spain)</option>
-<option value="is-IS">Icelandic (Iceland)</option>
-<option value="mn-MN">Mongolian (Mongolia)</option>
-<option value="km-KH">Khmer (Cambodia)</option>
-<option value="lo-LA">Lao (Laos)</option>
-<option value="my-MM">Burmese (Myanmar)</option>
-<option value="ps-AF">Pashto (Afghanistan)</option>
-<option value="yo-NG">Yoruba (Nigeria)</option>
-<option value="ha-NG">Hausa (Nigeria)</option>
-<option value="so-SO">Somali (Somalia)</option>
-<option value="jv-ID">Javanese (Indonesia)</option>
-<option value="gl-ES">Galician (Spain)</option>
-<option value="eu-ES">Basque (Spain)</option>
-<option value="hy-AM">Armenian (Armenia)</option>
-<option value="tk-TM">Turkmen (Turkmenistan)</option>
-<option value="ky-KG">Kyrgyz (Kyrgyzstan)</option>
-<option value="nl-BE">Dutch (Belgium)</option>
-<option value="fr-BE">French (Belgium)</option>
-<option value="de-CH">German (Switzerland)</option>
-<option value="fr-CH">French (Switzerland)</option>
-<option value="ar-AE">Arabic (UAE)</option>
-<option value="ar-MA">Arabic (Morocco)</option>
-          </select>
-        </div>
-        <div>
-          <span class="slbl">Format</span>
-          <select id="multi-fmt">
-            <option value="mp3">MP3</option>
-            <option value="wav">WAV</option>
-          </select>
+
+      <!-- Script Import Collapsible Panel -->
+      <div id="script-import-area" class="hidden" style="background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:18px;">
+        <span class="slbl" style="margin-bottom:6px;display:block;"><i class="fa-solid fa-quote-left" style="margin-right:5px;color:var(--a1);"></i>Paste Slovenian Script below</span>
+        <textarea id="import-script-text" rows="6" style="width:100%;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;resize:vertical;line-height:1.4;" placeholder="Example:&#13;Speaker 1: Hello! Welcome to Slovenian dialogue generator.&#13;Speaker 2: Thank you! This voice quality is amazing.&#13;Speaker 1: Generate unlimited audio for free!"></textarea>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px;">
+          <button onclick="toggleImportArea(false)" style="background:transparent;border:none;color:var(--muted);font-weight:600;cursor:pointer;font-size:.8rem;font-family:'Syne',sans-serif;">Cancel</button>
+          <button onclick="parseAndImportScript()" style="background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;border-radius:8px;padding:8px 16px;font-weight:700;cursor:pointer;font-size:.8rem;font-family:'Syne',sans-serif;">Parse & Load Dialogue</button>
         </div>
       </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;">
+        <button onclick="toggleImportArea(true)" style="flex:1;min-width:140px;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.82rem;transition:all .2s;white-space:nowrap;"><i class="fa-solid fa-file-import" style="margin-right:6px;"></i>Import Full Script</button>
+        <button onclick="addDialogueLine()" style="flex:1;min-width:140px;background:var(--panel);border:1px solid var(--border);color:var(--txt);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.82rem;transition:all .2s;white-space:nowrap;"><i class="fa-solid fa-plus" style="margin-right:6px;"></i>Add Line Manually</button>
+      </div>
+
+      <div id="dialogue-lines" style="display:flex;flex-direction:column;gap:14px;margin-bottom:18px;"></div>
+
       <button id="multi-gen-btn" class="btn-primary" onclick="doMultiGenerate()">
         <span id="multi-gen-lbl"><i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue</span>
       </button>
+
       <div id="multi-result" class="hidden" style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px;">
-        <div style="font-weight:700;color:var(--ok);margin-bottom:12px;font-family:'Syne',sans-serif;"><i class="fa-solid fa-square-check" style="margin-right:6px;"></i>Dialogue Audio Ready!</div>
-        <div id="multi-lines-output"></div>
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <i class="fa-solid fa-square-check" style="color:var(--ok);font-size:1.25rem;"></i>
+              <div>
+                <div style="font-weight:700;color:var(--ok);font-size:.9rem;font-family:'Syne',sans-serif;">Audio Ready!</div>
+                <div id="multi-gen-info" style="font-size:.74rem;color:var(--muted);margin-top:1px;">Neural TTS &middot; Slovenian Dialogue</div>
+              </div>
+            </div>
+            <div class="badge-pill" style="margin:0;font-size:.7rem;background:rgba(59,158,255,0.1);color:var(--a1);border:1px solid rgba(59,158,255,0.15);">👥 Dialogue</div>
+          </div>
+          <audio id="multi-player" controls autoplay style="width:100%;margin-bottom:14px;"></audio>
+          <div style="display:flex;gap:10px;">
+            <button onclick="doDownload('wav')" style="flex:1;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.28);color:var(--ok);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.88rem;"><i class="fa-solid fa-download" style="margin-right:6px;"></i>Download Dialogue WAV</button>
+            <button onclick="doDownload('mp3')" style="flex:1;background:rgba(59,158,255,0.12);border:1px solid rgba(59,158,255,0.28);color:var(--a1);border-radius:12px;padding:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.88rem;"><i class="fa-solid fa-download" style="margin-right:6px;"></i>Download Dialogue MP3</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -970,7 +899,7 @@
 
 <!-- FOOTER -->
 <footer class="pro-footer">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--border);">
+  <div class="footer-grid">
     <div>
       <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
         <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.8rem;"></i></div>
@@ -1032,6 +961,7 @@
     if (s) window.location.href = '/tts/' + s;
   }
 
+  let dialogueLineCount = 0;
   function switchTab(tab) {
     const single = document.getElementById('panel-single');
     const multi  = document.getElementById('panel-multi');
@@ -1043,7 +973,140 @@
     } else {
       single.classList.add('hidden'); multi.classList.remove('hidden');
       btnS.classList.remove('active'); btnM.classList.add('active');
+      if (document.getElementById('dialogue-lines').children.length === 0) {
+        const firstVoice = document.querySelector('#sel-voice option') ? document.querySelector('#sel-voice option').value : 'female-1';
+        const secondVoice = document.querySelectorAll('#sel-voice option')[1] ? document.querySelectorAll('#sel-voice option')[1].value : 'male-1';
+        addDialogueLine('Hello! Welcome to our multi-voice dialogue generator for ' + LANG_NAME + '.', firstVoice);
+        addDialogueLine('Thanks! Now we can generate realistic conversations in seconds.', secondVoice);
+      }
     }
+  }
+
+  function addDialogueLine(initialText = '', initialVoice = '', speakerName = '') {
+    const id = 'dl-' + (++dialogueLineCount);
+    const container = document.getElementById('dialogue-lines');
+    if (!container) return;
+    const selVoiceEl = document.getElementById('sel-voice');
+    let optionsHtml = selVoiceEl ? selVoiceEl.innerHTML : '';
+    if (initialVoice) {
+      optionsHtml = optionsHtml.replace(new RegExp('value="' + initialVoice + '"'), 'value="' + initialVoice + '" selected');
+    }
+    const row = document.createElement('div');
+    row.id = id;
+    row.style.cssText = "background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;position:relative;display:flex;flex-direction:column;gap:12px;";
+    row.innerHTML = `
+      <button onclick="removeDialogueLine('${id}')" style="position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:6px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;" title="Remove line"><i class="fa-solid fa-xmark" style="font-size:.85rem;"></i></button>
+      <div style="padding-right:24px;">
+        <span class="slbl" style="margin-bottom:6px;font-size:.74rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;line-height:1.3;">
+          <span><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Character Voice ${speakerName ? `(${speakerName})` : ''}</span>
+          ${speakerName ? `<span style="font-size:.68rem;background:rgba(59,158,255,0.08);color:var(--a1);padding:1px 6px;border-radius:4px;font-weight:700;white-space:nowrap;">Script Name: ${speakerName}</span>` : ''}
+        </span>
+        <select class="dl-voice-select" style="width:100%;max-width:100%;font-size:.82rem;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;box-sizing:border-box;">
+          ${optionsHtml}
+        </select>
+      </div>
+      <div>
+        <span class="slbl" style="margin-bottom:6px;font-size:.74rem;"><i class="fa-solid fa-quote-left" style="margin-right:5px;color:var(--muted);"></i>Dialogue Speech</span>
+        <textarea class="dl-text-area" rows="2" style="width:100%;max-width:100%;font-family:'DM Sans',sans-serif;font-size:.85rem;padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none;resize:vertical;box-sizing:border-box;" placeholder="Type what this character says…">${initialText}</textarea>
+      </div>
+    `;
+    container.appendChild(row);
+  }
+
+  function removeDialogueLine(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  function toggleImportArea(show) {
+    const area = document.getElementById('script-import-area');
+    if (area) {
+      if (show) area.classList.remove('hidden');
+      else area.classList.add('hidden');
+    }
+  }
+
+  function parseAndImportScript() {
+    const txt = document.getElementById('import-script-text').value.trim();
+    if (!txt) { showToast('Please paste a script first!', 'err'); return; }
+    const rawLines = txt.split('\n');
+    const parsedLines = [];
+    const lineRegex = /^(?:\d+[\.\)\-\s]*)?\s*([^:\-\n]+?)\s*[:\-]\s*(.*)$/;
+    for (let rawLine of rawLines) {
+      rawLine = rawLine.trim();
+      if (!rawLine) continue;
+      const match = rawLine.match(lineRegex);
+      if (match) {
+        parsedLines.push({ speaker: match[1].trim(), text: match[2].trim() });
+      } else {
+        parsedLines.push({ speaker: '', text: rawLine });
+      }
+    }
+    if (parsedLines.length === 0) {
+      showToast('Could not parse script lines.', 'err');
+      return;
+    }
+    const selVoiceEl = document.getElementById('sel-voice');
+    const allVoiceValues = Array.from(selVoiceEl.querySelectorAll('option')).map(o => o.value);
+    const speakerVoiceMap = {};
+    let voiceIndex = 0;
+    document.getElementById('dialogue-lines').innerHTML = '';
+    let lastSpeakerVoice = allVoiceValues[0] || 'female-1';
+    for (const line of parsedLines) {
+      if (line.speaker) {
+        const normSpeaker = line.speaker.toLowerCase();
+        if (!speakerVoiceMap[normSpeaker]) {
+          speakerVoiceMap[normSpeaker] = allVoiceValues[voiceIndex % allVoiceValues.length] || 'female-1';
+          voiceIndex++;
+        }
+        lastSpeakerVoice = speakerVoiceMap[normSpeaker];
+        addDialogueLine(line.text, lastSpeakerVoice, line.speaker);
+      } else {
+        addDialogueLine(line.text, lastSpeakerVoice, 'Narrator');
+      }
+    }
+    toggleImportArea(false);
+    showToast(`Imported ${parsedLines.length} script lines! 🎉`);
+  }
+
+  function bufferToWav(buffer) {
+    let numOfChan = buffer.numberOfChannels,
+        length = buffer.length * numOfChan * 2 + 44,
+        bufferArr = new ArrayBuffer(length),
+        view = new DataView(bufferArr),
+        channels = [], i, sample,
+        offset = 0,
+        pos = 0;
+
+    function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
+    function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+
+    setUint32(0x46464952); // "RIFF"
+    setUint32(length - 8);
+    setUint32(0x45564157); // "WAVE"
+    setUint32(0x20746d66); // "fmt "
+    setUint32(16);
+    setUint16(1); // PCM
+    setUint16(numOfChan);
+    setUint32(buffer.sampleRate);
+    setUint32(buffer.sampleRate * 2 * numOfChan);
+    setUint16(numOfChan * 2);
+    setUint16(16);
+    setUint32(0x61746164); // "data"
+    setUint32(length - pos - 4);
+
+    for (i = 0; i < buffer.numberOfChannels; i++) channels.push(buffer.getChannelData(i));
+
+    while (pos < length) {
+      for (i = 0; i < numOfChan; i++) {
+        sample = Math.max(-1, Math.min(1, channels[i][offset]));
+        sample = (sample < 0 ? sample * 0x8000 : sample * 0x7FFF);
+        view.setInt16(pos, sample, true);
+        pos += 2;
+      }
+      offset++;
+    }
+    return new Blob([bufferArr], { type: "audio/wav" });
   }
 
   function loadSample() {
@@ -1140,59 +1203,85 @@
     } catch(e) { showToast('Network error — please retry', 'err'); }
     finally {
       btn.disabled = false;
-      lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Slovenian Voice \u2014 Free';
+      lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate ' + LANG_NAME + ' Voice \u2014 Free';
     }
   }
 
   async function doMultiGenerate() {
-    const script = document.getElementById('multi-txt').value.trim();
-    if (!script) { showToast('Please enter dialogue script!', 'err'); return; }
-    const lines = script.split('\n').filter(l => l.trim());
-    const btn = document.getElementById('multi-gen-btn'), lbl = document.getElementById('multi-gen-lbl');
-    btn.disabled = true;
-    lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Generating dialogue...</span>';
-    const voice1 = document.getElementById('multi-voice1').value;
-    const voice2 = document.getElementById('multi-voice2').value;
-    const fmt    = document.getElementById('multi-fmt').value;
-    const outputDiv = document.getElementById('multi-lines-output');
-    outputDiv.innerHTML = ''; document.getElementById('multi-result').classList.add('hidden');
-    let successCount = 0;
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      const isSpeaker2 = line.toLowerCase().startsWith('speaker2:');
-      const text = line.replace(/^speaker[12]:/i, '').trim();
-      if (!text) continue;
-      const voice = isSpeaker2 ? voice2 : voice1;
-      const speakerLabel = isSpeaker2 ? 'Speaker 2' : 'Speaker 1';
-      const color = isSpeaker2 ? 'var(--a2)' : 'var(--a1)';
-      try {
-        const fd = new FormData();
-        fd.append('text', text); fd.append('language', LANG_CODE);
-        fd.append('voice_type', voice); fd.append('rate', '1.0');
-        fd.append('pitch', '0'); fd.append('volume', '100');
-        fd.append('style', 'general'); fd.append('format', fmt);
-        fd.append('response_type', 'base64');
-        const r = await fetch('/generate', {method:'POST', body:fd});
-        const d = await r.json();
-        if (d.success) {
-          successCount++;
-          const lineDiv = document.createElement('div');
-          lineDiv.style.cssText = 'margin-bottom:16px;padding:14px;background:var(--panel);border:1px solid var(--border);border-radius:12px;border-left:3px solid ' + color + ';';
-          lineDiv.innerHTML = '<div style="font-size:.76rem;font-weight:700;color:' + color + ';margin-bottom:6px;font-family:Syne,sans-serif;">' + speakerLabel + '</div>' +
-            '<div style="font-size:.9rem;color:var(--txt2);margin-bottom:10px;">' + text + '</div>' +
-            '<audio src="' + d.audio_data + '" controls style="width:100%;height:36px;accent-color:' + color + ';"></audio>';
-          outputDiv.appendChild(lineDiv);
-        }
-      } catch(err) {}
+    const lines = document.querySelectorAll('#dialogue-lines > div');
+    if (lines.length === 0) { showToast('Please add at least one dialogue line!', 'err'); return; }
+    const script = [];
+    for (const line of lines) {
+      const select = line.querySelector('.dl-voice-select');
+      const textarea = line.querySelector('.dl-text-area');
+      const val = textarea.value.trim();
+      if (!val) { showToast('Please fill all dialogue boxes!', 'err'); textarea.focus(); return; }
+      script.push({ voice: select.value, text: val });
     }
-    btn.disabled = false;
-    lbl.innerHTML = '<i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue';
-    if (successCount > 0) {
-      document.getElementById('multi-result').classList.remove('hidden');
-      const firstAudio = outputDiv.querySelector('audio');
-      if (firstAudio) firstAudio.play().catch(e => console.log('Autoplay blocked:', e));
-      showToast('Dialogue ready! ' + successCount + ' lines generated');
-    } else { showToast('Generation failed. Please retry.', 'err'); }
+    const btn = document.getElementById('multi-gen-btn'), lbl = document.getElementById('multi-gen-lbl'), res = document.getElementById('multi-result');
+    btn.disabled = true; res.classList.add('hidden');
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const decodedBuffers = [];
+      for (let i = 0; i < script.length; i++) {
+        lbl.innerHTML = `<span class="spinner"></span><span style="margin-left:9px;">Generating Line ${i+1}/${script.length}…</span>`;
+        const line = script[i];
+        const fd = new FormData();
+        fd.append('text', line.text);
+        fd.append('language', LANG_CODE);
+        fd.append('voice_type', line.voice);
+        fd.append('rate', '1.00');
+        fd.append('pitch', '0');
+        fd.append('volume', '100');
+        fd.append('style', 'general');
+        fd.append('format', 'mp3');
+        fd.append('response_type', 'base64');
+        fd.append('natural_mode', 'true');
+
+        const r = await fetch('/generate', { method: 'POST', body: fd });
+        const d = await r.json();
+        if (!d.success) throw new Error(d.error || `Error at line ${i+1}`);
+
+        const base64Data = d.audio_data.split(',')[1];
+        const binaryStr = window.atob(base64Data);
+        const bytes = new Uint8Array(binaryStr.length);
+        for (let j = 0; j < binaryStr.length; j++) bytes[j] = binaryStr.charCodeAt(j);
+
+        const decodedBuffer = await new Promise((resolve, reject) => {
+          audioCtx.decodeAudioData(bytes.buffer, resolve, reject);
+        });
+        decodedBuffers.push(decodedBuffer);
+      }
+
+      lbl.innerHTML = `<span class="spinner"></span><span style="margin-left:9px;">Merging dialogue lines…</span>`;
+      const totalLength = decodedBuffers.reduce((sum, b) => sum + b.length, 0);
+      const sampleRate = decodedBuffers[0].sampleRate;
+      const combinedBuffer = audioCtx.createBuffer(1, totalLength, sampleRate);
+      let offset = 0;
+      for (const b of decodedBuffers) {
+        combinedBuffer.copyToChannel(b.getChannelData(0), 0, offset);
+        offset += b.length;
+      }
+
+      const wavBlob = bufferToWav(combinedBuffer);
+      const wavUrl = URL.createObjectURL(wavBlob);
+      lastAudio = wavUrl;
+      lastFile = `dialogue_${LANG_CODE}_${Date.now()}.wav`;
+      const playerEl = document.getElementById('multi-player');
+      playerEl.src = wavUrl;
+      playerEl.play().catch(e => console.log('Autoplay blocked:', e));
+
+      const infoEl = document.getElementById('multi-gen-info');
+      if (infoEl) infoEl.textContent = `Dialogue · ${script.length} Parts · ${LANG_NAME}`;
+      res.classList.remove('hidden');
+      showToast('Multi-Voice Dialogue generated! 🎉');
+    } catch (e) {
+      showToast(e.message || 'Dialogue generation failed. Try again.', 'err');
+      console.error(e);
+    } finally {
+      btn.disabled = false;
+      lbl.innerHTML = '<i class="fa-solid fa-users" style="margin-right:8px;"></i>Generate Multi-Voice Dialogue';
+    }
   }
 
   function doDownload(type) {
@@ -1241,9 +1330,20 @@
     if (audio.paused) audio.play(); else audio.pause();
   }
 
+  function toggleMultiPlayPause() {
+    const audio = document.getElementById('multi-player'); if (!audio) return;
+    if (audio.paused) audio.play(); else audio.pause();
+  }
+
   function seekAudio(e) {
     const audio = document.getElementById('player'); if (!audio || !audio.duration) return;
     const rect  = document.getElementById('player-timeline').getBoundingClientRect();
+    audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+  }
+
+  function seekMultiAudio(e) {
+    const audio = document.getElementById('multi-player'); if (!audio || !audio.duration) return;
+    const rect  = document.getElementById('multi-player-timeline').getBoundingClientRect();
     audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
   }
 
@@ -1253,19 +1353,22 @@
   }
 
   function initCustomPlayer() {
-    const audio = document.getElementById('player'); if (!audio) return;
-    audio.addEventListener('play',  () => { const ic = document.getElementById('play-pause-icon'); if(ic) ic.className='fa-solid fa-pause'; });
-    audio.addEventListener('pause', () => { const ic = document.getElementById('play-pause-icon'); if(ic) ic.className='fa-solid fa-play'; });
-    audio.addEventListener('timeupdate', () => {
-      const cur = audio.currentTime, dur = audio.duration || 0, pct = dur > 0 ? (cur/dur)*100 : 0;
-      const prog = document.getElementById('player-progress');   if(prog) prog.style.width = pct + '%';
-      const curT = document.getElementById('player-time-current'); if(curT) curT.textContent = formatTime(cur);
-      const durT = document.getElementById('player-time-duration'); if(durT && dur) durT.textContent = formatTime(dur);
-    });
-    audio.addEventListener('ended', () => {
-      const ic   = document.getElementById('play-pause-icon');     if(ic) ic.className='fa-solid fa-play';
-      const prog = document.getElementById('player-progress');     if(prog) prog.style.width='0%';
-      const curT = document.getElementById('player-time-current'); if(curT) curT.textContent='0:00';
+    [['player','play-pause-icon','player-progress','player-time-current','player-time-duration'],
+     ['multi-player','multi-play-pause-icon','multi-player-progress','multi-player-time-current','multi-player-time-duration']].forEach(([pid, icid, prgid, curid, durid]) => {
+      const audio = document.getElementById(pid); if (!audio) return;
+      audio.addEventListener('play',  () => { const ic = document.getElementById(icid); if(ic) ic.className='fa-solid fa-pause'; });
+      audio.addEventListener('pause', () => { const ic = document.getElementById(icid); if(ic) ic.className='fa-solid fa-play'; });
+      audio.addEventListener('timeupdate', () => {
+        const cur = audio.currentTime, dur = audio.duration || 0, pct = dur > 0 ? (cur/dur)*100 : 0;
+        const prog = document.getElementById(prgid);   if(prog) prog.style.width = pct + '%';
+        const curT = document.getElementById(curid); if(curT) curT.textContent = formatTime(cur);
+        const durT = document.getElementById(durid); if(durT && dur) durT.textContent = formatTime(dur);
+      });
+      audio.addEventListener('ended', () => {
+        const ic   = document.getElementById(icid);     if(ic) ic.className='fa-solid fa-play';
+        const prog = document.getElementById(prgid);     if(prog) prog.style.width='0%';
+        const curT = document.getElementById(curid); if(curT) curT.textContent='0:00';
+      });
     });
   }
 
