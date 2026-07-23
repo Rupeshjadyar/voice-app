@@ -190,7 +190,7 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
       <i class="fa-solid fa-bullhorn" style="color:#ffd700;"></i> {lang_upper} TTS
     </div>
     <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;padding-top:2px;">
-      FREE {lang_name} TEXT TO SPEECH 2026 &nbsp;&#8226;&nbsp; {voice_count}+ Neural Voices for {lang_name} ({country}) &nbsp;&#8226;&nbsp; Instant MP3 &amp; WAV Download Free &nbsp;&#8226;&nbsp; Multi-Voice Dialogue Generator &nbsp;&#8226;&nbsp; Zero Login &nbsp;&#8226;&nbsp; 104 Languages Supported
+      FREE {lang_name} TEXT TO SPEECH 2026 &nbsp;&#8226;&nbsp; 30+ Neural Voices for {lang_name} ({country}) &nbsp;&#8226;&nbsp; Instant MP3 &amp; WAV Download Free &nbsp;&#8226;&nbsp; Multi-Voice Dialogue Generator &nbsp;&#8226;&nbsp; Zero Login &nbsp;&#8226;&nbsp; 104 Languages Supported
     </marquee>
   </div>
 </div>
@@ -213,12 +213,12 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
     {country} &nbsp;&#183;&nbsp; Neural AI Voice Generator &nbsp;&#183;&nbsp; No Login Required
   </p>
   <p style="color:var(--muted);font-size:.92rem;max-width:640px;margin:0 auto 28px;line-height:1.7;">
-    Convert {lang_name} text to natural speech free online. {voice_count}+ neural AI voices for {country}. Instant MP3/WAV download. Best free {lang_name} TTS tool 2026.
+    Convert {lang_name} text to natural speech free online. 30+ neural AI voices for {country}. Instant MP3/WAV download. Best free {lang_name} TTS tool 2026.
   </p>
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:0;">
     <span style="background:rgba(61,214,140,0.1);border:1px solid rgba(61,214,140,0.2);color:var(--ok);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-check" style="margin-right:5px;"></i>100% Free</span>
     <span style="background:rgba(59,158,255,0.1);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-bolt" style="margin-right:5px;"></i>Instant MP3</span>
-    <span style="background:rgba(124,95,230,0.1);border:1px solid rgba(124,95,230,0.2);color:var(--a2);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-robot" style="margin-right:5px;"></i>{voice_count}+ Neural Voices</span>
+    <span style="background:rgba(124,95,230,0.1);border:1px solid rgba(124,95,230,0.2);color:var(--a2);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-robot" style="margin-right:5px;"></i>30+ Neural Voices</span>
     <span style="background:rgba(233,79,163,0.1);border:1px solid rgba(233,79,163,0.2);color:var(--a3);border-radius:100px;padding:5px 16px;font-size:.8rem;font-weight:600;"><i class="fa-solid fa-user-slash" style="margin-right:5px;"></i>No Login</span>
   </div>
 </section>
@@ -480,7 +480,7 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-bottom:56px;">
       <div class="feature-card"><div class="feature-icon" style="background:rgba(59,158,255,0.12);">&#129504;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">{lang_name}-Native Neural Voices</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Voices trained specifically on {lang_name} ({country}) native speaker data &mdash; correct pronunciation, natural intonation, authentic regional accent.</p></div>
       <div class="feature-card"><div class="feature-icon" style="background:rgba(61,214,140,0.12);">&#128229;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Instant MP3 / WAV Download</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">No queues, no waiting. Generate up to 5,000 characters in seconds. Download MP3 for web or WAV for studio-quality production.</p></div>
-      <div class="feature-card"><div class="feature-icon" style="background:rgba(124,95,230,0.12);">&#127931;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Full Voice Customization</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Adjust speed (0.5x&ndash;2x), pitch (&minus;10 to +10), volume, and speaking style. {voice_count}+ unique voice characters across all ages.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:rgba(124,95,230,0.12);">&#127931;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Full Voice Customization</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Adjust speed (0.5x&ndash;2x), pitch (&minus;10 to +10), volume, and speaking style. 30+ unique voice characters across all ages.</p></div>
       <div class="feature-card"><div class="feature-icon" style="background:rgba(233,79,163,0.12);">&#128101;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Multi-Voice Dialogue</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Create {lang_name} conversations with 2 distinct voices. Perfect for podcasts, YouTube, education, and audiobooks.</p></div>
       <div class="feature-card"><div class="feature-icon" style="background:rgba(251,191,36,0.12);">&#128274;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">No Login, 100% Private</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">No account required. Your {lang_name} text is processed on-demand, never stored, never shared. Complete privacy guaranteed.</p></div>
       <div class="feature-card"><div class="feature-icon" style="background:rgba(59,158,255,0.12);">&#128241;</div><h3 style="font-size:1.05rem;font-weight:700;margin-bottom:8px;">Works on Any Device</h3><p style="color:var(--txt2);font-size:.88rem;line-height:1.78;">Fully responsive on mobile, tablet, and desktop. No app download &mdash; works in any browser on iOS, Android, and PC.</p></div>
@@ -500,6 +500,8 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
     <div style="text-align:center;max-width:960px;margin:0 auto;">{related_links}</div>
   </div>
 </div>
+
+{deep_seo_html}
 
 <!-- FOOTER -->
 <footer class="pro-footer">
