@@ -493,26 +493,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   </div>
 </section>
 
-<!-- STAT CARDS -->
-<section style="max-width:860px;margin:0 auto 32px;padding:0 18px;">
-  <div class="stats-grid">
-    <div class="statc">
-      <div style="font-size:1.6rem;margin-bottom:6px;">&#127908;</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--a1);">{voice_count}+</div>
-      <div style="font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;">{lang_name} Voices</div>
-    </div>
-    <div class="statc">
-      <div style="font-size:1.6rem;margin-bottom:6px;">&#127758;</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--a2);">104</div>
-      <div style="font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;">Languages</div>
-    </div>
-    <div class="statc">
-      <div style="font-size:1.6rem;margin-bottom:6px;">&#9889;</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--ok);">5K</div>
-      <div style="font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;">Chars Free</div>
-    </div>
-  </div>
-</section>
+{regional_seo_html}
 
 <!-- TTS STUDIO WIDGET -->
 <section style="max-width:860px;margin:0 auto;padding:0 18px 56px;">
@@ -1452,6 +1433,40 @@ def build_page(entry):
         for e in LANGUAGES
     )
 
+    STATE_MAP = {
+        "mr-IN": "Maharashtra",
+        "gu-IN": "Gujarat",
+        "ta-IN": "Tamil Nadu",
+        "te-IN": "Andhra Pradesh and Telangana",
+        "kn-IN": "Karnataka",
+        "ml-IN": "Kerala",
+        "bn-IN": "West Bengal",
+        "pa-IN": "Punjab",
+        "or-IN": "Odisha",
+        "hi-IN": "Northern and Central India",
+        "ur-PK": "Punjab and Sindh",
+        "zh-CN": "Mainland China",
+        "zh-TW": "Taiwan",
+        "zh-HK": "Hong Kong",
+    }
+    state_region = STATE_MAP.get(code, "")
+    region_display = f"{state_region}, {country}" if state_region else country
+
+    regional_seo_html = f"""
+<!-- REGIONAL SEO BLOCK -->
+<section style="max-width:860px;margin:0 auto 32px;padding:0 18px;">
+  <div style="background:linear-gradient(145deg, rgba(59,158,255,0.03), rgba(124,95,230,0.03));border:1px solid rgba(124,95,230,0.15);border-radius:18px;padding:28px 24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.01);">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--txt);margin-bottom:12px;">
+      <i class="fa-solid fa-earth-asia" style="color:var(--a1);margin-right:8px;"></i>
+      Optimized for {lang_name} Speakers in {region_display}
+    </h3>
+    <p style="color:var(--txt2);font-size:.95rem;line-height:1.7;max-width:700px;margin:0 auto;">
+      Experience authentic pronunciation and natural intonation tailored for <strong>{lang_name}</strong> as spoken natively in <strong>{region_display}</strong>. Perfect for localized marketing, regional content creation, and professional e-learning modules. VoicePro's advanced neural AI guarantees maximum local engagement and professional audio quality.
+    </p>
+  </div>
+</section>
+"""
+
     # Build lang->slug map for JS redirect
     lang_slug_map = {e[0]: slug(e[0]) for e in LANGUAGES}
     lang_slug_map_json = json.dumps(lang_slug_map, ensure_ascii=False)
@@ -1478,6 +1493,7 @@ def build_page(entry):
         voices_table_html=voices_table_html,
         all_languages_options=all_languages_options,
         lang_slug_map_json=lang_slug_map_json,
+        regional_seo_html=regional_seo_html,
     )
     return page_slug, page
 

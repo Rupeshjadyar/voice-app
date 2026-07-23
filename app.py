@@ -748,6 +748,55 @@ def stats():
     return jsonify({"total": total, "today": today})
 
 
+def apply_voice_type_modifiers(voice_type, base_rate, base_pitch):
+    """Apply pitch and rate offsets to simulate distinct voices from a single model."""
+    try:
+        r = float(base_rate)
+    except Exception:
+        r = 1.0
+    try:
+        p = int(float(base_pitch))
+    except Exception:
+        p = 0
+        
+    vt = str(voice_type).lower()
+    
+    # Define acoustic signatures for generic voice types
+    if 'female-2' in vt or 'f2' in vt or 'soft' in vt:
+        r *= 0.95
+        p += 2
+    elif 'female-3' in vt or 'f3' in vt or 'pro' in vt:
+        r *= 1.05
+        p -= 2
+    elif 'male-2' in vt or 'm2' in vt or 'friendly' in vt:
+        r *= 1.05
+        p += 2
+    elif 'male-3' in vt or 'm3' in vt or 'deep' in vt or 'authority' in vt:
+        r *= 0.95
+        p -= 4
+    elif 'kid' in vt or 'toddler' in vt or 'chipmunk' in vt:
+        r *= 1.15
+        p += 8
+    elif 'teen' in vt:
+        r *= 1.05
+        p += 3
+    elif 'senior' in vt or 'old' in vt or 'wise' in vt or 'grandfather' in vt or 'grandmother' in vt:
+        r *= 0.85
+        p -= 3
+    elif 'giant' in vt or 'villain' in vt or 'bass' in vt:
+        r *= 0.80
+        p -= 8
+    elif 'anime' in vt or 'fairy' in vt:
+        r *= 1.10
+        p += 6
+    elif 'news' in vt or 'commentary' in vt:
+        r *= 1.15
+        p += 0
+        
+    return str(r), str(p)
+
+
+
 @app.route('/generate', methods=['POST'])
 def generate():
     if not any([EDGE_AVAILABLE, GTTS_AVAILABLE, PYTTSX3_AVAILABLE]):
@@ -768,6 +817,9 @@ def generate():
             return jsonify({'error': 'Please enter text to convert'}), 400
         if len(text) > 5000:
             return jsonify({'error': 'Text too long. Max 5000 characters.'}), 400
+
+        # Apply voice modifiers so characters sound unique even if mapping to the same base neural voice
+        rate, pitch = apply_voice_type_modifiers(voice_type, rate, pitch)
 
         voice = get_voice(lang, voice_type)
 

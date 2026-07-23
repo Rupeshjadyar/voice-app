@@ -223,26 +223,7 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
   </div>
 </section>
 
-<!-- STAT CARDS -->
-<section style="max-width:860px;margin:0 auto 32px;padding:0 18px;">
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
-    <div class="statc">
-      <div style="font-size:1.6rem;margin-bottom:6px;">&#127908;</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--a1);">{voice_count}+</div>
-      <div style="font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;">{lang_name} Voices</div>
-    </div>
-    <div class="statc">
-      <div style="font-size:1.6rem;margin-bottom:6px;">&#127758;</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--a2);">104</div>
-      <div style="font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;">Languages</div>
-    </div>
-    <div class="statc">
-      <div style="font-size:1.6rem;margin-bottom:6px;">&#9889;</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--ok);">5K</div>
-      <div style="font-size:.76rem;color:var(--muted);font-weight:500;margin-top:2px;">Chars Free</div>
-    </div>
-  </div>
-</section>
+{regional_seo_html}
 
 <!-- TTS STUDIO WIDGET -->
 <section style="max-width:860px;margin:0 auto;padding:0 18px 56px;">
