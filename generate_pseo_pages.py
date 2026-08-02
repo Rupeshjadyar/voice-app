@@ -1007,6 +1007,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
 </div>
 
 {deep_seo_html}
+{cross_links_html}
 
 <!-- FOOTER -->
 <footer class="pro-footer">
@@ -1495,6 +1496,21 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     if (txtEl && txtEl.value) onTxt(txtEl);
   }});
 </script>
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(7,11,18,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(59,158,255,0.15);padding:18px 24px;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy.html" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button onclick="acceptCookies()" style="padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#6d28d9);color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;">Accept All</button>
+      <button onclick="rejectCookies()" style="padding:9px 22px;background:transparent;color:#b8c4d8;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s;">Reject Non-Essential</button>
+    </div>
+  </div>
+</div>
+<script>
+function acceptCookies(){{localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-consent').style.display='none';}}
+function rejectCookies(){{localStorage.setItem('cookie_consent','rejected');document.getElementById('cookie-consent').style.display='none';}}
+(function(){{if(!localStorage.getItem('cookie_consent')){{document.getElementById('cookie-consent').style.display='block';}}}}());
+</script>
 </body>
 </html>"""
 
@@ -1711,6 +1727,65 @@ def build_page(entry):
     lang_slug_map = {e[0]: slug(e[0]) for e in LANGUAGES}
     lang_slug_map_json = json.dumps(lang_slug_map, ensure_ascii=False)
 
+    # ── Cross-Links: Same Country + Popular Global Languages ──────
+    # Group languages by country
+    same_country = [e for e in LANGUAGES if e[2] == country and e[0] != code]
+    
+    # Popular global languages (always show these as fallback)
+    popular_codes = [
+        "hi-IN", "en-US", "es-ES", "fr-FR", "de-DE", "ja-JP",
+        "zh-CN", "ko-KR", "ar-SA", "pt-BR", "ru-RU", "it-IT",
+        "tr-TR", "vi-VN", "th-TH", "id-ID", "nl-NL", "pl-PL",
+        "sv-SE", "uk-UA"
+    ]
+    popular = [e for e in LANGUAGES if e[0] in popular_codes and e[0] != code]
+    
+    # Remove duplicates (if same-country lang is also in popular list)
+    same_country_codes = {e[0] for e in same_country}
+    popular_unique = [e for e in popular if e[0] not in same_country_codes]
+    
+    # Build cross-links HTML
+    pill_style = 'padding:6px 14px;background:var(--panel);border:1px solid var(--border);border-radius:20px;font-size:.82rem;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap;'
+    
+    cross_parts = []
+    
+    if same_country:
+        cross_parts.append(f'<h4 style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:.95rem;color:var(--a1);margin:0 0 12px;">🏠 More Languages in {country}</h4>')
+        cross_parts.append('<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">')
+        for e in same_country:
+            s = slug(e[0])
+            cross_parts.append(f'<a href="/tts/{s}" style="{pill_style}">{e[3]} {e[1]} ({e[2]})</a>')
+        cross_parts.append('</div>')
+    
+    cross_parts.append('<h4 style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:.95rem;color:var(--a2);margin:0 0 12px;">🌍 Popular Languages Worldwide</h4>')
+    cross_parts.append('<div style="display:flex;flex-wrap:wrap;gap:8px;">')
+    for e in popular_unique[:15]:
+        s = slug(e[0])
+        cross_parts.append(f'<a href="/tts/{s}" style="{pill_style}">{e[3]} {e[1]} ({e[2]})</a>')
+    cross_parts.append('</div>')
+    
+    cross_links_inner = '\n      '.join(cross_parts)
+    
+    cross_links_html = f"""
+<!-- CROSS-LINKS: RELATED LANGUAGES -->
+<section style="max-width:860px;margin:0 auto 40px;padding:0 18px;">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 24px;">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--txt);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+      <i class="fa-solid fa-language" style="color:var(--a1);"></i>
+      Explore More Languages
+    </h3>
+    <div>
+      {cross_links_inner}
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <a href="/tts/" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s;">
+        <i class="fa-solid fa-globe"></i> View All 104 Languages
+      </a>
+    </div>
+  </div>
+</section>
+"""
+
     page = PAGE_TEMPLATE.format(
         html_lang=html_lang,
         meta_title=meta_title,
@@ -1735,6 +1810,7 @@ def build_page(entry):
         lang_slug_map_json=lang_slug_map_json,
         regional_seo_html=regional_seo_html,
         deep_seo_html=deep_seo_html,
+        cross_links_html=cross_links_html,
     )
     return page_slug, page
 

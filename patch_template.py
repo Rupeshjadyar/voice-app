@@ -16,7 +16,6 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X7HBHXRYG5"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-X7HBHXRYG5');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707682105347147" crossorigin="anonymous"></script>
-<meta name="monetag" content="df392a699f813691935e38bba65c002d">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{meta_title}</title>

@@ -177,16 +177,36 @@
     <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:9px;"><i class="fa-solid fa-circle-info" style="color:var(--a1);"></i>Business Information</h2>
     <div style="display:flex;flex-direction:column;gap:14px;">
       <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
-        <i class="fa-solid fa-location-dot" style="color:var(--a1);width:18px;text-align:center;"></i>
-        <span><strong>Location:</strong> Based in India</span>
+        <i class="fa-solid fa-building" style="color:var(--a1);width:18px;text-align:center;"></i>
+        <span><strong>Business Name:</strong> VoicePro TTS Studio</span>
       </div>
       <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
-        <i class="fa-solid fa-clock" style="color:var(--a2);width:18px;text-align:center;"></i>
-        <span><strong>Response time:</strong> We typically respond within 24 hours</span>
+        <i class="fa-solid fa-user-tie" style="color:var(--a2);width:18px;text-align:center;"></i>
+        <span><strong>Operated by:</strong> Rupesh Jadyar</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
+        <i class="fa-solid fa-briefcase" style="color:var(--a3);width:18px;text-align:center;"></i>
+        <span><strong>Business Type:</strong> Independent Software Development</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
+        <i class="fa-solid fa-location-dot" style="color:var(--ok);width:18px;text-align:center;"></i>
+        <span><strong>Location:</strong> Maharashtra, India</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
+        <i class="fa-solid fa-envelope" style="color:var(--a1);width:18px;text-align:center;"></i>
+        <span><strong>Email:</strong> rupeshjadyar21@gmail.com</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
+        <i class="fa-solid fa-calendar-check" style="color:var(--a2);width:18px;text-align:center;"></i>
+        <span><strong>Established:</strong> 2025</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--txt2);font-size:.92rem;">
+        <i class="fa-solid fa-clock" style="color:var(--a3);width:18px;text-align:center;"></i>
+        <span><strong>Response time:</strong> Within 24-48 hours on working days</span>
       </div>
       <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:4px;">
         <p style="color:var(--muted);font-size:.85rem;line-height:1.6;margin:0;">
-          <i class="fa-solid fa-circle-notch" style="color:var(--a3);margin-right:6px;"></i>
+          <i class="fa-solid fa-circle-notch" style="color:var(--a1);margin-right:6px;"></i>
           For business inquiries, partnerships, or advertising opportunities, please include relevant details in your email.
         </p>
       </div>
@@ -250,6 +270,21 @@ function updateThemeIcons() {
 document.addEventListener('DOMContentLoaded', () => {
   updateThemeIcons();
 });
+</script>
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(7,11,18,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(59,158,255,0.15);padding:18px 24px;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy.html" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button onclick="acceptCookies()" style="padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#6d28d9);color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;">Accept All</button>
+      <button onclick="rejectCookies()" style="padding:9px 22px;background:transparent;color:#b8c4d8;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s;">Reject Non-Essential</button>
+    </div>
+  </div>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-consent').style.display='none';}
+function rejectCookies(){localStorage.setItem('cookie_consent','rejected');document.getElementById('cookie-consent').style.display='none';}
+(function(){if(!localStorage.getItem('cookie_consent')){document.getElementById('cookie-consent').style.display='block';}})();
 </script>
 </body>
 
