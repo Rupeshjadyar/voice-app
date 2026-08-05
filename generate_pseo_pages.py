@@ -1583,9 +1583,9 @@ def build_page(entry):
     meta_title = f"Free {lang_name} Text to Speech {country} – AI Voice Generator MP3 | VoicePro 2026"
     meta_desc  = (f"Convert {lang_name} text to speech free online. 30+ neural AI voices for {country}. "
                   f"Instant MP3/WAV download, no login. Best {lang_name} TTS tool 2026.")
-    meta_kw    = (f"{lang_name.lower()} text to speech, {lang_name.lower()} tts, {lang_name.lower()} voice generator, "
+    meta_kw    = (f"{lang_name.lower()} text to speech, {lang_name.lower()} text to voice, {lang_name.lower()} tts, {lang_name.lower()} voice generator, "
                   f"free {lang_name.lower()} tts {country.lower()}, {lang_name.lower()} ai voice, "
-                  f"{native_name} text to speech, {code} tts, free tts {country.lower()}")
+                  f"{native_name} text to speech, {code} tts, free tts {country.lower()}, text to voice, text to speech")
     og_title   = f"Free {lang_name} Text to Speech – VoicePro TTS Studio {country}"
 
     schema = {
