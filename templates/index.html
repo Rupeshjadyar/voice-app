@@ -3280,6 +3280,7 @@
         if (!detected) {
           // Default: English — hide pill (Latin text is ambiguous)
           pill.style.display = 'none';
+          S.lang = 'en-US';
           return;
         }
 
@@ -3287,6 +3288,9 @@
         pname.textContent = detected.name;
         pill.style.display = 'inline-flex';
         pill.style.alignItems = 'center';
+        
+        // Update the global language state so TTS uses the correct language
+        S.lang = detected.code;
 
         // Auto-update language dropdown if it exists and user hasn't manually changed
         const sel = document.getElementById('sel-lang');
@@ -3294,7 +3298,6 @@
           sel.value = detected.code;
           // Trigger change event so voice list updates
           sel.dispatchEvent(new Event('change'));
-          S.lang = detected.code;
         }
       }
 
