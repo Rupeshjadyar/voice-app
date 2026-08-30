@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  (function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found (404) – VoicePro TTS Studio</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: rgba(0, 0, 0, 0.08);
+      --a1: #1d4ed8;
+      --a2: #6d28d9;
+      --a3: #db2777;
+      --txt: #0f172a;
+      --txt2: #334155;
+      --muted: #64748b;
+    }
+    [data-theme="dark"] {
+      --bg: #070b12;
+      --card: rgba(255, 255, 255, 0.032);
+      --border: rgba(255, 255, 255, 0.07);
+      --a1: #3b9eff;
+      --a2: #7c5fe6;
+      --a3: #e94fa3;
+      --txt: #dde4f0;
+      --txt2: #b8c4d8;
+      --muted: #6e7e98;
+    }
+    body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;}
+    h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,5rem);line-height:1;}
+    .tg{background:linear-gradient(130deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .btn-home{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-weight:700;padding:14px 28px;border-radius:14px;text-decoration:none;font-family:'Syne',sans-serif;margin-top:24px;box-shadow:0 4px 20px rgba(59,158,255,0.3);}
+  </style>
+</head>
+<body>
+  <div style="max-width:550px;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:48px 32px;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+    <div style="font-size:3rem;margin-bottom:12px;">🎙️</div>
+    <h1 class="tg">404</h1>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;margin:12px 0 8px;">Audio Track Not Found</h2>
+    <p style="color:var(--muted);font-size:0.95rem;line-height:1.6;">The voice generator page or article you are looking for might have been moved or does not exist.</p>
+    <a href="/" class="btn-home"><i class="fa-solid fa-house"></i> Return to Studio</a>
+  </div>
+</body>
+</html>

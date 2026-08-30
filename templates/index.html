@@ -1395,19 +1395,24 @@
           <button onclick="navigate('home')" class="nav-btn nav-active" id="nav-home">
             <i class="fa-solid fa-house" style="margin-right:5px;"></i>Home
           </button>
-          <a href="about.html" class="nav-btn">
+          <a href="/about" class="nav-btn">
             <i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About
           </a>
-          <a href="contact.html" class="nav-btn">
+          <a href="/blog" class="nav-btn">
+            <i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog
+          </a>
+          <a href="/tts/" class="nav-btn">
+            <i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages
+          </a>
+          <a href="/contact" class="nav-btn">
             <i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact
           </a>
-          <a href="privacy.html" class="nav-btn">
+          <a href="/privacy" class="nav-btn">
             <i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy
           </a>
-          <a href="terms.html" class="nav-btn">
+          <a href="/terms" class="nav-btn">
             <i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms
           </a>
-          <a href="/tts/" class="nav-btn">All Languages TTS</a>
           <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
             <i class="fa-solid fa-moon"></i>
           </button>
@@ -1425,19 +1430,30 @@
         <button onclick="navigate('home');toggleMobileMenu()" class="nav-btn" style="text-align:left;">
           <i class="fa-solid fa-house" style="margin-right:8px;"></i>Home
         </button>
-        <a href="about.html" class="nav-btn">
+        <a href="/about" class="nav-btn">
           <i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About
         </a>
-        <a href="contact.html" class="nav-btn">
+        <a href="/blog" class="nav-btn">
+          <i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog
+        </a>
+        <a href="/tts/" class="nav-btn">
+          <i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS
+        </a>
+        <a href="/contact" class="nav-btn">
           <i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact
         </a>
-        <a href="privacy.html" class="nav-btn">
+        <a href="/privacy" class="nav-btn">
           <i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy
         </a>
-        <a href="terms.html" class="nav-btn">
+        <a href="/terms" class="nav-btn">
           <i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service
         </a>
-        <a href="/tts/" class="nav-btn">All Languages TTS</a>
+        <a href="/disclaimer" class="nav-btn">
+          <i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer
+        </a>
+        <a href="/cookies" class="nav-link nav-btn">
+          <i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy
+        </a>
         <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
           <i class="fa-solid fa-moon"></i>Toggle Theme
         </button>
@@ -1461,7 +1477,107 @@
     </div>
 
     <!-- MAIN APP -->
-    <main id="app" style="flex:1;padding-top:0;padding-bottom:0;"></main>
+    <main id="app" style="flex:1;padding-top:0;padding-bottom:0;">
+      <div class="fade-in" style="max-width:880px;margin:0 auto;padding:24px 18px 48px;">
+        <div style="text-align:center;margin-bottom:32px;padding-top:12px;">
+          <div class="badge-pill" style="margin-bottom:16px;">✦ FREE AI TTS STUDIO 2026 ✦</div>
+          <h1 style="font-size:clamp(1.85rem,5vw,2.9rem);font-weight:800;line-height:1.1;margin-bottom:13px;"><span class="tg">AI Voice Generator</span></h1>
+          <p style="color:var(--txt2);font-size:.98rem;max-width:500px;margin:0 auto;line-height:1.72;">Transform text into natural speech — 100+ languages, 100+ neural voices, MP3/WAV download. No login required.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px;">
+          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🎙️</div><div id="st-total" style="font-size:1.35rem;font-weight:800;font-family:'Syne',sans-serif;" class="tg">12,480+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Total Generations</div></div>
+          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">⚡</div><div id="st-today" style="font-size:1.35rem;font-weight:800;color:var(--a1);font-family:'Syne',sans-serif;">840+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Today's Usage</div></div>
+          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🌍</div><div style="font-size:1.35rem;font-weight:800;color:var(--a2);font-family:'Syne',sans-serif;">104+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Languages</div></div>
+        </div>
+        <div class="glass" style="padding:30px;margin-bottom:22px;">
+          <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:9px;"><i class="fa-solid fa-sliders" style="color:var(--a1);"></i>Advanced Voice Generator Studio</h2>
+          
+          <!-- Tab Switcher -->
+          <div style="display:flex;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:22px;gap:4px;">
+            <button onclick="setTtsMode('single')" id="tab-btn-single" style="flex:1;padding:9px 12px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;white-space:nowrap;">Single Voice</button>
+            <button onclick="setTtsMode('multi')" id="tab-btn-multi" style="flex:1;padding:9px 12px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;background:transparent;color:var(--muted);white-space:nowrap;">Multi-Voice Dialogue</button>
+          </div>
+
+          <!-- Single Mode Container -->
+          <div id="single-mode-container">
+            <div style="margin-bottom:18px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <span class="slbl" style="margin-bottom:0;"><i class="fa-solid fa-align-left" style="margin-right:5px;"></i>Your Text</span>
+                <span id="lang-detect-pill" style="display:none;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:20px;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(124,95,230,0.15));border:1px solid rgba(59,158,255,0.3);color:var(--a1);font-family:'Syne',sans-serif;transition:all .3s;">
+                  <i class="fa-solid fa-language" style="margin-right:4px;"></i><span id="lang-detect-name">Detected</span>
+                </span>
+              </div>
+              <textarea id="txt" rows="5" placeholder="Type or paste your text here… (max 5000 characters)" oninput="onTxt(this)"></textarea>
+              <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:.76rem;color:var(--muted);"><span><i class="fa-regular fa-keyboard" style="margin-right:3px;"></i><span id="cc">0</span> / 5000</span><span><i class="fa-regular fa-clock" style="margin-right:3px;"></i>~<span id="te">0</span> sec</span></div>
+            </div>
+            <div class="inputs-grid">
+              <div style="min-width:0;">
+                <span class="slbl"><i class="fa-solid fa-language" style="margin-right:5px;color:var(--a1);"></i>Language</span>
+                <div id="dd-lang"></div>
+              </div>
+              <div style="min-width:0;">
+                <span class="slbl"><i class="fa-solid fa-robot" style="margin-right:5px;color:var(--a2);"></i>Voice Character</span>
+                <div id="dd-voice"></div>
+              </div>
+            </div>
+            <div class="controls-grid">
+              <div class="ctrl">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;"><span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-gauge-high" style="color:var(--ok);margin-right:4px;"></i>Speed</span><span id="badge-rate" class="mono" style="font-size:.76rem;background:rgba(61,214,140,0.1);color:var(--ok);padding:2px 8px;border-radius:20px;">1.0x</span></div>
+                <input type="range" id="sl-rate" min="0.5" max="2.0" step="0.1" value="1.0" oninput="n$('badge-rate').textContent=parseFloat(this.value).toFixed(1)+'x'">
+                <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🐢 Slow</span><span>⚡ Fast</span></div>
+              </div>
+              <div class="ctrl">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;"><span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-music" style="color:var(--a2);margin-right:4px;"></i>Pitch</span><span id="badge-pitch" class="mono" style="font-size:.76rem;background:rgba(124,95,230,0.1);color:var(--a2);padding:2px 8px;border-radius:20px;">+0</span></div>
+                <input type="range" id="sl-pitch" min="-10" max="10" step="1" value="0" oninput="n$('badge-pitch').textContent=(this.value>=0?'+':'')+this.value">
+                <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔽 Low</span><span>🔼 High</span></div>
+              </div>
+              <div class="ctrl">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;"><span style="font-size:.78rem;font-weight:600;color:var(--muted);"><i class="fa-solid fa-volume-high" style="color:var(--a1);margin-right:4px;"></i>Volume</span><span id="badge-vol" class="mono" style="font-size:.76rem;background:rgba(59,158,255,0.1);color:var(--a1);padding:2px 8px;border-radius:20px;">100%</span></div>
+                <input type="range" id="sl-vol" min="0" max="100" step="5" value="100" oninput="n$('badge-vol').textContent=this.value+'%'">
+                <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:3px;"><span>🔇</span><span>🔊</span></div>
+              </div>
+            </div>
+            <div class="options-grid">
+              <div>
+                <span class="slbl"><i class="fa-solid fa-palette" style="color:#f472b6;margin-right:5px;"></i>Speaking Style</span>
+                <select id="sel-style">
+                  <option value="general">🗣️ General</option><option value="cheerful">😊 Cheerful</option>
+                  <option value="sad">😢 Sad</option><option value="angry">😠 Angry</option>
+                  <option value="excited">🎉 Excited</option><option value="friendly">🤝 Friendly</option>
+                  <option value="newscast">📰 Newscast</option><option value="newscast-casual">📺 Newscast Casual</option>
+                  <option value="newscast-formal">📜 Newscast Formal</option><option value="assistant">🤖 Assistant</option>
+                  <option value="customerservice">📞 Customer Service</option><option value="narration-professional">🎬 Narration Pro</option>
+                  <option value="narration-relaxed">🌙 Narration Relaxed</option><option value="poetry-reading">📖 Poetry</option>
+                  <option value="sports-commentary">⚽ Sports</option><option value="documentary-narration">🎥 Documentary</option>
+                </select>
+              </div>
+              <div>
+                <span class="slbl"><i class="fa-solid fa-file-audio" style="color:#fb923c;margin-right:5px;"></i>Format</span>
+                <select id="sel-fmt"><option value="mp3">MP3 (Recommended)</option><option value="wav">WAV (Studio)</option></select>
+              </div>
+            </div>
+
+            <!-- Natural Mode Toggle -->
+            <div style="display:flex;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:24px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--a2);font-size:1.1rem;"></i>
+                <div>
+                  <div style="font-size:.88rem;font-weight:700;color:var(--txt);font-family:'Syne',sans-serif;">Natural Voice Mode</div>
+                  <div style="font-size:.72rem;color:var(--muted);margin-top:2px;line-height:1.3;">Smart prosody — questions rise ↑, exclamations get energy ⚡, natural pauses at commas & full stops</div>
+                </div>
+              </div>
+              <label style="position:relative;display:inline-block;width:48px;height:26px;flex-shrink:0;margin-left:12px;cursor:pointer;">
+                <input type="checkbox" id="natural-mode-toggle" checked onchange="S.naturalMode=this.checked;showToast(this.checked?'Natural Mode ON 🎙️':'Plain Mode — raw text reading','ok')" style="opacity:0;width:0;height:0;">
+                <span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--border);transition:.3s;border-radius:26px;"></span>
+                <span id="natural-toggle-knob" style="position:absolute;content:'';height:20px;width:20px;left:3px;bottom:3px;background:#fff;transition:.3s;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></span>
+              </label>
+            </div>
+          </div>
+
+          <button id="gen-btn" class="btn-primary" onclick="doGenerate()"><span id="gen-lbl"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Voice</span></button>
+        </div>
+      </div>
+    </main>
 
     <!-- SEO CONTENT -->
     <div class="seo-wrap" id="seo-content">
@@ -1801,6 +1917,162 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ✦ COMPANION AUDIO TOOLS SUITE (High-Value Interactive Utilities)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="audio-utilities" style="max-width:1100px;margin:40px auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:36px;">
+        <div class="badge-pill" style="margin-bottom:14px;">✦ FREE AUDIO CREATOR SUITE ✦</div>
+        <h2 style="font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;margin-bottom:12px;">Interactive <span class="tg">Audio &amp; Voice Utilities</span></h2>
+        <p style="color:var(--txt2);font-size:0.95rem;max-width:680px;margin:0 auto;line-height:1.7;">Free specialized companion tools for YouTube creators, podcasters, audiobook narrators, and audio engineers.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-bottom:40px;">
+        
+        <!-- Utility 1: Live Speech Reading Time & Word Counter -->
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(59,158,255,0.12);display:flex;align-items:center;justify-content:center;color:var(--a1);font-size:1.2rem;">
+              <i class="fa-solid fa-stopwatch-20"></i>
+            </div>
+            <div>
+              <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:2px;">Speech Duration Calculator</h3>
+              <span style="font-size:0.75rem;color:var(--muted);">Script pacing &amp; reading time estimator</span>
+            </div>
+          </div>
+          <textarea id="util-timer-input" rows="3" placeholder="Paste voiceover script to calculate duration..." oninput="calculateScriptMetrics(this.value)" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--txt);font-size:0.88rem;width:100%;outline:none;resize:none;margin-bottom:14px;box-sizing:border-box;"></textarea>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;text-align:center;">
+            <div style="background:var(--panel);padding:10px;border-radius:10px;border:1px solid var(--border);">
+              <div id="u-words" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--a1);">0</div>
+              <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;">Words</div>
+            </div>
+            <div style="background:var(--panel);padding:10px;border-radius:10px;border:1px solid var(--border);">
+              <div id="u-time-1x" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--ok);">0s</div>
+              <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;">Normal (1.0x)</div>
+            </div>
+            <div style="background:var(--panel);padding:10px;border-radius:10px;border:1px solid var(--border);">
+              <div id="u-time-125x" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--a2);">0s</div>
+              <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;">Fast (1.25x)</div>
+            </div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--muted);line-height:1.5;margin-top:auto;">
+            <i class="fa-solid fa-circle-check" style="color:var(--ok);margin-right:4px;"></i> Standard conversational pacing: <strong>140-160 WPM</strong>. Optimized for video timelines.
+          </div>
+        </div>
+
+        <!-- Utility 2: SSML Code Generator -->
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(124,95,230,0.12);display:flex;align-items:center;justify-content:center;color:var(--a2);font-size:1.2rem;">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+              <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:2px;">SSML Tag Assistant</h3>
+              <span style="font-size:0.75rem;color:var(--muted);">Add pauses, emphasis &amp; pitch modulation</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <button onclick="insertSsmlTag('break')" style="padding:6px 10px;border-radius:8px;background:var(--panel);border:1px solid var(--border);color:var(--txt);font-size:0.76rem;cursor:pointer;font-weight:600;"><i class="fa-solid fa-pause" style="color:var(--a1);margin-right:4px;"></i>1s Pause</button>
+            <button onclick="insertSsmlTag('emphasis')" style="padding:6px 10px;border-radius:8px;background:var(--panel);border:1px solid var(--border);color:var(--txt);font-size:0.76rem;cursor:pointer;font-weight:600;"><i class="fa-solid fa-bolt" style="color:var(--ok);margin-right:4px;"></i>Emphasis</button>
+            <button onclick="insertSsmlTag('whisper')" style="padding:6px 10px;border-radius:8px;background:var(--panel);border:1px solid var(--border);color:var(--txt);font-size:0.76rem;cursor:pointer;font-weight:600;"><i class="fa-solid fa-wind" style="color:var(--a3);margin-right:4px;"></i>Whisper</button>
+            <button onclick="insertSsmlTag('slow')" style="padding:6px 10px;border-radius:8px;background:var(--panel);border:1px solid var(--border);color:var(--txt);font-size:0.76rem;cursor:pointer;font-weight:600;"><i class="fa-solid fa-gauge-simple-min" style="color:var(--a2);margin-right:4px;"></i>Slow Rate</button>
+          </div>
+          <textarea id="util-ssml-preview" rows="3" readonly style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--a1);font-family:'Space Mono',monospace;font-size:0.78rem;width:100%;outline:none;resize:none;margin-bottom:14px;box-sizing:border-box;">&lt;speak&gt;&lt;break time="1s"/&gt;Welcome to VoicePro!&lt;/speak&gt;</textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;">
+            <span style="font-size:0.76rem;color:var(--muted);">Click tag to copy SSML code snippet</span>
+            <button onclick="copySsmlCode()" style="padding:6px 12px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;border-radius:8px;color:#fff;font-size:0.76rem;font-weight:700;cursor:pointer;"><i class="fa-solid fa-copy" style="margin-right:4px;"></i>Copy</button>
+          </div>
+        </div>
+
+        <!-- Utility 3: Script Cleaner & Normalizer -->
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(233,79,163,0.12);display:flex;align-items:center;justify-content:center;color:var(--a3);font-size:1.2rem;">
+              <i class="fa-solid fa-broom"></i>
+            </div>
+            <div>
+              <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:2px;">Script Text Cleaner</h3>
+              <span style="font-size:0.75rem;color:var(--muted);">Format raw text for smooth pronunciation</span>
+            </div>
+          </div>
+          <textarea id="util-cleaner-input" rows="3" placeholder="Paste unformatted text with symbols, brackets or URLs..." style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--txt);font-size:0.88rem;width:100%;outline:none;resize:none;margin-bottom:14px;box-sizing:border-box;"></textarea>
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <button onclick="cleanVoiceScript()" style="flex:1;padding:8px;background:linear-gradient(135deg,var(--a3),var(--a2));border:none;border-radius:8px;color:#fff;font-size:0.78rem;font-weight:700;cursor:pointer;"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:4px;"></i>Clean &amp; Fix</button>
+            <button onclick="transferCleanedToStudio()" style="flex:1;padding:8px;background:var(--panel);border:1px solid var(--border);border-radius:8px;color:var(--txt);font-size:0.78rem;font-weight:600;cursor:pointer;"><i class="fa-solid fa-arrow-up" style="margin-right:4px;"></i>Send to Studio</button>
+          </div>
+          <div style="font-size:0.76rem;color:var(--muted);line-height:1.5;margin-top:auto;">
+            Removes HTML tags, square brackets, URLs, and normalizes hyphens to prevent TTS engine stumbles.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ✦ TECHNICAL ARCHITECTURE & ACOUSTIC ENGINEERING GUIDE
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section style="max-width:1100px;margin:40px auto;padding:0 24px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:var(--shadow);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:rgba(59,158,255,0.12);display:flex;align-items:center;justify-content:center;color:var(--a1);font-size:1.3rem;">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <div>
+            <h2 style="font-size:clamp(1.3rem,3vw,1.7rem);font-weight:800;margin-bottom:2px;">Neural Speech Synthesis: <span class="tg">Technical Architecture</span></h2>
+            <p style="color:var(--muted);font-size:0.85rem;margin:0;">Engineering standards, acoustic modeling, and audio pipeline specifications</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:28px;">
+          <div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--a1);margin-bottom:8px;"><i class="fa-solid fa-wave-square" style="margin-right:6px;"></i>1. Acoustic Mel-Spectrogram</h3>
+            <p style="color:var(--txt2);font-size:0.88rem;line-height:1.7;margin:0;">Text is parsed into phonemes and fed into transformer-based acoustic networks that predict pitch, duration, energy, and harmonic frequencies at 80-band Mel resolutions.</p>
+          </div>
+          <div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--a2);margin-bottom:8px;"><i class="fa-solid fa-brain" style="margin-right:6px;"></i>2. Neural Vocoder Synthesis</h3>
+            <p style="color:var(--txt2);font-size:0.88rem;line-height:1.7;margin:0;">Generative Adversarial Network (GAN) neural vocoders transform Mel-spectrograms into high-fidelity 24kHz / 48kHz audio waveforms with natural human breath and timbre.</p>
+          </div>
+          <div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--ok);margin-bottom:8px;"><i class="fa-solid fa-bolt" style="margin-right:6px;"></i>3. Low-Latency Streaming</h3>
+            <p style="color:var(--txt2);font-size:0.88rem;line-height:1.7;margin:0;">Edge-optimized synthesis pipelines produce high-bitrate MP3 and uncompressed WAV audio buffers in under 1.2 seconds, ensuring instantaneous browser playback.</p>
+          </div>
+        </div>
+
+        <div style="background:rgba(59,158,255,0.04);border:1px solid rgba(59,158,255,0.18);border-radius:16px;padding:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div style="flex:1;min-width:260px;">
+            <h4 style="font-size:0.95rem;font-weight:700;color:var(--txt);margin-bottom:4px;">100% Commercial Rights &amp; Zero Watermarks</h4>
+            <p style="color:var(--muted);font-size:0.84rem;line-height:1.6;margin:0;">Every audio track generated on VoicePro TTS Studio is 100% royalty-free. You hold full commercial licensing for YouTube monetization, Spotify podcasts, client projects, and broadcast audio.</p>
+          </div>
+          <a href="/terms" style="padding:10px 20px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;text-decoration:none;white-space:nowrap;">View Licensing Terms</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         ✦ E-E-A-T AUTHOR & EDITORIAL TRANSPARENCY SECTION
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section style="max-width:1100px;margin:40px auto;padding:0 24px;">
+      <div style="background:linear-gradient(145deg, rgba(59,158,255,0.03), rgba(124,95,230,0.03));border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:var(--shadow);">
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:20px;">
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.8rem;font-weight:800;font-family:'Syne',sans-serif;box-shadow:0 4px 16px rgba(59,158,255,0.3);">
+            RJ
+          </div>
+          <div>
+            <div style="display:inline-block;background:rgba(61,214,140,0.1);color:var(--ok);padding:2px 10px;border-radius:100px;font-size:0.72rem;font-weight:700;font-family:'Syne',sans-serif;margin-bottom:4px;">ENGINEER &amp; CREATOR</div>
+            <h3 style="font-size:1.3rem;font-weight:800;margin-bottom:2px;">Rupesh Jadyar</h3>
+            <p style="color:var(--muted);font-size:0.85rem;margin:0;">Independent Software Developer &bull; Maharashtra, India</p>
+          </div>
+        </div>
+        <p style="color:var(--txt2);font-size:0.92rem;line-height:1.75;margin-bottom:16px;">
+          VoicePro TTS Studio was architected with a singular mission: removing financial barriers to studio-quality synthetic speech for creators around the world. Every feature, multilingual mapping, and voice preset is personally benchmarked, maintained, and updated to deliver natural prosody, low latency, and crystal-clear pronunciation.
+        </p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:0.84rem;color:var(--muted);">
+          <span><i class="fa-solid fa-envelope" style="color:var(--a1);margin-right:6px;"></i><a href="mailto:rupeshjadyar21@gmail.com" style="color:var(--a1);text-decoration:none;">rupeshjadyar21@gmail.com</a></span>
+          <span><i class="fa-solid fa-clock" style="color:var(--ok);margin-right:6px;"></i>24-Hour Support SLA</span>
+          <span><i class="fa-solid fa-shield-check" style="color:var(--a2);margin-right:6px;"></i>Zero Data Retention Policy</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ALL LANGUAGES DIRECTORY -->
     <section style="max-width:1200px;margin:0 auto;padding:48px 24px 60px;">
       <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,1.8rem);text-align:center;margin-bottom:8px;"><span class="tg">All Languages</span> — Free Text to Speech</h2>
@@ -2024,28 +2296,32 @@
           <a href="/" class="footer-link" onclick="navigate('voices');return false;"><i class="fa-solid fa-robot"
               style="width:16px;margin-right:6px;color:var(--a2);font-size:.8rem;"></i>Voice Library</a>
           <a href="/tts/" class="footer-link">🌍 All Languages TTS</a>
-          <a href="blog.html" class="footer-link"><i class="fa-solid fa-blog"
+          <a href="/blog" class="footer-link"><i class="fa-solid fa-newspaper"
               style="width:16px;margin-right:6px;color:var(--a3);font-size:.8rem;"></i>Blog</a>
-          <a href="about.html" class="footer-link"><i class="fa-solid fa-info-circle"
+          <a href="/about" class="footer-link"><i class="fa-solid fa-circle-info"
               style="width:16px;margin-right:6px;color:var(--a1);font-size:.8rem;"></i>About Us</a>
-          <a href="contact.html" class="footer-link"><i class="fa-solid fa-headset"
+          <a href="/contact" class="footer-link"><i class="fa-solid fa-headset"
               style="width:16px;margin-right:6px;color:var(--ok);font-size:.8rem;"></i>Contact</a>
         </div>
         <div>
           <p class="footer-heading">Features</p>
-          <a href="#seo-content" class="footer-link">Hindi Text to Speech</a>
-          <a href="#seo-content" class="footer-link">Marathi AI Voice</a>
-          <a href="#seo-content" class="footer-link">MP3 Download Free</a>
-          <a href="#seo-content" class="footer-link">Neural Voice Generator</a>
-          <a href="#seo-content" class="footer-link">100+ Languages TTS</a>
+          <a href="/tts/hindi-text-to-speech-india" class="footer-link">Hindi Text to Speech</a>
+          <a href="/tts/marathi-text-to-speech-india" class="footer-link">Marathi AI Voice</a>
+          <a href="/tts/english-text-to-speech-usa" class="footer-link">English USA TTS</a>
+          <a href="/tts/spanish-text-to-speech-spain" class="footer-link">Spanish AI Voice</a>
+          <a href="/tts/" class="footer-link">104+ Languages TTS</a>
         </div>
         <div>
           <p class="footer-heading">Legal &amp; Support</p>
-          <a href="privacy.html" class="footer-link"><i class="fa-solid fa-shield-halved"
+          <a href="/privacy" class="footer-link"><i class="fa-solid fa-shield-halved"
               style="width:16px;margin-right:6px;color:var(--a2);font-size:.8rem;"></i>Privacy Policy</a>
-          <a href="terms.html" class="footer-link"><i class="fa-solid fa-file-contract"
+          <a href="/terms" class="footer-link"><i class="fa-solid fa-file-contract"
               style="width:16px;margin-right:6px;color:var(--muted);font-size:.8rem;"></i>Terms of Service</a>
-          <a href="contact.html" class="footer-link"><i class="fa-solid fa-envelope"
+          <a href="/disclaimer" class="footer-link"><i class="fa-solid fa-triangle-exclamation"
+              style="width:16px;margin-right:6px;color:var(--a1);font-size:.8rem;"></i>Disclaimer &amp; Ethics</a>
+          <a href="/cookies" class="footer-link"><i class="fa-solid fa-cookie-bite"
+              style="width:16px;margin-right:6px;color:var(--ok);font-size:.8rem;"></i>Cookie Policy</a>
+          <a href="/contact" class="footer-link"><i class="fa-solid fa-envelope"
               style="width:16px;margin-right:6px;color:var(--a3);font-size:.8rem;"></i>Report an Issue</a>
           <div
             style="margin-top:16px;padding:12px 14px;background:rgba(61,214,140,0.07);border:1px solid rgba(61,214,140,0.18);border-radius:10px;">
@@ -2137,15 +2413,19 @@
           { code: 'so-SO', name: 'Somali', flag: '🇸🇴' }, { code: 'zu-ZA', name: 'Zulu', flag: '🇿🇦' },
         ],
         voices: [
-          // ── 🟢 NORMAL & CONVERSATIONAL (20 Voices) ──────────────────────
-          { id: 'female-1',          name: 'Female 1 – Natural Aria',    icon: '👩',   sub: 'Conversational & warm · 1.0x',       rate: 1.0,  pitch:  0, style: 'general', badge: 'Normal' },
-          { id: 'male-1',            name: 'Male 1 – Deep Guy',          icon: '👨',   sub: 'Balanced, deep & clear · 1.0x',      rate: 1.0,  pitch:  0, style: 'general', badge: 'Normal' },
-          { id: 'female-3',          name: 'Female 3 – Pro Emma',        icon: '👩‍💼', sub: 'Crisp, fast & confident · 1.05x',     rate: 1.05, pitch:  1, style: 'general', badge: 'Normal' },
-          { id: 'male-2',            name: 'Male 2 – Friendly Roger',    icon: '👨‍🦰', sub: 'Upbeat & approachable · 1.05x',      rate: 1.05, pitch:  1, style: 'general', badge: 'Normal' },
-          { id: 'normal-f1',         name: 'Warm Conversational – F',    icon: '👩',   sub: 'Natural daily conversation · 0.98x', rate: 0.98, pitch:  0, style: 'general', badge: 'Normal' },
-          { id: 'normal-m1',         name: 'Warm Conversational – M',    icon: '👨',   sub: 'Natural daily conversation · 0.98x', rate: 0.98, pitch: -1, style: 'general', badge: 'Normal' },
-          { id: 'normal-f2',         name: 'Crisp Modern – Female',      icon: '👩‍🦰', sub: 'Articulate & lively · 1.08x',        rate: 1.08, pitch:  1, style: 'general', badge: 'Normal' },
-          { id: 'normal-m2',         name: 'Crisp Modern – Male',        icon: '👨‍🦰', sub: 'Articulate & energetic · 1.08x',     rate: 1.08, pitch:  0, style: 'general', badge: 'Normal' },
+          // ── 🌟 TOP 10 BEST VOICES (5 Female, 5 Male) ──────────────────────
+          { id: 'female-1',          name: 'Female 1 - Natural',         icon: '👩',   sub: 'Conversational & warm · 1.0x',       rate: 1.0,  pitch:  0, style: 'general', badge: 'Normal' },
+          { id: 'female-2',          name: 'Female 2 - Soft',            icon: '🌸', sub: 'Gentle, slow & soothing · 0.82x +3',   rate: 0.82, pitch:  3, style: 'general', badge: 'Soft' },
+          { id: 'female-3',          name: 'Female 3 - Pro',             icon: '👩‍💼', sub: 'Crisp, fast & confident · 1.05x',     rate: 1.05, pitch:  1, style: 'general', badge: 'Normal' },
+          { id: 'female-4',          name: 'Female 4 - Warm',            icon: '👩',   sub: 'Natural daily conversation · 0.98x', rate: 0.98, pitch:  0, style: 'general', badge: 'Normal' },
+          { id: 'female-5',          name: 'Female 5 - Crisp',           icon: '👩‍🦰', sub: 'Articulate & lively · 1.08x',        rate: 1.08, pitch:  1, style: 'general', badge: 'Normal' },
+          { id: 'male-1',            name: 'Male 1 - Deep',              icon: '👨',   sub: 'Balanced, deep & clear · 1.0x',      rate: 1.0,  pitch:  0, style: 'general', badge: 'Normal' },
+          { id: 'male-2',            name: 'Male 2 - Friendly',          icon: '👨‍🦰', sub: 'Upbeat & approachable · 1.05x',      rate: 1.05, pitch:  1, style: 'general', badge: 'Normal' },
+          { id: 'male-3',            name: 'Male 3 - Authority',         icon: '🛡️', sub: 'Commanding & stern · 0.92x -6',        rate: 0.92, pitch: -6, style: 'general', badge: 'Hard' },
+          { id: 'male-4',            name: 'Male 4 - Warm',              icon: '👨',   sub: 'Natural daily conversation · 0.98x', rate: 0.98, pitch: -1, style: 'general', badge: 'Normal' },
+          { id: 'male-5',            name: 'Male 5 - Crisp',             icon: '👨‍🦰', sub: 'Articulate & energetic · 1.08x',     rate: 1.08, pitch:  0, style: 'general', badge: 'Normal' },
+
+          // ── 🟢 NORMAL & CONVERSATIONAL ──────────────────────
           { id: 'normal-studio-f1',  name: 'Studio Clear – Female',      icon: '🎙️', sub: 'Broadcast studio acoustics · 1.0x',   rate: 1.0,  pitch:  0, style: 'general', badge: 'Studio' },
           { id: 'normal-studio-m1',  name: 'Studio Clear – Male',        icon: '🎙️', sub: 'Broadcast studio acoustics · 1.0x',   rate: 1.0,  pitch: -2, style: 'general', badge: 'Studio' },
           { id: 'normal-casual-f',   name: 'Casual Vlog Host – F',       icon: '🤳', sub: 'Relaxed & relatable vlog tone · 1.1x', rate: 1.10, pitch:  2, style: 'general', badge: 'Casual' },
@@ -2159,8 +2439,7 @@
           { id: 'young-m2',          name: 'Roger (Age 30) – Friendly M',icon: '👨‍💼', sub: 'Upbeat & polished · 1.05x',           rate: 1.05, pitch:  1, style: 'general', badge: 'Normal' },
           { id: 'young-m3',          name: 'Ryan (Age 34) – Studio Male',icon: '👨',   sub: 'Crisp baritone presence · 0.98x',    rate: 0.98, pitch: -2, style: 'general', badge: 'Normal' },
 
-          // ── 🌸 SOFT, GENTLE & WHISPER (16 Voices) ────────────────────────
-          { id: 'female-2',          name: 'Female 2 – Soft Jenny',      icon: '🌸', sub: 'Gentle, slow & soothing · 0.82x +3',   rate: 0.82, pitch:  3, style: 'general', badge: 'Soft' },
+          // ── 🌸 SOFT, GENTLE & WHISPER (15 Voices) ────────────────────────
           { id: 'soft-f1',           name: 'Ultra Gentle Whisper – F',   icon: '🍃', sub: 'Airy & peaceful whisper · 0.75x +4',   rate: 0.75, pitch:  4, style: 'general', badge: 'Whisper' },
           { id: 'soft-m1',           name: 'Calm Bedtime Story – M',     icon: '🌙', sub: 'Quiet, warm & soothing · 0.78x -3',    rate: 0.78, pitch: -3, style: 'general', badge: 'Soft' },
           { id: 'soft-asmr-f1',      name: 'ASMR Gentle Breath – F',     icon: '🤫', sub: 'Soft tingles & proximity · 0.70x +5',  rate: 0.70, pitch:  5, style: 'general', badge: 'ASMR' },
@@ -2177,8 +2456,7 @@
           { id: 'senior-f1',         name: 'Abigail (Age 68) – Senior F',icon: '👵', sub: 'Soft maternal warmth · 0.85x -2',      rate: 0.85, pitch: -2, style: 'general', badge: 'Senior Soft' },
           { id: 'senior-f2',         name: 'Esther (Age 75) – Senior F', icon: '👵', sub: 'Very gentle & slow · 0.75x -3',      rate: 0.75, pitch: -3, style: 'general', badge: 'Senior Soft' },
 
-          // ── 🔥 HARD, INTENSE & POWERFUL (16 Voices) ──────────────────────
-          { id: 'male-3',            name: 'Male 3 – Authority Steffan', icon: '🛡️', sub: 'Commanding & stern · 0.92x -6',        rate: 0.92, pitch: -6, style: 'general', badge: 'Hard' },
+          // ── 🔥 HARD, INTENSE & POWERFUL (15 Voices) ──────────────────────
           { id: 'hard-trailer-m1',   name: 'Epic Movie Trailer – Male',  icon: '🎬', sub: 'Cinematic deep bass · 0.82x -10',      rate: 0.82, pitch:-10, style: 'general', badge: 'Trailer' },
           { id: 'hard-trailer-f1',   name: 'Cinematic Trailer – Female', icon: '🎬', sub: 'Bold dramatic narration · 0.88x -4',   rate: 0.88, pitch: -4, style: 'general', badge: 'Trailer' },
           { id: 'hard-action-m',     name: 'Action Hero & Combat – M',   icon: '💥', sub: 'Aggressive & punchy · 1.15x -6',       rate: 1.15, pitch: -6, style: 'general', badge: 'Action' },
@@ -3265,6 +3543,17 @@
         { re: /[\u0370-\u03FF]/, code: 'el-GR',  name: '🇬🇷 Greek',       vt: 'female-1' },
         { re: /[\u0E00-\u0E7F]/, code: 'th-TH',  name: '🇹🇭 Thai',        vt: 'female-1' },
         { re: /[\u1200-\u137F]/, code: 'am-ET',  name: '🇪🇹 Amharic',     vt: 'female-1' },
+        // ── Extended Latin-based Languages ──
+        { re: /[ğışöçüĞİŞÖÇÜ]/, code: 'tr-TR', name: '🇹🇷 Turkish', vt: 'female-1' },
+        { re: /[áàãạảăắằẵặẳâấầẫậẩéèẽẹẻêếềễệểíìĩịỉóòõọỏôốồỗộổơớờỡợởúùũụủưứừữựửýỳỹỵỷđÁÀÃẠẢĂẮẰẴẶẲÂẤẦẪẬẨÉÈẼẸẺÊẾỀỄỆỂÍÌĨỊỈÓÒÕỌỎÔỐỒỖỘỔƠỚỜỠỢỞÚÙŨỤỦƯỨỪỮỰỬÝỲỸỴỶĐ]/, code: 'vi-VN', name: '🇻🇳 Vietnamese', vt: 'female-1' },
+        { re: /[ąćęłńśźżĄĆĘŁŃŚŹŻ]/, code: 'pl-PL', name: '🇵🇱 Polish', vt: 'female-1' },
+        { re: /[ăâîșțĂÂÎȘȚ]/, code: 'ro-RO', name: '🇷🇴 Romanian', vt: 'female-1' },
+        { re: /[őűŐŰ]/, code: 'hu-HU', name: '🇭🇺 Hungarian', vt: 'female-1' },
+        { re: /[äöüßÄÖÜẞ]/, code: 'de-DE', name: '🇩🇪 German', vt: 'female-1' },
+        { re: /[àâçéèêëîïôûùüÿœæÀÂÇÉÈÊËÎÏÔÛÙÜŸŒÆ]/, code: 'fr-FR', name: '🇫🇷 French', vt: 'female-1' },
+        { re: /[áéíóúñ¿¡ÁÉÍÓÚÑ]/, code: 'es-ES', name: '🇪🇸 Spanish', vt: 'female-1' },
+        { re: /[ãõâêîôûçÃÕÂÊÎÔÛÇ]/, code: 'pt-BR', name: '🇧🇷 Portuguese', vt: 'female-1' },
+        { re: /[àèìòùÀÈÌÒÙ]/, code: 'it-IT', name: '🇮🇹 Italian', vt: 'female-1' },
       ];
 
       function autoDetectLanguage(text) {
@@ -3382,6 +3671,84 @@
           if (res.outcome === 'accepted') showToast('Installing VoicePro… 🚀');
           _pwaPrompt = null;
         });
+      }
+
+      /* ── COMPANION UTILITIES HELPERS ── */
+      function calculateScriptMetrics(val) {
+        const text = (val || '').trim();
+        const words = text ? text.split(/\s+/).length : 0;
+        const chars = text.length;
+        const wpmNormal = 150;
+        const wpmFast = 185;
+        const sec1x = Math.round((words / wpmNormal) * 60);
+        const sec125x = Math.round((words / wpmFast) * 60);
+
+        const wEl = document.getElementById('u-words');
+        const t1El = document.getElementById('u-time-1x');
+        const t2El = document.getElementById('u-time-125x');
+        if (wEl) wEl.textContent = words;
+        if (t1El) t1El.textContent = sec1x + 's';
+        if (t2El) t2El.textContent = sec125x + 's';
+      }
+
+      function insertSsmlTag(type) {
+        const preview = document.getElementById('util-ssml-preview');
+        if (!preview) return;
+        let snippet = '';
+        if (type === 'break') snippet = '<speak>Intro text.<break time="1.5s"/>Next sentence.</speak>';
+        else if (type === 'emphasis') snippet = '<speak>This is <emphasis level="strong">very important</emphasis> information.</speak>';
+        else if (type === 'whisper') snippet = '<speak><prosody volume="silent">This is a whispered secret.</prosody></speak>';
+        else if (type === 'slow') snippet = '<speak><prosody rate="0.8">Speaking slowly for clarity.</prosody></speak>';
+        preview.value = snippet;
+        showToast('SSML template updated ⚡', 'ok');
+      }
+
+      function copySsmlCode() {
+        const preview = document.getElementById('util-ssml-preview');
+        if (preview && preview.value) {
+          navigator.clipboard.writeText(preview.value).then(() => {
+            showToast('SSML Code copied to clipboard! 📋', 'ok');
+          }).catch(() => {
+            showToast('Copied to clipboard', 'ok');
+          });
+        }
+      }
+
+      function cleanVoiceScript() {
+        const input = document.getElementById('util-cleaner-input');
+        if (!input || !input.value) {
+          showToast('Please paste a script to clean', 'err');
+          return;
+        }
+        let cleaned = input.value;
+        // Strip HTML tags
+        cleaned = cleaned.replace(/<[^>]*>/g, '');
+        // Strip markdown links [text](url) -> text
+        cleaned = cleaned.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+        // Strip raw URLs
+        cleaned = cleaned.replace(/https?:\/\/\S+/g, '');
+        // Normalize multiple spaces/newlines
+        cleaned = cleaned.replace(/[ \t]+/g, ' ');
+        cleaned = cleaned.replace(/[\r\n]{3,}/g, '\n\n');
+        // Replace special quotes with standard quotes
+        cleaned = cleaned.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
+        input.value = cleaned.trim();
+        showToast('Script cleaned & normalized! 🧹✨', 'ok');
+      }
+
+      function transferCleanedToStudio() {
+        const input = document.getElementById('util-cleaner-input');
+        const txt = document.getElementById('txt');
+        if (!input || !input.value) {
+          showToast('Nothing to send. Please paste text first.', 'err');
+          return;
+        }
+        if (txt) {
+          txt.value = input.value;
+          onTxt(txt);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          showToast('Script loaded into Voice Studio! 🎙️', 'ok');
+        }
       }
     </script>
 <!-- Cookie Consent Banner -->

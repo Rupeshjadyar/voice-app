@@ -274,9 +274,13 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
               <option value="female-1">Female 1 - Natural</option>
               <option value="female-2">Female 2 - Soft</option>
               <option value="female-3">Female 3 - Pro</option>
+              <option value="female-4">Female 4 - Warm</option>
+              <option value="female-5">Female 5 - Crisp</option>
               <option value="male-1">Male 1 - Deep</option>
               <option value="male-2">Male 2 - Friendly</option>
               <option value="male-3">Male 3 - Authority</option>
+              <option value="male-4">Male 4 - Warm</option>
+              <option value="male-5">Male 5 - Crisp</option>
             </optgroup>
             <optgroup label="Kids (age 7-14)">
               <option value="kid-f1">Lily (Age 7) - Kid Female</option>
@@ -418,10 +422,15 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
           <span class="slbl">Speaker 1 Voice</span>
           <select id="multi-voice1">
             <option value="female-1">Female 1 - Natural</option>
-            <option value="young-f1">Aria - Female Young</option>
-            <option value="mid-f1">Michelle - Female Exec</option>
+            <option value="female-2">Female 2 - Soft</option>
+            <option value="female-3">Female 3 - Pro</option>
+            <option value="female-4">Female 4 - Warm</option>
+            <option value="female-5">Female 5 - Crisp</option>
             <option value="male-1">Male 1 - Deep</option>
-            <option value="young-m1">Guy - Male Natural</option>
+            <option value="male-2">Male 2 - Friendly</option>
+            <option value="male-3">Male 3 - Authority</option>
+            <option value="male-4">Male 4 - Warm</option>
+            <option value="male-5">Male 5 - Crisp</option>
           </select>
         </div>
         <div>

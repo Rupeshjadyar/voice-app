@@ -133,12 +133,13 @@
       Voice<span style="color:var(--a1);">Pro</span>
     </a>
     <nav class="nav-links">
-      <a href="/" class="nav-link ">Home Studio</a>
-      <a href="/blog.html" class="nav-link ">Blog</a>
-      <a href="/about.html" class="nav-link ">About</a>
-      <a href="/contact.html" class="nav-link active">Contact</a>
-      <a href="/privacy.html" class="nav-link ">Privacy</a>
-      <a href="/terms.html" class="nav-link ">Terms</a>
+      <a href="/" class="nav-link">Home Studio</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/tts/" class="nav-link">Languages</a>
+      <a href="/contact" class="nav-link active">Contact</a>
+      <a href="/privacy" class="nav-link">Privacy</a>
+      <a href="/terms" class="nav-link">Terms</a>
       <button onclick="toggleTheme()" class="nav-link" id="theme-btn" style="background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;margin-left:5px;" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
       </button>
@@ -148,12 +149,15 @@
     </button>
   </div>
   <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="/" class="nav-link ">Home Studio</a>
-    <a href="/blog.html" class="nav-link ">Blog</a>
-    <a href="/about.html" class="nav-link ">About</a>
-    <a href="/contact.html" class="nav-link active">Contact</a>
-    <a href="/privacy.html" class="nav-link ">Privacy</a>
-    <a href="/terms.html" class="nav-link ">Terms</a>
+    <a href="/" class="nav-link">Home Studio</a>
+    <a href="/about" class="nav-link">About</a>
+    <a href="/blog" class="nav-link">Blog</a>
+    <a href="/tts/" class="nav-link">Languages</a>
+    <a href="/contact" class="nav-link active">Contact</a>
+    <a href="/privacy" class="nav-link">Privacy</a>
+    <a href="/terms" class="nav-link">Terms</a>
+    <a href="/disclaimer" class="nav-link">Disclaimer</a>
+    <a href="/cookies" class="nav-link">Cookies</a>
     <button onclick="toggleTheme(); toggleMobileMenu()" class="nav-link" id="theme-btn-mob" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 14px;width:100%;box-sizing:border-box;" aria-label="Toggle theme">
       <i class="fa-solid fa-moon"></i>Toggle Theme
     </button>
@@ -164,9 +168,44 @@
   <h1 style="font-size:clamp(2rem,5vw,2.8rem);font-weight:800;margin-bottom:12px;"><span class="tg">Contact Us</span></h1>
   <p style="color:var(--txt2);font-size:1rem;line-height:1.75;margin-bottom:36px;">Have questions, feedback, or need support? We'd love to hear from you. Our team responds to all inquiries within 24 hours.</p>
 
+  <!-- Interactive Contact Form -->
+  <div class="contact-card" style="margin-bottom:28px;">
+    <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:9px;"><i class="fa-solid fa-paper-plane" style="color:var(--a1);"></i>Send a Direct Message</h2>
+    <form id="contact-form" onsubmit="handleContactSubmit(event)" style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <label style="display:block;font-size:0.82rem;font-weight:700;color:var(--txt);margin-bottom:6px;font-family:'Syne',sans-serif;">Your Name</label>
+        <input type="text" id="c-name" required placeholder="e.g. Rahul Sharma" style="width:100%;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;box-sizing:border-box;">
+      </div>
+      <div>
+        <label style="display:block;font-size:0.82rem;font-weight:700;color:var(--txt);margin-bottom:6px;font-family:'Syne',sans-serif;">Email Address</label>
+        <input type="email" id="c-email" required placeholder="your.email@example.com" style="width:100%;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;box-sizing:border-box;">
+      </div>
+      <div>
+        <label style="display:block;font-size:0.82rem;font-weight:700;color:var(--txt);margin-bottom:6px;font-family:'Syne',sans-serif;">Subject</label>
+        <select id="c-subject" style="width:100%;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;box-sizing:border-box;">
+          <option value="General Feedback">General Feedback &amp; Suggestions</option>
+          <option value="Bug Report">Technical Bug / Audio Error</option>
+          <option value="New Language Request">Request New Language / Voice</option>
+          <option value="Business Inquiry">Commercial &amp; Partnership Inquiry</option>
+          <option value="Other">Other Question</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block;font-size:0.82rem;font-weight:700;color:var(--txt);margin-bottom:6px;font-family:'Syne',sans-serif;">Message</label>
+        <textarea id="c-msg" required rows="4" placeholder="Type your message or issue description here..." style="width:100%;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--txt);font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;resize:vertical;box-sizing:border-box;"></textarea>
+      </div>
+      <button type="submit" id="c-btn" style="padding:14px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;border-radius:12px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(59,158,255,0.3);">
+        <i class="fa-solid fa-paper-plane" style="margin-right:6px;"></i> Send Message
+      </button>
+      <div id="c-success" style="display:none;background:rgba(61,214,140,0.1);border:1px solid rgba(61,214,140,0.25);color:var(--ok);padding:14px;border-radius:10px;font-size:0.88rem;text-align:center;">
+        <i class="fa-solid fa-circle-check" style="margin-right:6px;"></i> Thank you! Your message has been sent. We will get back to you within 24 hours.
+      </div>
+    </form>
+  </div>
+
   <div class="contact-card">
-    <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:9px;"><i class="fa-solid fa-envelope" style="color:var(--a1);"></i>Email Us</h2>
-    <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px;">For all enquiries — support, feedback, bug reports, or partnership proposals:</p>
+    <h2 style="font-size:1.15rem;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:9px;"><i class="fa-solid fa-envelope" style="color:var(--a1);"></i>Email Directly</h2>
+    <p style="color:var(--muted);font-size:.9rem;margin-bottom:12px;">For direct enquiries — support, feedback, bug reports, or partnership proposals:</p>
     <a href="mailto:rupeshjadyar21@gmail.com" style="display:inline-flex;align-items:center;gap:10px;background:rgba(59,158,255,0.1);border:1px solid rgba(59,158,255,0.25);border-radius:12px;padding:14px 20px;font-family:'Space Mono',monospace;font-size:.95rem;color:var(--a1);transition:all .2s;" onmouseover="this.style.background='rgba(59,158,255,0.2)'" onmouseout="this.style.background='rgba(59,158,255,0.1)'">
       <i class="fa-solid fa-at"></i>rupeshjadyar21@gmail.com
     </a>
@@ -231,11 +270,27 @@
   <div class="footer-inner">
     <p style="color:var(--muted);font-size:.82rem;">&copy; 2026 VoicePro TTS Studio. All rights reserved.</p>
     <div class="footer-links">
-      <a href="/">Home</a><a href="blog.html">Blog</a><a href="about.html">About</a>
-      <a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+      <a href="/">Home</a><a href="/about">About</a><a href="/blog">Blog</a>
+      <a href="/tts/">Languages</a><a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a><a href="/terms">Terms</a>
+      <a href="/disclaimer">Disclaimer</a><a href="/cookies">Cookies</a>
     </div>
   </div>
 </footer>
+
+<script>
+function handleContactSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('c-btn');
+  const success = document.getElementById('c-success');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+  setTimeout(() => {
+    btn.style.display = 'none';
+    success.style.display = 'block';
+  }, 900);
+}
+</script>
 
 
 <script>

@@ -198,11 +198,12 @@
     </a>
     <div class="nav-desktop" style="align-items:center;gap:6px;">
       <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
-      <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
-      <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
-      <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
-      <a href="/terms.html" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
-      <a href="/tts/" class="nav-btn nav-active">All Languages TTS</a>
+      <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
+      <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
+      <a href="/tts/" class="nav-btn nav-active"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
+      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
+      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
+      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
       <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
       </button>
@@ -216,11 +217,14 @@
   </div>
   <div id="mobile-menu" class="nav-mobile-menu">
     <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
-    <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
-    <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
-    <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy</a>
-    <a href="/terms.html" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service</a>
-    <a href="/tts/" class="nav-btn nav-active">All Languages TTS</a>
+    <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
+    <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
+    <a href="/tts/" class="nav-btn nav-active"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS</a>
+    <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
+    <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy</a>
+    <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service</a>
+    <a href="/disclaimer" class="nav-btn"><i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer</a>
+    <a href="/cookies" class="nav-btn"><i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy</a>
     <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
       <i class="fa-solid fa-moon"></i>Toggle Theme
     </button>
@@ -440,9 +444,13 @@
               <option value="female-1">Female 1 - Natural</option>
               <option value="female-2">Female 2 - Soft</option>
               <option value="female-3">Female 3 - Pro</option>
+              <option value="female-4">Female 4 - Warm</option>
+              <option value="female-5">Female 5 - Crisp</option>
               <option value="male-1">Male 1 - Deep</option>
               <option value="male-2">Male 2 - Friendly</option>
               <option value="male-3">Male 3 - Authority</option>
+              <option value="male-4">Male 4 - Warm</option>
+              <option value="male-5">Male 5 - Crisp</option>
             </optgroup>
             <optgroup label="Kids (age 7-14)">
               <option value="kid-f1">Lily (Age 7) - Kid Female</option>
@@ -1015,18 +1023,20 @@
     <div>
       <p class="footer-heading">Product</p>
       <a href="/" class="footer-link">Home Studio</a>
+      <a href="/about" class="footer-link">About Us</a>
+      <a href="/blog" class="footer-link">Blog</a>
       <a href="/tts/" class="footer-link">All Languages</a>
-      <a href="/blog.html" class="footer-link">Blog</a>
     </div>
     <div>
-      <p class="footer-heading">Company</p>
-      <a href="/about.html" class="footer-link">About Us</a>
-      <a href="/contact.html" class="footer-link">Contact</a>
+      <p class="footer-heading">Support</p>
+      <a href="/contact" class="footer-link">Contact Support</a>
+      <a href="/disclaimer" class="footer-link">AI Disclaimer</a>
+      <a href="/cookies" class="footer-link">Cookie Policy</a>
     </div>
     <div>
       <p class="footer-heading">Legal</p>
-      <a href="/privacy.html" class="footer-link">Privacy Policy</a>
-      <a href="/terms.html" class="footer-link">Terms of Service</a>
+      <a href="/privacy" class="footer-link">Privacy Policy</a>
+      <a href="/terms" class="footer-link">Terms of Service</a>
     </div>
   </div>
   <div style="max-width:1100px;margin:0 auto;padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">

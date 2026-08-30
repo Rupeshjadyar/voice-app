@@ -1022,35 +1022,51 @@ def service_worker():
 
 
 
+@app.route('/about')
 @app.route('/about.html')
 def about():
     return render_template('about.html')
 
 
+@app.route('/blog')
 @app.route('/blog.html')
 def blog():
     return render_template('blog.html')
 
 
+@app.route('/contact')
 @app.route('/contact.html')
 def contact():
     return render_template('contact.html')
 
 
+@app.route('/privacy')
 @app.route('/privacy.html')
 def privacy():
     return render_template('privacy.html')
 
 
+@app.route('/terms')
 @app.route('/terms.html')
 def terms():
     return render_template('terms.html')
 
 
+@app.route('/disclaimer')
+@app.route('/disclaimer.html')
+def disclaimer():
+    return render_template('disclaimer.html')
+
+
+@app.route('/cookies')
+@app.route('/cookies.html')
+def cookies():
+    return render_template('cookies.html')
+
+
 
 # ─────────────────────────────────────────────
-#  ✅ NEW BLOG ROUTES — Add these to your app.py
-#  Place these BEFORE the line: if __name__ == '__main__':
+#  ✅ BLOG ROUTES
 # ─────────────────────────────────────────────
 
 @app.route('/blog/100-languages-and-voices-guide')
@@ -1108,11 +1124,16 @@ def blog_podcasters():
     return render_template('blog-tts-for-podcasters.html')
 
 
+# ─── Error Handlers (AdSense Compliance) ───────────────────
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('404.html'), 500
 
-
-# all page 107
 
 # ─── pSEO: Load manifest once at startup ───────────────────
 import json as _json
@@ -1131,7 +1152,7 @@ def tts_lang_page(slug):
     try:
         return render_template(f'tts/{slug}.html')
     except Exception:
-        return render_template('index.html'), 404
+        return render_template('404.html'), 404
 
 
 # ─── pSEO: All languages index ─────────────────────────────
@@ -1141,7 +1162,7 @@ def tts_index():
     return render_template('tts_index.html', languages=_PSEO_MANIFEST)
 
 
-# ─── pSEO: Updated Sitemap with all 104 pages ──────────────
+# ─── Complete High-Value Sitemap ───────────────────────────
 @app.route('/sitemap.xml')
 def sitemap_xml():
     from flask import Response
@@ -1153,22 +1174,24 @@ def sitemap_xml():
     static_urls = [
         ('/',             '1.0', 'daily'),
         ('/tts/',         '0.9', 'weekly'),
-        ('/about.html',   '0.6', 'monthly'),
-        ('/blog.html',    '0.8', 'weekly'),
-        ('/contact.html', '0.5', 'monthly'),
-        ('/privacy.html', '0.3', 'yearly'),
-        ('/terms.html',   '0.3', 'yearly'),
+        ('/about',        '0.8', 'monthly'),
+        ('/blog',         '0.8', 'weekly'),
+        ('/contact',      '0.7', 'monthly'),
+        ('/privacy',      '0.5', 'monthly'),
+        ('/terms',        '0.5', 'monthly'),
+        ('/disclaimer',   '0.5', 'monthly'),
+        ('/cookies',      '0.5', 'monthly'),
         ('/blog/100-languages-and-voices-guide', '0.8', 'monthly'),
-        ('/blog/what-is-ai-text-to-speech',    '0.7', 'monthly'),
-        ('/blog/convert-text-to-mp3-free',     '0.7', 'monthly'),
-        ('/blog/hindi-text-to-speech-guide',   '0.7', 'monthly'),
-        ('/blog/ai-voiceover-youtube',         '0.7', 'monthly'),
-        ('/blog/voice-customization-guide',    '0.7', 'monthly'),
-        ('/blog/free-vs-paid-tts-tools',       '0.7', 'monthly'),
-        ('/blog/tts-for-accessibility',        '0.7', 'monthly'),
-        ('/blog/elearning-audio-workflow',     '0.7', 'monthly'),
-        ('/blog/marathi-text-to-speech-guide', '0.7', 'monthly'),
-        ('/blog/tts-for-podcasters',           '0.7', 'monthly'),
+        ('/blog/what-is-ai-text-to-speech',    '0.8', 'monthly'),
+        ('/blog/convert-text-to-mp3-free',     '0.8', 'monthly'),
+        ('/blog/hindi-text-to-speech-guide',   '0.8', 'monthly'),
+        ('/blog/ai-voiceover-youtube',         '0.8', 'monthly'),
+        ('/blog/voice-customization-guide',    '0.8', 'monthly'),
+        ('/blog/free-vs-paid-tts-tools',       '0.8', 'monthly'),
+        ('/blog/tts-for-accessibility',        '0.8', 'monthly'),
+        ('/blog/elearning-audio-workflow',     '0.8', 'monthly'),
+        ('/blog/marathi-text-to-speech-guide', '0.8', 'monthly'),
+        ('/blog/tts-for-podcasters',           '0.8', 'monthly'),
     ]
 
     urls_xml = []
