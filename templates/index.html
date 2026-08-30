@@ -1485,8 +1485,8 @@
           <p style="color:var(--txt2);font-size:.98rem;max-width:500px;margin:0 auto;line-height:1.72;">Transform text into natural speech — 100+ languages, 100+ neural voices, MP3/WAV download. No login required.</p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px;">
-          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🎙️</div><div id="st-total" style="font-size:1.35rem;font-weight:800;font-family:'Syne',sans-serif;" class="tg">12,480+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Total Generations</div></div>
-          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">⚡</div><div id="st-today" style="font-size:1.35rem;font-weight:800;color:var(--a1);font-family:'Syne',sans-serif;">840+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Today's Usage</div></div>
+          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🎙️</div><div id="st-total" style="font-size:1.35rem;font-weight:800;font-family:'Syne',sans-serif;" class="tg">{{ "{:,}".format(total) if total is defined else "1,540" }}</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Total Generations</div></div>
+          <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">⚡</div><div id="st-today" style="font-size:1.35rem;font-weight:800;color:var(--a1);font-family:'Syne',sans-serif;">{{ "{:,}".format(today) if today is defined else "0" }}</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Today's Usage</div></div>
           <div class="statc"><div style="font-size:1.4rem;margin-bottom:3px;">🌍</div><div style="font-size:1.35rem;font-weight:800;color:var(--a2);font-family:'Syne',sans-serif;">104+</div><div style="color:var(--muted);font-size:.76rem;margin-top:2px;">Languages</div></div>
         </div>
         <div class="glass" style="padding:30px;margin-bottom:22px;">

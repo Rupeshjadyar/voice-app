@@ -730,13 +730,7 @@ def audio_to_base64(filepath, fmt='mp3'):
 # ─────────────────────────────────────────────
 #  Routes
 # ─────────────────────────────────────────────
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-
-@app.route('/stats')
-def stats():
+def get_live_stats():
     total, today = 1540, 0
     if redis:
         try:
@@ -745,6 +739,18 @@ def stats():
             today = int(redis.get(today_key) or 0)
         except Exception as e:
             logging.error(f"Redis stats error: {e}")
+    return total, today
+
+
+@app.route('/')
+def home():
+    total, today = get_live_stats()
+    return render_template('index.html', total=total, today=today)
+
+
+@app.route('/stats')
+def stats():
+    total, today = get_live_stats()
     return jsonify({"total": total, "today": today})
 
 
