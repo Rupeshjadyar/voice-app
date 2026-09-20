@@ -40,10 +40,16 @@ except ImportError:
 # ─────────────────────────────────────────────
 try:
     from upstash_redis import Redis
-    redis = Redis(url=os.getenv("KV_REST_API_URL"), token=os.getenv("KV_REST_API_TOKEN"))
-    redis.ping()
-    REDIS_AVAILABLE = True
-    print("[OK] Upstash Redis connected")
+    _redis_url = os.getenv("KV_REST_API_URL")
+    _redis_token = os.getenv("KV_REST_API_TOKEN")
+    if _redis_url and _redis_token:
+        redis = Redis(url=_redis_url, token=_redis_token)
+        REDIS_AVAILABLE = True
+        print("[OK] Upstash Redis initialized")
+    else:
+        redis = None
+        REDIS_AVAILABLE = False
+        print("[INFO] Redis credentials not set, using fast in-memory stats")
 except Exception as e:
     redis = None
     REDIS_AVAILABLE = False
@@ -728,18 +734,56 @@ def audio_to_base64(filepath, fmt='mp3'):
 
 
 # ─────────────────────────────────────────────
-#  Routes
+#  Routes & Performance Optimized Cache
 # ─────────────────────────────────────────────
+import time as _time
+import threading as _threading
+
+_STATS_CACHE = {"total": 1540, "today": 0, "last_updated": 0}
+_STATS_LOCK = _threading.Lock()
+
+def _refresh_stats_async():
+    """Background worker to fetch stats from Redis without blocking web requests."""
+    global _STATS_CACHE
+    if not redis:
+        return
+    try:
+        total = int(redis.get("total_translations") or 1540)
+        today_key = f"count_{datetime.now().strftime('%Y-%m-%d')}"
+        today = int(redis.get(today_key) or 0)
+        with _STATS_LOCK:
+            _STATS_CACHE["total"] = total
+            _STATS_CACHE["today"] = today
+            _STATS_CACHE["last_updated"] = _time.time()
+    except Exception as e:
+        logging.error(f"Async Redis stats error: {e}")
+
 def get_live_stats():
-    total, today = 1540, 0
-    if redis:
-        try:
-            total = int(redis.get("total_translations") or 1540)
-            today_key = f"count_{datetime.now().strftime('%Y-%m-%d')}"
-            today = int(redis.get(today_key) or 0)
-        except Exception as e:
-            logging.error(f"Redis stats error: {e}")
-    return total, today
+    """Returns cached stats instantly (0ms latency), refreshes asynchronously in background."""
+    now = _time.time()
+    with _STATS_LOCK:
+        cached = _STATS_CACHE.copy()
+    
+    # If cache is older than 60 seconds (or first run), trigger background refresh
+    if now - cached.get("last_updated", 0) > 60:
+        _threading.Thread(target=_refresh_stats_async, daemon=True).start()
+        
+    return cached.get("total", 1540), cached.get("today", 0)
+
+
+def _record_generation_async(lang):
+    """Record analytics in Redis in background without blocking audio delivery."""
+    if not redis:
+        return
+    try:
+        redis.incr("total_translations")
+        redis.incr(f"count_{datetime.now().strftime('%Y-%m-%d')}")
+        redis.zincrby("popular_languages", 1, lang)
+        with _STATS_LOCK:
+            _STATS_CACHE["total"] = _STATS_CACHE.get("total", 1540) + 1
+            _STATS_CACHE["today"] = _STATS_CACHE.get("today", 0) + 1
+    except Exception as e:
+        logging.error(f"Redis async update error: {e}")
 
 
 @app.route('/')
@@ -888,14 +932,8 @@ def generate():
         if not success:
             return jsonify({'error': 'Audio generation failed. Please try again.'}), 500
 
-        # ── Redis stats ──────────────────────────────────────
-        if redis:
-            try:
-                redis.incr("total_translations")
-                redis.incr(f"count_{datetime.now().strftime('%Y-%m-%d')}")
-                redis.zincrby("popular_languages", 1, lang)
-            except Exception as e:
-                logging.error(f"Redis update error: {e}")
+        # ── Non-blocking background analytics ────────────────
+        _threading.Thread(target=_record_generation_async, args=(lang,), daemon=True).start()
 
         audio_data = audio_to_base64(filepath, fmt)
         try:
