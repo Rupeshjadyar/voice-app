@@ -17,7 +17,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="canonical" href="https://www.texttoaudiomp3.site/cookies">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -34,6 +33,7 @@
       --panel: #f1f5f9;
       --ok: #10b981;
       --grid-line: rgba(0, 0, 0, 0.03);
+      --nav-bg: #ffffff;
     }
     [data-theme="dark"] {
       --bg: #070b12;
@@ -49,22 +49,19 @@
       --panel: #0c1220;
       --ok: #3dd68c;
       --grid-line: rgba(255, 255, 255, 0.012);
+      --nav-bg: #070b12;
     }
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+    body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
     body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 15% 10%,rgba(59,158,255,0.05) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 85% 85%,rgba(124,95,230,0.04) 0%,transparent 60%);}
     body>*{position:relative;z-index:1;}
     h1,h2,h3{font-family:'Syne',sans-serif;letter-spacing:-0.02em;}
     .tg{background:linear-gradient(130deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     a{text-decoration:none;color:var(--a1);}
-    .site-header{background:var(--bg);opacity:0.96;backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
-    .header-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-    .logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--txt);}
-    .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:9px;display:flex;align-items:center;justify-content:center;}
-    .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
-    .nav-link{padding:7px 13px;border-radius:9px;font-size:.85rem;color:var(--muted);transition:all .18s;}
-    .nav-link:hover,.nav-link.active{color:var(--a1);background:rgba(59,158,255,0.09);}
-    .content-wrap{max-width:800px;margin:0 auto;padding:56px 24px 72px;flex:1;}
+    .glass-nav{background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);opacity:0.96;}
+    .nav-btn{padding:7px 14px;border-radius:10px;font-size:.85rem;font-weight:500;transition:all .18s;color:var(--muted);border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;}
+    .nav-btn:hover,.nav-active{color:var(--a1);background:rgba(59,158,255,0.09);}
+    .content-wrap{max-width:800px;margin:0 auto;padding:48px 24px 72px;flex:1;}
     .policy-section{margin-bottom:36px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;}
     .policy-section h2{font-size:1.2rem;font-weight:700;color:var(--a1);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
     .policy-section p,.policy-section li{color:var(--txt2);font-size:.92rem;line-height:1.8;margin-bottom:10px;}
@@ -77,45 +74,75 @@
     .footer-links{display:flex;gap:16px;flex-wrap:wrap;}
     .footer-links a{color:var(--muted);font-size:.84rem;transition:color .18s;}
     .footer-links a:hover{color:var(--a1);}
+    .nav-desktop { display: flex; }
     .nav-mobile-btn { display: none; }
     .nav-mobile-menu { display: none; }
     @media (max-width: 768px) {
-      .site-header .nav-links { display: none !important; }
+      .nav-desktop { display: none !important; }
       .nav-mobile-btn { display: flex !important; align-items: center; justify-content: center; background: none; border: none; color: var(--muted); font-size: 1.25rem; cursor: pointer; }
-      .nav-mobile-menu.active { display: flex !important; flex-direction: column; gap: 6px; background: var(--bg); border-top: 1px solid var(--border); padding: 14px 24px; position: absolute; top: 60px; left: 0; right: 0; z-index: 100; }
+      .nav-mobile-menu.active { display: flex !important; flex-direction: column; gap: 6px; background: var(--nav-bg); border-top: 1px solid var(--border); padding: 14px 24px; position: absolute; top: 60px; left: 0; right: 0; z-index: 100; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+      .nav-mobile-menu .nav-btn { display: block; padding: 10px 14px; text-align: left; border-radius: 9px; width: 100%; box-sizing: border-box; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="/" class="logo">
-        <div class="logo-icon"><i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.85rem;"></i></div>
-        Voice<span style="color:var(--a1);">Pro</span>
-      </a>
-      <nav class="nav-links">
-        <a href="/" class="nav-link"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
-        <a href="/about" class="nav-link"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
-        <a href="/blog" class="nav-link"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
-        <a href="/tts/" class="nav-link"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
-        <a href="/contact" class="nav-link"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
-        <a href="/privacy" class="nav-link"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
-        <a href="/terms" class="nav-link"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
-        <button onclick="toggleTheme()" class="nav-link" style="background:none;border:none;cursor:pointer;"><i class="fa-solid fa-moon"></i></button>
-      </nav>
-      <button class="nav-mobile-btn" onclick="document.getElementById('mob-menu').classList.toggle('active')"><i class="fa-solid fa-bars"></i></button>
+<nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
+        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+      </div>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;color:var(--txt);">Voice<span style="color:var(--a1);">Pro</span></span>
+    </a>
+    <div class="nav-desktop" style="align-items:center;gap:6px;">
+      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
+      <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
+      <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
+      <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
+      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
+      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
+      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
+      <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button id="pwa-install-btn" onclick="triggerPWAInstall()" style="display:none;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Syne',sans-serif;white-space:nowrap;box-shadow:0 0 12px rgba(59,158,255,0.3);animation:pulse-glow 2s infinite;" aria-label="Install App">
+        <i class="fa-solid fa-mobile-screen-button"></i> Install App
+      </button>
     </div>
-    <div id="mob-menu" class="nav-mobile-menu">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/about" class="nav-link">About</a>
-      <a href="/blog" class="nav-link">Blog</a>
-      <a href="/tts/" class="nav-link">Languages</a>
-      <a href="/contact" class="nav-link">Contact</a>
-      <a href="/privacy" class="nav-link">Privacy Policy</a>
-      <a href="/terms" class="nav-link">Terms of Service</a>
-      <a href="/cookies" class="nav-link active">Cookie Policy</a>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" style="background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" class="nav-mobile-menu">
+    <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
+    <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
+    <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
+    <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS</a>
+    <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
+    <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy</a>
+    <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service</a>
+    <a href="/disclaimer" class="nav-btn"><i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer</a>
+    <a href="/cookies" class="nav-btn nav-active"><i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy</a>
+    <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
+      <i class="fa-solid fa-moon"></i>Toggle Theme
+    </button>
+    <button id="pwa-install-btn-mob" onclick="triggerPWAInstall();toggleMobileMenu()" class="nav-btn" style="display:none;text-align:left;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(147,51,234,0.15));color:#3dd68c;font-weight:700;border:1px solid rgba(61,214,140,0.3);margin-top:6px;border-radius:10px;">
+      <i class="fa-solid fa-mobile-screen-button" style="color:#3dd68c;"></i> Install VoicePro App
+    </button>
+  </div>
+</nav>
+
+<!-- ✅ TOP SCROLLING MARQUEE ANNOUNCEMENT BAR -->
+<div style="margin-top:60px;background:linear-gradient(90deg, #1d4ed8, #6d28d9, #db2777);color:#fff;font-family:'Syne',sans-serif;font-size:0.86rem;font-weight:700;padding:10px 0;box-shadow:0 4px 14px rgba(0,0,0,0.12);position:relative;z-index:40;">
+  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0 16px;">
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.32);padding:4px 12px;border-radius:99px;margin-right:12px;white-space:nowrap;flex-shrink:0;font-size:0.73rem;letter-spacing:1px;text-transform:uppercase;">
+      <i class="fa-solid fa-bullhorn" style="color:#ffd700;"></i> UPDATE &amp; SUPPORT
     </div>
-  </header>
+    <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;padding-top:2px;">
+      🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new regional languages, or custom features?</span> Message directly on our Contact Gmail ID: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages, 100+ Neural Voice Characters, Instant MP3 &amp; Studio WAV Download — Zero Login Ever Required!
+    </marquee>
+  </div>
+</div>
 
   <main class="content-wrap">
     <div style="text-align:center;margin-bottom:40px;">
@@ -193,12 +220,30 @@
   </footer>
 
   <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.toggle('active');
+    }
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme') || 'light';
-      const target = current === 'dark' ? 'light' : 'dark';
+      const target = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', target);
       localStorage.setItem('theme', target);
+      updateThemeIcons();
     }
+    function updateThemeIcons() {
+      const theme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+      ['theme-btn', 'theme-btn-mob'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) {
+          const i = b.querySelector('i');
+          if (i) i.className = iconClass;
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', updateThemeIcons);
   </script>
 </body>
 </html>

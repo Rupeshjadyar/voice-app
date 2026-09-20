@@ -12,13 +12,13 @@
   <meta name="robots" content="noindex, follow">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --bg: #f8fafc;
       --card: #ffffff;
       --border: rgba(0, 0, 0, 0.08);
+      --nav-bg: #ffffff;
       --a1: #1d4ed8;
       --a2: #6d28d9;
       --a3: #db2777;
@@ -30,6 +30,7 @@
       --bg: #070b12;
       --card: rgba(255, 255, 255, 0.032);
       --border: rgba(255, 255, 255, 0.07);
+      --nav-bg: #070b12;
       --a1: #3b9eff;
       --a2: #7c5fe6;
       --a3: #e94fa3;
@@ -37,19 +38,140 @@
       --txt2: #b8c4d8;
       --muted: #6e7e98;
     }
-    body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;text-align:center;}
+    
+    .glass-nav { background: var(--nav-bg); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); opacity: 0.96; }
+    .nav-btn { padding: 7px 14px; border-radius: 10px; font-size: .85rem; font-weight: 500; transition: all .18s; color: var(--muted); border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-flex; align-items: center; }
+    .nav-btn:hover, .nav-active { color: var(--a1); background: rgba(59, 158, 255, 0.09); }
+    .nav-desktop { display: flex; }
+    .nav-mobile-btn { display: none; }
+    .nav-mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      .nav-desktop { display: none !important; }
+      .nav-mobile-btn { display: flex !important; align-items: center; justify-content: center; background: none; border: none; color: var(--muted); font-size: 1.25rem; cursor: pointer; }
+      .nav-mobile-menu.active { display: flex !important; flex-direction: column; gap: 6px; background: var(--nav-bg); border-top: 1px solid var(--border); padding: 14px 24px; position: absolute; top: 60px; left: 0; right: 0; z-index: 100; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+      .nav-mobile-menu .nav-btn { display: block; padding: 10px 14px; text-align: left; border-radius: 9px; width: 100%; box-sizing: border-box; }
+    }
+
     h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,5rem);line-height:1;}
     .tg{background:linear-gradient(130deg,var(--a1),var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
     .btn-home{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-weight:700;padding:14px 28px;border-radius:14px;text-decoration:none;font-family:'Syne',sans-serif;margin-top:24px;box-shadow:0 4px 20px rgba(59,158,255,0.3);}
+    
+    .site-footer { background: var(--card); border-top: 1px solid var(--border); padding: 32px 24px; margin-top: auto; width: 100%; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.86rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--a1); }
   </style>
 </head>
 <body>
-  <div style="max-width:550px;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:48px 32px;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
-    <div style="font-size:3rem;margin-bottom:12px;">🎙️</div>
-    <h1 class="tg">404</h1>
-    <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;margin:12px 0 8px;">Audio Track Not Found</h2>
-    <p style="color:var(--muted);font-size:0.95rem;line-height:1.6;">The voice generator page or article you are looking for might have been moved or does not exist.</p>
-    <a href="/" class="btn-home"><i class="fa-solid fa-house"></i> Return to Studio</a>
+
+  <!-- TOP NAVBAR -->
+  <nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
+      <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
+          <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+        </div>
+        <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;color:var(--txt);">Voice<span style="color:var(--a1);">Pro</span></span>
+      </a>
+      <div class="nav-desktop" style="align-items:center;gap:6px;">
+        <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
+        <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
+        <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
+        <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
+        <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
+        <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
+        <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
+        <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <button class="nav-mobile-btn" onclick="toggleMobileMenu()" style="background:none;border:none;color:var(--muted);font-size:1.2rem;" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="nav-mobile-menu">
+      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
+      <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
+      <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
+      <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS</a>
+      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
+      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy</a>
+      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service</a>
+      <a href="/disclaimer" class="nav-btn"><i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer</a>
+      <a href="/cookies" class="nav-btn"><i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy</a>
+      <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
+        <i class="fa-solid fa-moon"></i>Toggle Theme
+      </button>
+    </div>
+  </nav>
+
+  <!-- ANNOUNCEMENT MARQUEE BAR -->
+  <div style="margin-top:60px;width:100%;background:linear-gradient(90deg, #1d4ed8, #6d28d9, #db2777);color:#fff;font-family:'Syne',sans-serif;font-size:0.86rem;font-weight:700;padding:10px 0;box-shadow:0 4px 14px rgba(0,0,0,0.12);position:relative;z-index:40;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0 16px;">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.32);padding:4px 12px;border-radius:99px;margin-right:12px;white-space:nowrap;flex-shrink:0;font-size:0.73rem;letter-spacing:1px;text-transform:uppercase;">
+        <i class="fa-solid fa-bullhorn" style="color:#ffd700;"></i> UPDATE &amp; SUPPORT
+      </div>
+      <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;padding-top:2px;">
+        🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new regional languages, or custom features?</span> Message directly on our Contact Gmail ID: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages, 100+ Neural Voice Characters, Instant MP3 &amp; Studio WAV Download — Zero Login Ever Required!
+      </marquee>
+    </div>
   </div>
+
+  <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;width:100%;">
+    <div style="max-width:550px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:48px 32px;box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+      <div style="font-size:3rem;margin-bottom:12px;">🎙️</div>
+      <h1 class="tg">404</h1>
+      <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.4rem;margin:12px 0 8px;">Audio Track Not Found</h2>
+      <p style="color:var(--muted);font-size:0.95rem;line-height:1.6;">The voice generator page or article you are looking for might have been moved or does not exist.</p>
+      <a href="/" class="btn-home"><i class="fa-solid fa-house"></i> Return to Studio</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="color:var(--muted);font-size:0.84rem;">&copy; 2026 VoicePro TTS Studio. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/tts/">Languages</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/cookies">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.toggle('active');
+    }
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const target = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', target);
+      localStorage.setItem('theme', target);
+      updateThemeIcons();
+    }
+    function updateThemeIcons() {
+      const theme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+      ['theme-btn', 'theme-btn-mob'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) {
+          const i = b.querySelector('i');
+          if (i) i.className = iconClass;
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', updateThemeIcons);
+  </script>
 </body>
 </html>

@@ -240,7 +240,6 @@
     <!-- ✅ PERFORMANCE PRECONNECT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
@@ -3294,12 +3293,32 @@
         const ab = n$('nav-' + page); if (ab) ab.classList.add('nav-active');
         if (page === 'home') { loadStats(); setTimeout(() => { buildLangDD(); buildVoiceDD(); }, 0); }
       }
-      function toggleMob() { }
       function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu');
         if (menu) {
           menu.classList.toggle('active');
         }
+      }
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const target = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', target);
+        localStorage.setItem('theme', target);
+        updateThemeIcons();
+      }
+
+      function updateThemeIcons() {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        const iconClass = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        ['theme-btn', 'theme-btn-mob'].forEach(id => {
+          const b = document.getElementById(id);
+          if (b) {
+            const i = b.querySelector('i');
+            if (i) i.className = iconClass;
+          }
+        });
       }
 
       /* ── TEXT INPUT ── */
