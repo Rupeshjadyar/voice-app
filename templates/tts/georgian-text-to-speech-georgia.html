@@ -183,66 +183,8 @@
     .feature-icon{width:38px;height:38px;font-size:1rem;}
     .pro-footer{padding:24px 10px 0!important;}
   }
-</style>
-</head>
-<body>
 
-<!-- NAV -->
-<nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
-  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
-    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
-        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
-      </div>
-      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;">Voice<span style="color:var(--a1);">Pro</span></span>
-    </a>
-    <div class="nav-desktop" style="align-items:center;gap:6px;">
-      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
-      <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
-      <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
-      <a href="/tts/" class="nav-btn nav-active"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
-      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
-      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
-      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
-      <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
-        <i class="fa-solid fa-moon"></i>
-      </button>
-      <button id="pwa-install-btn" onclick="triggerPWAInstall()" style="display:none;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Syne',sans-serif;white-space:nowrap;box-shadow:0 0 12px rgba(59,158,255,0.3);animation:pulse-glow 2s infinite;" aria-label="Install App">
-        <i class="fa-solid fa-mobile-screen-button"></i> Install App
-      </button>
-    </div>
-    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" style="background:none;border:none;color:var(--muted);font-size:1.2rem;">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-  </div>
-  <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
-    <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
-    <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
-    <a href="/tts/" class="nav-btn nav-active"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS</a>
-    <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
-    <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy</a>
-    <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service</a>
-    <a href="/disclaimer" class="nav-btn"><i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer</a>
-    <a href="/cookies" class="nav-btn"><i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy</a>
-    <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
-      <i class="fa-solid fa-moon"></i>Toggle Theme
-    </button>
-    <button id="pwa-install-btn-mob" onclick="triggerPWAInstall();toggleMobileMenu()" class="nav-btn" style="display:none;text-align:left;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(147,51,234,0.15));color:#3dd68c;font-weight:700;border:1px solid rgba(61,214,140,0.3);margin-top:6px;border-radius:10px;">
-      <i class="fa-solid fa-mobile-screen-button" style="color:#3dd68c;"></i> Install VoicePro App
-    </button>
-  </div>
-</nav>
-
-<!-- ANNOUNCEMENT MARQUEE BAR -->
-<div style="margin-top:60px;background:linear-gradient(90deg,#1d4ed8,#6d28d9,#db2777);color:#fff;font-family:'Syne',sans-serif;font-size:0.86rem;font-weight:700;padding:10px 0;box-shadow:0 4px 14px rgba(0,0,0,0.12);position:relative;z-index:40;">
-  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0 16px;">
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.32);padding:4px 12px;border-radius:99px;margin-right:12px;white-space:nowrap;flex-shrink:0;font-size:0.73rem;letter-spacing:1px;text-transform:uppercase;">
-      <i class="fa-solid fa-bullhorn" style="color:#ffd700;"></i> GEORGIAN TTS
-    </div>
-    <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;padding-top:2px;">
-      FREE Georgian TEXT TO SPEECH 2026 &nbsp;&#8226;&nbsp; 30+ Neural Voices for Georgian (Georgia) &nbsp;&#8226;&nbsp; Instant MP3 &amp; WAV Download Free &nbsp;&#8226;&nbsp; Multi-Voice Dialogue Generator &nbsp;&#8226;&nbsp; Zero Login &nbsp;&#8226;&nbsp; 104 Languages Supported
-    </marquee>
+  /* Marquee CSS animation (replaces deprecated <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
   </div>
 </div>
 
@@ -556,7 +498,15 @@
       <style>
         #natural-mode-toggle:checked + span { background: linear-gradient(135deg, var(--a1), var(--a2)) !important; box-shadow: 0 0 12px rgba(59,158,255,0.4); }
         #natural-mode-toggle:checked + span + span { transform: translateX(22px); }
-      </style>
+      
+  /* Marquee CSS animation */
+  .marquee-outer{overflow:hidden;flex:1;position:relative;}
+  .marquee-track{display:flex;width:max-content;animation:marqueeScroll 38s linear infinite;}
+  .marquee-track:hover{animation-play-state:paused;cursor:pointer;}
+  @keyframes marqueeScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  .marquee-item{white-space:nowrap;padding-right:60px;}
+
+</style>
 
       <button id="gen-btn" class="btn-primary" onclick="doGenerate()">
         <span id="gen-lbl"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Georgian Voice &mdash; Free</span>

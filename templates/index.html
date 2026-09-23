@@ -600,7 +600,7 @@
         background: var(--panel);
         border: 1px solid rgba(59, 158, 255, 0.22);
         border-radius: 14px;
-        max-height: 280px;
+        max-height: 340px;
         display: none;
         flex-direction: column;
         box-shadow: 0 22px 56px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
@@ -609,6 +609,38 @@
 
       .dd-panel.is-open {
         display: flex;
+      }
+
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 9, 16, 0.84);
+        backdrop-filter: blur(8px);
+        z-index: 100000;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .modal-overlay.is-open {
+        display: flex !important;
+      }
+
+      .modal-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        max-width: 560px;
+        width: 100%;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        animation: modalFadeIn .22s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @keyframes modalFadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
       }
 
       .dd-search {
@@ -1372,106 +1404,8 @@
           padding: 16px !important;
         }
       }
-    </style>
-  
-</head>
-
-  <body>
-
-    <!-- NAV -->
-    <nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
-      <div
-        style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
-        <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="navigate('home')">
-          <div
-            style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
-            <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
-          </div>
-          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;">Voice<span
-              style="color:var(--a1);">Pro</span></span>
-        </div>
-        <div class="nav-desktop" style="align-items:center;gap:6px;">
-          <button onclick="navigate('home')" class="nav-btn nav-active" id="nav-home">
-            <i class="fa-solid fa-house" style="margin-right:5px;"></i>Home
-          </button>
-          <a href="/about" class="nav-btn">
-            <i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About
-          </a>
-          <a href="/blog" class="nav-btn">
-            <i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog
-          </a>
-          <a href="/tts/" class="nav-btn">
-            <i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages
-          </a>
-          <a href="/contact" class="nav-btn">
-            <i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact
-          </a>
-          <a href="/privacy" class="nav-btn">
-            <i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy
-          </a>
-          <a href="/terms" class="nav-btn">
-            <i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms
-          </a>
-          <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
-            <i class="fa-solid fa-moon"></i>
-          </button>
-          <!-- ✅ PWA Install Button — shown only when browser supports install -->
-          <button id="pwa-install-btn" onclick="triggerPWAInstall()" style="display:none;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Syne',sans-serif;white-space:nowrap;box-shadow:0 0 12px rgba(59,158,255,0.3);animation:pulse-glow 2s infinite;" aria-label="Install App">
-            <i class="fa-solid fa-mobile-screen-button"></i> Install App
-          </button>
-        </div>
-        <button class="nav-mobile-btn" onclick="toggleMobileMenu()"
-          style="background:none;border:none;color:var(--muted);font-size:1.2rem;">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-      <div id="mobile-menu" class="nav-mobile-menu">
-        <button onclick="navigate('home');toggleMobileMenu()" class="nav-btn" style="text-align:left;">
-          <i class="fa-solid fa-house" style="margin-right:8px;"></i>Home
-        </button>
-        <a href="/about" class="nav-btn">
-          <i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About
-        </a>
-        <a href="/blog" class="nav-btn">
-          <i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog
-        </a>
-        <a href="/tts/" class="nav-btn">
-          <i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS
-        </a>
-        <a href="/contact" class="nav-btn">
-          <i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact
-        </a>
-        <a href="/privacy" class="nav-btn">
-          <i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy
-        </a>
-        <a href="/terms" class="nav-btn">
-          <i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service
-        </a>
-        <a href="/disclaimer" class="nav-btn">
-          <i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer
-        </a>
-        <a href="/cookies" class="nav-link nav-btn">
-          <i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy
-        </a>
-        <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
-          <i class="fa-solid fa-moon"></i>Toggle Theme
-        </button>
-        <!-- ✅ Mobile Menu Install Button -->
-        <button id="pwa-install-btn-mob" onclick="triggerPWAInstall();toggleMobileMenu()" class="nav-btn" style="display:none;text-align:left;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(147,51,234,0.15));color:#3dd68c;font-weight:700;border:1px solid rgba(61,214,140,0.3);margin-top:6px;border-radius:10px;">
-          <i class="fa-solid fa-mobile-screen-button" style="color:#3dd68c;"></i> 📲 Install VoicePro App
-        </button>
-      </div>
-    </nav>
-
-    <!-- ✅ TOP SCROLLING MARQUEE ANNOUNCEMENT BAR -->
-    <div style="margin-top:60px;background:linear-gradient(90deg, #1d4ed8, #6d28d9, #db2777);color:#fff;font-family:'Syne',sans-serif;font-size:0.86rem;font-weight:700;padding:10px 0;box-shadow:0 4px 14px rgba(0,0,0,0.12);position:relative;z-index:40;">
-      <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0 16px;">
-        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.32);padding:4px 12px;border-radius:99px;margin-right:12px;white-space:nowrap;flex-shrink:0;font-size:0.73rem;letter-spacing:1px;text-transform:uppercase;">
-          <i class="fa-solid fa-bullhorn" style="color:#ffd700;"></i> UPDATE &amp; SUPPORT
-        </div>
-        <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;padding-top:2px;">
-          🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new regional languages, or custom features?</span> Message directly on our Contact Gmail ID: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages, 100+ Neural Voice Characters, Instant MP3 &amp; Studio WAV Download — Zero Login Ever Required!
-        </marquee>
+    
+  /* Marquee CSS animation (replaces deprecated <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
       </div>
     </div>
 
@@ -1831,9 +1765,7 @@
         <span style="background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:800;padding:5px 12px;border-radius:99px;white-space:nowrap;letter-spacing:0.8px;flex-shrink:0;">
           <i class="fa-solid fa-bell" style="color:#ffd700;margin-right:5px;"></i> ALERT
         </span>
-        <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--txt);">
-          🚀 <span style="color:var(--a1);">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Share with friends, YouTube creators, podcasters &amp; students! &nbsp;•&nbsp; 💬 <span style="color:var(--ok);">Need updates or custom features?</span> Message directly on Gmail: <span style="text-decoration:underline;color:var(--a2);font-weight:800;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages &amp; Neural Voices!
-        </marquee>
+        <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
       </div>
       <!-- COMMUNITY SHARE & FEEDBACK HUB -->
       <div style="background:linear-gradient(135deg, rgba(29, 78, 216, 0.07) 0%, rgba(109, 40, 217, 0.09) 50%, rgba(219, 39, 119, 0.05) 100%);border:1px solid var(--borderH);border-radius:24px;padding:36px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;">
@@ -2576,6 +2508,144 @@
 
     </section>
 
+    <!-- ══════════════════════════════════════════════════════════════════════ -->
+    <!-- ✦ STEP 1 & 2: CUSTOM VOICE CLONING (SELF-HOSTED OPEN-SOURCE TTS) ✦ -->
+    <!-- ══════════════════════════════════════════════════════════════════════ -->
+    <section id="custom-voice-clone-section" class="custom-voice-section" style="max-width:1100px;margin:50px auto 60px;padding:0 20px;">
+      <div class="glass" style="padding:36px;border-radius:24px;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.1);position:relative;overflow:hidden;">
+        
+        <!-- Glow accent -->
+        <div style="position:absolute;top:-80px;right:-80px;width:240px;height:240px;background:radial-gradient(circle, rgba(59,158,255,0.15) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(59,158,255,0.12),rgba(124,95,230,0.12));border:1px solid rgba(59,158,255,0.25);padding:6px 16px;border-radius:100px;font-size:0.78rem;font-weight:700;color:var(--a1);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">
+              <i class="fa-solid fa-dna"></i> Few-Shot Voice Cloning (Self-Hosted)
+            </div>
+            <h2 style="font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-0.02em;color:var(--txt);">
+              Clone Your <span class="tg">Custom Voice</span> for Free
+            </h2>
+            <p style="color:var(--muted);font-size:0.92rem;max-width:680px;line-height:1.65;margin-top:6px;">
+              Record a 5–15 second audio sample from your microphone or upload a clear voice clip. Our self-hosted open-source neural engine (Coqui XTTS-v2) clones your voice timbre to narrate any script!
+            </p>
+          </div>
+          <div id="cv-storage-badge" style="display:none;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.25);color:var(--ok);padding:6px 14px;border-radius:12px;font-size:0.8rem;font-weight:700;align-items:center;gap:6px;">
+            <i class="fa-solid fa-database"></i> Saved in Local Storage
+          </div>
+        </div>
+
+        <!-- TWO COLUMN WORKFLOW: 1. Record/Reference -> 2. Target Text & Clone -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-bottom:24px;">
+          
+          <!-- LEFT CARD: VOICE SAMPLE RECORDING & STORAGE -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+              <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--txt);display:flex;align-items:center;gap:8px;">
+                <span style="width:24px;height:24px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;">1</span>
+                Step 1: Record Reference Voice
+              </span>
+              <span id="cv-timer" style="font-family:'Space Mono',monospace;font-size:0.85rem;color:var(--muted);font-weight:700;">00:00 / 00:15</span>
+            </div>
+
+            <!-- Mic prompt / guide -->
+            <p style="color:var(--txt2);font-size:0.85rem;line-height:1.6;margin-bottom:16px;background:var(--panel);border:1px dashed var(--border);padding:12px;border-radius:10px;">
+              💬 <em>"Read aloud: The quick brown fox jumps over the lazy dog. VoicePro converts text to realistic speech in seconds."</em>
+            </p>
+
+            <!-- Recording Action Buttons -->
+            <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+              <button id="cv-record-btn" onclick="toggleVoiceRecording()" style="flex:1;min-width:140px;padding:12px 18px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(239,68,68,0.3);transition:all 0.2s;">
+                <i class="fa-solid fa-microphone"></i> Record Mic
+              </button>
+
+              <button id="cv-upload-btn" onclick="document.getElementById('cv-file-input').click()" style="padding:12px 18px;background:var(--panel);border:1px solid var(--border);color:var(--txt);border-radius:12px;font-family:'Syne',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-upload"></i> Upload Audio
+              </button>
+              <input type="file" id="cv-file-input" accept="audio/*" onchange="handleVoiceFileUpload(event)" style="display:none;">
+            </div>
+
+            <!-- Recorded Sample Audio Preview Element -->
+            <div id="cv-preview-container" style="display:none;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px;margin-top:auto;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <span style="font-size:0.78rem;font-weight:700;color:var(--ok);font-family:'Syne',sans-serif;display:flex;align-items:center;gap:6px;">
+                  <i class="fa-solid fa-circle-check"></i> Voice Sample Ready
+                </span>
+                <div style="display:flex;gap:6px;">
+                  <button onclick="clearCustomVoiceSample()" title="Delete Voice Sample" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.82rem;padding:4px 8px;border-radius:6px;">
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                  </button>
+                </div>
+              </div>
+              <audio id="cv-sample-player" controls style="width:100%;height:36px;border-radius:8px;"></audio>
+            </div>
+          </div>
+
+          <!-- RIGHT CARD: TARGET TEXT & SYNTHESIZE -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--txt);display:flex;align-items:center;gap:8px;">
+                <span style="width:24px;height:24px;background:linear-gradient(135deg,var(--a2),var(--a3));color:#fff;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;">2</span>
+                Step 2: Enter Script to Speak
+              </span>
+              <select id="cv-lang-select" style="max-width:180px;padding:6px 28px 6px 12px;font-size:0.82rem;border-radius:8px;">
+                <option value="en" selected>🇺🇸 English</option>
+                <option value="hi">🇮🇳 Hindi</option>
+                <option value="es">🇪🇸 Spanish</option>
+                <option value="fr">🇫🇷 French</option>
+                <option value="de">🇩🇪 German</option>
+                <option value="it">🇮🇹 Italian</option>
+                <option value="pt">🇧🇷 Portuguese</option>
+                <option value="pl">🇵🇱 Polish</option>
+                <option value="tr">🇹🇷 Turkish</option>
+                <option value="ru">🇷🇺 Russian</option>
+                <option value="nl">🇳🇱 Dutch</option>
+                <option value="cs">🇨🇿 Czech</option>
+                <option value="ar">🇸🇦 Arabic</option>
+                <option value="zh-cn">🇨🇳 Chinese</option>
+                <option value="ja">🇯🇵 Japanese</option>
+                <option value="ko">🇰🇷 Korean</option>
+                <option value="hu">🇭🇺 Hungarian</option>
+              </select>
+            </div>
+
+            <textarea id="cv-target-text" placeholder="Type or paste any text here. Your cloned custom voice will speak this text with your exact tone and vocal timbre..." style="width:100%;height:110px;resize:none;margin-bottom:16px;"></textarea>
+
+            <button id="cv-clone-btn" onclick="doCloneVoice()" style="margin-top:auto;width:100%;padding:14px 20px;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));background-size:200%;border:none;border-radius:12px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(59,158,255,0.3);transition:all 0.25s;">
+              <span id="cv-clone-lbl"><i class="fa-solid fa-wand-magic-sparkles"></i> Synthesize in My Cloned Voice — Free</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- CLONED RESULT AUDIO PLAYER -->
+        <div id="cv-result-card" style="display:none;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:24px;margin-top:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:40px;height:40px;background:linear-gradient(135deg,#10b981,#059669);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div>
+                <h4 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;color:var(--txt);">Cloned Voice Synthesis Complete! 🎉</h4>
+                <p id="cv-result-meta" style="font-size:0.8rem;color:var(--muted);margin:0;">Coqui XTTS-v2 Neural Voice Clone &bull; Lossless Studio Audio</p>
+              </div>
+            </div>
+            
+            <!-- Download Options -->
+            <div style="display:flex;gap:8px;">
+              <button onclick="downloadClonedVoice('wav')" style="padding:8px 16px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-download"></i> Studio WAV
+              </button>
+              <button onclick="downloadClonedVoice('mp3')" style="padding:8px 16px;background:var(--card);border:1px solid var(--border);color:var(--txt);border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-download"></i> MP3
+              </button>
+            </div>
+          </div>
+
+          <audio id="cv-output-player" controls style="width:100%;border-radius:10px;margin-top:8px;"></audio>
+        </div>
+
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="pro-footer">
       <div class="footer-grid">
@@ -2875,11 +2945,37 @@
 
       /* ── DROPDOWN ENGINE ── */
       const _DD = {};
-      function ddBuild(id, items, selectedId, placeholder, onSelect) {
+      function getCustomVoiceInfo() {
+        try {
+          const sample = localStorage.getItem('voicepro_custom_voice_sample');
+          const name = localStorage.getItem('voicepro_custom_voice_name') || 'My Custom Voice (Cloned)';
+          return { hasVoice: !!sample, name: name };
+        } catch (e) {
+          return { hasVoice: false, name: 'My Custom Voice' };
+        }
+      }
+
+      function ddBuild(id, items, selectedId, placeholder, onSelect, footerHtml = '') {
         const wrap = n$(id); if (!wrap) return;
         _DD[id] = { items, onSelect };
         const sel = items.find(i => i.id === selectedId) || items[0];
-        wrap.innerHTML = `<div class="dd-wrap" id="${id}R"><button class="dd-btn" id="${id}B" type="button" onclick="ddToggle('${id}')"><span class="dd-icon" id="${id}I">${sel.icon}</span><span class="dd-lbl" id="${id}L">${sel.name}</span><span class="dd-sub" id="${id}S">${sel.sub || ''}</span><i class="fa-solid fa-chevron-down dd-chev"></i></button><div class="dd-panel" id="${id}P"><div class="dd-search"><input type="search" id="${id}Q" placeholder="${placeholder}" autocomplete="off" oninput="ddFilter('${id}',this.value)"></div><div class="dd-list" id="${id}List">${items.map(it => `<div class="dd-opt${it.id === selectedId ? ' is-sel' : ''}" data-id="${it.id}" data-q="${(it.name + (it.sub || it.code || '')).toLowerCase()}" onclick="ddPick('${id}','${it.id}')"><span class="dd-oicon">${it.icon}</span><div class="dd-obody"><div class="dd-oname">${it.name}</div>${it.sub ? `<div class="dd-osub">${it.sub}</div>` : ''}</div></div>`).join('')}</div></div></div>`;
+        wrap.innerHTML = `<div class="dd-wrap" id="${id}R">
+          <button class="dd-btn" id="${id}B" type="button" onclick="ddToggle('${id}')">
+            <span class="dd-icon" id="${id}I">${sel.icon}</span>
+            <span class="dd-lbl" id="${id}L">${sel.name}</span>
+            <span class="dd-sub" id="${id}S">${sel.sub || ''}</span>
+            <i class="fa-solid fa-chevron-down dd-chev"></i>
+          </button>
+          <div class="dd-panel" id="${id}P">
+            <div class="dd-search">
+              <input type="search" id="${id}Q" placeholder="${placeholder}" autocomplete="off" oninput="ddFilter('${id}',this.value)">
+            </div>
+            <div class="dd-list" id="${id}List">
+              ${items.map(it => `<div class="dd-opt${it.id === selectedId ? ' is-sel' : ''}" data-id="${it.id}" data-q="${(it.name + (it.sub || it.code || '')).toLowerCase()}" onclick="ddPick('${id}','${it.id}')"><span class="dd-oicon">${it.icon}</span><div class="dd-obody"><div class="dd-oname">${it.name}</div>${it.sub ? `<div class="dd-osub">${it.sub}</div>` : ''}</div></div>`).join('')}
+            </div>
+            ${footerHtml ? `<div class="dd-footer" style="padding:8px 10px;border-top:1px solid var(--border);background:rgba(255,255,255,0.02);">${footerHtml}</div>` : ''}
+          </div>
+        </div>`;
         document.addEventListener('click', function (e) { const root = n$(`${id}R`); if (root && !root.contains(e.target)) ddClose(id); });
       }
       function ddToggle(id) {
@@ -2905,9 +3001,35 @@
         ddBuild('dd-lang', items, S.lang, '🔍  Search language or code…', function (item) { S.lang = item.id; });
       }
       function buildVoiceDD() {
-        const items = S.voices.map(v => ({ id: v.id, name: v.name, icon: v.icon, sub: v.sub }));
+        const cv = getCustomVoiceInfo();
+        let voiceList = [...S.voices];
+        if (cv.hasVoice) {
+          voiceList = voiceList.filter(v => v.id !== 'custom-cloned-voice');
+          voiceList.unshift({
+            id: 'custom-cloned-voice',
+            name: cv.name,
+            icon: '🎙️',
+            sub: 'Custom Neural Voice Clone · Studio',
+            rate: 1.0,
+            pitch: 0,
+            style: 'general',
+            badge: 'Custom'
+          });
+        }
+        const items = voiceList.map(v => ({ id: v.id, name: v.name, icon: v.icon, sub: v.sub }));
+        const footerBtn = `<button type="button" onclick="ddClose('dd-voice');openCustomVoiceModal();" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 12px;background:linear-gradient(135deg,rgba(59,158,255,0.12),rgba(124,95,230,0.12));border:1px solid rgba(59,158,255,0.28);color:var(--a1);border-radius:10px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(59,158,255,0.22),rgba(124,95,230,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(59,158,255,0.12),rgba(124,95,230,0.12))'"><i class="fa-solid fa-microphone-lines" style="color:var(--a2);"></i> ${cv.hasVoice ? 'Manage / Re-Record Custom Voice' : '+ Record & Clone Custom Voice'}</button>`;
+
         ddBuild('dd-voice', items, S.voice, '🔍  Search voice type…', function (item) {
           S.voice = item.id;
+          if (item.id === 'custom-cloned-voice') {
+            const rSlider = n$('sl-rate'), pSlider = n$('sl-pitch');
+            const rBadge = n$('badge-rate'), pBadge = n$('badge-pitch');
+            if (rSlider) rSlider.value = 1.0; if (pSlider) pSlider.value = 0;
+            if (rBadge) rBadge.textContent = '1.0x'; if (pBadge) pBadge.textContent = '+0';
+            document.querySelectorAll('.voice-card').forEach(c => c.classList.remove('active'));
+            showToast(`🎙️ ${item.name} selected!`);
+            return;
+          }
           const vdata = S.voices.find(v => v.id === item.id); if (!vdata) return;
           const rSlider = n$('sl-rate'), pSlider = n$('sl-pitch');
           const rBadge = n$('badge-rate'), pBadge = n$('badge-pitch');
@@ -2915,7 +3037,7 @@
           if (rBadge) rBadge.textContent = vdata.rate.toFixed(1) + 'x'; if (pBadge) pBadge.textContent = (vdata.pitch >= 0 ? '+' : '') + vdata.pitch;
           const styleEl = n$('sel-style'); if (styleEl && vdata.style) styleEl.value = vdata.style;
           document.querySelectorAll('.voice-card').forEach(c => c.classList.toggle('active', c.dataset.vid === item.id));
-        });
+        }, footerBtn);
       }
 
       /* ── RENDER HOME ── */
@@ -3017,7 +3139,15 @@
         <style>
           #natural-mode-toggle:checked + span { background: linear-gradient(135deg, var(--a1), var(--a2)) !important; box-shadow: 0 0 12px rgba(59,158,255,0.4); }
           #natural-mode-toggle:checked + span + span { transform: translateX(22px); }
-        </style>
+        
+  /* Marquee CSS animation */
+  .marquee-outer{overflow:hidden;flex:1;position:relative;}
+  .marquee-track{display:flex;width:max-content;animation:marqueeScroll 38s linear infinite;}
+  .marquee-track:hover{animation-play-state:paused;cursor:pointer;}
+  @keyframes marqueeScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  .marquee-item{white-space:nowrap;padding-right:60px;}
+
+</style>
       </div>
 
       <!-- Multi Mode Container -->
@@ -3257,7 +3387,14 @@
       /* ── VOICE CARD SELECT ── */
       function selectVoiceCard(vid) {
         S.voice = vid;
-        const vdata = S.voices.find(v => v.id === vid); if (!vdata) return;
+        const cv = getCustomVoiceInfo();
+        let vdata = null;
+        if (vid === 'custom-cloned-voice') {
+          vdata = { id: 'custom-cloned-voice', name: cv.name, icon: '🎙️', sub: 'Custom Cloned Voice · Local Studio', rate: 1.0, pitch: 0, style: 'general', badge: 'Custom' };
+        } else {
+          vdata = S.voices.find(v => v.id === vid);
+        }
+        if (!vdata) return;
         const rSlider = n$('sl-rate'), pSlider = n$('sl-pitch');
         const rBadge = n$('badge-rate'), pBadge = n$('badge-pitch');
         if (rSlider) rSlider.value = vdata.rate; if (pSlider) pSlider.value = vdata.pitch;
@@ -3604,6 +3741,57 @@
         resetDownloadControls();
         const txtEl = n$('txt'); const text = txtEl ? txtEl.value.trim() : '';
         if (!text) { showToast('Please enter some text first!', 'err'); return; }
+
+        if (S.voice === 'custom-cloned-voice') {
+          const savedSample = localStorage.getItem('voicepro_custom_voice_sample');
+          if (!savedSample) {
+            showToast('Please record or upload your custom voice sample first! 🎙️', 'err');
+            openCustomVoiceModal();
+            return;
+          }
+          const btn = n$('gen-btn'), lbl = n$('gen-lbl'), res = n$('result-area');
+          btn.disabled = true;
+          lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Cloning Voice & Synthesizing Speech…</span>';
+          res.classList.add('hidden');
+          try {
+            const fetchRes = await fetch(savedSample);
+            const audioBlob = await fetchRes.blob();
+            const fd = new FormData();
+            fd.append('reference_audio', audioBlob, 'custom_voice_sample.wav');
+            fd.append('text', text);
+            fd.append('language', S.lang || 'en-US');
+            fd.append('gender', localStorage.getItem('voicepro_custom_voice_gender') || 'auto');
+
+            const r = await fetch('/api/clone-voice', { method: 'POST', body: fd });
+            const d = await r.json();
+            if (d.success) {
+              S.total++; S.today++; setTxt('st-total', fmtN(S.total)); setTxt('st-today', fmtN(S.today));
+              S.lastAudio = d.audio_data;
+              S.lastFile = d.filename || `custom_voice_${Date.now()}.wav`;
+              const playerEl = n$('player');
+              playerEl.src = d.audio_data;
+              playerEl.play().catch(e => console.log('Autoplay blocked:', e));
+              const customName = localStorage.getItem('voicepro_custom_voice_name') || 'My Custom Voice';
+              const ldata = S.languages.find(l => l.code === S.lang) || { name: S.lang };
+              setTxt('custom-player-meta', `${d.method} · ${customName} · ${ldata.name}`);
+              setTxt('custom-player-badge', '🎙️ Cloned Voice');
+              setTxt('gen-info', `${d.method} · ${customName} · ${S.lang}`);
+              res.classList.remove('hidden');
+              showToast('Custom voice audio generated! 🎉');
+              saveToHistory(text, S.lang, customName, d.audio_data, 'wav');
+            } else {
+              showToast(d.error || 'Custom voice cloning failed. Please retry.', 'err');
+            }
+          } catch (e) {
+            showToast('Network error during custom voice cloning.', 'err');
+            console.error(e);
+          } finally {
+            btn.disabled = false;
+            lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Voice';
+          }
+          return;
+        }
+
         const btn = n$('gen-btn'), lbl = n$('gen-lbl'), res = n$('result-area');
         btn.disabled = true; lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Generating…</span>'; res.classList.add('hidden');
         const rateEl = n$('sl-rate');
@@ -3658,6 +3846,17 @@
       /* ── PREVIEW ── */
       async function doPreview(lang, vtype, el) {
         if (el && el.classList) { document.querySelectorAll('.vpc').forEach(c => c.classList.remove('sel')); el.classList.add('sel'); }
+        if (vtype === 'custom-cloned-voice') {
+          const savedSample = localStorage.getItem('voicepro_custom_voice_sample');
+          if (savedSample) {
+            new Audio(savedSample).play();
+            showToast('▶ Playing Custom Voice Reference 🎙️');
+          } else {
+            showToast('No custom voice recorded yet.', 'err');
+            openCustomVoiceModal();
+          }
+          return;
+        }
         const vdata = S.voices.find(v => v.id === vtype) || { rate: 1.0, pitch: 0, style: 'general' };
         showToast(`Loading ${lang} preview…`);
         try { const r = await fetch('/preview-voice', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ language: lang, voice_type: vtype, rate: vdata.rate, pitch: vdata.pitch, style: vdata.style }) }); const d = await r.json(); if (d.success) { new Audio(d.audio_data).play(); showToast(`▶ ${lang} · ${vdata.name || vtype}`); } else showToast(d.error || 'Preview unavailable', 'err'); }
@@ -4073,7 +4272,543 @@
           showToast('Script loaded into Voice Studio! 🎙️', 'ok');
         }
       }
+
+        /* ══════════════════════════════════════════════════════════════════════
+         ✦ FEATURE: SELF-HOSTED CUSTOM VOICE CLONING (MediaRecorder + LocalStorage)
+         ══════════════════════════════════════════════════════════════════════ */
+      let cvMediaRecorder = null;
+      let cvAudioChunks = [];
+      let cvRecordedBlob = null;
+      let cvRecordingInterval = null;
+      let cvRecordingSeconds = 0;
+      let cvLastClonedAudio = null;
+      let cvLastClonedFilename = null;
+
+      async function convertBlobToCleanWav(blob) {
+        try {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const arrayBuf = await blob.arrayBuffer();
+          const decoded = await audioCtx.decodeAudioData(arrayBuf);
+          const targetSampleRate = 16000;
+          const offlineCtx = new OfflineAudioContext(1, Math.ceil(decoded.duration * targetSampleRate), targetSampleRate);
+          const src = offlineCtx.createBufferSource();
+          src.buffer = decoded;
+          src.connect(offlineCtx.destination);
+          src.start(0);
+          const rendered = await offlineCtx.startRendering();
+          return bufferToWav(rendered);
+        } catch (e) {
+          console.warn('Audio decoding fallback to original blob:', e);
+          return blob;
+        }
+      }
+
+      function initCustomVoiceStudio() {
+        try {
+          const savedSample = localStorage.getItem('voicepro_custom_voice_sample');
+          if (savedSample) {
+            fetch(savedSample)
+              .then(res => res.blob())
+              .then(blob => {
+                cvRecordedBlob = blob;
+                const player = document.getElementById('cv-sample-player');
+                if (player) player.src = savedSample;
+                const preview = document.getElementById('cv-preview-container');
+                if (preview) preview.style.display = 'block';
+                const badge = document.getElementById('cv-storage-badge');
+                if (badge) badge.style.display = 'inline-flex';
+              }).catch(err => console.warn('Could not restore custom voice sample:', err));
+          }
+        } catch (e) {
+          console.warn('LocalStorage error:', e);
+        }
+      }
+
+      async function toggleVoiceRecording() {
+        const btn = document.getElementById('cv-record-btn');
+        const timer = document.getElementById('cv-timer');
+        
+        if (cvMediaRecorder && cvMediaRecorder.state === 'recording') {
+          cvMediaRecorder.stop();
+          return;
+        }
+        
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          cvAudioChunks = [];
+          cvMediaRecorder = new MediaRecorder(stream);
+          
+          cvMediaRecorder.ondataavailable = e => {
+            if (e.data.size > 0) cvAudioChunks.push(e.data);
+          };
+          
+          cvMediaRecorder.onstart = () => {
+            cvRecordingSeconds = 0;
+            btn.innerHTML = '<i class="fa-solid fa-stop"></i> Stop Recording';
+            btn.style.background = 'linear-gradient(135deg, #e11d48, #be123c)';
+            btn.style.animation = 'pulse-glow 1.5s infinite';
+            if (timer) timer.textContent = '00:00 / 00:15';
+            
+            cvRecordingInterval = setInterval(() => {
+              cvRecordingSeconds++;
+              const s = cvRecordingSeconds < 10 ? '0' + cvRecordingSeconds : cvRecordingSeconds;
+              if (timer) timer.textContent = `00:${s} / 00:15`;
+              if (cvRecordingSeconds >= 15) {
+                if (cvMediaRecorder && cvMediaRecorder.state === 'recording') {
+                  cvMediaRecorder.stop();
+                }
+              }
+            }, 1000);
+            showToast('Recording voice sample... speak clearly! 🎙️', 'ok');
+          };
+          
+          cvMediaRecorder.onstop = async () => {
+            clearInterval(cvRecordingInterval);
+            stream.getTracks().forEach(track => track.stop());
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i> Re-Record Mic';
+            btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            btn.style.animation = 'none';
+            
+            const mime = cvMediaRecorder.mimeType || 'audio/webm';
+            const rawBlob = new Blob(cvAudioChunks, { type: mime });
+            cvRecordedBlob = await convertBlobToCleanWav(rawBlob);
+            
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const base64Data = reader.result;
+              try {
+                localStorage.setItem('voicepro_custom_voice_sample', base64Data);
+                localStorage.setItem('voicepro_custom_voice_time', new Date().toISOString());
+                const badge = document.getElementById('cv-storage-badge');
+                if (badge) badge.style.display = 'inline-flex';
+              } catch (e) {
+                console.warn('Storage quota exceeded:', e);
+              }
+              const player = document.getElementById('cv-sample-player');
+              if (player) player.src = base64Data;
+              const preview = document.getElementById('cv-preview-container');
+              if (preview) preview.style.display = 'block';
+              showToast('Voice sample recorded & saved locally! 💾', 'ok');
+            };
+            reader.readAsDataURL(cvRecordedBlob);
+          };
+          
+          cvMediaRecorder.start(100);
+        } catch (err) {
+          console.error('Mic access error:', err);
+          showToast('Microphone access denied or not supported in this browser.', 'err');
+        }
+      }
+
+      async function handleVoiceFileUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        cvRecordedBlob = await convertBlobToCleanWav(file);
+        
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64Data = reader.result;
+          try {
+            localStorage.setItem('voicepro_custom_voice_sample', base64Data);
+            const badge = document.getElementById('cv-storage-badge');
+            if (badge) badge.style.display = 'inline-flex';
+          } catch (err) {}
+          const player = document.getElementById('cv-sample-player');
+          if (player) player.src = base64Data;
+          const preview = document.getElementById('cv-preview-container');
+          if (preview) preview.style.display = 'block';
+          showToast('Audio sample uploaded & saved! 📁', 'ok');
+        };
+        reader.readAsDataURL(cvRecordedBlob);
+      }
+
+      function clearCustomVoiceSample() {
+        localStorage.removeItem('voicepro_custom_voice_sample');
+        localStorage.removeItem('voicepro_custom_voice_name');
+        localStorage.removeItem('voicepro_custom_voice_time');
+        cvRecordedBlob = null;
+        const preview = document.getElementById('cv-preview-container');
+        if (preview) preview.style.display = 'none';
+        const badge = document.getElementById('cv-storage-badge');
+        if (badge) badge.style.display = 'none';
+        const btn = document.getElementById('cv-record-btn');
+        if (btn) btn.innerHTML = '<i class="fa-solid fa-microphone"></i> Record Mic';
+        const timer = document.getElementById('cv-timer');
+        if (timer) timer.textContent = '00:00 / 00:15';
+        if (S.voice === 'custom-cloned-voice') S.voice = 'female-1';
+        buildVoiceDD();
+        showToast('Voice profile deleted.', 'err');
+      }
+
+      async function doCloneVoice() {
+        if (!cvRecordedBlob) {
+          showToast('Please record or upload your voice sample first! 🎙️', 'err');
+          const recordBtn = document.getElementById('cv-record-btn');
+          if (recordBtn) recordBtn.focus();
+          return;
+        }
+        
+        const textInput = document.getElementById('cv-target-text');
+        const text = (textInput ? textInput.value : '').trim();
+        if (!text) {
+          showToast('Please enter the text you want your voice to speak! ✍️', 'err');
+          if (textInput) textInput.focus();
+          return;
+        }
+        
+        const langSelect = document.getElementById('cv-lang-select');
+        const lang = langSelect ? langSelect.value : 'en';
+        
+        const btn = document.getElementById('cv-clone-btn');
+        const lbl = document.getElementById('cv-clone-lbl');
+        const resCard = document.getElementById('cv-result-card');
+        
+        btn.disabled = true;
+        lbl.innerHTML = '<span class="spinner"></span><span style="margin-left:9px;">Cloning & Synthesizing Speech…</span>';
+        if (resCard) resCard.style.display = 'none';
+        
+        const fd = new FormData();
+        fd.append('reference_audio', cvRecordedBlob, 'custom_voice_sample.wav');
+        fd.append('text', text);
+        fd.append('language', lang);
+        fd.append('gender', localStorage.getItem('voicepro_custom_voice_gender') || 'auto');
+        
+        try {
+          const r = await fetch('/api/clone-voice', { method: 'POST', body: fd });
+          const d = await r.json();
+          if (d.success) {
+            cvLastClonedAudio = d.audio_data;
+            cvLastClonedFilename = d.filename;
+            const player = document.getElementById('cv-output-player');
+            if (player) {
+              player.src = d.audio_data;
+              player.play().catch(e => console.log('Autoplay blocked:', e));
+            }
+            const meta = document.getElementById('cv-result-meta');
+            if (meta) {
+              meta.textContent = `${d.method} · Language: ${d.language.toUpperCase()} · Lossless Audio`;
+            }
+            if (resCard) resCard.style.display = 'block';
+            showToast('Custom Voice Cloned & Audio ready! 🎉', 'ok');
+          } else {
+            showToast(d.error || 'Voice cloning failed. Please retry.', 'err');
+          }
+        } catch (err) {
+          console.error('Clone API error:', err);
+          showToast('Network or server error during voice cloning.', 'err');
+        } finally {
+          btn.disabled = false;
+          lbl.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Synthesize in My Cloned Voice — Free';
+        }
+      }
+
+      function downloadClonedVoice(type) {
+        if (!cvLastClonedAudio) {
+          showToast('Generate voice clone first!', 'err');
+          return;
+        }
+        const ext = type === 'mp3' ? 'mp3' : 'wav';
+        const fn = (cvLastClonedFilename || 'voicepro_custom_voice_' + Date.now()).replace(/\.[^.]+$/, '') + '.' + ext;
+        const a = document.createElement('a');
+        a.href = cvLastClonedAudio;
+        a.download = fn;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        showToast(`Downloading cloned ${ext.toUpperCase()}... 🎵`, 'ok');
+      }
+
+      /* ══════════════════════════════════════════════════════════════════════
+         ✦ POPUP MODAL: CUSTOM VOICE CLONING (MediaRecorder & LocalStorage)
+         ══════════════════════════════════════════════════════════════════════ */
+      let modalCvMediaRecorder = null;
+      let modalCvAudioChunks = [];
+      let modalCvRecordedBlob = null;
+      let modalCvRecordingInterval = null;
+      let modalCvRecordingSeconds = 0;
+      let modalCvDataUrl = null;
+
+      function openCustomVoiceModal() {
+        const modal = document.getElementById('custom-voice-modal');
+        if (!modal) return;
+        modal.classList.add('is-open');
+
+        const savedSample = localStorage.getItem('voicepro_custom_voice_sample');
+        const savedName = localStorage.getItem('voicepro_custom_voice_name') || 'My Custom Voice';
+        const savedGender = localStorage.getItem('voicepro_custom_voice_gender') || 'auto';
+        const nameInp = document.getElementById('modal-cv-name-input');
+        if (nameInp) nameInp.value = savedName;
+        const genderSel = document.getElementById('modal-cv-gender-select');
+        if (genderSel) genderSel.value = savedGender;
+
+        if (savedSample) {
+          modalCvDataUrl = savedSample;
+          const player = document.getElementById('modal-cv-sample-player');
+          if (player) player.src = savedSample;
+          const preview = document.getElementById('modal-cv-preview-container');
+          if (preview) preview.style.display = 'block';
+        } else {
+          const preview = document.getElementById('modal-cv-preview-container');
+          if (preview) preview.style.display = 'none';
+        }
+      }
+
+      function closeCustomVoiceModal() {
+        if (modalCvMediaRecorder && modalCvMediaRecorder.state === 'recording') {
+          modalCvMediaRecorder.stop();
+        }
+        const modal = document.getElementById('custom-voice-modal');
+        if (modal) modal.classList.remove('is-open');
+      }
+
+      async function toggleModalVoiceRecording() {
+        const btn = document.getElementById('modal-cv-record-btn');
+        const timer = document.getElementById('modal-cv-timer');
+        
+        if (modalCvMediaRecorder && modalCvMediaRecorder.state === 'recording') {
+          modalCvMediaRecorder.stop();
+          return;
+        }
+        
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          modalCvAudioChunks = [];
+          modalCvMediaRecorder = new MediaRecorder(stream);
+          
+          modalCvMediaRecorder.ondataavailable = e => {
+            if (e.data.size > 0) modalCvAudioChunks.push(e.data);
+          };
+          
+          modalCvMediaRecorder.onstart = () => {
+            modalCvRecordingSeconds = 0;
+            btn.innerHTML = '<i class="fa-solid fa-stop"></i> Stop Recording';
+            btn.style.background = 'linear-gradient(135deg, #e11d48, #be123c)';
+            btn.style.animation = 'pulse-glow 1.5s infinite';
+            if (timer) timer.textContent = '00:00 / 00:15';
+            
+            modalCvRecordingInterval = setInterval(() => {
+              modalCvRecordingSeconds++;
+              const s = modalCvRecordingSeconds < 10 ? '0' + modalCvRecordingSeconds : modalCvRecordingSeconds;
+              if (timer) timer.textContent = `00:${s} / 00:15`;
+              if (modalCvRecordingSeconds >= 15) {
+                if (modalCvMediaRecorder && modalCvMediaRecorder.state === 'recording') {
+                  modalCvMediaRecorder.stop();
+                }
+              }
+            }, 1000);
+            showToast('Recording voice sample... speak clearly! 🎙️', 'ok');
+          };
+          
+          modalCvMediaRecorder.onstop = async () => {
+            clearInterval(modalCvRecordingInterval);
+            stream.getTracks().forEach(track => track.stop());
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i> Re-Record Mic';
+            btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            btn.style.animation = 'none';
+            
+            const mime = modalCvMediaRecorder.mimeType || 'audio/webm';
+            const rawBlob = new Blob(modalCvAudioChunks, { type: mime });
+            modalCvRecordedBlob = await convertBlobToCleanWav(rawBlob);
+            cvRecordedBlob = modalCvRecordedBlob;
+            
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              modalCvDataUrl = reader.result;
+              const player = document.getElementById('modal-cv-sample-player');
+              if (player) player.src = modalCvDataUrl;
+              const preview = document.getElementById('modal-cv-preview-container');
+              if (preview) preview.style.display = 'block';
+              showToast('Voice sample recorded! Click "Save & Use This Voice" 💾', 'ok');
+            };
+            reader.readAsDataURL(modalCvRecordedBlob);
+          };
+          
+          modalCvMediaRecorder.start(100);
+        } catch (err) {
+          console.error('Mic access error:', err);
+          showToast('Microphone access denied or not supported in this browser.', 'err');
+        }
+      }
+
+      async function handleModalVoiceFileUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        modalCvRecordedBlob = await convertBlobToCleanWav(file);
+        cvRecordedBlob = modalCvRecordedBlob;
+        
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          modalCvDataUrl = reader.result;
+          const player = document.getElementById('modal-cv-sample-player');
+          if (player) player.src = modalCvDataUrl;
+          const preview = document.getElementById('modal-cv-preview-container');
+          if (preview) preview.style.display = 'block';
+          showToast('Audio sample loaded! Click "Save & Use This Voice" 📁', 'ok');
+        };
+        reader.readAsDataURL(modalCvRecordedBlob);
+      }
+
+      function clearModalVoiceSample() {
+        localStorage.removeItem('voicepro_custom_voice_sample');
+        localStorage.removeItem('voicepro_custom_voice_name');
+        localStorage.removeItem('voicepro_custom_voice_time');
+        modalCvRecordedBlob = null;
+        modalCvDataUrl = null;
+        cvRecordedBlob = null;
+        const preview = document.getElementById('modal-cv-preview-container');
+        if (preview) preview.style.display = 'none';
+        const timer = document.getElementById('modal-cv-timer');
+        if (timer) timer.textContent = '00:00 / 00:15';
+        const btn = document.getElementById('modal-cv-record-btn');
+        if (btn) btn.innerHTML = '<i class="fa-solid fa-microphone"></i> Start Recording';
+        
+        try {
+          const cvPreview = document.getElementById('cv-preview-container');
+          if (cvPreview) cvPreview.style.display = 'none';
+          const cvBadge = document.getElementById('cv-storage-badge');
+          if (cvBadge) cvBadge.style.display = 'none';
+        } catch(e) {}
+        
+        if (S.voice === 'custom-cloned-voice') {
+          S.voice = 'female-1';
+        }
+        buildVoiceDD();
+        showToast('Voice profile deleted.', 'err');
+      }
+
+      function saveAndApplyCustomVoice() {
+        const sample = modalCvDataUrl || localStorage.getItem('voicepro_custom_voice_sample');
+        if (!sample) {
+          showToast('Please record or upload a voice sample first! 🎙️', 'err');
+          return;
+        }
+        const nameInp = document.getElementById('modal-cv-name-input');
+        const customName = (nameInp ? nameInp.value.trim() : '') || 'My Custom Voice';
+        const genderSel = document.getElementById('modal-cv-gender-select');
+        const customGender = genderSel ? genderSel.value : 'auto';
+        
+        try {
+          localStorage.setItem('voicepro_custom_voice_sample', sample);
+          localStorage.setItem('voicepro_custom_voice_name', customName);
+          localStorage.setItem('voicepro_custom_voice_gender', customGender);
+          localStorage.setItem('voicepro_custom_voice_time', new Date().toISOString());
+        } catch(e) {
+          console.warn('Storage quota error:', e);
+        }
+        
+        try {
+          const cvPlayer = document.getElementById('cv-sample-player');
+          if (cvPlayer) cvPlayer.src = sample;
+          const cvPreview = document.getElementById('cv-preview-container');
+          if (cvPreview) cvPreview.style.display = 'block';
+          const cvBadge = document.getElementById('cv-storage-badge');
+          if (cvBadge) cvBadge.style.display = 'inline-flex';
+        } catch(e) {}
+
+        S.voice = 'custom-cloned-voice';
+        buildVoiceDD();
+        selectVoiceCard('custom-cloned-voice');
+        closeCustomVoiceModal();
+        
+        showToast(`🎉 "${customName}" is active! Enter text above & click Generate Voice.`, 'ok');
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initCustomVoiceStudio();
+      });
     </script>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ✦ POPUP MODAL: CUSTOM VOICE CLONING (Self-Hosted)
+     ══════════════════════════════════════════════════════════════ -->
+<div id="custom-voice-modal" class="modal-overlay" onclick="if(event.target===this)closeCustomVoiceModal()">
+  <div class="modal-card">
+    
+    <!-- Modal Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);background:var(--panel);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.05rem;box-shadow:0 0 14px rgba(59,158,255,0.35);">
+          <i class="fa-solid fa-microphone-lines"></i>
+        </div>
+        <div>
+          <h3 style="margin:0;font-size:1.08rem;font-weight:800;font-family:'Syne',sans-serif;color:var(--txt);">Custom Voice Studio</h3>
+          <p style="margin:2px 0 0;font-size:0.75rem;color:var(--muted);">100% Free Voice Cloning &bull; Saved In Browser Storage</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeCustomVoiceModal()" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:all .2s;" onmouseover="this.style.color='var(--txt)';this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.color='var(--muted)';this.style.background='rgba(255,255,255,0.06)'">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div style="padding:22px 24px;max-height:calc(85vh - 120px);overflow-y:auto;">
+      
+      <!-- Script prompt to read -->
+      <div style="background:var(--panel);border:1px dashed var(--border);border-radius:14px;padding:14px;margin-bottom:18px;">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--a1);margin-bottom:6px;display:flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;">
+          <i class="fa-solid fa-bullhorn"></i> Read Aloud For Best Result (5-10 sec):
+        </div>
+        <p style="font-size:0.85rem;color:var(--txt2);line-height:1.6;margin:0;font-style:italic;">
+          "The quick brown fox jumps over the lazy dog. VoicePro creates realistic AI text to speech in seconds."
+        </p>
+      </div>
+
+      <!-- Step 1: Voice Recording & Upload Controls -->
+      <div style="margin-bottom:18px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <span style="font-size:0.82rem;font-weight:700;color:var(--txt);font-family:'Syne',sans-serif;"><i class="fa-solid fa-circle-dot" style="color:#ef4444;margin-right:6px;"></i>Record Reference Voice</span>
+          <span id="modal-cv-timer" style="font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--muted);font-weight:700;">00:00 / 00:15</span>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button id="modal-cv-record-btn" onclick="toggleModalVoiceRecording()" type="button" style="flex:1;min-width:140px;padding:12px 18px;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(239,68,68,0.3);transition:all 0.2s;">
+            <i class="fa-solid fa-microphone"></i> Start Recording
+          </button>
+          
+          <button type="button" onclick="document.getElementById('modal-cv-file-input').click()" style="padding:12px 16px;background:var(--panel);border:1px solid var(--border);color:var(--txt);border-radius:12px;font-family:'Syne',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+            <i class="fa-solid fa-upload"></i> Upload File
+          </button>
+          <input type="file" id="modal-cv-file-input" accept="audio/*" onchange="handleModalVoiceFileUpload(event)" style="display:none;">
+        </div>
+      </div>
+
+      <!-- Preview container if recorded/uploaded -->
+      <div id="modal-cv-preview-container" style="display:none;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:18px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:0.78rem;font-weight:700;color:var(--ok);font-family:'Syne',sans-serif;display:flex;align-items:center;gap:6px;">
+            <i class="fa-solid fa-circle-check"></i> Recorded Voice Sample Ready
+          </span>
+          <button type="button" onclick="clearModalVoiceSample()" style="background:none;border:none;color:#ef4444;cursor:pointer;font-size:0.78rem;padding:2px 6px;">
+            <i class="fa-solid fa-trash-can"></i> Delete
+          </button>
+        </div>
+        <audio id="modal-cv-sample-player" controls style="width:100%;height:36px;border-radius:8px;"></audio>
+      </div>
+
+      <!-- Voice Name & Gender Grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div>
+          <label for="modal-cv-name-input" style="display:block;font-size:0.76rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-family:'Syne',sans-serif;">Voice Name</label>
+          <input type="text" id="modal-cv-name-input" placeholder="e.g. Rupesh Voice" value="My Custom Voice" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:9px 12px;border-radius:10px;font-size:0.85rem;outline:none;font-family:'DM Sans',sans-serif;">
+        </div>
+        <div>
+          <label for="modal-cv-gender-select" style="display:block;font-size:0.76rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-family:'Syne',sans-serif;">Voice Character Base</label>
+          <select id="modal-cv-gender-select" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:9px 12px;border-radius:10px;font-size:0.85rem;outline:none;font-family:'DM Sans',sans-serif;cursor:pointer;">
+            <option value="auto" selected>✨ Auto-Detect From Audio</option>
+            <option value="male">👨 Male Voice (Deep/Natural)</option>
+            <option value="female">👩 Female Voice (Warm/Natural)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Save & Apply Button -->
+      <button type="button" id="modal-cv-save-btn" onclick="saveAndApplyCustomVoice()" style="width:100%;padding:13px 20px;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));border:none;border-radius:12px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(59,158,255,0.3);transition:all 0.2s;">
+        <i class="fa-solid fa-check"></i> Save & Use This Voice in Studio
+      </button>
+
+    </div>
+  </div>
+</div>
 <!-- Cookie Consent Banner -->
 <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(7,11,18,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(59,158,255,0.15);padding:18px 24px;">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">

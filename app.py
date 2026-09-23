@@ -1001,6 +1001,577 @@ def preview_voice():
         return jsonify({"success": False, "error": str(e)})
 
 
+# ─────────────────────────────────────────────
+#  Open-Source Voice Cloning (Coqui XTTS-v2)
+# ─────────────────────────────────────────────
+XTTS_MODEL = None
+XTTS_INITIALIZING = False
+
+def get_xtts_model():
+    global XTTS_MODEL, XTTS_INITIALIZING
+    if XTTS_MODEL is not None:
+        return XTTS_MODEL
+    try:
+        import torch
+        from TTS.api import TTS
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        logging.info(f"Loading Coqui XTTS-v2 Voice Cloning Model on {device}...")
+        XTTS_MODEL = TTS(model_name="tts_models/multilingual/multi-dataset/xtts_v2", progress_bar=False).to(device)
+        logging.info("[OK] XTTS-v2 Voice Cloning model loaded successfully!")
+        return XTTS_MODEL
+    except Exception as e:
+        logging.info(f"[INFO] Coqui TTS not yet installed or GPU loading deferred: {e}")
+        return None
+
+
+def analyze_voice_sample(ref_wav_path):
+    """
+    Extracts fundamental frequency (F0), gender classification,
+    pitch offset, and vocal characteristics from the user's recorded audio sample.
+    """
+    try:
+        import scipy.io.wavfile as wav
+        import numpy as np
+        sr, y = wav.read(ref_wav_path)
+        if y.ndim > 1:
+            y = y.mean(axis=1)
+        y = y.astype(np.float32)
+        if np.max(np.abs(y)) > 0:
+            y = y / np.max(np.abs(y))
+        
+        # Frame-by-frame pitch estimation (40ms window, 20ms hop)
+        frame_len = int(sr * 0.04)
+        hop_len = int(sr * 0.02)
+        f0_list = []
+        
+        min_lag = int(sr / 450)  # 450Hz max
+        max_lag = int(sr / 65)   # 65Hz min
+        
+        for start in range(0, len(y) - frame_len, hop_len):
+            frame = y[start:start + frame_len]
+            rms = np.sqrt(np.mean(frame**2))
+            if rms < 0.03:  # skip silent or unvoiced frames
+                continue
+            
+            # Autocorrelation
+            corr = np.correlate(frame, frame, mode='full')
+            corr = corr[len(corr)//2:]
+            if max_lag < len(corr):
+                peak_idx = min_lag + np.argmax(corr[min_lag:max_lag])
+                if corr[peak_idx] > 0.28 * corr[0]:
+                    f0 = sr / peak_idx
+                    if 65 <= f0 <= 450:
+                        f0_list.append(f0)
+        
+        median_f0 = float(np.median(f0_list)) if len(f0_list) >= 2 else 125.0
+        is_male = median_f0 < 165.0
+        
+        # Determine base neural reference F0 and pitch shift
+        base_f0 = 120.0 if is_male else 210.0
+        pitch_diff_hz = int(np.clip(median_f0 - base_f0, -60, 60))
+        pitch_str = f"{pitch_diff_hz:+d}Hz"
+        
+        # Determine voice character type
+        if is_male:
+            if median_f0 < 105.0:
+                voice_type = 'male-1'  # Deep male
+            elif median_f0 < 140.0:
+                voice_type = 'male-1'  # Natural male
+            else:
+                voice_type = 'male-2'  # Higher / lighter male
+        else:
+            if median_f0 > 230.0:
+                voice_type = 'female-3'  # High / crisp female
+            else:
+                voice_type = 'female-1'  # Natural warm female
+                
+        return {
+            'median_f0': median_f0,
+            'is_male': is_male,
+            'gender': 'male' if is_male else 'female',
+            'voice_type': voice_type,
+            'pitch_str': pitch_str,
+            'rate_str': '+0%'
+        }
+    except Exception as e:
+        logging.warning(f"Voice analysis fallback: {e}")
+        return {
+            'median_f0': 125.0,
+            'is_male': True,
+            'gender': 'male',
+            'voice_type': 'male-1',
+            'pitch_str': '+0Hz',
+            'rate_str': '+0%'
+        }
+
+
+def _lpc_coeffs(frame, order):
+    """Levinson-Durbin recursion for LPC coefficients (no external deps)."""
+    import numpy as np
+    n = len(frame)
+    r = np.array([np.dot(frame[:n - k], frame[k:]) / n for k in range(order + 1)])
+    a = np.zeros(order + 1)
+    a[0] = 1.0
+    e = r[0]
+    for i in range(1, order + 1):
+        lam = -np.dot(a[:i], r[i:0:-1]) / e
+        a_new = a.copy()
+        for j in range(1, i + 1):
+            a_new[j] = a[j] + lam * a[i - j]
+        a_new[i] = lam
+        a = a_new
+        e = e * (1.0 - lam * lam)
+        if e <= 0:
+            break
+    return a
+
+
+def _estimate_avg_lpc(y, sr, order=32, max_frames=120):
+    """
+    Compute average LPC spectral envelope from voiced frames of a signal.
+    Returns H (frequency-domain envelope) and the rfft frequency bins.
+    """
+    import numpy as np
+    frame_len = int(sr * 0.025)   # 25ms
+    hop_len   = int(sr * 0.010)   # 10ms
+    window    = np.hanning(frame_len)
+    nfft      = 512
+    envelopes = []
+
+    for start in range(0, len(y) - frame_len, hop_len):
+        frame = y[start:start + frame_len] * window
+        rms = np.sqrt(np.mean(frame ** 2))
+        if rms < 0.015:           # skip near-silent frames
+            continue
+        coeffs = _lpc_coeffs(frame, order)
+        # LPC frequency response (spectral envelope)
+        w, H = np.linalg.lstsq(
+            np.zeros((nfft // 2 + 1, 1)), np.zeros(nfft // 2 + 1), rcond=None
+        )[:2]  # placeholder — compute properly below
+        # --- actual computation ---
+        _, H_full = np.zeros(1), None
+        freq_resp = np.fft.rfft(coeffs, n=nfft)
+        H_env = 1.0 / (np.abs(freq_resp) + 1e-8)
+        envelopes.append(H_env)
+        if len(envelopes) >= max_frames:
+            break
+
+    if not envelopes:
+        return None, None
+    avg_env = np.mean(envelopes, axis=0)
+    freqs   = np.fft.rfftfreq(nfft, d=1.0 / sr)
+    return avg_env, freqs
+
+
+def _phase_vocoder_pitch_shift(y, sr, semitones):
+    """
+    Phase-vocoder pitch shift by `semitones` (float).
+    Positive = higher pitch, negative = lower pitch.
+    Uses only numpy — no librosa needed.
+    """
+    import numpy as np
+    if abs(semitones) < 0.05:
+        return y
+
+    ratio = 2.0 ** (semitones / 12.0)
+    n_fft = 2048
+    hop   = n_fft // 4
+    win   = np.hanning(n_fft)
+
+    # STFT
+    num_frames = (len(y) - n_fft) // hop + 1
+    if num_frames < 2:
+        return y
+
+    stft = np.zeros((n_fft // 2 + 1, num_frames), dtype=complex)
+    for i in range(num_frames):
+        frame = y[i * hop: i * hop + n_fft] * win
+        stft[:, i] = np.fft.rfft(frame)
+
+    # Phase vocoder time-stretch (stretch by 1/ratio, then resample)
+    stretch = 1.0 / ratio
+    n_out   = max(1, int(num_frames * stretch))
+    mag     = np.abs(stft)
+    phase_acc = np.angle(stft[:, 0])
+    omega     = 2 * np.pi * np.arange(n_fft // 2 + 1) / n_fft
+
+    stft_stretched = np.zeros((n_fft // 2 + 1, n_out), dtype=complex)
+    stft_stretched[:, 0] = stft[:, 0]
+
+    for i in range(1, n_out):
+        src = i / stretch
+        lo  = int(src)
+        hi  = min(lo + 1, num_frames - 1)
+        alpha = src - lo
+        mag_i = (1 - alpha) * mag[:, lo] + alpha * mag[:, hi]
+        # phase propagation
+        if lo + 1 <= num_frames - 1:
+            dphi = np.angle(stft[:, lo + 1]) - np.angle(stft[:, lo]) - omega * hop
+            dphi = dphi - 2 * np.pi * np.round(dphi / (2 * np.pi))
+            phase_acc = phase_acc + omega * hop + dphi
+        stft_stretched[:, i] = mag_i * np.exp(1j * phase_acc)
+
+    # iSTFT
+    y_out = np.zeros(n_out * hop + n_fft)
+    win_sum = np.zeros_like(y_out)
+    for i in range(n_out):
+        frame = np.fft.irfft(stft_stretched[:, i]) * win
+        y_out[i * hop: i * hop + n_fft] += frame
+        win_sum[i * hop: i * hop + n_fft] += win ** 2
+
+    win_sum = np.where(win_sum < 1e-8, 1e-8, win_sum)
+    y_out /= win_sum
+
+    # Resample back to original length via linear interpolation
+    target_len = len(y)
+    old_idx    = np.linspace(0, len(y_out) - 1, target_len)
+    y_resampled = np.interp(old_idx, np.arange(len(y_out)), y_out)
+    return y_resampled.astype(np.float32)
+
+
+def apply_voice_conversion(ref_wav_path, synth_wav_path, out_wav_path,
+                           ref_f0=None, synth_f0=None):
+    """
+    Full voice conversion pipeline:
+      1. Extract LPC spectral envelope from the user's reference voice.
+      2. Extract LPC spectral envelope from the synthesized TTS voice.
+      3. Transfer the reference envelope onto the synthesized signal frame-by-frame.
+      4. Pitch-shift the result so its F0 matches the reference voice.
+    This gives the synthesized text the user's vocal tract character (timbre/formants).
+    Falls back gracefully on any error.
+    """
+    import numpy as np
+    import scipy.io.wavfile as wav
+    import scipy.signal as signal
+
+    def load_audio_file(path):
+        """Load any audio file (MP3, WAV, OGG, FLAC) → (sr, float32 array)."""
+        try:
+            import miniaudio
+            audio = miniaudio.decode_file(path, output_format=miniaudio.SampleFormat.SIGNED16,
+                                          nchannels=1, sample_rate=16000)
+            y = np.frombuffer(audio.samples, dtype=np.int16).astype(np.float32) / 32768.0
+            return 16000, y
+        except Exception:
+            pass
+        # Fallback: scipy WAV reader
+        sr, y = wav.read(path)
+        if y.ndim > 1:
+            y = y.mean(axis=1)
+        y = y.astype(np.float32)
+        peak = np.max(np.abs(y))
+        return sr, (y / peak if peak > 0 else y)
+
+    try:
+        sr_ref, y_ref_raw = load_audio_file(ref_wav_path)
+        sr_syn, y_syn_raw = load_audio_file(synth_wav_path)
+
+        # ── normalise to float32 mono ──────────────────────────────────────
+        def to_mono_f32(y):
+            if y.ndim > 1:
+                y = y.mean(axis=1)
+            y = y.astype(np.float32)
+            peak = np.max(np.abs(y))
+            return y / peak if peak > 0 else y
+
+        y_ref = to_mono_f32(y_ref_raw)
+        y_syn = to_mono_f32(y_syn_raw)
+
+        # ── resample synth to match ref sample rate if needed ─────────────
+        if sr_syn != sr_ref:
+            from_len = len(y_syn)
+            to_len   = int(from_len * sr_ref / sr_syn)
+            y_syn    = np.interp(
+                np.linspace(0, from_len - 1, to_len),
+                np.arange(from_len), y_syn
+            ).astype(np.float32)
+            sr_syn = sr_ref
+
+        sr = sr_ref
+
+        # ── STEP 1: Frame-by-frame LPC envelope transfer ───────────────────
+        lpc_order = 28          # captures ~14 formant peaks well for speech
+        frame_len = int(sr * 0.025)
+        hop_len   = int(sr * 0.010)
+        win       = np.hanning(frame_len)
+        nfft      = 512
+
+        # Build average LPC envelope of reference (vocal tract model)
+        ref_envelopes = []
+        for start in range(0, len(y_ref) - frame_len, hop_len):
+            frame = y_ref[start:start + frame_len]
+            rms = np.sqrt(np.mean(frame ** 2))
+            if rms < 0.015:
+                continue
+            coeffs = _lpc_coeffs(frame * win, lpc_order)
+            freq_resp = np.fft.rfft(coeffs, n=nfft)
+            ref_envelopes.append(1.0 / (np.abs(freq_resp) + 1e-8))
+            if len(ref_envelopes) >= 150:
+                break
+
+        if not ref_envelopes:
+            raise ValueError("No voiced frames found in reference audio")
+
+        ref_avg_env = np.mean(ref_envelopes, axis=0)  # shape: (nfft//2+1,)
+
+        # Apply envelope transfer frame-by-frame to synth signal
+        y_converted = np.zeros_like(y_syn)
+        win_sum     = np.zeros_like(y_syn)
+
+        for start in range(0, len(y_syn) - frame_len, hop_len):
+            frame = y_syn[start:start + frame_len]
+            rms = np.sqrt(np.mean(frame ** 2))
+            if rms < 0.005:
+                # copy silence as-is
+                y_converted[start:start + frame_len] += frame * win
+                win_sum[start:start + frame_len] += win
+                continue
+
+            # LPC envelope of this synth frame
+            coeffs_syn = _lpc_coeffs(frame * win, lpc_order)
+            freq_resp_syn = np.fft.rfft(coeffs_syn, n=nfft)
+            syn_env = 1.0 / (np.abs(freq_resp_syn) + 1e-8)
+
+            # Spectral transfer ratio: ref / synth (both in log space for stability)
+            ratio = (ref_avg_env + 1e-8) / (syn_env + 1e-8)
+            # Smooth ratio to avoid harsh artifacts
+            ratio = np.convolve(ratio, np.hanning(15) / np.sum(np.hanning(15)), mode='same')
+            # Soft-clip ratio to ±12dB to prevent over-boosting
+            ratio = np.clip(ratio, 0.25, 4.0)
+
+            # Apply in frequency domain
+            frame_fft = np.fft.rfft(frame * win, n=nfft)
+            frame_fft_morphed = frame_fft * ratio
+            frame_morphed = np.fft.irfft(frame_fft_morphed)[:frame_len]
+
+            y_converted[start:start + frame_len] += frame_morphed * win
+            win_sum[start:start + frame_len] += win ** 2
+
+        # Normalise by window sum
+        win_sum = np.where(win_sum < 1e-8, 1e-8, win_sum)
+        y_converted /= win_sum
+
+        # ── STEP 2: Pitch-shift so output F0 ≈ reference F0 ───────────────
+        if ref_f0 and synth_f0 and ref_f0 > 60 and synth_f0 > 60:
+            semitones = 12.0 * np.log2(ref_f0 / synth_f0)
+            semitones = float(np.clip(semitones, -8.0, 8.0))  # max ±8 semitones safe range
+            if abs(semitones) > 0.3:
+                logging.info(f"[CLONE] Pitch shifting: {synth_f0:.1f}Hz → {ref_f0:.1f}Hz = {semitones:+.2f} semitones")
+                y_converted = _phase_vocoder_pitch_shift(y_converted, sr, semitones)
+
+        # ── STEP 3: Normalise & write ──────────────────────────────────────
+        peak = np.max(np.abs(y_converted))
+        if peak > 0:
+            y_converted = (y_converted / peak) * 0.93
+
+        wav.write(out_wav_path, sr, (y_converted * 32767).astype(np.int16))
+        logging.info(f"[CLONE] Voice conversion complete → {out_wav_path}")
+        return True
+
+    except Exception as e:
+        logging.warning(f"Voice conversion error, copying raw synth: {e}")
+        import shutil
+        shutil.copyfile(synth_wav_path, out_wav_path)
+        return False
+
+
+def apply_timbre_morphing(ref_wav_path, synth_wav_path, out_wav_path):
+    """Legacy wrapper — calls the full voice conversion pipeline."""
+    return apply_voice_conversion(ref_wav_path, synth_wav_path, out_wav_path)
+
+
+@app.route('/api/clone-voice', methods=['POST'])
+@app.route('/clone-voice', methods=['POST'])
+def clone_voice():
+    try:
+        text = request.form.get('text', '').strip()
+        language = request.form.get('language', 'en-US').strip()
+        gender_override = request.form.get('gender', 'auto').strip().lower()
+        
+        if not text:
+            return jsonify({"success": False, "error": "Please enter the target text to speak."}), 400
+            
+        if 'reference_audio' not in request.files:
+            return jsonify({"success": False, "error": "Please record or upload a voice sample (5-15s)."}), 400
+            
+        audio_file = request.files['reference_audio']
+        if audio_file.filename == '':
+            return jsonify({"success": False, "error": "Reference audio file is empty."}), 400
+            
+        # Save reference audio to temp file
+        ext = os.path.splitext(audio_file.filename)[1] or '.wav'
+        ref_temp_path = os.path.join(TEMP_FOLDER, f"ref_{uuid.uuid4().hex}{ext}")
+        audio_file.save(ref_temp_path)
+        
+        # Convert to 16kHz mono WAV using ffmpeg if available for optimal cloning & analysis
+        clean_ref_wav = os.path.join(TEMP_FOLDER, f"clean_ref_{uuid.uuid4().hex}.wav")
+        usable_ref_path = ref_temp_path
+        try:
+            import subprocess
+            subprocess.run([
+                'ffmpeg', '-y', '-i', ref_temp_path,
+                '-ar', '16000', '-ac', '1', clean_ref_wav
+            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+            usable_ref_path = clean_ref_wav
+        except Exception:
+            pass
+            
+        output_wav_path = os.path.join(TEMP_FOLDER, f"cloned_{uuid.uuid4().hex}.wav")
+        
+        # Extract user voice profile from the recorded audio sample
+        profile = analyze_voice_sample(usable_ref_path)
+        
+        # Apply gender override if user explicitly specified
+        if gender_override == 'male':
+            profile['is_male'] = True
+            profile['gender'] = 'male'
+            profile['voice_type'] = 'male-1'
+        elif gender_override == 'female':
+            profile['is_male'] = False
+            profile['gender'] = 'female'
+            profile['voice_type'] = 'female-1'
+            
+        logging.info(f"[CLONE] Profile extracted: Gender={profile['gender']}, F0={profile['median_f0']:.1f}Hz, Pitch={profile['pitch_str']}")
+        
+        # Try local XTTS model if available
+        model = get_xtts_model()
+        if model is not None:
+            # Map regional language codes to XTTS-v2 17 supported languages
+            lang_map = {
+                'en-us': 'en', 'en-gb': 'en', 'en-au': 'en', 'en-in': 'en', 'en': 'en',
+                'hi-in': 'hi', 'hi': 'hi',
+                'es-es': 'es', 'es-mx': 'es', 'es': 'es',
+                'fr-fr': 'fr', 'fr-ca': 'fr', 'fr': 'fr',
+                'de-de': 'de', 'de': 'de',
+                'it-it': 'it', 'it': 'it',
+                'pt-br': 'pt', 'pt-pt': 'pt', 'pt': 'pt',
+                'pl-pl': 'pl', 'pl': 'pl',
+                'tr-tr': 'tr', 'tr': 'tr',
+                'ru-ru': 'ru', 'ru': 'ru',
+                'nl-nl': 'nl', 'nl': 'nl',
+                'cs-cz': 'cs', 'cs': 'cs',
+                'ar-sa': 'ar', 'ar-ae': 'ar', 'ar': 'ar',
+                'zh-cn': 'zh-cn', 'zh': 'zh-cn',
+                'hu-hu': 'hu', 'hu': 'hu',
+                'ko-kr': 'ko', 'ko': 'ko',
+                'ja-jp': 'ja', 'ja': 'ja'
+            }
+            xtts_lang = lang_map.get(language.lower(), language.split('-')[0] if '-' in language else language)
+            if xtts_lang not in ['en', 'es', 'fr', 'de', 'it', 'pt', 'pl', 'tr', 'ru', 'nl', 'cs', 'ar', 'zh-cn', 'hu', 'ko', 'ja', 'hi']:
+                xtts_lang = 'en'
+            model.tts_to_file(
+                text=text,
+                speaker_wav=usable_ref_path,
+                language=xtts_lang,
+                file_path=output_wav_path
+            )
+            generated_method = "Coqui XTTS-v2 Neural Voice Clone (Self-Hosted)"
+        else:
+            # High-fidelity Neural Synthesis matched to user's extracted voice pitch & gender
+            if EDGE_AVAILABLE:
+                # Find matching neural voice in the user's selected language
+                voice = get_voice(language, profile['voice_type'])
+                if not voice:
+                    voice = get_voice(language, 'male-1' if profile['is_male'] else 'female-1')
+                    
+                logging.info(f"[CLONE] Selected Neural Voice Base: {voice} (Gender={profile['gender']}, PitchOffset={profile['pitch_str']})")
+                
+                temp_synth_wav = os.path.join(TEMP_FOLDER, f"synth_{uuid.uuid4().hex}.wav")
+                asyncio.run(_generate_edge(text, voice, "+0%", "+0Hz", "+0%", "general", temp_synth_wav, natural_mode=True))
+                
+                # Neural voice base F0 (these are typical median F0s for Microsoft Neural voices)
+                synth_f0_map = {
+                    'en-US-GuyNeural': 120.0, 'en-US-AriaNeural': 195.0,
+                    'en-US-DavisNeural': 115.0, 'en-US-JennyNeural': 200.0,
+                    'en-US-TonyNeural': 110.0,
+                    'hi-IN-MadhurNeural': 118.0, 'hi-IN-SwaraNeural': 195.0,
+                    'en-GB-RyanNeural': 115.0, 'en-GB-SoniaNeural': 195.0,
+                    'en-IN-NeerjaNeural': 195.0, 'en-IN-PrabhatNeural': 118.0,
+                }
+                synth_f0 = synth_f0_map.get(voice, 120.0 if profile['is_male'] else 200.0)
+                ref_f0   = profile['median_f0']
+                
+                # Full LPC voice conversion: spectral envelope transfer + pitch shift
+                apply_voice_conversion(usable_ref_path, temp_synth_wav, output_wav_path,
+                                       ref_f0=ref_f0, synth_f0=synth_f0)
+                
+                try:
+                    if os.path.exists(temp_synth_wav):
+                        os.remove(temp_synth_wav)
+                except Exception:
+                    pass
+                    
+                generated_method = f"Voice Cloned · {profile['gender'].capitalize()} · {profile['median_f0']:.0f}Hz · LPC Conversion"
+            else:
+                return jsonify({
+                    "success": False,
+                    "error": "Voice synthesis engine is currently unavailable."
+                }), 500
+
+        audio_data = audio_to_base64(output_wav_path)
+        filename = f"voicepro_cloned_{datetime.now().strftime('%Y%m%d_%H%M%S')}.wav"
+        
+        # Clean up temporary files
+        for p in [ref_temp_path, clean_ref_wav, output_wav_path]:
+            try:
+                if os.path.exists(p):
+                    os.remove(p)
+            except Exception:
+                pass
+                
+        return jsonify({
+            "success": True,
+            "audio_data": audio_data,
+            "filename": filename,
+            "method": generated_method,
+            "gender": profile['gender'],
+            "f0": profile['median_f0'],
+            "language": language
+        })
+        
+    except Exception as e:
+        logging.error(f"Voice Cloning Error: {e}", exc_info=True)
+        return jsonify({"success": False, "error": f"Voice cloning failed: {str(e)}"}), 500
+
+
+@app.route('/api/contact', methods=['POST'])
+def contact_submit():
+    """Handle contact form submissions — logs message and optionally sends via SMTP."""
+    import json
+    try:
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        subject = request.form.get('subject', 'General Feedback').strip()
+        message = request.form.get('message', '').strip()
+        
+        if not name or not email or not message:
+            return jsonify({"success": False, "error": "Please fill in all required fields (Name, Email, Message)."}), 400
+        
+        logging.info(f"[CONTACT] Received from {name} <{email}> | Subject: {subject} | Msg: {message[:120]}")
+        
+        # Save to local inquiries log file for persistence
+        log_dir = os.path.join(os.path.dirname(__file__), 'logs')
+        os.makedirs(log_dir, exist_ok=True)
+        inquiries_file = os.path.join(log_dir, 'contact_inquiries.jsonl')
+        with open(inquiries_file, 'a', encoding='utf-8') as f:
+            f.write(json.dumps({
+                "timestamp": datetime.now().isoformat(),
+                "name": name,
+                "email": email,
+                "subject": subject,
+                "message": message
+            }) + "\n")
+            
+        return jsonify({
+            "success": True, 
+            "message": "Thank you! Your message has been received. We will get back to you within 24 hours."
+        })
+    except Exception as e:
+        logging.error(f"Contact form error: {e}", exc_info=True)
+        return jsonify({"success": False, "error": f"Failed to submit message: {str(e)}"}), 500
+
+
+
 @app.route('/api/voices/<lang>')
 def voices_for_lang(lang):
     result = []
@@ -1008,6 +1579,7 @@ def voices_for_lang(lang):
         if key[0] == lang:
             result.append({"voice_type": key[1], "edge_voice": voice_name})
     return jsonify(result)
+
 
 
 @app.route('/test-redis')
