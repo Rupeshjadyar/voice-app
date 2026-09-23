@@ -6,4 +6,4 @@ pyttsx3
 python-dotenv
 miniaudio
 numpy
-scipy
+scipy

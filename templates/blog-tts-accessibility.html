@@ -182,23 +182,53 @@
   }
 
 
-  /* Marquee CSS animation (replaces deprecated <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
+  </style>
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
+        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+      </div>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;color:var(--txt);">Voice<span style="color:var(--a1);">Pro</span></span>
+    </a>
+    <div class="nav-desktop" style="align-items:center;gap:6px;">
+      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
+      <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
+      <a href="/blog" class="nav-btn nav-active"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
+      <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
+      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
+      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
+      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
+      <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;background:none;border:none;" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" style="background:none;border:none;color:var(--muted);font-size:1.2rem;" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
-</div>
+  <div id="mobile-menu" class="nav-mobile-menu">
+    <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
+    <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
+    <a href="/blog" class="nav-btn nav-active"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
+    <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>Languages</a>
+    <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
+    <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy</a>
+    <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms</a>
+    <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;background:none;border:none;color:var(--muted);">
+      <i class="fa-solid fa-moon"></i>Toggle Theme
+    </button>
+  </div>
+</nav>
+<div style="height:60px;"></div>
 
 <div class="breadcrumb">
-  <a href="/">Home</a> &rsaquo; <a href="/blog.html">Blog</a> &rsaquo;
+  <a href="/">Home</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo;
   <span style="color:var(--txt2);">TTS for Accessibility</span>
-</div>
-
-<div class="ad-slot" style="max-width:860px;margin:16px auto 0;padding:0 24px;">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9707682105347147"
-     data-ad-slot="auto"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <article class="article-wrap">
@@ -270,17 +300,6 @@
         <p>Audio support for children with attention deficit disorders, processing difficulties, or early reading challenges provides an additional modality for absorbing information. Listening to content while reading along with the text supports both groups simultaneously.</p>
       </div>
     </div>
-
-    <!-- MID AD -->
-    <div class="ad-slot">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9707682105347147"
-     data-ad-slot="auto"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 
     <h2>Practical Guide for Educators</h2>
     <p>If you are a teacher, school administrator, or education content creator, here are the most impactful ways to use free TTS for accessibility:</p>
@@ -361,17 +380,6 @@
       <p><strong>♿ Accessibility Note:</strong> When creating audio for accessibility purposes, always prefer clarity over stylistic effects. Use General speaking style, keep speed at or below 1.0x, and avoid unusual pitch settings. The goal is maximum comprehension, not production quality.</p>
     </div>
 
-    <!-- BOTTOM AD -->
-    <div class="ad-slot">
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9707682105347147"
-     data-ad-slot="auto"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
     <div class="cta-box">
       <h3 style="margin-bottom:10px;font-size:1.15rem;">Create Accessible Audio Content Free</h3>
       <p style="color:var(--muted);font-size:.9rem;margin-bottom:18px;">Generate audio in Hindi, Marathi, Tamil, English and 100+ languages. Free, instant, no login required.</p>
@@ -422,12 +430,18 @@
   <div class="footer-inner">
     <p style="color:var(--muted);font-size:.82rem;">&copy; 2026 VoicePro TTS Studio. All rights reserved.</p>
     <div class="footer-links">
-      <a href="/">Home</a><a href="/blog.html">Blog</a><a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/tts/">Languages</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/disclaimer">Disclaimer</a>
+      <a href="/cookies">Cookies</a>
     </div>
   </div>
 </footer>
-
 
 <script>
 function toggleMobileMenu() {
@@ -436,10 +450,7 @@ function toggleMobileMenu() {
     menu.classList.toggle('active');
   }
 }
-</script>
 
-
-<script>
 function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   const target = current === 'light' ? 'dark' : 'light';
@@ -462,6 +473,20 @@ document.addEventListener('DOMContentLoaded', () => {
   updateThemeIcons();
 });
 </script>
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(7,11,18,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(59,158,255,0.15);padding:18px 24px;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button onclick="acceptCookies()" style="padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#6d28d9);color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;">Accept All</button>
+      <button onclick="rejectCookies()" style="padding:9px 22px;background:transparent;color:#b8c4d8;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s;">Reject Non-Essential</button>
+    </div>
+  </div>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-consent').style.display='none';}
+function rejectCookies(){localStorage.setItem('cookie_consent','rejected');document.getElementById('cookie-consent').style.display='none';}
+(function(){if(!localStorage.getItem('cookie_consent')){document.getElementById('cookie-consent').style.display='block';}})();
+</script>
 </body>
-
 </html>

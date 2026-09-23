@@ -232,7 +232,7 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer support",
-      "url": "https://www.texttoaudiomp3.site/contact.html"
+      "url": "https://www.texttoaudiomp3.site/contact"
     }
   }
   </script>
@@ -1404,8 +1404,112 @@
           padding: 16px !important;
         }
       }
-    
-  /* Marquee CSS animation (replaces deprecated <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
+    </style>
+  
+</head>
+
+  <body>
+
+    <!-- NAV -->
+    <nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+      <div
+        style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
+        <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="navigate('home')">
+          <div
+            style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
+            <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+          </div>
+          <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;">Voice<span
+              style="color:var(--a1);">Pro</span></span>
+        </div>
+        <div class="nav-desktop" style="align-items:center;gap:6px;">
+          <button onclick="navigate('home')" class="nav-btn nav-active" id="nav-home">
+            <i class="fa-solid fa-house" style="margin-right:5px;"></i>Home
+          </button>
+          <a href="#voice-audio-editor-section" class="nav-btn">
+            <i class="fa-solid fa-sliders" style="margin-right:5px;color:var(--a1);"></i>Audio Editor
+          </a>
+          <a href="/about" class="nav-btn">
+            <i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About
+          </a>
+          <a href="/blog" class="nav-btn">
+            <i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog
+          </a>
+          <a href="/tts/" class="nav-btn">
+            <i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages
+          </a>
+          <a href="/contact" class="nav-btn">
+            <i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact
+          </a>
+          <a href="/privacy" class="nav-btn">
+            <i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy
+          </a>
+          <a href="/terms" class="nav-btn">
+            <i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms
+          </a>
+          <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <!-- ✅ PWA Install Button — shown only when browser supports install -->
+          <button id="pwa-install-btn" onclick="triggerPWAInstall()" style="display:none;align-items:center;gap:6px;padding:7px 14px;border-radius:10px;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Syne',sans-serif;white-space:nowrap;box-shadow:0 0 12px rgba(59,158,255,0.3);animation:pulse-glow 2s infinite;" aria-label="Install App">
+            <i class="fa-solid fa-mobile-screen-button"></i> Install App
+          </button>
+        </div>
+        <button class="nav-mobile-btn" onclick="toggleMobileMenu()"
+          style="background:none;border:none;color:var(--muted);font-size:1.2rem;">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="nav-mobile-menu">
+        <button onclick="navigate('home');toggleMobileMenu()" class="nav-btn" style="text-align:left;">
+          <i class="fa-solid fa-house" style="margin-right:8px;"></i>Home
+        </button>
+        <a href="#voice-audio-editor-section" class="nav-btn" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-sliders" style="margin-right:8px;color:var(--a1);"></i>🎛️ Audio Editor Studio
+        </a>
+        <a href="/about" class="nav-btn">
+          <i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About
+        </a>
+        <a href="/blog" class="nav-btn">
+          <i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog
+        </a>
+        <a href="/tts/" class="nav-btn">
+          <i class="fa-solid fa-globe" style="margin-right:8px;"></i>All Languages TTS
+        </a>
+        <a href="/contact" class="nav-btn">
+          <i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact
+        </a>
+        <a href="/privacy" class="nav-btn">
+          <i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy Policy
+        </a>
+        <a href="/terms" class="nav-btn">
+          <i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms of Service
+        </a>
+        <a href="/disclaimer" class="nav-btn">
+          <i class="fa-solid fa-triangle-exclamation" style="margin-right:8px;"></i>Disclaimer
+        </a>
+        <a href="/cookies" class="nav-link nav-btn">
+          <i class="fa-solid fa-cookie-bite" style="margin-right:8px;"></i>Cookie Policy
+        </a>
+        <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;">
+          <i class="fa-solid fa-moon"></i>Toggle Theme
+        </button>
+        <!-- ✅ Mobile Menu Install Button -->
+        <button id="pwa-install-btn-mob" onclick="triggerPWAInstall();toggleMobileMenu()" class="nav-btn" style="display:none;text-align:left;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(147,51,234,0.15));color:#3dd68c;font-weight:700;border:1px solid rgba(61,214,140,0.3);margin-top:6px;border-radius:10px;">
+          <i class="fa-solid fa-mobile-screen-button" style="color:#3dd68c;"></i> 📲 Install VoicePro App
+        </button>
+      </div>
+    </nav>
+
+    <!-- ✅ TOP SCROLLING MARQUEE ANNOUNCEMENT BAR -->
+    <div style="margin-top:60px;background:linear-gradient(90deg, #1d4ed8, #6d28d9, #db2777);color:#fff;font-family:'Syne',sans-serif;font-size:0.86rem;font-weight:700;padding:10px 0;box-shadow:0 4px 14px rgba(0,0,0,0.12);position:relative;z-index:40;">
+      <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0 16px;">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,0.32);padding:4px 12px;border-radius:99px;margin-right:12px;white-space:nowrap;flex-shrink:0;font-size:0.73rem;letter-spacing:1px;text-transform:uppercase;">
+          <i class="fa-solid fa-bullhorn" style="color:#ffd700;"></i> UPDATE &amp; SUPPORT
+        </div>
+        <marquee behavior="scroll" direction="left" scrollamount="7" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;padding-top:2px;">
+          🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new regional languages, or custom features?</span> Message directly on our Contact Gmail ID: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages, 100+ Neural Voice Characters, Instant MP3 &amp; Studio WAV Download — Zero Login Ever Required!
+        </marquee>
       </div>
     </div>
 
@@ -1508,7 +1612,51 @@
           </div>
 
           <button id="gen-btn" class="btn-primary" onclick="doGenerate()"><span id="gen-lbl"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:8px;"></i>Generate Voice</span></button>
-        </div>
+          
+          <div id="result-area" class="hidden">
+            <!-- Custom Player UI -->
+            <div style="background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px;margin-top:22px;">
+              <!-- Top row -->
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <i class="fa-solid fa-square-check" style="color:var(--ok);font-size:1.25rem;"></i>
+                  <div>
+                    <div style="font-weight:700;color:var(--ok);font-size:.9rem;font-family:'Syne',sans-serif;">Audio Ready!</div>
+                    <div id="custom-player-meta" style="font-size:.74rem;color:var(--muted);margin-top:1px;">Edge TTS · en-US-AriaNeural · English (US)</div>
+                  </div>
+                </div>
+                <div id="custom-player-badge" class="badge-pill" style="margin:0;font-size:.7rem;background:rgba(59,158,255,0.1);color:var(--a1);border:1px solid rgba(59,158,255,0.15);text-transform:capitalize;">👩 Natural Female</div>
+              </div>
+              <!-- Waveform Player control bar -->
+              <div style="display:flex;align-items:center;gap:12px;background:var(--panel);border-radius:12px;padding:10px 14px;border:1px solid var(--border);">
+                <button id="play-pause-btn" onclick="togglePlayPause()" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;box-shadow:0 0 10px rgba(59,158,255,0.25);transition:transform .15s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='none'">
+                  <i class="fa-solid fa-play" id="play-pause-icon"></i>
+                </button>
+                <span id="player-time-current" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;">0:00</span>
+                <!-- Seekable waveform timeline track -->
+                <div id="player-timeline" onclick="seekAudio(event)" style="flex:1;height:32px;position:relative;cursor:pointer;display:flex;align-items:center;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+                  <div id="player-progress" style="width:0%;height:100%;background:linear-gradient(90deg, rgba(59,158,255,0.15) 0%, rgba(124,95,230,0.15) 100%);border-right:2px solid var(--a3);transition:width 0.15s linear;"></div>
+                </div>
+                <span id="player-time-duration" style="font-size:.72rem;font-family:'Space Mono',monospace;color:var(--txt2);min-width:32px;text-align:right;">0:00</span>
+              </div>
+            </div>
+            <audio id="player" style="display:none;"></audio>
+            <div class="dl-tabs">
+              <div class="dl-tab active" onclick="setDlTab('mp3',this)"><i class="fa-solid fa-file-audio" style="margin-right:5px;"></i>MP3</div>
+              <div class="dl-tab" onclick="setDlTab('wav',this)"><i class="fa-solid fa-wave-square" style="margin-right:5px;"></i>WAV</div>
+              <div class="dl-tab" onclick="setDlTab('link',this)"><i class="fa-solid fa-link" style="margin-right:5px;"></i>Copy Link</div>
+              <div class="dl-tab" onclick="openInAudioEditor(S.lastAudio, S.lastFile)" style="background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(124,95,230,0.15));color:var(--a1);border-color:var(--borderH);font-weight:700;"><i class="fa-solid fa-sliders" style="margin-right:5px;"></i>Edit in Studio</div>
+            </div>
+            <div id="dl-mp3-btn"><button onclick="doDownload('mp3')" style="width:100%;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.28);color:var(--ok);border-radius:12px;padding:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.9rem;transition:background .2s;" onmouseover="this.style.background='rgba(61,214,140,0.22)'" onmouseout="this.style.background='rgba(61,214,140,0.12)'"><i class="fa-solid fa-download" style="margin-right:6px;"></i>Download MP3</button></div>
+            <div id="dl-wav-btn" class="hidden"><button onclick="doDownload('wav')" style="width:100%;background:rgba(124,95,230,0.12);border:1px solid rgba(124,95,230,0.28);color:var(--a2);border-radius:12px;padding:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.9rem;transition:background .2s;" onmouseover="this.style.background='rgba(124,95,230,0.22)'" onmouseout="this.style.background='rgba(124,95,230,0.12)'"><i class="fa-solid fa-download" style="margin-right:6px;"></i>Download WAV (Studio Quality)</button></div>
+            <div id="dl-link-btn" class="hidden">
+              <div style="display:flex;gap:8px;">
+                <input id="audio-link-input" type="text" readonly value="" style="flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:.78rem;padding:10px 14px;outline:none;font-family:'Space Mono',monospace;" placeholder="Generate audio first…">
+                <button onclick="copyAudioLink()" style="background:rgba(59,158,255,0.12);border:1px solid rgba(59,158,255,0.28);color:var(--a1);border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:.85rem;white-space:nowrap;"><i class="fa-solid fa-copy" style="margin-right:5px;"></i>Copy</button>
+              </div>
+            </div>
+            <div style="margin-top:10px;"><button onclick="doGenerate()" style="width:100%;background:rgba(59,158,255,0.08);border:1px solid rgba(59,158,255,0.2);color:var(--a1);border-radius:12px;padding:11px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;font-size:.88rem;"><i class="fa-solid fa-rotate-right" style="margin-right:6px;"></i>Regenerate</button></div>
+          </div>
       </div>
     </main>
 
@@ -1765,7 +1913,9 @@
         <span style="background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:800;padding:5px 12px;border-radius:99px;white-space:nowrap;letter-spacing:0.8px;flex-shrink:0;">
           <i class="fa-solid fa-bell" style="color:#ffd700;margin-right:5px;"></i> ALERT
         </span>
-        <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
+        <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();" style="cursor:pointer;flex:1;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--txt);">
+          🚀 <span style="color:var(--a1);">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Share with friends, YouTube creators, podcasters &amp; students! &nbsp;•&nbsp; 💬 <span style="color:var(--ok);">Need updates or custom features?</span> Message directly on Gmail: <span style="text-decoration:underline;color:var(--a2);font-weight:800;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages &amp; Neural Voices!
+        </marquee>
       </div>
       <!-- COMMUNITY SHARE & FEEDBACK HUB -->
       <div style="background:linear-gradient(135deg, rgba(29, 78, 216, 0.07) 0%, rgba(109, 40, 217, 0.09) 50%, rgba(219, 39, 119, 0.05) 100%);border:1px solid var(--borderH);border-radius:24px;padding:36px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;">
@@ -2509,6 +2659,306 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════════════ -->
+    <!-- ✦ FULL VOICE & AUDIO EDITOR STUDIO TOOL (IN-BROWSER WEB AUDIO DSP) ✦ -->
+    <!-- ══════════════════════════════════════════════════════════════════════ -->
+    <section id="voice-audio-editor-section" class="audio-editor-section" style="max-width:1100px;margin:50px auto 60px;padding:0 20px;">
+      <div class="glass" style="padding:36px;border-radius:24px;border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,0.12);position:relative;overflow:hidden;">
+        
+        <!-- Ambient Glow Accent -->
+        <div style="position:absolute;top:-80px;left:-80px;width:260px;height:260px;background:radial-gradient(circle, rgba(124,95,230,0.18) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        <div style="position:absolute;bottom:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle, rgba(59,158,255,0.15) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        
+        <!-- Header & Action Badges -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:24px;">
+          <div>
+            <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(124,95,230,0.15),rgba(59,158,255,0.15));border:1px solid rgba(124,95,230,0.3);padding:6px 16px;border-radius:100px;font-size:0.78rem;font-weight:700;color:var(--a2);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">
+              <i class="fa-solid fa-sliders"></i> Pro Voice & Audio Studio
+            </div>
+            <h2 style="font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-0.02em;color:var(--txt);">
+              AI Voice &amp; Audio <span class="tg">Editor Studio</span>
+            </h2>
+            <p style="color:var(--muted);font-size:0.92rem;max-width:700px;line-height:1.65;margin-top:6px;">
+              Trim audio, adjust tempo &amp; pitch, apply 3-band studio EQ, reverb, echo delay, robot vocoder, and download high-resolution WAV or MP3 files—all 100% free with zero latency.
+            </p>
+          </div>
+          
+          <!-- Source Load Buttons -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button onclick="loadTtsIntoEditor()" class="btn-primary" style="padding:10px 18px;font-size:0.85rem;width:auto;box-shadow:0 4px 16px rgba(59,158,255,0.25);">
+              <i class="fa-solid fa-wand-magic-sparkles" style="margin-right:6px;"></i> Load Generated Voice
+            </button>
+            <button onclick="document.getElementById('ve-file-input').click()" style="padding:10px 18px;background:var(--card);border:1px solid var(--border);color:var(--txt);border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--a1)'" onmouseout="this.style.borderColor='var(--border)'">
+              <i class="fa-solid fa-upload"></i> Upload Audio
+            </button>
+            <input type="file" id="ve-file-input" accept="audio/*" onchange="handleEditorFileUpload(event)" style="display:none;">
+            <button id="ve-mic-btn" onclick="toggleEditorMicRecord()" style="padding:10px 18px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.28);color:#ef4444;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;">
+              <i class="fa-solid fa-microphone"></i> Record Mic
+            </button>
+          </div>
+        </div>
+
+        <!-- ═══════════ MAIN WAVEFORM CANVAS WORKSPACE ═══════════ -->
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:24px;position:relative;">
+          
+          <!-- Waveform Stats Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span id="ve-file-badge" style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.84rem;color:var(--txt);display:flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-wave-square" style="color:var(--a1);"></i> <span id="ve-filename-label">Default Studio Track</span>
+              </span>
+              <span id="ve-audio-meta-badge" class="badge-pill" style="margin:0;font-size:0.68rem;background:rgba(61,214,140,0.1);color:var(--ok);border:1px solid rgba(61,214,140,0.2);">Stereo · 44.1 kHz</span>
+            </div>
+            
+            <div style="display:flex;align-items:center;gap:12px;font-family:'Space Mono',monospace;font-size:0.85rem;">
+              <span style="color:var(--txt);font-weight:700;"><span id="ve-time-current">00:00.00</span> / <span id="ve-time-total" style="color:var(--muted);">00:00.00</span></span>
+              <span id="ve-selection-badge" style="font-size:0.75rem;padding:2px 8px;border-radius:6px;background:rgba(59,158,255,0.1);color:var(--a1);border:1px solid rgba(59,158,255,0.2);">Trim: 0.0s - 0.0s</span>
+            </div>
+          </div>
+
+          <!-- Interactive Canvas -->
+          <div style="position:relative;width:100%;height:130px;background:var(--bg);border-radius:12px;border:1px solid var(--border);overflow:hidden;cursor:crosshair;" id="ve-canvas-container" onclick="handleWaveformClick(event)">
+            <canvas id="ve-canvas" style="width:100%;height:100%;display:block;"></canvas>
+            <div id="ve-playhead" style="position:absolute;top:0;bottom:0;left:0%;width:2px;background:#3dd68c;box-shadow:0 0 8px #3dd68c;pointer-events:none;z-index:5;"></div>
+            <div id="ve-trim-overlay-left" style="position:absolute;top:0;bottom:0;left:0;width:0%;background:rgba(0,0,0,0.45);pointer-events:none;z-index:2;border-right:2px dashed #ef4444;"></div>
+            <div id="ve-trim-overlay-right" style="position:absolute;top:0;bottom:0;right:0;width:0%;background:rgba(0,0,0,0.45);pointer-events:none;z-index:2;border-left:2px dashed #ef4444;"></div>
+          </div>
+
+          <!-- Transport Control Bar -->
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <!-- Play / Pause -->
+              <button id="ve-play-btn" onclick="veTogglePlay()" style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(59,158,255,0.3);transition:all 0.18s;">
+                <i class="fa-solid fa-play" id="ve-play-icon"></i>
+              </button>
+              <!-- Stop -->
+              <button onclick="veStop()" title="Stop Audio" style="width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--txt);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;">
+                <i class="fa-solid fa-stop"></i>
+              </button>
+              <!-- Seek Backward 3s -->
+              <button onclick="veSeekRelative(-3)" title="Back 3 seconds" style="width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--txt);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+              <!-- Seek Forward 3s -->
+              <button onclick="veSeekRelative(3)" title="Forward 3 seconds" style="width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--txt);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+              <!-- Loop Toggle -->
+              <button id="ve-loop-btn" onclick="veToggleLoop()" title="Loop Selection" style="padding:8px 14px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;font-family:'Syne',sans-serif;">
+                <i class="fa-solid fa-repeat"></i> Loop
+              </button>
+            </div>
+
+            <!-- Trim / Crop & Reset Actions -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button onclick="veApplyTrim()" style="padding:8px 16px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);color:#ef4444;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-scissors"></i> Crop to Selection
+              </button>
+              <button onclick="veResetAudio()" style="padding:8px 14px;background:var(--card);border:1px solid var(--border);color:var(--txt2);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-rotate"></i> Revert Original
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════ DSP STUDIO AUDIO CONTROLS (TABS/GRID) ═══════════ -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-bottom:24px;">
+          
+          <!-- PANEL 1: TRIM RANGE & FADE -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h4 style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+              <i class="fa-solid fa-scissors" style="color:var(--a1);"></i> 1. Trim Range &amp; Fades
+            </h4>
+            
+            <div style="margin-bottom:12px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:6px;">
+                <span>Trim Start</span>
+                <span id="ve-trim-start-lbl" class="mono" style="color:var(--a1);">0.0s</span>
+              </div>
+              <input type="range" id="ve-trim-start" min="0" max="100" step="0.05" value="0" oninput="veUpdateTrimRange()" style="width:100%;">
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:6px;">
+                <span>Trim End</span>
+                <span id="ve-trim-end-lbl" class="mono" style="color:var(--a1);">0.0s</span>
+              </div>
+              <input type="range" id="ve-trim-end" min="0" max="100" step="0.05" value="100" oninput="veUpdateTrimRange()" style="width:100%;">
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div>
+                <span style="display:block;font-size:0.72rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;">Fade In</span>
+                <select id="ve-fade-in" style="padding:6px 10px;font-size:0.8rem;border-radius:8px;">
+                  <option value="0" selected>No Fade</option>
+                  <option value="0.3">0.3s Smooth</option>
+                  <option value="0.8">0.8s Gentle</option>
+                  <option value="1.5">1.5s Long</option>
+                </select>
+              </div>
+              <div>
+                <span style="display:block;font-size:0.72rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;">Fade Out</span>
+                <select id="ve-fade-out" style="padding:6px 10px;font-size:0.8rem;border-radius:8px;">
+                  <option value="0" selected>No Fade</option>
+                  <option value="0.3">0.3s Smooth</option>
+                  <option value="0.8">0.8s Gentle</option>
+                  <option value="1.5">1.5s Long</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 2: SPEED & PITCH SHIFT -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h4 style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+              <i class="fa-solid fa-gauge-high" style="color:var(--ok);"></i> 2. Speed &amp; Pitch Shift
+            </h4>
+
+            <div style="margin-bottom:14px;">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:6px;">
+                <span>Playback Speed</span>
+                <span id="ve-speed-lbl" class="mono" style="color:var(--ok);background:rgba(61,214,140,0.1);padding:2px 8px;border-radius:12px;">1.00x</span>
+              </div>
+              <input type="range" id="ve-speed" min="0.5" max="2.5" step="0.05" value="1.0" oninput="veUpdateParams()" style="width:100%;">
+              <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);margin-top:2px;"><span>0.5x Slow</span><span>1.0x Normal</span><span>2.5x Fast</span></div>
+            </div>
+
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:6px;">
+                <span>Pitch Semitones</span>
+                <span id="ve-pitch-lbl" class="mono" style="color:var(--a2);background:rgba(124,95,230,0.1);padding:2px 8px;border-radius:12px;">+0 st</span>
+              </div>
+              <input type="range" id="ve-pitch" min="-12" max="12" step="1" value="0" oninput="veUpdateParams()" style="width:100%;">
+              <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted);margin-top:2px;"><span>-12 Deep</span><span>0 Natural</span><span>+12 High</span></div>
+            </div>
+          </div>
+
+          <!-- PANEL 3: 3-BAND STUDIO EQ & TONE -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h4 style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+              <i class="fa-solid fa-sliders" style="color:var(--a2);"></i> 3. 3-Band Equalizer (EQ)
+            </h4>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+              <!-- Bass -->
+              <div style="text-align:center;">
+                <span style="font-size:0.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:4px;">Bass 100Hz</span>
+                <input type="range" id="ve-eq-bass" min="-15" max="15" step="1" value="0" oninput="veUpdateParams()" style="width:100%;">
+                <span id="ve-bass-lbl" class="mono" style="font-size:0.72rem;color:var(--txt);">0dB</span>
+              </div>
+              <!-- Mid -->
+              <div style="text-align:center;">
+                <span style="font-size:0.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:4px;">Mid 1kHz</span>
+                <input type="range" id="ve-eq-mid" min="-15" max="15" step="1" value="0" oninput="veUpdateParams()" style="width:100%;">
+                <span id="ve-mid-lbl" class="mono" style="font-size:0.72rem;color:var(--txt);">0dB</span>
+              </div>
+              <!-- Treble -->
+              <div style="text-align:center;">
+                <span style="font-size:0.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:4px;">Treble 5kHz</span>
+                <input type="range" id="ve-eq-treble" min="-15" max="15" step="1" value="0" oninput="veUpdateParams()" style="width:100%;">
+                <span id="ve-treble-lbl" class="mono" style="font-size:0.72rem;color:var(--txt);">0dB</span>
+              </div>
+            </div>
+
+            <!-- Vocal Clarity Highpass Toggle -->
+            <label style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--panel);border-radius:10px;border:1px solid var(--border);cursor:pointer;font-size:0.8rem;font-weight:600;">
+              <span><i class="fa-solid fa-sparkles" style="color:var(--a1);margin-right:6px;"></i> Vocal Clarity (80Hz Cut)</span>
+              <input type="checkbox" id="ve-clarity-toggle" onchange="veUpdateParams()">
+            </label>
+          </div>
+
+          <!-- PANEL 4: STUDIO ACOUSTIC EFFECTS -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;">
+            <h4 style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--a3);"></i> 4. Acoustic Effects
+            </h4>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+              <div>
+                <span style="display:block;font-size:0.72rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;">Space Reverb</span>
+                <select id="ve-reverb-preset" onchange="veUpdateParams()" style="padding:6px 10px;font-size:0.8rem;border-radius:8px;">
+                  <option value="none" selected>Off (Dry)</option>
+                  <option value="room">Studio Room</option>
+                  <option value="hall">Concert Hall</option>
+                  <option value="cathedral">Cathedral</option>
+                </select>
+              </div>
+
+              <div>
+                <span style="display:block;font-size:0.72rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;">Echo / Delay</span>
+                <select id="ve-delay-preset" onchange="veUpdateParams()" style="padding:6px 10px;font-size:0.8rem;border-radius:8px;">
+                  <option value="none" selected>Off</option>
+                  <option value="slapback">Slapback (120ms)</option>
+                  <option value="echo">Stereo Echo (320ms)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Special Filters: Robot & Telephone -->
+            <div style="display:flex;gap:8px;">
+              <button id="ve-fx-robot" onclick="veToggleEffect('robot')" style="flex:1;padding:8px 10px;background:var(--panel);border:1px solid var(--border);color:var(--txt2);border-radius:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.75rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;">
+                <i class="fa-solid fa-robot"></i> Robot Vocoder
+              </button>
+              <button id="ve-fx-radio" onclick="veToggleEffect('radio')" style="flex:1;padding:8px 10px;background:var(--panel);border:1px solid var(--border);color:var(--txt2);border-radius:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.75rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;">
+                <i class="fa-solid fa-walkie-talkie"></i> Vintage Radio
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL 5: MASTER GAIN & ACTIONS -->
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <h4 style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--txt);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+                <i class="fa-solid fa-volume-high" style="color:var(--ok);"></i> 5. Volume &amp; Dynamics
+              </h4>
+
+              <div style="margin-bottom:12px;">
+                <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--muted);margin-bottom:6px;">
+                  <span>Master Volume Gain</span>
+                  <span id="ve-vol-lbl" class="mono" style="color:var(--a1);">100%</span>
+                </div>
+                <input type="range" id="ve-volume" min="0" max="300" step="5" value="100" oninput="veUpdateParams()" style="width:100%;">
+              </div>
+            </div>
+
+            <!-- Quick Modifiers: Normalize / Reverse -->
+            <div style="display:flex;gap:8px;margin-top:10px;">
+              <button onclick="veNormalizeAudio()" style="flex:1;padding:8px 10px;background:rgba(61,214,140,0.1);border:1px solid rgba(61,214,140,0.25);color:var(--ok);border-radius:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.76rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:5px;">
+                <i class="fa-solid fa-bolt"></i> Normalize Peak
+              </button>
+              <button onclick="veReverseAudio()" style="flex:1;padding:8px 10px;background:var(--panel);border:1px solid var(--border);color:var(--txt);border-radius:8px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.76rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:5px;">
+                <i class="fa-solid fa-backward"></i> Reverse
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ═══════════ EXPORT & DOWNLOAD BAR ═══════════ -->
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;box-shadow:0 4px 14px rgba(59,158,255,0.3);">
+              <i class="fa-solid fa-file-export"></i>
+            </div>
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--txt);">Export Edited Master Audio</div>
+              <div style="font-size:0.78rem;color:var(--muted);">Lossless 16-Bit PCM WAV &amp; High-Bitrate MP3 • Zero Compression Loss</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button id="ve-export-wav-btn" onclick="veExport('wav')" class="btn-primary" style="padding:12px 24px;font-size:0.9rem;width:auto;display:inline-flex;align-items:center;gap:8px;">
+              <i class="fa-solid fa-download"></i> Download Master WAV
+            </button>
+            <button id="ve-export-mp3-btn" onclick="veExport('mp3')" style="padding:12px 24px;background:var(--card);border:1px solid var(--border);color:var(--txt);border-radius:14px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--a1)'" onmouseout="this.style.borderColor='var(--border)'">
+              <i class="fa-solid fa-download"></i> Download MP3
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════════ -->
     <!-- ✦ STEP 1 & 2: CUSTOM VOICE CLONING (SELF-HOSTED OPEN-SOURCE TTS) ✦ -->
     <!-- ══════════════════════════════════════════════════════════════════════ -->
     <section id="custom-voice-clone-section" class="custom-voice-section" style="max-width:1100px;margin:50px auto 60px;padding:0 20px;">
@@ -2630,12 +3080,15 @@
             </div>
             
             <!-- Download Options -->
-            <div style="display:flex;gap:8px;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button onclick="downloadClonedVoice('wav')" style="padding:8px 16px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
                 <i class="fa-solid fa-download"></i> Studio WAV
               </button>
               <button onclick="downloadClonedVoice('mp3')" style="padding:8px 16px;background:var(--card);border:1px solid var(--border);color:var(--txt);border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
                 <i class="fa-solid fa-download"></i> MP3
+              </button>
+              <button onclick="openInAudioEditor(cvLastClonedAudio, cvLastClonedFilename)" style="padding:8px 16px;background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(124,95,230,0.15));border:1px solid var(--borderH);color:var(--a1);border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                <i class="fa-solid fa-sliders"></i> Edit in Studio
               </button>
             </div>
           </div>
@@ -3139,15 +3592,7 @@
         <style>
           #natural-mode-toggle:checked + span { background: linear-gradient(135deg, var(--a1), var(--a2)) !important; box-shadow: 0 0 12px rgba(59,158,255,0.4); }
           #natural-mode-toggle:checked + span + span { transform: translateX(22px); }
-        
-  /* Marquee CSS animation */
-  .marquee-outer{overflow:hidden;flex:1;position:relative;}
-  .marquee-track{display:flex;width:max-content;animation:marqueeScroll 38s linear infinite;}
-  .marquee-track:hover{animation-play-state:paused;cursor:pointer;}
-  @keyframes marqueeScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-  .marquee-item{white-space:nowrap;padding-right:60px;}
-
-</style>
+        </style>
       </div>
 
       <!-- Multi Mode Container -->
@@ -3219,6 +3664,7 @@
           <div class="dl-tab active" onclick="setDlTab('mp3',this)"><i class="fa-solid fa-file-audio" style="margin-right:5px;"></i>MP3</div>
           <div class="dl-tab" onclick="setDlTab('wav',this)"><i class="fa-solid fa-wave-square" style="margin-right:5px;"></i>WAV</div>
           <div class="dl-tab" onclick="setDlTab('link',this)"><i class="fa-solid fa-link" style="margin-right:5px;"></i>Copy Link</div>
+          <div class="dl-tab" onclick="openInAudioEditor(S.lastAudio, S.lastFile)" style="background:linear-gradient(135deg,rgba(59,158,255,0.15),rgba(124,95,230,0.15));color:var(--a1);border-color:var(--borderH);font-weight:700;"><i class="fa-solid fa-sliders" style="margin-right:5px;"></i>Edit in Studio</div>
         </div>
         <div id="dl-mp3-btn"><button onclick="doDownload('mp3')" style="width:100%;background:rgba(61,214,140,0.12);border:1px solid rgba(61,214,140,0.28);color:var(--ok);border-radius:12px;padding:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.9rem;transition:background .2s;" onmouseover="this.style.background='rgba(61,214,140,0.22)'" onmouseout="this.style.background='rgba(61,214,140,0.12)'"><i class="fa-solid fa-download" style="margin-right:6px;"></i>Download MP3</button></div>
         <div id="dl-wav-btn" class="hidden"><button onclick="doDownload('wav')" style="width:100%;background:rgba(124,95,230,0.12);border:1px solid rgba(124,95,230,0.28);color:var(--a2);border-radius:12px;padding:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;font-size:.9rem;transition:background .2s;" onmouseover="this.style.background='rgba(124,95,230,0.22)'" onmouseout="this.style.background='rgba(124,95,230,0.12)'"><i class="fa-solid fa-download" style="margin-right:6px;"></i>Download WAV (Studio Quality)</button></div>
@@ -3761,6 +4207,7 @@
             fd.append('text', text);
             fd.append('language', S.lang || 'en-US');
             fd.append('gender', localStorage.getItem('voicepro_custom_voice_gender') || 'auto');
+            fd.append('voice_name', localStorage.getItem('voicepro_custom_voice_name') || 'My Custom Voice');
 
             const r = await fetch('/api/clone-voice', { method: 'POST', body: fd });
             const d = await r.json();
@@ -4273,7 +4720,7 @@
         }
       }
 
-        /* ══════════════════════════════════════════════════════════════════════
+      /* ══════════════════════════════════════════════════════════════════════
          ✦ FEATURE: SELF-HOSTED CUSTOM VOICE CLONING (MediaRecorder + LocalStorage)
          ══════════════════════════════════════════════════════════════════════ */
       let cvMediaRecorder = null;
@@ -4284,13 +4731,46 @@
       let cvLastClonedAudio = null;
       let cvLastClonedFilename = null;
 
+      function bufferToWav(abuffer) {
+        const numOfChan = 1;
+        const length = abuffer.length * numOfChan * 2 + 44;
+        const out = new DataView(new ArrayBuffer(length));
+        let sample = 0, offset = 0, pos = 0;
+
+        function setUint16(data) { out.setUint16(pos, data, true); pos += 2; }
+        function setUint32(data) { out.setUint32(pos, data, true); pos += 4; }
+
+        setUint32(0x46464952); // "RIFF"
+        setUint32(length - 8);
+        setUint32(0x45564157); // "WAVE"
+        setUint32(0x20746d66); // "fmt "
+        setUint32(16);
+        setUint16(1);          // PCM uncompressed
+        setUint16(numOfChan);
+        setUint32(abuffer.sampleRate);
+        setUint32(abuffer.sampleRate * 2 * numOfChan);
+        setUint16(numOfChan * 2);
+        setUint16(16);
+        setUint32(0x61746164); // "data"
+        setUint32(length - pos - 4);
+
+        const channelData = abuffer.getChannelData(0);
+        while (offset < channelData.length) {
+          sample = Math.max(-1, Math.min(1, channelData[offset]));
+          sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0;
+          out.setInt16(pos, sample, true);
+          pos += 2;
+          offset++;
+        }
+        return new Blob([out.buffer], { type: 'audio/wav' });
+      }
+
       async function convertBlobToCleanWav(blob) {
         try {
           const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          const arrayBuf = await blob.arrayBuffer();
-          const decoded = await audioCtx.decodeAudioData(arrayBuf);
-          const targetSampleRate = 16000;
-          const offlineCtx = new OfflineAudioContext(1, Math.ceil(decoded.duration * targetSampleRate), targetSampleRate);
+          const arrayBuffer = await blob.arrayBuffer();
+          const decoded = await audioCtx.decodeAudioData(arrayBuffer);
+          const offlineCtx = new OfflineAudioContext(1, Math.round(decoded.duration * 16000), 16000);
           const src = offlineCtx.createBufferSource();
           src.buffer = decoded;
           src.connect(offlineCtx.destination);
@@ -4471,7 +4951,6 @@
         fd.append('reference_audio', cvRecordedBlob, 'custom_voice_sample.wav');
         fd.append('text', text);
         fd.append('language', lang);
-        fd.append('gender', localStorage.getItem('voicepro_custom_voice_gender') || 'auto');
         
         try {
           const r = await fetch('/api/clone-voice', { method: 'POST', body: fd });
@@ -4535,7 +5014,7 @@
 
         const savedSample = localStorage.getItem('voicepro_custom_voice_sample');
         const savedName = localStorage.getItem('voicepro_custom_voice_name') || 'My Custom Voice';
-        const savedGender = localStorage.getItem('voicepro_custom_voice_gender') || 'auto';
+        const savedGender = localStorage.getItem('voicepro_custom_voice_gender') || 'male';
         const nameInp = document.getElementById('modal-cv-name-input');
         if (nameInp) nameInp.value = savedName;
         const genderSel = document.getElementById('modal-cv-gender-select');
@@ -4651,6 +5130,7 @@
       function clearModalVoiceSample() {
         localStorage.removeItem('voicepro_custom_voice_sample');
         localStorage.removeItem('voicepro_custom_voice_name');
+        localStorage.removeItem('voicepro_custom_voice_gender');
         localStorage.removeItem('voicepro_custom_voice_time');
         modalCvRecordedBlob = null;
         modalCvDataUrl = null;
@@ -4685,7 +5165,7 @@
         const nameInp = document.getElementById('modal-cv-name-input');
         const customName = (nameInp ? nameInp.value.trim() : '') || 'My Custom Voice';
         const genderSel = document.getElementById('modal-cv-gender-select');
-        const customGender = genderSel ? genderSel.value : 'auto';
+        const customGender = genderSel ? genderSel.value : 'male';
         
         try {
           localStorage.setItem('voicepro_custom_voice_sample', sample);
@@ -4713,8 +5193,789 @@
         showToast(`🎉 "${customName}" is active! Enter text above & click Generate Voice.`, 'ok');
       }
 
+      /* ══════════════════════════════════════════════════════════════════════
+         ✦ IN-BROWSER AUDIO & VOICE EDITOR STUDIO (WEB AUDIO API + CANVAS DSP)
+         ══════════════════════════════════════════════════════════════════════ */
+      let veAudioCtx = null;
+      let veOriginalBuffer = null;
+      let veCurrentBuffer = null;
+      let veSourceNode = null;
+      let veGainNode = null;
+      let veIsPlaying = false;
+      let vePlaybackStartTime = 0;
+      let vePlaybackOffset = 0;
+      let veAnimFrame = null;
+      let veIsLooping = false;
+      let veActiveFx = { robot: false, radio: false };
+      let veTrimStart = 0;
+      let veTrimEnd = 0;
+      let veActiveFilename = 'voicepro_studio_track.wav';
+
+      let veMediaRecorder = null;
+      let veAudioChunks = [];
+
+      function getVeAudioContext() {
+        if (!veAudioCtx) {
+          veAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (veAudioCtx.state === 'suspended') {
+          veAudioCtx.resume();
+        }
+        return veAudioCtx;
+      }
+
+      function openInAudioEditor(audioSrc, filename) {
+        if (!audioSrc) {
+          showToast('Generate or select audio first! 🎙️', 'err');
+          return;
+        }
+        loadTtsIntoEditor(audioSrc, filename);
+        const section = document.getElementById('voice-audio-editor-section');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      async function loadTtsIntoEditor(explicitSrc = null, explicitName = null) {
+        const src = explicitSrc || S.lastAudio || cvLastClonedAudio;
+        const name = explicitName || S.lastFile || cvLastClonedFilename || 'voicepro_synthesized.wav';
+        
+        if (!src) {
+          showToast('No synthesized voice found yet! Enter text above & click Generate first.', 'err');
+          return;
+        }
+
+        try {
+          showToast('Loading synthesized audio into Editor Studio… ⏳', 'ok');
+          const ctx = getVeAudioContext();
+          const res = await fetch(src);
+          const arrayBuf = await res.arrayBuffer();
+          const decoded = await ctx.decodeAudioData(arrayBuf);
+          
+          veOriginalBuffer = decoded;
+          veCurrentBuffer = decoded;
+          veActiveFilename = name;
+          
+          veTrimStart = 0;
+          veTrimEnd = decoded.duration;
+          
+          updateEditorUI();
+          drawWaveform();
+          showToast('Audio loaded into Studio Editor! 🎛️', 'ok');
+          
+          const section = document.getElementById('voice-audio-editor-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        } catch (e) {
+          console.error('Failed to load audio into editor:', e);
+          showToast('Error decoding audio buffer for editor.', 'err');
+        }
+      }
+
+      async function handleEditorFileUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          showToast(`Loading "${file.name}"… 📁`, 'ok');
+          const ctx = getVeAudioContext();
+          const arrayBuf = await file.arrayBuffer();
+          const decoded = await ctx.decodeAudioData(arrayBuf);
+          
+          veOriginalBuffer = decoded;
+          veCurrentBuffer = decoded;
+          veActiveFilename = file.name;
+          
+          veTrimStart = 0;
+          veTrimEnd = decoded.duration;
+          
+          updateEditorUI();
+          drawWaveform();
+          showToast(`Loaded "${file.name}" (${decoded.duration.toFixed(1)}s)! 🎉`, 'ok');
+        } catch (err) {
+          console.error('File upload decode error:', err);
+          showToast('Could not decode uploaded audio file.', 'err');
+        }
+      }
+
+      async function toggleEditorMicRecord() {
+        const btn = document.getElementById('ve-mic-btn');
+        if (veMediaRecorder && veMediaRecorder.state === 'recording') {
+          veMediaRecorder.stop();
+          return;
+        }
+
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          veAudioChunks = [];
+          veMediaRecorder = new MediaRecorder(stream);
+
+          veMediaRecorder.ondataavailable = e => {
+            if (e.data.size > 0) veAudioChunks.push(e.data);
+          };
+
+          veMediaRecorder.onstart = () => {
+            btn.innerHTML = '<i class="fa-solid fa-stop"></i> Stop Mic Record';
+            btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            btn.style.color = '#fff';
+            btn.style.animation = 'pulse-glow 1.5s infinite';
+            showToast('Recording live audio into editor… 🎙️', 'ok');
+          };
+
+          veMediaRecorder.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop());
+            btn.innerHTML = '<i class="fa-solid fa-microphone"></i> Record Mic';
+            btn.style.background = 'rgba(239,68,68,0.12)';
+            btn.style.color = '#ef4444';
+            btn.style.animation = 'none';
+
+            const rawBlob = new Blob(veAudioChunks, { type: veMediaRecorder.mimeType || 'audio/webm' });
+            const ctx = getVeAudioContext();
+            const arrayBuf = await rawBlob.arrayBuffer();
+            const decoded = await ctx.decodeAudioData(arrayBuf);
+
+            veOriginalBuffer = decoded;
+            veCurrentBuffer = decoded;
+            veActiveFilename = `mic_recording_${Date.now()}.wav`;
+            
+            veTrimStart = 0;
+            veTrimEnd = decoded.duration;
+
+            updateEditorUI();
+            drawWaveform();
+            showToast('Mic recording loaded into Studio! 🎙️', 'ok');
+          };
+
+          veMediaRecorder.start();
+        } catch (err) {
+          console.error('Mic error:', err);
+          showToast('Microphone access was denied or not available.', 'err');
+        }
+      }
+
+      function updateEditorUI() {
+        if (!veCurrentBuffer) return;
+        const dur = veCurrentBuffer.duration;
+        const fnLabel = document.getElementById('ve-filename-label');
+        if (fnLabel) fnLabel.textContent = veActiveFilename;
+        
+        const metaBadge = document.getElementById('ve-audio-meta-badge');
+        if (metaBadge) {
+          const ch = veCurrentBuffer.numberOfChannels === 1 ? 'Mono' : 'Stereo';
+          metaBadge.textContent = `${ch} · ${(veCurrentBuffer.sampleRate/1000).toFixed(1)} kHz · ${dur.toFixed(2)}s`;
+        }
+
+        const totalTimeEl = document.getElementById('ve-time-total');
+        if (totalTimeEl) totalTimeEl.textContent = formatEditorTime(dur);
+
+        const startSlider = document.getElementById('ve-trim-start');
+        const endSlider = document.getElementById('ve-trim-end');
+        if (startSlider && endSlider) {
+          startSlider.max = dur.toFixed(2);
+          startSlider.value = veTrimStart.toFixed(2);
+          endSlider.max = dur.toFixed(2);
+          endSlider.value = veTrimEnd.toFixed(2);
+        }
+
+        veUpdateTrimRange();
+      }
+
+      function formatEditorTime(secs) {
+        if (isNaN(secs) || secs < 0) secs = 0;
+        const m = Math.floor(secs / 60);
+        const s = Math.floor(secs % 60);
+        const ms = Math.floor((secs % 1) * 100);
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}.${ms < 10 ? '0' : ''}${ms}`;
+      }
+
+      function drawWaveform() {
+        const canvas = document.getElementById('ve-canvas');
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        if (!veCurrentBuffer) {
+          ctx.fillStyle = 'rgba(255,255,255,0.05)';
+          ctx.fillRect(0, 0, rect.width, rect.height);
+          ctx.fillStyle = '#64748b';
+          ctx.font = '13px "DM Sans", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('Load synthesized TTS, upload an audio file, or record mic to begin editing', rect.width / 2, rect.height / 2 + 5);
+          return;
+        }
+
+        const rawData = veCurrentBuffer.getChannelData(0);
+        const step = Math.ceil(rawData.length / rect.width);
+        const amp = rect.height / 2;
+
+        const grad = ctx.createLinearGradient(0, 0, 0, rect.height);
+        grad.addColorStop(0, '#3b9eff');
+        grad.addColorStop(0.5, '#7c5fe6');
+        grad.addColorStop(1, '#db2777');
+
+        ctx.fillStyle = grad;
+
+        for (let i = 0; i < rect.width; i++) {
+          let min = 1.0;
+          let max = -1.0;
+          for (let j = 0; j < step; j++) {
+            const datum = rawData[(i * step) + j];
+            if (datum < min) min = datum;
+            if (datum > max) max = datum;
+          }
+          const barHeight = Math.max(2, (max - min) * amp * 0.9);
+          ctx.fillRect(i, amp - barHeight / 2, 1.5, barHeight);
+        }
+
+        // Draw Center Zero Line
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.beginPath();
+        ctx.moveTo(0, amp);
+        ctx.lineTo(rect.width, amp);
+        ctx.stroke();
+      }
+
+      function veUpdateTrimRange() {
+        if (!veCurrentBuffer) return;
+        const dur = veCurrentBuffer.duration;
+        const startSlider = document.getElementById('ve-trim-start');
+        const endSlider = document.getElementById('ve-trim-end');
+        if (!startSlider || !endSlider) return;
+
+        let sVal = parseFloat(startSlider.value);
+        let eVal = parseFloat(endSlider.value);
+
+        if (sVal > eVal) {
+          sVal = eVal;
+          startSlider.value = sVal;
+        }
+        if (eVal < sVal) {
+          eVal = sVal;
+          endSlider.value = eVal;
+        }
+
+        veTrimStart = sVal;
+        veTrimEnd = eVal;
+
+        const startLbl = document.getElementById('ve-trim-start-lbl');
+        const endLbl = document.getElementById('ve-trim-end-lbl');
+        if (startLbl) startLbl.textContent = sVal.toFixed(2) + 's';
+        if (endLbl) endLbl.textContent = eVal.toFixed(2) + 's';
+
+        const selBadge = document.getElementById('ve-selection-badge');
+        if (selBadge) {
+          selBadge.textContent = `Trim: ${sVal.toFixed(2)}s - ${eVal.toFixed(2)}s (${(eVal - sVal).toFixed(2)}s)`;
+        }
+
+        // Update visual overlay masks
+        const leftOverlay = document.getElementById('ve-trim-overlay-left');
+        const rightOverlay = document.getElementById('ve-trim-overlay-right');
+        if (leftOverlay && rightOverlay && dur > 0) {
+          leftOverlay.style.width = (sVal / dur * 100) + '%';
+          rightOverlay.style.width = ((dur - eVal) / dur * 100) + '%';
+        }
+      }
+
+      function handleWaveformClick(e) {
+        if (!veCurrentBuffer) return;
+        const container = document.getElementById('ve-canvas-container');
+        if (!container) return;
+        const rect = container.getBoundingClientRect();
+        const clickRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        const targetTime = clickRatio * veCurrentBuffer.duration;
+        
+        veSeekTo(targetTime);
+      }
+
+      function veSeekTo(time) {
+        if (!veCurrentBuffer) return;
+        vePauseOffset = Math.max(0, Math.min(veCurrentBuffer.duration, time));
+        if (veIsPlaying) {
+          veStopSource();
+          veStartPlayback(vePauseOffset);
+        } else {
+          updatePlayheadUI(vePauseOffset);
+        }
+      }
+
+      function veSeekRelative(delta) {
+        if (!veCurrentBuffer) return;
+        const cur = veIsPlaying ? (getVeAudioContext().currentTime - vePlaybackStartTime + vePauseOffset) : vePauseOffset;
+        veSeekTo(cur + delta);
+      }
+
+      function veToggleLoop() {
+        veIsLooping = !veIsLooping;
+        const btn = document.getElementById('ve-loop-btn');
+        if (btn) {
+          btn.style.color = veIsLooping ? 'var(--a1)' : 'var(--muted)';
+          btn.style.borderColor = veIsLooping ? 'var(--a1)' : 'var(--border)';
+          btn.style.background = veIsLooping ? 'rgba(59,158,255,0.12)' : 'var(--card)';
+        }
+        showToast(veIsLooping ? 'Loop Selection ON 🔁' : 'Loop OFF');
+      }
+
+      function veTogglePlay() {
+        if (!veCurrentBuffer) {
+          showToast('Load an audio sample first!', 'err');
+          return;
+        }
+        if (veIsPlaying) {
+          vePause();
+        } else {
+          vePlay();
+        }
+      }
+
+      function vePlay() {
+        if (!veCurrentBuffer) return;
+        if (vePauseOffset >= (veTrimEnd || veCurrentBuffer.duration)) {
+          vePauseOffset = veTrimStart || 0;
+        }
+        veStartPlayback(vePauseOffset);
+      }
+
+      function vePause() {
+        if (!veIsPlaying) return;
+        const ctx = getVeAudioContext();
+        vePauseOffset += (ctx.currentTime - vePlaybackStartTime) * getPlaybackRate();
+        veStopSource();
+        veIsPlaying = false;
+        updatePlayBtnUI();
+        if (veAnimFrame) cancelAnimationFrame(veAnimFrame);
+      }
+
+      function veStop() {
+        veStopSource();
+        veIsPlaying = false;
+        vePauseOffset = veTrimStart || 0;
+        updatePlayBtnUI();
+        updatePlayheadUI(vePauseOffset);
+        if (veAnimFrame) cancelAnimationFrame(veAnimFrame);
+      }
+
+      function veStopSource() {
+        if (veSourceNode) {
+          try { veSourceNode.stop(); } catch(e) {}
+          try { veSourceNode.disconnect(); } catch(e) {}
+          veSourceNode = null;
+        }
+      }
+
+      function getPlaybackRate() {
+        const speedSlider = document.getElementById('ve-speed');
+        const pitchSlider = document.getElementById('ve-pitch');
+        const speed = speedSlider ? parseFloat(speedSlider.value) : 1.0;
+        const pitchSt = pitchSlider ? parseInt(pitchSlider.value) : 0;
+        const pitchRatio = Math.pow(2, pitchSt / 12);
+        return speed * pitchRatio;
+      }
+
+      function createImpulseResponse(ctx, duration = 2.0, decay = 2.0) {
+        const rate = ctx.sampleRate;
+        const length = Math.round(rate * duration);
+        const impulse = ctx.createBuffer(2, length, rate);
+        const left = impulse.getChannelData(0);
+        const right = impulse.getChannelData(1);
+        for (let i = 0; i < length; i++) {
+          const n = length - i;
+          left[i] = (Math.random() * 2 - 1) * Math.pow(n / length, decay);
+          right[i] = (Math.random() * 2 - 1) * Math.pow(n / length, decay);
+        }
+        return impulse;
+      }
+
+      function buildDspGraph(ctx, sourceNode, destNode) {
+        const bassVal = parseFloat(document.getElementById('ve-eq-bass')?.value || 0);
+        const midVal = parseFloat(document.getElementById('ve-eq-mid')?.value || 0);
+        const trebleVal = parseFloat(document.getElementById('ve-eq-treble')?.value || 0);
+        const clarityOn = document.getElementById('ve-clarity-toggle')?.checked || false;
+
+        const eqBass = ctx.createBiquadFilter();
+        eqBass.type = 'lowshelf';
+        eqBass.frequency.value = 100;
+        eqBass.gain.value = bassVal;
+
+        const eqMid = ctx.createBiquadFilter();
+        eqMid.type = 'peaking';
+        eqMid.frequency.value = 1000;
+        eqMid.gain.value = midVal;
+
+        const eqTreble = ctx.createBiquadFilter();
+        eqTreble.type = 'highshelf';
+        eqTreble.frequency.value = 5000;
+        eqTreble.gain.value = trebleVal;
+
+        const highpass = ctx.createBiquadFilter();
+        highpass.type = 'highpass';
+        highpass.frequency.value = clarityOn ? 85 : 10;
+
+        const volVal = parseFloat(document.getElementById('ve-volume')?.value || 100) / 100;
+        const masterGain = ctx.createGain();
+        masterGain.gain.value = volVal;
+
+        const compressor = ctx.createDynamicsCompressor();
+        compressor.threshold.value = -2;
+        compressor.knee.value = 4;
+        compressor.ratio.value = 12;
+        compressor.attack.value = 0.003;
+        compressor.release.value = 0.25;
+
+        sourceNode.connect(highpass);
+        highpass.connect(eqBass);
+        eqBass.connect(eqMid);
+        eqMid.connect(eqTreble);
+
+        let currentOut = eqTreble;
+
+        if (veActiveFx.radio) {
+          const radioFilter = ctx.createBiquadFilter();
+          radioFilter.type = 'bandpass';
+          radioFilter.frequency.value = 1400;
+          radioFilter.Q.value = 1.2;
+          currentOut.connect(radioFilter);
+          currentOut = radioFilter;
+        }
+
+        if (veActiveFx.robot) {
+          const osc = ctx.createOscillator();
+          osc.type = 'sawtooth';
+          osc.frequency.value = 65;
+          const oscGain = ctx.createGain();
+          oscGain.gain.value = 0;
+          
+          const modGain = ctx.createGain();
+          modGain.gain.value = 1.0;
+          
+          osc.connect(modGain.gain);
+          osc.start();
+          currentOut.connect(modGain);
+          currentOut = modGain;
+        }
+
+        const delaySel = document.getElementById('ve-delay-preset')?.value || 'none';
+        if (delaySel !== 'none') {
+          const delayTime = delaySel === 'slapback' ? 0.12 : 0.32;
+          const feedbackVal = delaySel === 'slapback' ? 0.25 : 0.45;
+          
+          const delayNode = ctx.createDelay();
+          delayNode.delayTime.value = delayTime;
+          
+          const feedbackNode = ctx.createGain();
+          feedbackNode.gain.value = feedbackVal;
+          
+          const delayWet = ctx.createGain();
+          delayWet.gain.value = 0.4;
+          
+          currentOut.connect(delayNode);
+          delayNode.connect(feedbackNode);
+          feedbackNode.connect(delayNode);
+          delayNode.connect(delayWet);
+          delayWet.connect(masterGain);
+        }
+
+        const revSel = document.getElementById('ve-reverb-preset')?.value || 'none';
+        if (revSel !== 'none') {
+          const revDur = revSel === 'room' ? 1.0 : revSel === 'hall' ? 2.2 : 3.8;
+          const revDecay = revSel === 'room' ? 2.5 : revSel === 'hall' ? 1.8 : 1.2;
+          const convolver = ctx.createConvolver();
+          convolver.buffer = createImpulseResponse(ctx, revDur, revDecay);
+          
+          const revWet = ctx.createGain();
+          revWet.gain.value = revSel === 'room' ? 0.25 : revSel === 'hall' ? 0.4 : 0.6;
+          
+          currentOut.connect(convolver);
+          convolver.connect(revWet);
+          revWet.connect(masterGain);
+        }
+
+        currentOut.connect(masterGain);
+        masterGain.connect(compressor);
+        compressor.connect(destNode);
+
+        return masterGain;
+      }
+
+      function veStartPlayback(offset = 0) {
+        const ctx = getVeAudioContext();
+        veStopSource();
+
+        veSourceNode = ctx.createBufferSource();
+        veSourceNode.buffer = veCurrentBuffer;
+        
+        const rate = getPlaybackRate();
+        veSourceNode.playbackRate.value = rate;
+
+        buildDspGraph(ctx, veSourceNode, ctx.destination);
+
+        const dur = veCurrentBuffer.duration;
+        const startTime = Math.max(0, Math.min(dur, offset));
+        const playDuration = Math.max(0.01, (veTrimEnd || dur) - startTime);
+
+        vePlaybackStartTime = ctx.currentTime;
+        vePauseOffset = startTime;
+        veIsPlaying = true;
+        updatePlayBtnUI();
+
+        veSourceNode.start(0, startTime, playDuration);
+
+        veSourceNode.onended = () => {
+          if (!veIsPlaying) return;
+          if (veIsLooping) {
+            veStartPlayback(veTrimStart || 0);
+          } else {
+            veStop();
+          }
+        };
+
+        trackPlayhead();
+      }
+
+      function trackPlayhead() {
+        if (!veIsPlaying || !veCurrentBuffer) return;
+        const ctx = getVeAudioContext();
+        const elapsed = (ctx.currentTime - vePlaybackStartTime) * getPlaybackRate();
+        const currentTime = vePauseOffset + elapsed;
+
+        updatePlayheadUI(currentTime);
+
+        if (currentTime < (veTrimEnd || veCurrentBuffer.duration)) {
+          veAnimFrame = requestAnimationFrame(trackPlayhead);
+        }
+      }
+
+      function updatePlayheadUI(currentTime) {
+        if (!veCurrentBuffer) return;
+        const dur = veCurrentBuffer.duration;
+        const curTimeEl = document.getElementById('ve-time-current');
+        if (curTimeEl) curTimeEl.textContent = formatEditorTime(currentTime);
+
+        const playhead = document.getElementById('ve-playhead');
+        if (playhead && dur > 0) {
+          const pct = Math.max(0, Math.min(100, (currentTime / dur) * 100));
+          playhead.style.left = pct + '%';
+        }
+      }
+
+      function updatePlayBtnUI() {
+        const icon = document.getElementById('ve-play-icon');
+        if (icon) {
+          icon.className = veIsPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+        }
+      }
+
+      function veUpdateParams() {
+        const speedVal = parseFloat(document.getElementById('ve-speed')?.value || 1.0);
+        const pitchVal = parseInt(document.getElementById('ve-pitch')?.value || 0);
+        const volVal = parseInt(document.getElementById('ve-volume')?.value || 100);
+        const bassVal = parseInt(document.getElementById('ve-eq-bass')?.value || 0);
+        const midVal = parseInt(document.getElementById('ve-eq-mid')?.value || 0);
+        const trebleVal = parseInt(document.getElementById('ve-eq-treble')?.value || 0);
+
+        const sLbl = document.getElementById('ve-speed-lbl'); if (sLbl) sLbl.textContent = speedVal.toFixed(2) + 'x';
+        const pLbl = document.getElementById('ve-pitch-lbl'); if (pLbl) pLbl.textContent = (pitchVal >= 0 ? '+' : '') + pitchVal + ' st';
+        const vLbl = document.getElementById('ve-vol-lbl'); if (vLbl) vLbl.textContent = volVal + '%';
+        const bLbl = document.getElementById('ve-bass-lbl'); if (bLbl) bLbl.textContent = (bassVal >= 0 ? '+' : '') + bassVal + 'dB';
+        const mLbl = document.getElementById('ve-mid-lbl'); if (mLbl) mLbl.textContent = (midVal >= 0 ? '+' : '') + midVal + 'dB';
+        const tLbl = document.getElementById('ve-treble-lbl'); if (tLbl) tLbl.textContent = (trebleVal >= 0 ? '+' : '') + trebleVal + 'dB';
+
+        if (veIsPlaying) {
+          const cur = (getVeAudioContext().currentTime - vePlaybackStartTime) * getPlaybackRate() + vePauseOffset;
+          veSeekTo(cur);
+        }
+      }
+
+      function veToggleEffect(fx) {
+        veActiveFx[fx] = !veActiveFx[fx];
+        const btn = document.getElementById('ve-fx-' + fx);
+        if (btn) {
+          btn.style.background = veActiveFx[fx] ? 'rgba(59,158,255,0.18)' : 'var(--panel)';
+          btn.style.borderColor = veActiveFx[fx] ? 'var(--a1)' : 'var(--border)';
+          btn.style.color = veActiveFx[fx] ? 'var(--a1)' : 'var(--txt2)';
+        }
+        showToast(`${fx.toUpperCase()} Effect ${veActiveFx[fx] ? 'ON ✨' : 'OFF'}`);
+        if (veIsPlaying) {
+          const cur = (getVeAudioContext().currentTime - vePlaybackStartTime) * getPlaybackRate() + vePauseOffset;
+          veSeekTo(cur);
+        }
+      }
+
+      function veApplyTrim() {
+        if (!veCurrentBuffer) return;
+        veStop();
+
+        const ctx = getVeAudioContext();
+        const startSample = Math.floor(veTrimStart * veCurrentBuffer.sampleRate);
+        const endSample = Math.floor(veTrimEnd * veCurrentBuffer.sampleRate);
+        const newLength = Math.max(100, endSample - startSample);
+        const numChannels = veCurrentBuffer.numberOfChannels;
+
+        const trimmedBuffer = ctx.createBuffer(numChannels, newLength, veCurrentBuffer.sampleRate);
+
+        const fadeInSec = parseFloat(document.getElementById('ve-fade-in')?.value || 0);
+        const fadeOutSec = parseFloat(document.getElementById('ve-fade-out')?.value || 0);
+        const fadeInSamples = Math.floor(fadeInSec * veCurrentBuffer.sampleRate);
+        const fadeOutSamples = Math.floor(fadeOutSec * veCurrentBuffer.sampleRate);
+
+        for (let ch = 0; ch < numChannels; ch++) {
+          const srcData = veCurrentBuffer.getChannelData(ch);
+          const dstData = trimmedBuffer.getChannelData(ch);
+
+          for (let i = 0; i < newLength; i++) {
+            let sample = srcData[startSample + i] || 0;
+            if (fadeInSamples > 0 && i < fadeInSamples) {
+              sample *= (i / fadeInSamples);
+            }
+            if (fadeOutSamples > 0 && i >= (newLength - fadeOutSamples)) {
+              sample *= ((newLength - i) / fadeOutSamples);
+            }
+            dstData[i] = sample;
+          }
+        }
+
+        veCurrentBuffer = trimmedBuffer;
+        veTrimStart = 0;
+        veTrimEnd = trimmedBuffer.duration;
+
+        updateEditorUI();
+        drawWaveform();
+        showToast(`Cropped to ${trimmedBuffer.duration.toFixed(2)}s! ✂️`, 'ok');
+      }
+
+      function veNormalizeAudio() {
+        if (!veCurrentBuffer) return;
+        let maxPeak = 0;
+        const numChannels = veCurrentBuffer.numberOfChannels;
+        for (let ch = 0; ch < numChannels; ch++) {
+          const data = veCurrentBuffer.getChannelData(ch);
+          for (let i = 0; i < data.length; i++) {
+            const val = Math.abs(data[i]);
+            if (val > maxPeak) maxPeak = val;
+          }
+        }
+
+        if (maxPeak > 0 && maxPeak !== 1.0) {
+          const gainFactor = 0.98 / maxPeak;
+          for (let ch = 0; ch < numChannels; ch++) {
+            const data = veCurrentBuffer.getChannelData(ch);
+            for (let i = 0; i < data.length; i++) {
+              data[i] *= gainFactor;
+            }
+          }
+          drawWaveform();
+          showToast('Peak Normalized to 0dB! ⚡', 'ok');
+        } else {
+          showToast('Audio is already at optimum peak level.', 'ok');
+        }
+      }
+
+      function veReverseAudio() {
+        if (!veCurrentBuffer) return;
+        const numChannels = veCurrentBuffer.numberOfChannels;
+        for (let ch = 0; ch < numChannels; ch++) {
+          Array.prototype.reverse.call(veCurrentBuffer.getChannelData(ch));
+        }
+        drawWaveform();
+        showToast('Audio track reversed! 🔄', 'ok');
+      }
+
+      function veResetAudio() {
+        if (!veOriginalBuffer) return;
+        veStop();
+        veCurrentBuffer = veOriginalBuffer;
+        veTrimStart = 0;
+        veTrimEnd = veOriginalBuffer.duration;
+
+        const speedEl = document.getElementById('ve-speed'); if (speedEl) speedEl.value = 1.0;
+        const pitchEl = document.getElementById('ve-pitch'); if (pitchEl) pitchEl.value = 0;
+        const volEl = document.getElementById('ve-volume'); if (volEl) volEl.value = 100;
+        const bassEl = document.getElementById('ve-eq-bass'); if (bassEl) bassEl.value = 0;
+        const midEl = document.getElementById('ve-eq-mid'); if (midEl) midEl.value = 0;
+        const trebleEl = document.getElementById('ve-eq-treble'); if (trebleEl) trebleEl.value = 0;
+        const clarityEl = document.getElementById('ve-clarity-toggle'); if (clarityEl) clarityEl.checked = false;
+        const revEl = document.getElementById('ve-reverb-preset'); if (revEl) revEl.value = 'none';
+        const delEl = document.getElementById('ve-delay-preset'); if (delEl) delEl.value = 'none';
+        const fadeInEl = document.getElementById('ve-fade-in'); if (fadeInEl) fadeInEl.value = 0;
+        const fadeOutEl = document.getElementById('ve-fade-out'); if (fadeOutEl) fadeOutEl.value = 0;
+
+        veActiveFx.robot = false;
+        veActiveFx.radio = false;
+
+        ['robot', 'radio'].forEach(fx => {
+          const b = document.getElementById('ve-fx-' + fx);
+          if (b) {
+            b.style.background = 'var(--panel)';
+            b.style.borderColor = 'var(--border)';
+            b.style.color = 'var(--txt2)';
+          }
+        });
+
+        veUpdateParams();
+        updateEditorUI();
+        drawWaveform();
+        showToast('Audio reverted to original state.', 'ok');
+      }
+
+      async function veExport(format = 'wav') {
+        if (!veCurrentBuffer) {
+          showToast('Please load audio to export.', 'err');
+          return;
+        }
+        veStop();
+
+        const btnWav = document.getElementById('ve-export-wav-btn');
+        const btnMp3 = document.getElementById('ve-export-mp3-btn');
+        const origWavHtml = btnWav.innerHTML;
+        const origMp3Html = btnMp3.innerHTML;
+
+        if (format === 'wav') btnWav.innerHTML = '<span class="spinner"></span> Rendering Lossless WAV…';
+        else btnMp3.innerHTML = '<span class="spinner"></span> Rendering MP3…';
+
+        try {
+          const rate = getPlaybackRate();
+          const targetLength = Math.ceil(veCurrentBuffer.length / rate);
+          const sampleRate = veCurrentBuffer.sampleRate;
+          const offlineCtx = new OfflineAudioContext(veCurrentBuffer.numberOfChannels, targetLength, sampleRate);
+
+          const src = offlineCtx.createBufferSource();
+          src.buffer = veCurrentBuffer;
+          src.playbackRate.value = rate;
+
+          buildDspGraph(offlineCtx, src, offlineCtx.destination);
+          src.start(0);
+
+          const renderedBuffer = await offlineCtx.startRendering();
+          const wavBlob = bufferToWav(renderedBuffer);
+
+          const baseName = veActiveFilename.replace(/\.[^.]+$/, '') + '_edited';
+          const ext = format === 'mp3' ? 'mp3' : 'wav';
+          const filename = `${baseName}.${ext}`;
+
+          const downloadUrl = URL.createObjectURL(wavBlob);
+          const a = document.createElement('a');
+          a.href = downloadUrl;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          showToast(`Master ${ext.toUpperCase()} audio exported! 🎵`, 'ok');
+        } catch (e) {
+          console.error('Render error:', e);
+          showToast('Audio rendering failed.', 'err');
+        } finally {
+          btnWav.innerHTML = origWavHtml;
+          btnMp3.innerHTML = origMp3Html;
+        }
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         initCustomVoiceStudio();
+        drawWaveform();
       });
     </script>
 
@@ -4789,14 +6050,14 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
         <div>
           <label for="modal-cv-name-input" style="display:block;font-size:0.76rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-family:'Syne',sans-serif;">Voice Name</label>
-          <input type="text" id="modal-cv-name-input" placeholder="e.g. Rupesh Voice" value="My Custom Voice" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:9px 12px;border-radius:10px;font-size:0.85rem;outline:none;font-family:'DM Sans',sans-serif;">
+          <input type="text" id="modal-cv-name-input" placeholder="e.g. Rupesh Voice" value="My Custom Voice" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:10px 14px;border-radius:10px;font-size:0.88rem;outline:none;font-family:'DM Sans',sans-serif;">
         </div>
         <div>
           <label for="modal-cv-gender-select" style="display:block;font-size:0.76rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;font-family:'Syne',sans-serif;">Voice Character Base</label>
-          <select id="modal-cv-gender-select" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:9px 12px;border-radius:10px;font-size:0.85rem;outline:none;font-family:'DM Sans',sans-serif;cursor:pointer;">
-            <option value="auto" selected>✨ Auto-Detect From Audio</option>
-            <option value="male">👨 Male Voice (Deep/Natural)</option>
-            <option value="female">👩 Female Voice (Warm/Natural)</option>
+          <select id="modal-cv-gender-select" style="width:100%;background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:10px 14px;border-radius:10px;font-size:0.88rem;outline:none;font-family:'DM Sans',sans-serif;cursor:pointer;">
+            <option value="male" selected>👨 Male Voice (Deep/Natural)</option>
+            <option value="female">👩 Female Voice (Warm/Clear)</option>
+            <option value="auto">✨ Auto-Detect Pitch</option>
           </select>
         </div>
       </div>
@@ -4812,7 +6073,7 @@
 <!-- Cookie Consent Banner -->
 <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(7,11,18,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(59,158,255,0.15);padding:18px 24px;">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy.html" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
+    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
     <div style="display:flex;gap:10px;flex-shrink:0;">
       <button onclick="acceptCookies()" style="padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#6d28d9);color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;">Accept All</button>
       <button onclick="rejectCookies()" style="padding:9px 22px;background:transparent;color:#b8c4d8;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s;">Reject Non-Essential</button>

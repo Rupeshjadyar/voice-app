@@ -16,7 +16,7 @@
   <meta name="description" content="Learn about VoicePro TTS Studio — our mission, the story behind the tool, our technology, and our commitment to providing free AI voice generation to creators worldwide.">
   <meta name="robots" content="index, follow">
   <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="canonical" href="https://www.texttoaudiomp3.site/about.html">
+    <link rel="canonical" href="https://www.texttoaudiomp3.site/about">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -141,9 +141,49 @@
   }
 
 
-  /* Marquee CSS animation (replaces deprecated <div class="marquee-outer"><div class="marquee-track"><span class="marquee-item">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span><span class="marquee-item" aria-hidden="true">🚀 <span style="color:#ffd700;">HELP US KEEP VOICEPRO 100% FREE FOREVER!</span> &nbsp;•&nbsp; 📣 Please share VoicePro with friends, YouTube creators, podcasters &amp; student groups! &nbsp;•&nbsp; 💬 <span style="color:#3dd68c;">Need updates, new languages, or custom features?</span> Contact: <span style="text-decoration:underline;font-weight:800;color:#fff;">rupeshjadyar21@gmail.com</span> &nbsp;•&nbsp; ⭐ 100+ Languages · 100+ Neural Voices · Instant MP3 &amp; WAV · Zero Login!</span></div></div>
+  </style>
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<nav class="glass-nav" style="position:fixed;top:0;width:100%;z-index:50;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(59,158,255,0.35);">
+        <i class="fa-solid fa-microphone-lines" style="color:#fff;font-size:.88rem;"></i>
+      </div>
+      <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;color:var(--txt);">Voice<span style="color:var(--a1);">Pro</span></span>
+    </a>
+    <div class="nav-desktop" style="align-items:center;gap:6px;">
+      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
+      <a href="/about" class="nav-btn nav-active"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
+      <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:5px;"></i>Blog</a>
+      <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
+      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
+      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
+      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
+      <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;background:none;border:none;" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()" style="background:none;border:none;color:var(--muted);font-size:1.2rem;" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
-</div>
+  <div id="mobile-menu" class="nav-mobile-menu">
+    <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
+    <a href="/about" class="nav-btn nav-active"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
+    <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
+    <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>Languages</a>
+    <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
+    <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy</a>
+    <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms</a>
+    <button onclick="toggleTheme();toggleMobileMenu()" class="nav-btn" id="theme-btn-mob" style="text-align:left;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;box-sizing:border-box;background:none;border:none;color:var(--muted);">
+      <i class="fa-solid fa-moon"></i>Toggle Theme
+    </button>
+  </div>
+</nav>
+<div style="height:60px;"></div>
 
 <div class="content-wrap">
   <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:16px;"><span class="tg">About VoicePro</span></h1>
@@ -162,7 +202,7 @@
     <h2 style="font-size:1.4rem;margin-bottom:14px;"><i class="fa-solid fa-user-tie" style="color:var(--a2);margin-right:8px;"></i>Meet the Creator</h2>
     <p style="margin-bottom:12px;"><strong>VoicePro TTS Studio</strong> is built and maintained by <strong>Rupesh Jadyar</strong>, an independent software developer based in <strong>Maharashtra, India</strong>. With a passion for making technology accessible to everyone, Rupesh started VoicePro to solve the problem of expensive and complicated text-to-speech tools.</p>
     <p style="margin-bottom:12px;">As a solo developer, Rupesh personally handles all aspects of VoicePro — from backend engineering and neural voice integration to frontend design, SEO, and user support. Every feature in VoicePro has been crafted with attention to detail and a commitment to quality.</p>
-    <p style="margin-bottom:0;">VoicePro is supported through Google AdSense advertising, which allows the platform to remain completely free for all users worldwide. If you have questions, suggestions, or feedback, Rupesh personally responds to every message sent through the <a href="/contact.html" style="color:var(--a1);">Contact page</a>.</p>
+    <p style="margin-bottom:0;">VoicePro is supported through Google AdSense advertising, which allows the platform to remain completely free for all users worldwide. If you have questions, suggestions, or feedback, Rupesh personally responds to every message sent through the <a href="/contact" style="color:var(--a1);">Contact page</a>.</p>
   </div>
 
   <!-- STATS -->
@@ -313,7 +353,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq('f5',this)">How can I contact you or report a problem? <i class="fa-solid fa-chevron-down" style="font-size:.7rem;flex-shrink:0;"></i></div>
-      <div id="f5" class="faq-a">Use our <a href="contact.html" style="color:var(--a1);">Contact page</a> to report bugs, suggest improvements, or ask questions. We read every message and aim to respond within 48 hours on working days.</div>
+      <div id="f5" class="faq-a">Use our <a href="/contact" style="color:var(--a1);">Contact page</a> to report bugs, suggest improvements, or ask questions. We read every message and aim to respond within 48 hours on working days.</div>
     </div>
   </div>
 
@@ -383,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Cookie Consent Banner -->
 <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(7,11,18,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(59,158,255,0.15);padding:18px 24px;">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy.html" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
+    <p style="color:#dde4f0;font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:280px;font-family:'DM Sans',sans-serif;">🍪 We use cookies for analytics and personalized advertising (Google AdSense). By continuing to use this site, you consent to our use of cookies. <a href="/privacy" style="color:#3b9eff;text-decoration:underline;">Learn more</a></p>
     <div style="display:flex;gap:10px;flex-shrink:0;">
       <button onclick="acceptCookies()" style="padding:9px 22px;background:linear-gradient(135deg,#1d4ed8,#6d28d9);color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;">Accept All</button>
       <button onclick="rejectCookies()" style="padding:9px 22px;background:transparent;color:#b8c4d8;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .2s;">Reject Non-Essential</button>
