@@ -1340,6 +1340,13 @@ def service_worker():
 
 
 
+@app.route('/audio-editor')
+@app.route('/audio-editor.html')
+@app.route('/editor')
+def audio_editor():
+    return render_template('audio-editor.html')
+
+
 @app.route('/about')
 @app.route('/about.html')
 def about():

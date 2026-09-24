@@ -360,17 +360,34 @@
       }
 
       .nav-btn {
-        padding: 7px 14px;
+        padding: 7px 12px;
         border-radius: 10px;
-        font-size: .85rem;
+        font-size: .84rem;
         font-weight: 500;
         transition: all .18s;
         color: var(--muted);
         border: none;
         background: transparent;
-
         cursor: pointer;
         font-family: 'DM Sans', sans-serif;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        line-height: 1;
+        height: 36px;
+        box-sizing: border-box;
+      }
+
+      .nav-btn i {
+        font-size: .88rem;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0 !important;
       }
 
       .nav-btn:hover,
@@ -1426,8 +1443,8 @@
           <button onclick="navigate('home')" class="nav-btn nav-active" id="nav-home">
             <i class="fa-solid fa-house" style="margin-right:5px;"></i>Home
           </button>
-          <a href="#voice-audio-editor-section" class="nav-btn">
-            <i class="fa-solid fa-sliders" style="margin-right:5px;color:var(--a1);"></i>Audio Editor
+          <a href="/audio-editor" class="nav-btn">
+            <i class="fa-solid fa-sliders" style="color:var(--a1);"></i>Audio Editor
           </a>
           <a href="/about" class="nav-btn">
             <i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About
@@ -1464,8 +1481,8 @@
         <button onclick="navigate('home');toggleMobileMenu()" class="nav-btn" style="text-align:left;">
           <i class="fa-solid fa-house" style="margin-right:8px;"></i>Home
         </button>
-        <a href="#voice-audio-editor-section" class="nav-btn" onclick="toggleMobileMenu()">
-          <i class="fa-solid fa-sliders" style="margin-right:8px;color:var(--a1);"></i>🎛️ Audio Editor Studio
+        <a href="/audio-editor" class="nav-btn" onclick="toggleMobileMenu()">
+          <i class="fa-solid fa-sliders" style="margin-right:8px;color:var(--a1);"></i>Audio Editor Studio
         </a>
         <a href="/about" class="nav-btn">
           <i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About

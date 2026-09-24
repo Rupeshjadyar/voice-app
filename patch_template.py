@@ -67,7 +67,8 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
   .tg{{background:linear-gradient(130deg,var(--a1) 0%,var(--a2) 50%,var(--a3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}}
   .mono{{font-family:'Space Mono',monospace;}}
   .glass-nav{{background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);opacity:0.96;}}
-  .nav-btn{{padding:7px 14px;border-radius:10px;font-size:.85rem;font-weight:500;transition:all .18s;color:var(--muted);border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;}}
+  .nav-btn{{padding:7px 12px;border-radius:10px;font-size:.84rem;font-weight:500;transition:all .18s;color:var(--muted);border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;line-height:1;height:36px;box-sizing:border-box;}}
+  .nav-btn i{{font-size:.88rem;line-height:1;display:inline-flex;align-items:center;justify-content:center;margin-right:0!important;}}
   .nav-btn:hover,.nav-active{{color:var(--a1);background:rgba(59,158,255,0.09);}}
   .glass{{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);}}
   .gcard{{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);transition:border-color .25s,box-shadow .25s,transform .2s;}}
@@ -149,11 +150,12 @@ new_template = r'''PAGE_TEMPLATE = """<!DOCTYPE html>
       <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;">Voice<span style="color:var(--a1);">Pro</span></span>
     </a>
     <div class="nav-desktop" style="align-items:center;gap:6px;">
-      <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:5px;"></i>Home</a>
-      <a href="/about.html" class="nav-btn"><i class="fa-solid fa-circle-info" style="margin-right:5px;"></i>About</a>
-      <a href="/contact.html" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:5px;"></i>Contact</a>
-      <a href="/privacy.html" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:5px;"></i>Privacy</a>
-      <a href="/terms.html" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:5px;"></i>Terms</a>
+      <a href="/" class="nav-btn"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="/audio-editor" class="nav-btn"><i class="fa-solid fa-sliders" style="color:var(--a1);"></i>Audio Editor</a>
+      <a href="/about" class="nav-btn"><i class="fa-solid fa-circle-info"></i>About</a>
+      <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset"></i>Contact</a>
+      <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved"></i>Privacy</a>
+      <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract"></i>Terms</a>
       <a href="/tts/" class="nav-btn nav-active">All Languages TTS</a>
       <button onclick="toggleTheme()" class="nav-btn" id="theme-btn" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;padding:0;cursor:pointer;" aria-label="Toggle theme">
         <i class="fa-solid fa-moon"></i>
