@@ -1019,7 +1019,16 @@ def get_xtts_model():
     if XTTS_MODEL is not None:
         return XTTS_MODEL
     try:
+        os.environ["COQUI_TOS_AGREED"] = "1"
         import torch
+        import transformers.utils.import_utils
+        import transformers.pytorch_utils
+        
+        # Apply compatibility monkeypatches for PyTorch 2.x & Transformers
+        transformers.utils.import_utils.is_torchcodec_available = lambda: True
+        if not hasattr(transformers.pytorch_utils, 'isin_mps_friendly'):
+            transformers.pytorch_utils.isin_mps_friendly = getattr(torch, 'isin', lambda elements, test_elements: elements)
+            
         from TTS.api import TTS
         device = "cuda" if torch.cuda.is_available() else "cpu"
         logging.info(f"Loading Coqui XTTS-v2 Voice Cloning Model on {device}...")
@@ -1027,7 +1036,7 @@ def get_xtts_model():
         logging.info("[OK] XTTS-v2 Voice Cloning model loaded successfully!")
         return XTTS_MODEL
     except Exception as e:
-        logging.info(f"[INFO] Coqui TTS not yet installed or GPU loading deferred: {e}")
+        logging.info(f"[INFO] Coqui TTS model initialization info: {e}")
         return None
 
 
@@ -1172,41 +1181,70 @@ def clone_voice():
         logging.info(f"[CLONE] Profile: Gender={profile['gender']}, F0={profile['median_f0']:.1f}Hz, Lang={language}, Override={gender_override}")
         
         output_file_path = os.path.join(TEMP_FOLDER, f"cloned_{uuid.uuid4().hex}.mp3")
+        generated_method = None
         
-        # 1. Try local XTTS model if available
-        model = get_xtts_model()
-        if model is not None:
-            lang_map = {
-                'en-us': 'en', 'en-gb': 'en', 'en-au': 'en', 'en-in': 'en', 'en': 'en',
-                'hi-in': 'hi', 'hi': 'hi',
-                'es-es': 'es', 'es-mx': 'es', 'es': 'es',
-                'fr-fr': 'fr', 'fr-ca': 'fr', 'fr': 'fr',
-                'de-de': 'de', 'de': 'de',
-                'it-it': 'it', 'it': 'it',
-                'pt-br': 'pt', 'pt-pt': 'pt', 'pt': 'pt',
-                'pl-pl': 'pl', 'pl': 'pl',
-                'tr-tr': 'tr', 'tr': 'tr',
-                'ru-ru': 'ru', 'ru': 'ru',
-                'nl-nl': 'nl', 'nl': 'nl',
-                'cs-cz': 'cs', 'cs': 'cs',
-                'ar-sa': 'ar', 'ar-ae': 'ar', 'ar': 'ar',
-                'zh-cn': 'zh-cn', 'zh': 'zh-cn',
-                'hu-hu': 'hu', 'hu': 'hu',
-                'ko-kr': 'ko', 'ko': 'ko',
-                'ja-jp': 'ja', 'ja': 'ja'
-            }
-            xtts_lang = lang_map.get(language.lower(), language.split('-')[0] if '-' in language else language)
-            if xtts_lang not in ['en', 'es', 'fr', 'de', 'it', 'pt', 'pl', 'tr', 'ru', 'nl', 'cs', 'ar', 'zh-cn', 'hu', 'ko', 'ja', 'hi']:
-                xtts_lang = 'en'
-            model.tts_to_file(
-                text=text,
-                speaker_wav=ref_temp_path,
-                language=xtts_lang,
-                file_path=output_file_path
+        # 1. Try High-Fidelity Zero-Shot Neural Voice Cloning (F5-TTS Cloud GPU)
+        try:
+            from gradio_client import Client, handle_file
+            logging.info("[CLONE] Connecting to F5-TTS Zero-Shot Neural Engine...")
+            f5_client = Client("mrfakename/F5-TTS")
+            res_path = f5_client.predict(
+                ref_audio=handle_file(ref_temp_path),
+                ref_text="",
+                gen_text=text,
+                remove_silence=True,
+                api_name="/predict"
             )
-            generated_method = f"Coqui XTTS-v2 Neural Voice Clone ({profile['gender'].capitalize()})"
-        else:
-            # 2. Self-Hosted High-Fidelity Voice Synthesis with Native Pitch Adaptation
+            if res_path and os.path.exists(res_path) and os.path.getsize(res_path) > 1000:
+                import shutil
+                shutil.copyfile(res_path, output_file_path)
+                generated_method = f"F5-TTS Zero-Shot AI Voice Clone ({profile['gender'].capitalize()})"
+                logging.info(f"[CLONE] F5-TTS Neural Cloning successful -> {output_file_path}")
+        except Exception as f5_err:
+            logging.warning(f"[CLONE] F5-TTS Neural Cloning fallback: {f5_err}")
+            generated_method = None
+
+        # 2. Try local XTTS model if available
+        if not generated_method:
+            try:
+                model = get_xtts_model()
+                if model is not None:
+                    lang_map = {
+                        'en-us': 'en', 'en-gb': 'en', 'en-au': 'en', 'en-in': 'en', 'en': 'en',
+                        'hi-in': 'hi', 'hi': 'hi',
+                        'es-es': 'es', 'es-mx': 'es', 'es': 'es',
+                        'fr-fr': 'fr', 'fr-ca': 'fr', 'fr': 'fr',
+                        'de-de': 'de', 'de': 'de',
+                        'it-it': 'it', 'it': 'it',
+                        'pt-br': 'pt', 'pt-pt': 'pt', 'pt': 'pt',
+                        'pl-pl': 'pl', 'pl': 'pl',
+                        'tr-tr': 'tr', 'tr': 'tr',
+                        'ru-ru': 'ru', 'ru': 'ru',
+                        'nl-nl': 'nl', 'nl': 'nl',
+                        'cs-cz': 'cs', 'cs': 'cs',
+                        'ar-sa': 'ar', 'ar-ae': 'ar', 'ar': 'ar',
+                        'zh-cn': 'zh-cn', 'zh': 'zh-cn',
+                        'hu-hu': 'hu', 'hu': 'hu',
+                        'ko-kr': 'ko', 'ko': 'ko',
+                        'ja-jp': 'ja', 'ja': 'ja'
+                    }
+                    xtts_lang = lang_map.get(language.lower(), language.split('-')[0] if '-' in language else language)
+                    if xtts_lang not in ['en', 'es', 'fr', 'de', 'it', 'pt', 'pl', 'tr', 'ru', 'nl', 'cs', 'ar', 'zh-cn', 'hu', 'ko', 'ja', 'hi']:
+                        xtts_lang = 'en'
+                    model.tts_to_file(
+                        text=text,
+                        speaker_wav=ref_temp_path,
+                        language=xtts_lang,
+                        file_path=output_file_path
+                    )
+                    if os.path.exists(output_file_path) and os.path.getsize(output_file_path) > 1000:
+                        generated_method = f"Coqui XTTS-v2 Neural Voice Clone ({profile['gender'].capitalize()})"
+            except Exception as xtts_err:
+                logging.warning(f"[CLONE] XTTS synthesis deferred/fallback: {xtts_err}")
+                generated_method = None
+
+        if not generated_method or not os.path.exists(output_file_path) or os.path.getsize(output_file_path) < 1000:
+            # 3. Self-Hosted High-Fidelity Voice Synthesis with Native Pitch Adaptation
             if EDGE_AVAILABLE:
                 voice = get_voice(language, profile['voice_type'])
                 if not voice:
@@ -1225,8 +1263,9 @@ def clone_voice():
                 base_f0 = base_f0_map.get(voice, 120.0 if profile['is_male'] else 200.0)
                 ref_f0 = profile['median_f0']
                 
+                # Apply exact frequency difference to match recorded F0 pitch directly
                 f0_diff = ref_f0 - base_f0
-                f0_offset = int(max(-40, min(40, round(f0_diff))))
+                f0_offset = int(round(f0_diff))
                 pitch_str = f"{f0_offset:+d}Hz"
                 
                 logging.info(f"[CLONE] Selected Neural Voice: {voice} (BaseF0={base_f0}Hz, TargetF0={ref_f0:.1f}Hz, PitchOffset={pitch_str})")
