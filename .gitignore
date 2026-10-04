@@ -4,3 +4,9 @@ __pycache__/
 *.pyd
 .env
 .DS_Store
+*.wav
+*.mp3
+temp/
+temp_audio/
+scratch/
+logs/

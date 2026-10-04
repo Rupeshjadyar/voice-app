@@ -6,6 +6,4 @@ pyttsx3
 python-dotenv
 miniaudio
 numpy
-scipy
-coqui-tts
-torch
+scipy
