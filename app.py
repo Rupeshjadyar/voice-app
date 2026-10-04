@@ -1241,26 +1241,39 @@ def clone_voice():
         output_file_path = os.path.join(TEMP_FOLDER, f"cloned_{uuid.uuid4().hex}.mp3")
         generated_method = None
         
-        # 1. Try High-Fidelity Zero-Shot Neural Voice Cloning (F5-TTS Cloud GPU)
+        # 1. Try High-Fidelity Zero-Shot Neural Voice Cloning (F5-TTS Cloud GPU) with strict 8.5s timeout
         try:
-            from gradio_client import Client, handle_file
-            logging.info("[CLONE] Connecting to F5-TTS Zero-Shot Neural Engine...")
-            f5_client = Client("mrfakename/F5-TTS")
-            res_path = f5_client.predict(
-                ref_audio=handle_file(ref_temp_path),
-                ref_text="",
-                gen_text=text,
-                remove_silence=True,
-                api_name="/predict"
-            )
+            import concurrent.futures
+            
+            def _invoke_f5_neural():
+                from gradio_client import Client, handle_file
+                logging.info("[CLONE] Connecting to F5-TTS Zero-Shot Neural Engine (Hugging Face)...")
+                f5_client = Client("mrfakename/F5-TTS")
+                return f5_client.predict(
+                    ref_audio=handle_file(ref_temp_path),
+                    ref_text="",
+                    gen_text=text,
+                    remove_silence=True,
+                    api_name="/predict"
+                )
+
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                f5_future = executor.submit(_invoke_f5_neural)
+                # Allow 8.5s max for Hugging Face response to avoid Vercel gateway timeout
+                res_path = f5_future.result(timeout=8.5)
+
             if res_path and os.path.exists(res_path) and os.path.getsize(res_path) > 1000:
                 import shutil
                 shutil.copyfile(res_path, output_file_path)
                 generated_method = f"F5-TTS Zero-Shot AI Voice Clone ({profile['gender'].capitalize()})"
                 logging.info(f"[CLONE] F5-TTS Neural Cloning successful -> {output_file_path}")
+        except concurrent.futures.TimeoutError:
+            logging.warning("[CLONE] F5-TTS took longer than 8.5s. Switching immediately to Smart Voice-Clone Engine...")
+            generated_method = None
         except Exception as f5_err:
             logging.warning(f"[CLONE] F5-TTS Neural Cloning fallback: {f5_err}")
             generated_method = None
+
 
         # 2. Try local XTTS model if available
         if not generated_method:
