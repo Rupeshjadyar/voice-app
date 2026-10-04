@@ -1042,8 +1042,11 @@ def get_xtts_model():
 
 def analyze_voice_sample(audio_path):
     """
-    Extract vocal characteristics (Fundamental Pitch F0, Gender, Dynamics) from an audio file.
-    Decodes MP3, WAV, AAC, M4A, OGG natively via miniaudio or scipy/wave.
+    Extract multi-dimensional vocal characteristics:
+    1. Fundamental Pitch F0 (autocorrelation, median F0, pitch variance)
+    2. Speaking Tempo / Cadence (speech burst rate / syllables per second)
+    3. Vocal Timbre / Brightness (spectral centroid via FFT)
+    4. Gender classification (Male / Female)
     """
     default_profile = {
         'median_f0': 125.0,
@@ -1051,6 +1054,11 @@ def analyze_voice_sample(audio_path):
         'is_male': True,
         'voice_type': 'male-1',
         'pitch_str': '+0Hz',
+        'rate_str': '+0%',
+        'timbre': 'balanced',
+        'tempo_rate_str': '+0%',
+        'syllables_per_sec': 3.8,
+        'spectral_centroid': 1800.0,
     }
     
     try:
@@ -1088,7 +1096,7 @@ def analyze_voice_sample(audio_path):
         if samples is None or len(samples) < 800:
             return default_profile
 
-        # Pitch extraction via vectorized autocorrelation
+        # 1. Pitch extraction via vectorized autocorrelation
         window_size = int(sample_rate * 0.030)
         hop_size = int(sample_rate * 0.015)
         min_lag = max(1, int(sample_rate / 350))
@@ -1116,19 +1124,69 @@ def analyze_voice_sample(audio_path):
                 if 75 <= f0 <= 350:
                     f0_estimates.append(f0)
 
-        if not f0_estimates:
-            return default_profile
-
-        median_f0 = float(np.median(f0_estimates))
+        median_f0 = float(np.median(f0_estimates)) if f0_estimates else 125.0
         is_male = median_f0 < 165.0
         gender = 'male' if is_male else 'female'
         voice_type = 'male-1' if is_male else 'female-1'
+
+        # 2. Speaking Tempo / Cadence analysis (syllables / energy peaks per second)
+        frame_len = int(sample_rate * 0.040)
+        frame_hop = int(sample_rate * 0.020)
+        energies = []
+        for i in range(0, len(samples) - frame_len, frame_hop):
+            win = samples[i:i + frame_len].astype(np.float32)
+            energies.append(np.sqrt(np.mean(win ** 2)))
+        
+        energies = np.array(energies) if energies else np.array([300.0])
+        mean_energy = float(np.mean(energies))
+        thresh = max(150.0, mean_energy * 0.65)
+        
+        peaks = 0
+        in_peak = False
+        for e in energies:
+            if e > thresh and not in_peak:
+                peaks += 1
+                in_peak = True
+            elif e < thresh * 0.5:
+                in_peak = False
+                
+        duration_sec = max(0.5, len(samples) / float(sample_rate))
+        syllables_per_sec = float(peaks / duration_sec)
+        
+        # Human average speech rate ~ 3.6 to 4.2 bursts/sec
+        if syllables_per_sec > 4.6:
+            tempo_pct = min(22, int((syllables_per_sec - 4.0) * 12))
+            tempo_rate_str = f"+{tempo_pct}%"
+        elif syllables_per_sec < 3.0:
+            tempo_pct = min(20, int((3.8 - syllables_per_sec) * 12))
+            tempo_rate_str = f"-{tempo_pct}%"
+        else:
+            tempo_rate_str = "+0%"
+
+        # 3. Timbre / Spectral Centroid analysis (warmth vs brightness)
+        sample_slice = samples[:min(len(samples), sample_rate * 4)].astype(np.float32)
+        fft_vals = np.abs(np.fft.rfft(sample_slice))
+        freqs = np.fft.rfftfreq(len(sample_slice), 1.0 / sample_rate)
+        sum_fft = np.sum(fft_vals) + 1e-9
+        spectral_centroid = float(np.sum(freqs * fft_vals) / sum_fft)
+
+        if spectral_centroid < 1500.0:
+            timbre = 'deep'
+        elif spectral_centroid > 2350.0:
+            timbre = 'bright'
+        else:
+            timbre = 'balanced'
 
         return {
             'median_f0': median_f0,
             'gender': gender,
             'is_male': is_male,
-            'voice_type': voice_type
+            'voice_type': voice_type,
+            'rate_str': tempo_rate_str,
+            'tempo_rate_str': tempo_rate_str,
+            'syllables_per_sec': round(syllables_per_sec, 2),
+            'timbre': timbre,
+            'spectral_centroid': round(spectral_centroid, 1)
         }
     except Exception as e:
         logging.warning(f"Voice analysis fallback: {e}")
@@ -1244,44 +1302,121 @@ def clone_voice():
                 generated_method = None
 
         if not generated_method or not os.path.exists(output_file_path) or os.path.getsize(output_file_path) < 1000:
-            # 3. Self-Hosted High-Fidelity Voice Synthesis with Native Pitch Adaptation
+            # 3. High-Precision Neural Voice Matching with Multi-Attribute Adaptation
             if EDGE_AVAILABLE:
-                voice = get_voice(language, profile['voice_type'])
-                if not voice:
-                    voice = get_voice(language, 'male-1' if profile['is_male'] else 'female-1')
-                    
-                base_f0_map = {
-                    'en-US-GuyNeural': 120.0, 'en-US-AriaNeural': 195.0,
-                    'en-US-DavisNeural': 115.0, 'en-US-JennyNeural': 200.0,
-                    'en-US-TonyNeural': 110.0, 'en-US-ChristopherNeural': 115.0,
-                    'en-US-EricNeural': 118.0, 'en-US-SaraNeural': 195.0,
-                    'hi-IN-MadhurNeural': 120.0, 'hi-IN-SwaraNeural': 200.0,
-                    'mr-IN-ManoharNeural': 120.0, 'mr-IN-AarohiNeural': 200.0,
-                    'en-GB-RyanNeural': 115.0, 'en-GB-SoniaNeural': 195.0,
-                    'en-IN-NeerjaNeural': 200.0, 'en-IN-PrabhatNeural': 120.0,
+                # Rich catalog of neural voices with base F0 and tonal profile
+                VOICE_CATALOG_CLONE = {
+                    ('en-us', 'male'): [
+                        ('en-US-BrianNeural', 105.0, 'deep'),
+                        ('en-US-TonyNeural', 110.0, 'deep'),
+                        ('en-US-ChristopherNeural', 115.0, 'balanced'),
+                        ('en-US-EricNeural', 118.0, 'bright'),
+                        ('en-US-GuyNeural', 122.0, 'balanced'),
+                        ('en-US-DavisNeural', 130.0, 'bright'),
+                    ],
+                    ('en-us', 'female'): [
+                        ('en-US-MichelleNeural', 185.0, 'deep'),
+                        ('en-US-SaraNeural', 192.0, 'balanced'),
+                        ('en-US-JennyNeural', 198.0, 'balanced'),
+                        ('en-US-AriaNeural', 208.0, 'bright'),
+                        ('en-US-EmmaNeural', 215.0, 'bright'),
+                        ('en-US-AnaNeural', 245.0, 'bright'),
+                    ],
+                    ('en-gb', 'male'): [
+                        ('en-GB-RyanNeural', 114.0, 'deep'),
+                        ('en-GB-ThomasNeural', 122.0, 'balanced'),
+                    ],
+                    ('en-gb', 'female'): [
+                        ('en-GB-SoniaNeural', 195.0, 'balanced'),
+                        ('en-GB-LibbyNeural', 210.0, 'bright'),
+                    ],
+                    ('en-in', 'male'): [
+                        ('en-IN-PrabhatNeural', 118.0, 'balanced'),
+                    ],
+                    ('en-in', 'female'): [
+                        ('en-IN-NeerjaNeural', 200.0, 'balanced'),
+                    ],
+                    ('hi-in', 'male'): [
+                        ('hi-IN-MadhurNeural', 120.0, 'balanced'),
+                        ('en-IN-PrabhatNeural', 118.0, 'deep'),
+                    ],
+                    ('hi-in', 'female'): [
+                        ('hi-IN-SwaraNeural', 202.0, 'balanced'),
+                        ('en-IN-NeerjaNeural', 198.0, 'deep'),
+                    ],
+                    ('mr-in', 'male'): [('mr-IN-ManoharNeural', 120.0, 'balanced')],
+                    ('mr-in', 'female'): [('mr-IN-AarohiNeural', 200.0, 'balanced')],
+                    ('gu-in', 'male'): [('gu-IN-NiranjanNeural', 120.0, 'balanced')],
+                    ('gu-in', 'female'): [('gu-IN-DhwaniNeural', 200.0, 'balanced')],
+                    ('bn-in', 'male'): [('bn-IN-BashkarNeural', 120.0, 'balanced')],
+                    ('bn-in', 'female'): [('bn-IN-TanishaaNeural', 200.0, 'balanced')],
+                    ('ta-in', 'male'): [('ta-IN-ValluvarNeural', 120.0, 'balanced')],
+                    ('ta-in', 'female'): [('ta-IN-PallaviNeural', 200.0, 'balanced')],
+                    ('te-in', 'male'): [('te-IN-MohanNeural', 120.0, 'balanced')],
+                    ('te-in', 'female'): [('te-IN-ShrutiNeural', 200.0, 'balanced')],
+                    ('kn-in', 'male'): [('kn-IN-GaganNeural', 120.0, 'balanced')],
+                    ('kn-in', 'female'): [('kn-IN-SapnaNeural', 200.0, 'balanced')],
+                    ('ml-in', 'male'): [('ml-IN-MidhunNeural', 120.0, 'balanced')],
+                    ('ml-in', 'female'): [('ml-IN-SobhanaNeural', 200.0, 'balanced')],
+                    ('pa-in', 'male'): [('pa-IN-OjasNeural', 120.0, 'balanced')],
+                    ('pa-in', 'female'): [('pa-IN-OjasNeural', 200.0, 'balanced')],
+                    ('ur-pk', 'male'): [('ur-PK-AsadNeural', 120.0, 'balanced')],
+                    ('ur-pk', 'female'): [('ur-PK-UzmaNeural', 200.0, 'balanced')],
+                    ('es-es', 'male'): [('es-ES-AlvaroNeural', 120.0, 'balanced')],
+                    ('es-es', 'female'): [('es-ES-ElviraNeural', 200.0, 'balanced')],
+                    ('fr-fr', 'male'): [('fr-FR-HenriNeural', 120.0, 'balanced')],
+                    ('fr-fr', 'female'): [('fr-FR-DeniseNeural', 200.0, 'balanced')],
+                    ('de-de', 'male'): [('de-DE-ConradNeural', 118.0, 'balanced')],
+                    ('de-de', 'female'): [('de-DE-KatjaNeural', 198.0, 'balanced')],
                 }
-                base_f0 = base_f0_map.get(voice, 120.0 if profile['is_male'] else 200.0)
+
+                lang_key = language.lower()
+                gender_key = profile['gender']
+                candidates = VOICE_CATALOG_CLONE.get((lang_key, gender_key))
+                if not candidates and lang_key.startswith('en'):
+                    candidates = VOICE_CATALOG_CLONE.get(('en-us', gender_key))
+
+                selected_voice = None
+                base_f0 = 120.0 if profile['is_male'] else 200.0
+
+                if candidates:
+                    # Select best voice candidate minimizing pitch distance and penalizing timbre mismatch
+                    best_score = float('inf')
+                    for c_voice, c_f0, c_timbre in candidates:
+                        f0_dist = abs(c_f0 - profile['median_f0'])
+                        timbre_penalty = 0.0 if c_timbre == profile['timbre'] else 6.0
+                        score = f0_dist + timbre_penalty
+                        if score < best_score:
+                            best_score = score
+                            selected_voice = c_voice
+                            base_f0 = c_f0
+                else:
+                    selected_voice = get_voice(language, profile['voice_type'])
+                    if not selected_voice:
+                        selected_voice = get_voice(language, 'male-1' if profile['is_male'] else 'female-1')
+
                 ref_f0 = profile['median_f0']
-                
-                # Apply exact frequency difference to match recorded F0 pitch directly
                 f0_diff = ref_f0 - base_f0
-                f0_offset = int(round(f0_diff))
+                f0_offset = int(max(-40, min(40, round(f0_diff))))
                 pitch_str = f"{f0_offset:+d}Hz"
-                
-                logging.info(f"[CLONE] Selected Neural Voice: {voice} (BaseF0={base_f0}Hz, TargetF0={ref_f0:.1f}Hz, PitchOffset={pitch_str})")
-                
+                rate_str = profile.get('tempo_rate_str', '+0%')
+
+                logging.info(f"[CLONE] Selected Neural Voice: {selected_voice} (BaseF0={base_f0}Hz, TargetF0={ref_f0:.1f}Hz, Pitch={pitch_str}, Tempo={rate_str}, Timbre={profile['timbre']})")
+
                 ok = asyncio.run(_generate_edge(
-                    text, voice, rate_str="+0%", pitch_str=pitch_str, volume_str="+0%",
+                    text, selected_voice, rate_str=rate_str, pitch_str=pitch_str, volume_str="+0%",
                     style="general", filepath=output_file_path, natural_mode=True
                 ))
-                
+
                 if not ok or not os.path.exists(output_file_path) or os.path.getsize(output_file_path) < 500:
                     asyncio.run(_generate_edge(
-                        text, voice, rate_str="+0%", pitch_str="+0Hz", volume_str="+0%",
+                        text, selected_voice, rate_str="+0%", pitch_str="+0Hz", volume_str="+0%",
                         style="general", filepath=output_file_path, natural_mode=False
                     ))
-                    
-                generated_method = f"AI Voice Clone · {profile['gender'].capitalize()} · {profile['median_f0']:.0f}Hz Match"
+
+                tempo_badge = f"{rate_str} Speed" if rate_str != "+0%" else "Natural Tempo"
+                timbre_badge = profile['timbre'].capitalize()
+                generated_method = f"Smart AI Voice Clone · {profile['gender'].capitalize()} · {profile['median_f0']:.0f}Hz · {tempo_badge} · {timbre_badge}"
             else:
                 return jsonify({
                     "success": False,
