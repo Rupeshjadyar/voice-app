@@ -142,6 +142,87 @@
   }
 
 
+    /* ALL TOOLS DROPDOWN */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--nav-bg, #ffffff);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 16px 40px -10px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.03);
+      padding: 8px;
+      min-width: 290px;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.show .nav-dropdown-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      animation: fadeInDown 0.18s ease-out;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translate(-50%, -6px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--txt);
+      transition: all 0.16s ease;
+    }
+    .nav-dropdown-item:hover, .nav-dropdown-item.active {
+      background: var(--panel);
+      transform: translateX(2px);
+    }
+    .nav-dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .nav-dropdown-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .nav-dropdown-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.84rem;
+      color: var(--txt);
+      display: flex;
+      align-items: center;
+    }
+    .nav-dropdown-badge {
+      font-size: 0.6rem;
+      background: linear-gradient(135deg, var(--a1), var(--a3));
+      color: #fff;
+      padding: 1px 6px;
+      border-radius: 100px;
+      margin-left: 6px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .nav-dropdown-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.25;
+      margin-top: 1px;
+    }
   </style>
 </head>
 <body>
@@ -157,7 +238,44 @@
     </a>
     <div class="nav-desktop" style="align-items:center;gap:6px;">
       <a href="/" class="nav-btn"><i class="fa-solid fa-house"></i>Home</a>
-      <a href="/audio-editor" class="nav-btn"><i class="fa-solid fa-sliders" style="color:var(--a1);"></i>Audio Editor</a>
+      
+      <!-- ALL TOOLS DROPDOWN MENU -->
+      <div class="nav-dropdown">
+        <button class="nav-btn nav-dropdown-btn" onclick="toggleToolsDropdown(event)" aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-toolbox" style="color:var(--a1);"></i>All Tools <i class="fa-solid fa-chevron-down" style="font-size:0.65rem;margin-left:2px;opacity:0.7;"></i>
+        </button>
+        <div class="nav-dropdown-menu" id="tools-dropdown-menu">
+          <a href="/" class="nav-dropdown-item">
+            <div class="nav-dropdown-icon" style="background:rgba(59,158,255,0.12);color:var(--a1);"><i class="fa-solid fa-microphone-lines"></i></div>
+            <div class="nav-dropdown-text">
+              <span class="nav-dropdown-title">Text to Speech (AI TTS)</span>
+              <span class="nav-dropdown-desc">100+ languages & natural neural AI voices</span>
+            </div>
+          </a>
+          <a href="/audio-editor" class="nav-dropdown-item">
+            <div class="nav-dropdown-icon" style="background:rgba(124,95,230,0.12);color:var(--a2);"><i class="fa-solid fa-sliders"></i></div>
+            <div class="nav-dropdown-text">
+              <span class="nav-dropdown-title">Audio Editor Studio</span>
+              <span class="nav-dropdown-desc">Trim, pitch, tempo, EQ & studio DSP effects</span>
+            </div>
+          </a>
+          <a href="/voice-cloning" class="nav-dropdown-item">
+            <div class="nav-dropdown-icon" style="background:rgba(219,39,119,0.12);color:var(--a3);"><i class="fa-solid fa-dna"></i></div>
+            <div class="nav-dropdown-text">
+              <span class="nav-dropdown-title">AI Voice Cloning <span class="nav-dropdown-badge">PRO</span></span>
+              <span class="nav-dropdown-desc">Clone any voice in any language with auto detect</span>
+            </div>
+          </a>
+          <a href="/tts/" class="nav-dropdown-item">
+            <div class="nav-dropdown-icon" style="background:rgba(16,185,129,0.12);color:var(--ok);"><i class="fa-solid fa-globe"></i></div>
+            <div class="nav-dropdown-text">
+              <span class="nav-dropdown-title">All Languages Directory</span>
+              <span class="nav-dropdown-desc">Browse regional & global dialect engines</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
       <a href="/about" class="nav-btn nav-active"><i class="fa-solid fa-circle-info"></i>About</a>
       <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper"></i>Blog</a>
       <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:5px;"></i>Languages</a>
@@ -173,10 +291,14 @@
     </button>
   </div>
   <div id="mobile-menu" class="nav-mobile-menu">
-    <a href="/" class="nav-btn"><i class="fa-solid fa-house" style="margin-right:8px;"></i>Home</a>
+    <div style="font-size:0.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:6px 12px 2px;">⚡ All Audio Tools</div>
+    <a href="/" class="nav-btn" onclick="toggleMobileMenu()"><i class="fa-solid fa-microphone-lines" style="color:var(--a1);"></i>Text to Speech (AI TTS)</a>
+    <a href="/audio-editor" class="nav-btn" onclick="toggleMobileMenu()"><i class="fa-solid fa-sliders" style="color:var(--a2);"></i>Audio Editor Studio</a>
+    <a href="/voice-cloning" class="nav-btn" onclick="toggleMobileMenu()"><i class="fa-solid fa-dna" style="color:var(--a3);"></i>AI Voice Cloning <span style="font-size:0.62rem;background:linear-gradient(135deg,var(--a1),var(--a3));color:#fff;padding:1px 5px;border-radius:100px;margin-left:6px;font-weight:700;">PRO</span></a>
+    <a href="/tts/" class="nav-btn" onclick="toggleMobileMenu()"><i class="fa-solid fa-globe" style="color:var(--ok);"></i>All Languages TTS</a>
+    <div style="height:1px;background:var(--border);margin:4px 0;"></div>
     <a href="/about" class="nav-btn nav-active"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>About</a>
     <a href="/blog" class="nav-btn"><i class="fa-solid fa-newspaper" style="margin-right:8px;"></i>Blog</a>
-    <a href="/tts/" class="nav-btn"><i class="fa-solid fa-globe" style="margin-right:8px;"></i>Languages</a>
     <a href="/contact" class="nav-btn"><i class="fa-solid fa-headset" style="margin-right:8px;"></i>Contact</a>
     <a href="/privacy" class="nav-btn"><i class="fa-solid fa-shield-halved" style="margin-right:8px;"></i>Privacy</a>
     <a href="/terms" class="nav-btn"><i class="fa-solid fa-file-contract" style="margin-right:8px;"></i>Terms</a>
@@ -390,6 +512,18 @@ function toggleFaq(id,el){
 
 
 <script>
+function toggleToolsDropdown(e) {
+  if (e) e.stopPropagation();
+  const dropdown = document.querySelector('.nav-dropdown');
+  if (dropdown) dropdown.classList.toggle('show');
+}
+document.addEventListener('click', (e) => {
+  const dropdown = document.querySelector('.nav-dropdown');
+  if (dropdown && !dropdown.contains(e.target)) {
+    dropdown.classList.remove('show');
+  }
+});
+
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
   if (menu) {
