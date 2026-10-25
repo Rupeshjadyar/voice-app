@@ -74,12 +74,16 @@ def add_security_headers(response):
 #  Voice Mapping
 # ─────────────────────────────────────────────
 VOICE_MAPPING = {
-    ('en-US','female-1'): 'en-US-AriaNeural',
-    ('en-US','female-2'): 'en-US-JennyNeural',
-    ('en-US','female-3'): 'en-US-EmmaNeural',
-    ('en-US','male-1'):   'en-US-GuyNeural',
-    ('en-US','male-2'):   'en-US-RogerNeural',
-    ('en-US','male-3'):   'en-US-SteffanNeural',
+    ('en-US','female-1'): 'en-US-AvaMultilingualNeural',
+    ('en-US','female-2'): 'en-US-AriaNeural',
+    ('en-US','female-3'): 'en-US-EmmaMultilingualNeural',
+    ('en-US','female-4'): 'en-US-JennyNeural',
+    ('en-US','female-5'): 'en-US-MichelleNeural',
+    ('en-US','male-1'):   'en-US-AndrewMultilingualNeural',
+    ('en-US','male-2'):   'en-US-BrianMultilingualNeural',
+    ('en-US','male-3'):   'en-US-ChristopherNeural',
+    ('en-US','male-4'):   'en-US-GuyNeural',
+    ('en-US','male-5'):   'en-US-EricNeural',
     ('en-US','young'):    'en-US-AvaNeural',
     ('en-US','old'):      'en-US-BrianNeural',
     ('en-US','kid-f1'):   'en-US-AnaNeural',
@@ -199,12 +203,26 @@ VOICE_MAPPING = {
     ('en-US','senior-professor'):'en-US-SteffanNeural',
     ('en-GB','female-1'): 'en-GB-SoniaNeural',
     ('en-GB','female-2'): 'en-GB-LibbyNeural',
+    ('en-GB','female-3'): 'en-GB-MaisieNeural',
+    ('en-GB','female-4'): 'en-US-AvaMultilingualNeural',
+    ('en-GB','female-5'): 'en-US-EmmaMultilingualNeural',
     ('en-GB','male-1'):   'en-GB-RyanNeural',
     ('en-GB','male-2'):   'en-GB-ThomasNeural',
+    ('en-GB','male-3'):   'en-AU-WilliamMultilingualNeural',
+    ('en-GB','male-4'):   'en-US-AndrewMultilingualNeural',
+    ('en-GB','male-5'):   'en-US-BrianMultilingualNeural',
     ('en-AU','female-1'): 'en-AU-NatashaNeural',
     ('en-AU','male-1'):   'en-AU-WilliamMultilingualNeural',
-    ('en-IN','female-1'): 'en-IN-NeerjaNeural',
+    ('en-IN','female-1'): 'en-IN-NeerjaExpressiveNeural',
+    ('en-IN','female-2'): 'en-IN-NeerjaNeural',
+    ('en-IN','female-3'): 'en-US-AvaMultilingualNeural',
+    ('en-IN','female-4'): 'en-US-EmmaMultilingualNeural',
+    ('en-IN','female-5'): 'hi-IN-SwaraNeural',
     ('en-IN','male-1'):   'en-IN-PrabhatNeural',
+    ('en-IN','male-2'):   'en-US-AndrewMultilingualNeural',
+    ('en-IN','male-3'):   'en-US-BrianMultilingualNeural',
+    ('en-IN','male-4'):   'en-AU-WilliamMultilingualNeural',
+    ('en-IN','male-5'):   'hi-IN-MadhurNeural',
     ('en-CA','female-1'): 'en-CA-ClaraNeural',
     ('en-CA','male-1'):   'en-CA-LiamNeural',
     ('en-NG','female-1'): 'en-NG-EzinneNeural',
@@ -212,11 +230,15 @@ VOICE_MAPPING = {
     ('en-ZA','female-1'): 'en-ZA-LeahNeural',
     ('en-ZA','male-1'):   'en-ZA-LukeNeural',
     ('hi-IN','female-1'): 'hi-IN-SwaraNeural',
-    ('hi-IN','female-2'): 'hi-IN-SwaraNeural',
-    ('hi-IN','female-3'): 'hi-IN-SwaraNeural',
+    ('hi-IN','female-2'): 'mr-IN-AarohiNeural',
+    ('hi-IN','female-3'): 'en-US-AvaMultilingualNeural',
+    ('hi-IN','female-4'): 'en-US-EmmaMultilingualNeural',
+    ('hi-IN','female-5'): 'fr-FR-VivienneMultilingualNeural',
     ('hi-IN','male-1'):   'hi-IN-MadhurNeural',
-    ('hi-IN','male-2'):   'hi-IN-MadhurNeural',
-    ('hi-IN','male-3'):   'hi-IN-MadhurNeural',
+    ('hi-IN','male-2'):   'mr-IN-ManoharNeural',
+    ('hi-IN','male-3'):   'en-US-AndrewMultilingualNeural',
+    ('hi-IN','male-4'):   'en-US-BrianMultilingualNeural',
+    ('hi-IN','male-5'):   'en-AU-WilliamMultilingualNeural',
     ('hi-IN','young'):    'hi-IN-SwaraNeural',
     ('hi-IN','old'):      'hi-IN-MadhurNeural',
     ('hi-IN','kid-f1'):   'hi-IN-SwaraNeural',
@@ -335,15 +357,15 @@ VOICE_MAPPING = {
     ('hi-IN','senior-wise-m'):   'hi-IN-MadhurNeural',
     ('hi-IN','senior-professor'):'hi-IN-MadhurNeural',
     ('mr-IN','female-1'): 'mr-IN-AarohiNeural',
-    ('mr-IN','female-2'): 'mr-IN-AarohiNeural',
-    ('mr-IN','female-3'): 'mr-IN-AarohiNeural',
-    ('mr-IN','female-4'): 'mr-IN-AarohiNeural',
-    ('mr-IN','female-5'): 'mr-IN-AarohiNeural',
+    ('mr-IN','female-2'): 'hi-IN-SwaraNeural',
+    ('mr-IN','female-3'): 'en-US-AvaMultilingualNeural',
+    ('mr-IN','female-4'): 'en-US-EmmaMultilingualNeural',
+    ('mr-IN','female-5'): 'fr-FR-VivienneMultilingualNeural',
     ('mr-IN','male-1'):   'mr-IN-ManoharNeural',
-    ('mr-IN','male-2'):   'mr-IN-ManoharNeural',
-    ('mr-IN','male-3'):   'mr-IN-ManoharNeural',
-    ('mr-IN','male-4'):   'mr-IN-ManoharNeural',
-    ('mr-IN','male-5'):   'mr-IN-ManoharNeural',
+    ('mr-IN','male-2'):   'hi-IN-MadhurNeural',
+    ('mr-IN','male-3'):   'en-US-AndrewMultilingualNeural',
+    ('mr-IN','male-4'):   'en-US-BrianMultilingualNeural',
+    ('mr-IN','male-5'):   'en-AU-WilliamMultilingualNeural',
     ('mr-IN','young'):    'mr-IN-AarohiNeural',
     ('mr-IN','old'):      'mr-IN-ManoharNeural',
     ('mr-IN','kid-f1'):   'mr-IN-AarohiNeural',
@@ -495,7 +517,7 @@ VOICE_MAPPING = {
 #  Guarantees 100% correct native Male and Female neural voices for all 104 languages
 # ============================================================
 COMPLETE_VOICE_CATALOG = {
-    'hi-IN': {'name': 'Hindi', 'primary_female': 'hi-IN-SwaraNeural', 'primary_male': 'hi-IN-MadhurNeural', 'females': ["hi-IN-SwaraNeural"], 'males': ["hi-IN-MadhurNeural"]},
+    'hi-IN': {'name': 'Hindi', 'primary_female': 'hi-IN-SwaraNeural', 'primary_male': 'hi-IN-MadhurNeural', 'females': ["hi-IN-SwaraNeural", "mr-IN-AarohiNeural", "en-US-AvaMultilingualNeural", "en-US-EmmaMultilingualNeural", "fr-FR-VivienneMultilingualNeural"], 'males': ["hi-IN-MadhurNeural", "mr-IN-ManoharNeural", "en-US-AndrewMultilingualNeural", "en-US-BrianMultilingualNeural", "en-AU-WilliamMultilingualNeural"]},
     'mr-IN': {'name': 'Marathi', 'primary_female': 'mr-IN-AarohiNeural', 'primary_male': 'mr-IN-ManoharNeural', 'females': ["mr-IN-AarohiNeural"], 'males': ["mr-IN-ManoharNeural"]},
     'gu-IN': {'name': 'Gujarati', 'primary_female': 'gu-IN-DhwaniNeural', 'primary_male': 'gu-IN-NiranjanNeural', 'females': ["gu-IN-DhwaniNeural"], 'males': ["gu-IN-NiranjanNeural"]},
     'ta-IN': {'name': 'Tamil', 'primary_female': 'ta-IN-PallaviNeural', 'primary_male': 'ta-IN-ValluvarNeural', 'females': ["ta-IN-PallaviNeural"], 'males': ["ta-IN-ValluvarNeural"]},
@@ -509,7 +531,7 @@ COMPLETE_VOICE_CATALOG = {
     'ur-PK': {'name': 'Urdu', 'primary_female': 'ur-PK-UzmaNeural', 'primary_male': 'ur-PK-AsadNeural', 'females': ["ur-PK-UzmaNeural"], 'males': ["ur-PK-AsadNeural"]},
     'ne-NP': {'name': 'Nepali', 'primary_female': 'ne-NP-HemkalaNeural', 'primary_male': 'ne-NP-SagarNeural', 'females': ["ne-NP-HemkalaNeural"], 'males': ["ne-NP-SagarNeural"]},
     'si-LK': {'name': 'Sinhala', 'primary_female': 'si-LK-ThiliniNeural', 'primary_male': 'si-LK-SameeraNeural', 'females': ["si-LK-ThiliniNeural"], 'males': ["si-LK-SameeraNeural"]},
-    'en-US': {'name': 'English', 'primary_female': 'en-US-AvaNeural', 'primary_male': 'en-US-AndrewNeural', 'females': ["en-US-AvaNeural", "en-US-EmmaNeural", "en-US-AnaNeural", "en-US-AriaNeural", "en-US-AvaMultilingualNeural", "en-US-EmmaMultilingualNeural", "en-US-JennyNeural", "en-US-MichelleNeural"], 'males': ["en-US-AndrewNeural", "en-US-BrianNeural", "en-US-AndrewMultilingualNeural", "en-US-BrianMultilingualNeural", "en-US-ChristopherNeural", "en-US-EricNeural", "en-US-GuyNeural", "en-US-RogerNeural", "en-US-SteffanNeural"]},
+    'en-US': {'name': 'English', 'primary_female': 'en-US-AvaNeural', 'primary_male': 'en-US-AndrewNeural', 'females': ["en-US-AvaNeural", "en-US-AriaNeural", "en-US-EmmaNeural", "en-US-JennyNeural", "en-US-MichelleNeural"], 'males': ["en-US-AndrewNeural", "en-US-BrianNeural", "en-US-ChristopherNeural", "en-US-GuyNeural", "en-US-EricNeural"]},
     'en-GB': {'name': 'English', 'primary_female': 'en-GB-LibbyNeural', 'primary_male': 'en-GB-RyanNeural', 'females': ["en-GB-LibbyNeural", "en-GB-MaisieNeural", "en-GB-SoniaNeural"], 'males': ["en-GB-RyanNeural", "en-GB-ThomasNeural"]},
     'en-AU': {'name': 'English', 'primary_female': 'en-AU-NatashaNeural', 'primary_male': 'en-AU-WilliamMultilingualNeural', 'females': ["en-AU-NatashaNeural"], 'males': ["en-AU-WilliamMultilingualNeural"]},
     'en-IN': {'name': 'English', 'primary_female': 'en-IN-NeerjaExpressiveNeural', 'primary_male': 'en-IN-PrabhatNeural', 'females': ["en-IN-NeerjaExpressiveNeural", "en-IN-NeerjaNeural"], 'males': ["en-IN-PrabhatNeural"]},
@@ -738,22 +760,31 @@ def determine_voice_gender(voice_type: str) -> str:
     return 'female'
 
 
+# =============================================================================
+# 🔒 CRITICAL SYSTEM RULE: ZERO COLLISION ON ALL 104 LANGUAGES
+# female-1..5 and male-1..5 MUST resolve to 5 unique models in EVERY language!
+# Run 'python test_voice_rules.py' to verify integrity before making changes.
+# =============================================================================
 def get_voice(lang: str, voice_type: str) -> str:
     lang_clean = (lang or 'en-US').strip()
     vt_clean = (voice_type or 'female-1').strip()
     gender = determine_voice_gender(vt_clean)
 
-    # 1. Direct match in VOICE_MAPPING
-    voice = VOICE_MAPPING.get((lang_clean, vt_clean))
-    if voice:
-        return voice
+    # 1. Direct match in VOICE_MAPPING (for tuned languages and character voices)
+    tuned_languages = {'en-US', 'en-GB', 'en-IN', 'hi-IN', 'mr-IN'}
+    is_top10 = any(vt_clean == f'female-{i}' or vt_clean == f'male-{i}' for i in range(1, 6))
+    if not is_top10 or lang_clean in tuned_languages:
+        voice = VOICE_MAPPING.get((lang_clean, vt_clean))
+        if voice:
+            return voice
     
-    # Direct case-insensitive match in VOICE_MAPPING
-    lang_lower = lang_clean.lower()
-    vt_lower = vt_clean.lower()
-    for (l_code, vt_code), v in VOICE_MAPPING.items():
-        if l_code.lower() == lang_lower and vt_code.lower() == vt_lower:
-            return v
+    # Direct case-insensitive match in VOICE_MAPPING (for tuned languages and character voices)
+    if not is_top10 or lang_clean in tuned_languages:
+        lang_lower = lang_clean.lower()
+        vt_lower = vt_clean.lower()
+        for (l_code, vt_code), v in VOICE_MAPPING.items():
+            if l_code.lower() == lang_lower and vt_code.lower() == vt_lower:
+                return v
 
     # 2. Comprehensive 104-Language Catalog with Strict Gender Enforcement
     catalog_entry = COMPLETE_VOICE_CATALOG.get(lang_clean)
@@ -765,20 +796,40 @@ def get_voice(lang: str, voice_type: str) -> str:
 
     if catalog_entry:
         if gender == 'male':
-            males = catalog_entry.get('males', [])
+            males = list(dict.fromkeys(catalog_entry.get('males', [])))
             if males:
                 import re
                 m_num = re.search(r'(\d+)', vt_clean)
-                idx = (int(m_num.group(1)) - 1) % len(males) if m_num else 0
-                return males[idx]
+                idx = (int(m_num.group(1)) - 1) if m_num else 0
+                if idx < len(males):
+                    return males[idx]
+                multilingual_males = [
+                    'en-US-AndrewMultilingualNeural',
+                    'en-US-BrianMultilingualNeural',
+                    'en-AU-WilliamMultilingualNeural',
+                    'de-DE-FlorianMultilingualNeural',
+                    'fr-FR-RemyMultilingualNeural'
+                ]
+                extra = [v for v in multilingual_males if v not in males]
+                return extra[(idx - len(males)) % len(extra)]
             return catalog_entry.get('primary_male', 'en-US-GuyNeural')
         else:
-            females = catalog_entry.get('females', [])
+            females = list(dict.fromkeys(catalog_entry.get('females', [])))
             if females:
                 import re
                 f_num = re.search(r'(\d+)', vt_clean)
-                idx = (int(f_num.group(1)) - 1) % len(females) if f_num else 0
-                return females[idx]
+                idx = (int(f_num.group(1)) - 1) if f_num else 0
+                if idx < len(females):
+                    return females[idx]
+                multilingual_females = [
+                    'en-US-AvaMultilingualNeural',
+                    'en-US-EmmaMultilingualNeural',
+                    'fr-FR-VivienneMultilingualNeural',
+                    'de-DE-SeraphinaMultilingualNeural',
+                    'pt-BR-ThalitaMultilingualNeural'
+                ]
+                extra = [v for v in multilingual_females if v not in females]
+                return extra[(idx - len(females)) % len(extra)]
             return catalog_entry.get('primary_female', 'en-US-AriaNeural')
 
     # 3. Fallback by language prefix (e.g. es-CO -> es)
@@ -873,8 +924,13 @@ def detect_text_language(text: str) -> str:
     if re.search(r'[\u10A0-\u10FF]', text):
         return 'ka-GE'
 
-    # 4. European & Latin script languages (Scoring-based to prevent cross-language overlap)
+    # 4. Hinglish / Conversational Romanized Hindi
     lower_text = text.lower()
+    hinglish_matches = len(re.findall(r'\b(hai|hain|kya|kyun|kaise|karo|karna|raha|rahi|rahe|mujhe|tumhe|hoga|hogi|hoge|aaj|kal|bhai|yaar|acha|accha|bohot|bahut|chahiye|shukriya|namaste|karta|karti|karte|apna|apni|apne|kripya|mera|meri|mere|tera|teri|tere|humara|aapka|dost|dosto|kuch|nahi|suno|dekho|baat)\b', lower_text))
+    if hinglish_matches >= 2:
+        return 'hi-IN'
+
+    # 5. European & Latin script languages (Scoring-based to prevent cross-language overlap)
     en_score = len(re.findall(r'\b(the|this|that|with|from|have|you|are|they|will|what|when|where|how|and|for|sample|audio|voice|text|speech|hello|world)\b', lower_text))
     es_score = len(re.findall(r'\b(el|la|los|las|un|una|unos|unas|pero|por|para|con|este|esta|esto|que|como|hola|gracias|buenos|días|amigo)\b', lower_text)) + (3 if any(c in lower_text for c in ['¿', '¡', 'ñ', 'á', 'í', 'ó', 'ú']) else 0)
     fr_score = len(re.findall(r'\b(le|la|les|des|mais|donc|ce|cette|ces|dans|sur|avec|pour|qui|que|bonjour|merci|monde)\b', lower_text)) + (3 if any(c in lower_text for c in ['œ', 'æ', 'ç', 'à', 'è', 'ê', 'ë', 'î', 'ï', 'ô', 'ù', 'û']) else 0)
@@ -1057,6 +1113,9 @@ def build_natural_text(text):
     # Normalize 3+ consecutive newlines → 2 (paragraph pause)
     processed = _re.sub(r'\n{3,}', '\n\n', processed)
 
+    # Ensure natural pause after full stop, purna viram (।), exclamation, and question mark
+    processed = _re.sub(r'([.!?।॥])\s*', r'\1 ', processed)
+
     return processed.strip()
 
 
@@ -1176,18 +1235,23 @@ def stats():
     return jsonify({"total": total, "today": today})
 
 
+# =============================================================================
+# 🔒 CRITICAL SYSTEM RULE: DO NOT MODIFY CORE TOP 10 VOICES (Zero Distortion)
+# female-1..5 and male-1..5 MUST ALWAYS HAVE rate_mult: 1.00 and pitch_add: 0!
+# Run 'python test_voice_rules.py' to verify integrity before making changes.
+# =============================================================================
 VOICE_TYPE_MODIFIERS = {
-    # ── Core Top 10 Voices (5 Female, 5 Male) ──
-    'female-1':         {'rate_mult': 1.00, 'pitch_add': 0},    # Female 1 - Natural
-    'female-2':         {'rate_mult': 0.88, 'pitch_add': 3},    # Female 2 - Soft & Soothing
-    'female-3':         {'rate_mult': 1.06, 'pitch_add': -1},   # Female 3 - Pro & Crisp
-    'female-4':         {'rate_mult': 0.98, 'pitch_add': 1},    # Female 4 - Warm Daily
-    'female-5':         {'rate_mult': 1.10, 'pitch_add': 4},    # Female 5 - Crisp & Lively
-    'male-1':           {'rate_mult': 1.00, 'pitch_add': 0},    # Male 1 - Deep Natural
-    'male-2':           {'rate_mult': 1.05, 'pitch_add': 2},    # Male 2 - Friendly Upbeat
-    'male-3':           {'rate_mult': 0.92, 'pitch_add': -5},   # Male 3 - Authority Baritone
-    'male-4':           {'rate_mult': 0.96, 'pitch_add': -1},   # Male 4 - Warm Conversational
-    'male-5':           {'rate_mult': 1.08, 'pitch_add': 1},    # Male 5 - Crisp & Energetic
+    # ── Core Top 10 Voices (5 Female, 5 Male) - 100% Original Natural Speech (Zero Distortion) ──
+    'female-1':         {'rate_mult': 1.00, 'pitch_add': 0},    # Female 1 - Original Natural
+    'female-2':         {'rate_mult': 1.00, 'pitch_add': 0},    # Female 2 - Original Expressive
+    'female-3':         {'rate_mult': 1.00, 'pitch_add': 0},    # Female 3 - Original Warm
+    'female-4':         {'rate_mult': 1.00, 'pitch_add': 0},    # Female 4 - Original Friendly
+    'female-5':         {'rate_mult': 1.00, 'pitch_add': 0},    # Female 5 - Original Confident
+    'male-1':           {'rate_mult': 1.00, 'pitch_add': 0},    # Male 1 - Original Natural
+    'male-2':           {'rate_mult': 1.00, 'pitch_add': 0},    # Male 2 - Original Storyteller
+    'male-3':           {'rate_mult': 1.00, 'pitch_add': 0},    # Male 3 - Original Dynamic
+    'male-4':           {'rate_mult': 1.00, 'pitch_add': 0},    # Male 4 - Original Daily
+    'male-5':           {'rate_mult': 1.00, 'pitch_add': 0},    # Male 5 - Original Executive
 
     # ── Age & Generations ──
     'kid-f1':           {'rate_mult': 1.15, 'pitch_add': 7},
@@ -1336,37 +1400,18 @@ def apply_voice_type_modifiers(voice_type, base_rate, base_pitch):
         
     vt = str(voice_type or '').strip().lower()
 
+    # The top 5 female and top 5 male voices are 100% original natural voices - NEVER alter rate/pitch!
+    if vt in ('female-1', 'female-2', 'female-3', 'female-4', 'female-5',
+              'male-1', 'male-2', 'male-3', 'male-4', 'male-5'):
+        return str(r), str(p)
+
     if vt in VOICE_TYPE_MODIFIERS:
         mod = VOICE_TYPE_MODIFIERS[vt]
         r = round(r * mod['rate_mult'], 2)
         p = p + mod['pitch_add']
     else:
-        # Fallback heuristic
-        if 'female-2' in vt or 'f2' in vt or 'soft' in vt:
-            r = round(r * 0.88, 2)
-            p += 3
-        elif 'female-3' in vt or 'f3' in vt or 'pro' in vt:
-            r = round(r * 1.06, 2)
-            p -= 1
-        elif 'female-4' in vt or 'f4' in vt or 'warm' in vt:
-            r = round(r * 0.98, 2)
-            p += 1
-        elif 'female-5' in vt or 'f5' in vt or 'crisp' in vt:
-            r = round(r * 1.10, 2)
-            p += 4
-        elif 'male-2' in vt or 'm2' in vt or 'friendly' in vt:
-            r = round(r * 1.05, 2)
-            p += 2
-        elif 'male-3' in vt or 'm3' in vt or 'deep' in vt or 'authority' in vt:
-            r = round(r * 0.92, 2)
-            p -= 5
-        elif 'male-4' in vt or 'm4' in vt:
-            r = round(r * 0.96, 2)
-            p -= 1
-        elif 'male-5' in vt or 'm5' in vt:
-            r = round(r * 1.08, 2)
-            p += 1
-        elif 'kid' in vt or 'toddler' in vt or 'chipmunk' in vt:
+        # Fallback heuristic for other stylistic/character voices only
+        if 'kid' in vt or 'toddler' in vt or 'chipmunk' in vt:
             r = round(r * 1.15, 2)
             p += 7
         elif 'teen' in vt:
@@ -1410,6 +1455,17 @@ def generate():
         if len(text) > 5000:
             return jsonify({'error': 'Text too long. Max 5000 characters.'}), 400
 
+        # Smart language auto-alignment: If text script doesn't match selected lang
+        # (e.g. Hindi/Devanagari, Hinglish, Arabic, etc. sent with default 'en-US'),
+        # auto-detect and switch language so Edge-TTS never crashes or falls back to robotic gTTS!
+        detected_lang = detect_text_language(text)
+        if detected_lang and detected_lang != lang:
+            is_non_latin = any(ord(c) > 0x0600 for c in text if c.isalpha())
+            is_hinglish = detected_lang == 'hi-IN' and any(w in text.lower().split() for w in ['hai','kya','mujhe','bhai','yaar','chahiye','kaise'])
+            if lang == 'en-US' or is_non_latin or is_hinglish:
+                logging.info(f"Auto-aligned TTS language from '{lang}' to '{detected_lang}' for best natural quality")
+                lang = detected_lang
+
         # Apply voice modifiers so characters sound unique even if mapping to the same base neural voice
         rate, pitch = apply_voice_type_modifiers(voice_type, rate, pitch)
 
@@ -1437,6 +1493,17 @@ def generate():
                 text, voice, rate_str, pitch_str, volume_str, style, filepath,
                 natural_mode=natural_mode
             ))
+            if not ok:
+                # Retry with primary native neural voice before falling back to gTTS
+                primary = COMPLETE_VOICE_CATALOG.get(lang, {}).get(
+                    'primary_male' if determine_voice_gender(voice_type) == 'male' else 'primary_female'
+                )
+                if primary and primary != voice:
+                    logging.info(f"Retrying edge-tts with primary voice {primary}...")
+                    ok = asyncio.run(_generate_edge(
+                        text, primary, "+0%", "+0Hz", "+0%", "general", filepath,
+                        natural_mode=False
+                    ))
             if ok:
                 success = True
                 method  = "Edge TTS"
@@ -1451,11 +1518,14 @@ def generate():
                 gTTS(text=text, lang=gtts_lang, slow=slow).save(filepath)
                 if os.path.exists(filepath) and os.path.getsize(filepath) > 500:
                     gender = determine_voice_gender(voice_type)
-                    if gender == 'male':
-                        shift = -6.0 if any(k in voice_type for k in ['senior', 'deep', 'bass', 'authority']) else -4.0
-                        _pitch_shift_audio_file(filepath, shift)
-                    elif 'kid' in voice_type:
-                        _pitch_shift_audio_file(filepath, +3.5)
+                    is_top10 = voice_type in ('female-1','female-2','female-3','female-4','female-5',
+                                              'male-1','male-2','male-3','male-4','male-5')
+                    if not is_top10:
+                        if gender == 'male':
+                            shift = -6.0 if any(k in voice_type for k in ['senior', 'deep', 'bass', 'authority']) else -4.0
+                            _pitch_shift_audio_file(filepath, shift)
+                        elif 'kid' in voice_type:
+                            _pitch_shift_audio_file(filepath, +3.5)
                     success = True
                     method  = "Google TTS"
                     logging.info("gTTS fallback OK (Gender-adapted)")
