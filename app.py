@@ -15,8 +15,35 @@ load_dotenv()
 # ─────────────────────────────────────────────
 try:
     import edge_tts
+    import edge_tts.communicate
+
+    # 🌟 MONKEY PATCH: Enable Smart Locale & Pure Raw Neural Audio (Zero Robotic Prosody Distortion)
+    def _clean_mkssml(tc, escaped_text):
+        if isinstance(escaped_text, bytes):
+            escaped_text = escaped_text.decode("utf-8")
+        parts = tc.voice.split('-')
+        voice_lang = f"{parts[0]}-{parts[1]}" if len(parts) >= 2 else "en-US"
+        if tc.pitch == "+0Hz" and tc.rate == "+0%" and tc.volume == "+0%":
+            return (
+                f"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='{voice_lang}'>"
+                f"<voice name='{tc.voice}'>"
+                f"{escaped_text}"
+                f"</voice>"
+                f"</speak>"
+            )
+        return (
+            f"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='{voice_lang}'>"
+            f"<voice name='{tc.voice}'>"
+            f"<prosody pitch='{tc.pitch}' rate='{tc.rate}' volume='{tc.volume}'>"
+            f"{escaped_text}"
+            "</prosody>"
+            "</voice>"
+            "</speak>"
+        )
+
+    edge_tts.communicate.mkssml = _clean_mkssml
     EDGE_AVAILABLE = True
-    print("[OK] edge-tts available")
+    print("[OK] edge-tts available (Pure Neural Prosody Enabled)")
 except ImportError:
     EDGE_AVAILABLE = False
     print("[FAIL] edge-tts not available -> pip install edge-tts")

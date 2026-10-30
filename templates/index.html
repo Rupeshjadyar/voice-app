@@ -834,6 +834,30 @@
         margin-top: 1px;
       }
 
+      .dd-play-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: var(--a1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .68rem;
+        cursor: pointer;
+        margin-left: 8px;
+        flex-shrink: 0;
+        transition: all .16s ease;
+      }
+      .dd-play-btn:hover {
+        background: linear-gradient(135deg, var(--a1), var(--a2));
+        color: #fff;
+        border-color: transparent;
+        transform: scale(1.12);
+        box-shadow: 0 0 10px rgba(59, 158, 255, 0.4);
+      }
+
       .wave {
         display: flex;
         align-items: center;
@@ -3675,7 +3699,7 @@
               <input type="search" id="${id}Q" placeholder="${placeholder}" autocomplete="off" oninput="ddFilter('${id}',this.value)">
             </div>
             <div class="dd-list" id="${id}List">
-              ${items.map(it => `<div class="dd-opt${it.id === selectedId ? ' is-sel' : ''}" data-id="${it.id}" data-q="${(it.name + (it.sub || it.code || '')).toLowerCase()}" onclick="ddPick('${id}','${it.id}')"><span class="dd-oicon">${it.icon}</span><div class="dd-obody"><div class="dd-oname">${it.name}</div>${it.sub ? `<div class="dd-osub">${it.sub}</div>` : ''}</div></div>`).join('')}
+              ${items.map(it => `<div class="dd-opt${it.id === selectedId ? ' is-sel' : ''}" data-id="${it.id}" data-q="${(it.name + (it.sub || it.code || '')).toLowerCase()}" onclick="ddPick('${id}','${it.id}')"><span class="dd-oicon">${it.icon}</span><div class="dd-obody"><div class="dd-oname">${it.name}</div>${it.sub ? `<div class="dd-osub">${it.sub}</div>` : ''}</div>${id === 'dd-voice' && it.id !== 'custom-cloned-voice' ? `<button type="button" class="dd-play-btn" title="Quick Voice Preview" onclick="event.stopPropagation();ddVoicePreview('${it.id}', this)"><i class="fa-solid fa-play"></i></button>` : ''}</div>`).join('')}
             </div>
             ${footerHtml ? `<div class="dd-footer" style="padding:8px 10px;border-top:1px solid var(--border);background:rgba(255,255,255,0.02);">${footerHtml}</div>` : ''}
           </div>
@@ -3697,6 +3721,51 @@
         if (iEl) iEl.textContent = item.icon; if (lEl) lEl.textContent = item.name; if (sEl) sEl.textContent = item.sub || '';
         document.querySelectorAll(`#${id}List .dd-opt`).forEach(el => el.classList.toggle('is-sel', el.dataset.id === pickedId));
         ddClose(id); st.onSelect(item);
+      }
+
+      /* ── INSTANT VOICE DROPDOWN PREVIEW ── */
+      let _previewAudio = null;
+      let _previewBtn = null;
+      async function ddVoicePreview(vid, btn) {
+        if (_previewAudio) {
+          _previewAudio.pause();
+          _previewAudio = null;
+        }
+        if (_previewBtn) {
+          const oldIcon = _previewBtn.querySelector('i');
+          if (oldIcon) oldIcon.className = 'fa-solid fa-play';
+        }
+        if (_previewBtn === btn) {
+          _previewBtn = null;
+          return;
+        }
+        _previewBtn = btn;
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = 'fa-solid fa-spinner fa-spin';
+        try {
+          const vdata = S.voices.find(v => v.id === vid) || { rate: 1.0, pitch: 0, style: 'general' };
+          const r = await fetch('/preview-voice', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ language: S.lang, voice_type: vid, rate: vdata.rate, pitch: vdata.pitch, style: vdata.style })
+          });
+          const d = await r.json();
+          if (d.success) {
+            _previewAudio = new Audio(d.audio_data);
+            if (icon) icon.className = 'fa-solid fa-volume-high';
+            _previewAudio.onended = () => { if (icon) icon.className = 'fa-solid fa-play'; _previewBtn = null; };
+            _previewAudio.onerror = () => { if (icon) icon.className = 'fa-solid fa-play'; _previewBtn = null; };
+            await _previewAudio.play();
+          } else {
+            if (icon) icon.className = 'fa-solid fa-play';
+            _previewBtn = null;
+            showToast(d.error || 'Preview failed', 'err');
+          }
+        } catch (err) {
+          if (icon) icon.className = 'fa-solid fa-play';
+          _previewBtn = null;
+          showToast('Preview error', 'err');
+        }
       }
 
       /* ── BUILD DROPDOWNS ── */
