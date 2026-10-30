@@ -1388,7 +1388,7 @@ VOICE_TYPE_MODIFIERS = {
 
 
 def apply_voice_type_modifiers(voice_type, base_rate, base_pitch):
-    """Apply pitch and rate offsets to simulate distinct voices from a single model."""
+    """Apply pitch and rate offsets to simulate distinct voices from a single model without double-distortion."""
     try:
         r = float(base_rate)
     except Exception:
@@ -1405,30 +1405,35 @@ def apply_voice_type_modifiers(voice_type, base_rate, base_pitch):
               'male-1', 'male-2', 'male-3', 'male-4', 'male-5'):
         return str(r), str(p)
 
+    # Prevent double-modification:
+    # If base_rate == 1.0 and base_pitch == 0 (caller sent default values), apply the character modifier.
+    # If frontend already sent specific slider values (e.g. rate != 1.0 or pitch != 0), do NOT compound/double-apply!
     if vt in VOICE_TYPE_MODIFIERS:
         mod = VOICE_TYPE_MODIFIERS[vt]
-        r = round(r * mod['rate_mult'], 2)
-        p = p + mod['pitch_add']
+        if r == 1.0 and p == 0:
+            r = round(mod['rate_mult'], 2)
+            p = mod['pitch_add']
     else:
-        # Fallback heuristic for other stylistic/character voices only
-        if 'kid' in vt or 'toddler' in vt or 'chipmunk' in vt:
-            r = round(r * 1.15, 2)
-            p += 7
-        elif 'teen' in vt:
-            r = round(r * 1.06, 2)
-            p += 2
-        elif 'senior' in vt or 'old' in vt or 'wise' in vt or 'grandfather' in vt or 'grandmother' in vt:
-            r = round(r * 0.80, 2)
-            p -= 4
-        elif 'giant' in vt or 'villain' in vt or 'bass' in vt:
-            r = round(r * 0.80, 2)
-            p -= 7
-        elif 'anime' in vt or 'fairy' in vt:
-            r = round(r * 1.15, 2)
-            p += 5
-        elif 'news' in vt or 'commentary' in vt:
-            r = round(r * 1.08, 2)
-            p += 0
+        # Fallback heuristic for other stylistic/character voices only when at default
+        if r == 1.0 and p == 0:
+            if 'kid' in vt or 'toddler' in vt or 'chipmunk' in vt:
+                r = 1.12
+                p = 4
+            elif 'teen' in vt:
+                r = 1.04
+                p = 2
+            elif 'senior' in vt or 'old' in vt or 'wise' in vt or 'grandfather' in vt or 'grandmother' in vt:
+                r = 0.88
+                p = -3
+            elif 'giant' in vt or 'villain' in vt or 'bass' in vt:
+                r = 0.85
+                p = -4
+            elif 'anime' in vt or 'fairy' in vt:
+                r = 1.10
+                p = 3
+            elif 'news' in vt or 'commentary' in vt:
+                r = 1.06
+                p = 0
         
     return str(r), str(p)
 
@@ -1455,16 +1460,16 @@ def generate():
         if len(text) > 5000:
             return jsonify({'error': 'Text too long. Max 5000 characters.'}), 400
 
-        # Smart language auto-alignment: If text script doesn't match selected lang
-        # (e.g. Hindi/Devanagari, Hinglish, Arabic, etc. sent with default 'en-US'),
-        # auto-detect and switch language so Edge-TTS never crashes or falls back to robotic gTTS!
-        detected_lang = detect_text_language(text)
-        if detected_lang and detected_lang != lang:
-            is_non_latin = any(ord(c) > 0x0600 for c in text if c.isalpha())
-            is_hinglish = detected_lang == 'hi-IN' and any(w in text.lower().split() for w in ['hai','kya','mujhe','bhai','yaar','chahiye','kaise'])
-            if lang == 'en-US' or is_non_latin or is_hinglish:
-                logging.info(f"Auto-aligned TTS language from '{lang}' to '{detected_lang}' for best natural quality")
-                lang = detected_lang
+        # Smart language auto-alignment: ONLY if the user left the dropdown at default 'en-US'
+        # and entered non-Latin script (Devanagari, Arabic, Cyrillic, CJK, etc.)
+        # NEVER override a user's intentional language choice (e.g. hi-IN, mr-IN, es-ES, fr-FR)
+        if lang == 'en-US':
+            detected_lang = detect_text_language(text)
+            if detected_lang and detected_lang != 'en-US':
+                is_non_latin = any(ord(c) > 0x0600 for c in text if c.isalpha())
+                if is_non_latin:
+                    logging.info(f"Auto-aligned TTS language from default 'en-US' to '{detected_lang}' for non-Latin text")
+                    lang = detected_lang
 
         # Apply voice modifiers so characters sound unique even if mapping to the same base neural voice
         rate, pitch = apply_voice_type_modifiers(voice_type, rate, pitch)
