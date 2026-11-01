@@ -1203,7 +1203,7 @@ def audio_to_base64(filepath, fmt='mp3'):
 import time as _time
 import threading as _threading
 
-_STATS_CACHE = {"total": 1540, "today": 0, "last_updated": 0}
+_STATS_CACHE = {"total": 34667, "today": 0, "last_updated": 0}  # Initialized from Redis baseline
 _STATS_LOCK = _threading.Lock()
 
 def _refresh_stats_async():
