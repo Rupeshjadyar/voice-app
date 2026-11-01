@@ -95,6 +95,10 @@ def add_security_headers(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    # SEO: Cache HTML pages 10 min for faster Googlebot crawl
+    if response.content_type and 'text/html' in response.content_type:
+        if response.status_code == 200:
+            response.headers['Cache-Control'] = 'public, max-age=600, stale-while-revalidate=3600'
     return response
 
 # ─────────────────────────────────────────────
@@ -2226,7 +2230,9 @@ def test_redis():
 def robots_txt():
     from flask import Response
     content = "User-agent: *\nAllow: /\nSitemap: https://www.texttoaudiomp3.site/sitemap.xml\n"
-    return Response(content, mimetype='text/plain')
+    resp = Response(content, mimetype='text/plain')
+    resp.headers['Cache-Control'] = 'public, max-age=86400'  # 1 day
+    return resp
 
 
 @app.route('/ads.txt')
@@ -2234,6 +2240,23 @@ def ads_txt():
     from flask import Response
     content = "google.com, pub-9707682105347147, DIRECT, f08c47fec0942fa0\n"
     return Response(content, mimetype='text/plain')
+
+
+# SEO: Serve og-image.png for social sharing (Google Discover, Twitter, WhatsApp)
+@app.route('/og-image.png')
+def og_image():
+    og_path = os.path.join(app.root_path, 'static', 'og-image.png')
+    if os.path.exists(og_path):
+        resp = send_from_directory(os.path.join(app.root_path, 'static'), 'og-image.png', mimetype='image/png')
+        resp.headers['Cache-Control'] = 'public, max-age=2592000'  # 30 days
+        return resp
+    return '', 404
+
+
+# SEO: Google Search Console verification
+@app.route('/google1234567890abcdef.html')
+def google_verify():
+    return render_template('google1234567890abcdef.html')
 
 
 @app.route('/favicon.png')
